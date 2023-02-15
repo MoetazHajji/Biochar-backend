@@ -23,6 +23,6 @@ public class Command implements Serializable {
     String notice;
     Long quantity;
 
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "command")
     List<Product> products;
 }

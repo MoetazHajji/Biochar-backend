@@ -5,19 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Adress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplies.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Type_product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IAdressRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISupplierRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISuppliesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Configuration/SpringDocConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/AdressController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IAdressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISupplierService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISuppliesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/AdressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SuppliesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IAdressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IAdressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISupplierRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISupplierRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISuppliesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISuppliesRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,7 +69,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/Users/moete/OneDrive/Desktop/Biochar-backend/user-service/src/main/java/tn/esprit",
+    "last_opened_file_path": "C:/Users/moete/OneDrive/Desktop/pidev/Biochar-backend",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -77,7 +84,14 @@
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\hr-service\src\main\java\tn\esprit" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AnalysisServiceApplication">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.StockServiceApplication">
     <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" />
       <module name="analysis-service" />
@@ -118,6 +132,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HrServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="hr-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.HrServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="internship-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.InternshipServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="discovery-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.Main" />
@@ -131,7 +159,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StockServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="stock-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.StockServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="training-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.TrainingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Spring Boot.HrServiceApplication" />
+      <item itemvalue="Spring Boot.InternshipServiceApplication" />
+      <item itemvalue="Spring Boot.StockServiceApplication" />
+      <item itemvalue="Spring Boot.TrainingServiceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.AnalysisServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.DiscoveryServerApplication" />
@@ -154,7 +208,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
-      <workItem from="1676459390968" duration="10528000" />
+      <workItem from="1676459390968" duration="12763000" />
+      <workItem from="1676488540492" duration="5320000" />
     </task>
     <servers />
   </component>
