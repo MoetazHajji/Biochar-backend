@@ -5,43 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/AnalysisServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/tn/esprit/ApiGatewayApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/java/tn/esprit/DiscoveryServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/HrServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/src/main/java/tn/esprit/InternshipServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/StockServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/TrainingServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/tn/esprit/UserServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Adress.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplies.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Type_product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IAdressRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISupplierRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISuppliesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -164,7 +154,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
-      <workItem from="1676459390968" duration="4419000" />
+      <workItem from="1676459390968" duration="10528000" />
     </task>
     <servers />
   </component>
