@@ -13,26 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InternshipRequest implements Serializable {
+public class FollowUpSheet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int duration;
-    String motif;
-    String motivation;
-    String CV;
-    @Enumerated(EnumType.STRING)
-     Status status;
-    Date start_date;
-    Date end_date;
-    Date sending_date;
+    float rate;
+    String description;
+    Date date;
     @ManyToOne
     Internship internship;
-
-
-
-
-
-
+    @ManyToOne
+    Test test;
 
 }

@@ -5,7 +5,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -13,24 +12,19 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InternshipRequest implements Serializable {
+public class Detail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int duration;
-    String motif;
-    String motivation;
-    String CV;
+    String university;
+    String location_university;
+    String phone_university;
     @Enumerated(EnumType.STRING)
-     Status status;
-    Date start_date;
-    Date end_date;
-    Date sending_date;
-    @ManyToOne
+    Diploma diploma;
+    String level_of_study;
+    String specialite;
+    @OneToOne
     Internship internship;
-
-
-
 
 
 
