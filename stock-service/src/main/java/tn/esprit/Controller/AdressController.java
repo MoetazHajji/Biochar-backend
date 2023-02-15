@@ -17,4 +17,8 @@ public class AdressController {
     public Adress addAdress(@RequestBody Adress adress){
         return adressService.addAdress(adress);
     }
+    @PostMapping("add")
+    public Adress aAdress(@RequestBody Adress adress){
+        return adressService.addAdress(adress);
+    }
 }
