@@ -4,40 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/AnalysisServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/tn/esprit/ApiGatewayApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/java/tn/esprit/DiscoveryServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/HrServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/src/main/java/tn/esprit/InternshipServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/StockServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/TrainingServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/tn/esprit/UserServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,10 +39,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/Users/moete/OneDrive/Desktop/Biochar-backend/user-service/src/main/java/tn/esprit",
+    "last_opened_file_path": "C:/Worker/esprit/PI/Biochar-backend/user-service",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "e8d0ec31f9cfff92025173fa32241d56"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -165,6 +133,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
       <workItem from="1676459390968" duration="4419000" />
+      <workItem from="1676496331053" duration="632000" />
     </task>
     <servers />
   </component>
