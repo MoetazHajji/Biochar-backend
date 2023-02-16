@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +17,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -37,16 +40,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\user-service\src\main\java\tn\esprit" />
@@ -56,7 +49,21 @@
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\hr-service\src\main\java\tn\esprit" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.AnalysisServiceApplication">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration name="AnalysisServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Analysis-Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.AnalysisServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" temporary="true" nameIsGenerated="true">
       <module name="analysis-service" />
       <extension name="coverage">
@@ -146,21 +153,22 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.AnalysisServiceApplication (1)" />
+      <item itemvalue="Spring Boot.HrServiceApplication" />
+      <item itemvalue="Spring Boot.InternshipServiceApplication" />
+      <item itemvalue="Spring Boot.StockServiceApplication" />
+      <item itemvalue="Spring Boot.TrainingServiceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.AnalysisServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.DiscoveryServerApplication" />
       <item itemvalue="Spring Boot.Main" />
-      <item itemvalue="Spring Boot.InternshipServiceApplication" />
-      <item itemvalue="Spring Boot.TrainingServiceApplication" />
-      <item itemvalue="Spring Boot.HrServiceApplication" />
-      <item itemvalue="Spring Boot.StockServiceApplication" />
-      <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
-        <item itemvalue="Spring Boot.DiscoveryServerApplication" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.DiscoveryServerApplication" />
+        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
@@ -173,8 +181,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
-      <workItem from="1676459390968" duration="4419000" />
-      <workItem from="1676492615509" duration="6592000" />
+      <workItem from="1676459390968" duration="12763000" />
+      <workItem from="1676488540492" duration="6178000" />
+      <workItem from="1676542063754" duration="116000" />
+      <workItem from="1676542192021" duration="148000" />
     </task>
     <servers />
   </component>
