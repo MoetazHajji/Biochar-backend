@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/tn/esprit/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/tn/esprit/Entity/User.java" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
+>>>>>>> b736ff910dfea5b1bdde78eafe1121ff62cde515
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +55,19 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
+<<<<<<< HEAD
+    "last_opened_file_path": "C:/Worker/esprit/Architecture des SI II springboot/TP/learn-for-me/TP-6-Secure/spring-boot-https-example-master",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "e8d0ec31f9cfff92025173fa32241d56"
+=======
     "last_opened_file_path": "C:/Users/moete/OneDrive/Desktop/pidev/Biochar-backend",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "spring.configuration.checksum": "7989bba0fabbb4bb9fd9262867bb7331"
+>>>>>>> b736ff910dfea5b1bdde78eafe1121ff62cde515
   }
 }]]></component>
 =======
@@ -211,10 +224,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
+<<<<<<< HEAD
+      <workItem from="1676459390968" duration="4419000" />
+      <workItem from="1676496331053" duration="1926000" />
+=======
       <workItem from="1676459390968" duration="12763000" />
       <workItem from="1676488540492" duration="6178000" />
       <workItem from="1676542063754" duration="116000" />
       <workItem from="1676542192021" duration="148000" />
+>>>>>>> b736ff910dfea5b1bdde78eafe1121ff62cde515
     </task>
     <servers />
   </component>
