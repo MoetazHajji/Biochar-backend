@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
@@ -54,7 +55,8 @@
     "last_opened_file_path": "C:/Users/moete/OneDrive/Desktop/pidev/Biochar-backend",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "7989bba0fabbb4bb9fd9262867bb7331"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -73,7 +75,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.StockServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration name="AnalysisServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Analysis-Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.AnalysisServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" />
       <module name="analysis-service" />
@@ -163,6 +172,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.AnalysisServiceApplication (1)" />
       <item itemvalue="Spring Boot.HrServiceApplication" />
       <item itemvalue="Spring Boot.InternshipServiceApplication" />
       <item itemvalue="Spring Boot.StockServiceApplication" />
@@ -176,8 +186,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.DiscoveryServerApplication" />
+        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
@@ -192,6 +202,8 @@
       <updated>1676459389262</updated>
       <workItem from="1676459390968" duration="12763000" />
       <workItem from="1676488540492" duration="6178000" />
+      <workItem from="1676542063754" duration="116000" />
+      <workItem from="1676542192021" duration="148000" />
     </task>
     <servers />
   </component>
