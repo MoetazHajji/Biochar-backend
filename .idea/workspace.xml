@@ -4,11 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="" />
+    <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/CertificateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/QuizController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/ReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TraineeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TrainerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TrainingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Certificate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Quiz.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Trainee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Trainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Type_Q.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Type_T.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ICertificateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/IQuizService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/IReviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITraineeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITrainerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITrainingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/CertificateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/QuizRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/ReviewRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TraineeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TrainerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TrainingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/CertificateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/QuizService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/ReviewService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TraineeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TrainerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TrainingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-service/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Training.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Training.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,10 +83,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/Users/SBS/Documents/Spring/Biochar-backend/training-service",
+    "last_opened_file_path": "C:/Users/SBS/Desktop/spring-boot-microservices-new-part-4/spring-boot-microservices-new-part-4",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "bd40b0e80bbf34b8aab0a1ba8efab645"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -54,6 +100,12 @@
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\hr-service\src\main\java\tn\esprit" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+      <command value="mvn install" />
+    </option>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -61,7 +113,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AnalysisServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" />
       <module name="analysis-service" />
@@ -102,6 +154,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HrServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="hr-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.HrServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="internship-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.InternshipServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="discovery-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.Main" />
@@ -115,7 +181,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StockServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="stock-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.StockServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TrainingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="training-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.TrainingServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tn.esprit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Spring Boot.HrServiceApplication" />
+      <item itemvalue="Spring Boot.InternshipServiceApplication" />
+      <item itemvalue="Spring Boot.StockServiceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
+      <item itemvalue="Spring Boot.TrainingServiceApplication" />
       <item itemvalue="Spring Boot.AnalysisServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.DiscoveryServerApplication" />
@@ -123,9 +221,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.TrainingServiceApplication" />
         <item itemvalue="Spring Boot.DiscoveryServerApplication" />
+        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
@@ -140,6 +239,10 @@
       <updated>1676459389262</updated>
       <workItem from="1676459390968" duration="4419000" />
       <workItem from="1676468975632" duration="69000" />
+      <workItem from="1676469383949" duration="123000" />
+      <workItem from="1676469516919" duration="145000" />
+      <workItem from="1676476333748" duration="11889000" />
+      <workItem from="1676534561136" duration="7682000" />
     </task>
     <servers />
   </component>
