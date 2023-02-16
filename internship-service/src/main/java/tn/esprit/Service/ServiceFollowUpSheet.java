@@ -17,10 +17,7 @@ public class ServiceFollowUpSheet implements IServiceFollowUpSheet {
     public FollowUpSheet addFollowUpSheet(FollowUpSheet f) {
         return rfs.save(f);
     }
-    @Override
-    public FollowUpSheet updateFollowUpSheet(FollowUpSheet f) {
-        return rfs.save(f);
-    }
+
     @Override
     public void DeleteFollowUpSheet(Integer idFollowUpSheet) {
         rfs.deleteById(idFollowUpSheet);

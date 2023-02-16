@@ -1,7 +1,8 @@
 package tn.esprit.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import tn.esprit.Entity.Detail;
 
-public interface RepoDetail extends CrudRepository<Detail,Integer> {
+public interface RepoDetail extends JpaRepository<Detail,Integer> {
 }

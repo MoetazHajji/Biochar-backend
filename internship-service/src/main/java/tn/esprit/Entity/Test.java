@@ -19,7 +19,6 @@ public class Test implements Serializable {
     int id;
     float rate;
     String description;
-    @OneToMany(mappedBy = "test",cascade = CascadeType.PERSIST)
-    Set<FollowUpSheet>followUpSheets;
+
 
 }

@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,6 +18,7 @@ public class Internship implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    @NotNull
     String certificate;
     @Enumerated(EnumType.STRING)
     State state;
@@ -24,7 +26,7 @@ public class Internship implements Serializable {
     Subject subject;
     @OneToMany(mappedBy = "internship",cascade = CascadeType.PERSIST)
     Set<InternshipRequest> internshipRequests;
-    @OneToOne(mappedBy = "internship",cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     Detail detail;
     @OneToMany(mappedBy = "internship",cascade = CascadeType.PERSIST)
     Set<FollowUpSheet> followUpSheets;

@@ -19,7 +19,7 @@ public class ControllerFollowUpSheet {
     }
     @PutMapping("/update")
     public FollowUpSheet updateFollowUpSheet(@RequestBody FollowUpSheet f) {
-        return isf.updateFollowUpSheet(f);
+        return isf.addFollowUpSheet(f);
     }
     @DeleteMapping("/delete/{id}")
     public void deleteFollowUpSheet(@PathVariable("id") Integer idFollowUpSheet)

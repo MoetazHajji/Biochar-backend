@@ -18,7 +18,7 @@ IServiceDetail isd;
     }
     @PutMapping("/update")
     public Detail updateDetail(@RequestBody Detail d) {
-        return isd.updateDetail(d);
+        return isd.addDetail(d);
     }
 
     @DeleteMapping("/delete/{id}")

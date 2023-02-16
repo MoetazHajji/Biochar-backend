@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -20,6 +21,7 @@ public class InternshipRequest implements Serializable {
     int duration;
     String motif;
     String motivation;
+    @NotNull
     String CV;
     @Enumerated(EnumType.STRING)
      Status status;

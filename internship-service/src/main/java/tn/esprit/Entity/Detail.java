@@ -23,8 +23,7 @@ public class Detail implements Serializable {
     Diploma diploma;
     String level_of_study;
     String specialite;
-    @OneToOne
-    Internship internship;
+
 
 
 

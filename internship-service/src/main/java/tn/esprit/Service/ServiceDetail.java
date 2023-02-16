@@ -17,10 +17,7 @@ public class ServiceDetail implements IServiceDetail {
     public Detail addDetail(Detail d) {
         return rd.save(d);
     }
-    @Override
-    public Detail updateDetail(Detail d) {
-        return rd.save(d);
-    }
+
     @Override
     public void DeleteDetail(Integer idDetail) {
         rd.deleteById(idDetail);

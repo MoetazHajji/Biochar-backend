@@ -7,7 +7,7 @@ import java.util.List;
 public interface IServiceFollowUpSheet {
     FollowUpSheet addFollowUpSheet(FollowUpSheet f);
 
-    FollowUpSheet updateFollowUpSheet(FollowUpSheet f);
+
 
     void DeleteFollowUpSheet(Integer idFollowUpSheet);
 
