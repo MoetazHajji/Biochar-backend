@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/SampleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TestResultController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/TestResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ISample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ITestResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/SampleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/TestResultRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/SampleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/TestResultService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Analyse.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
       <workItem from="1676459390968" duration="4419000" />
-      <workItem from="1676492615509" duration="5373000" />
+      <workItem from="1676492615509" duration="6592000" />
     </task>
     <servers />
   </component>
