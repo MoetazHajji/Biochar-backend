@@ -11,10 +11,15 @@ target/
 .idea/workspace.xml
 <<<<<<< HEAD
 .idea/uiDesigner.xml
+.idea/*
+=======
+<<<<<<< HEAD
+.idea/uiDesigner.xml
 .idea
 =======
 .idea/uiDesig   ner.xml
 >>>>>>> d348e1ad8a2fffa4df832fa25e40c80680167aef
+>>>>>>> 17a930276e59893a5ac9a3f0aa93933e8b1d4419
 *.iws
 *.iml
 *.ipr
