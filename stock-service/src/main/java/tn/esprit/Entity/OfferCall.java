@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,24 +15,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Product implements Serializable {
+public class OfferCall implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name_product;
-    String designation;
-    String reference;
-
-    @Enumerated(EnumType.STRING)
-    Type_product type_product;
+    Date date_offer;
+    String quantity;
+    float prix;
 
     @ManyToOne
-    Supplies supplies;
+    Product product;
 
     @ManyToOne
-    Command command;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "product")
-    List<OfferCall> offerCalls;
+    Supplier supplier;
 }
