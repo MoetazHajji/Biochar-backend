@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
