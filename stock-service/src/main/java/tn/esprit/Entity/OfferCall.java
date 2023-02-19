@@ -1,11 +1,12 @@
 package tn.esprit.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,16 +14,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Adress implements Serializable {
+public class OfferCall implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String Street;
-    String city;
-    String country;
-    Long postal_code;
+    Date date_offer;
+    String quantity;
+    float prix;
 
-    @JsonIgnore
+    @ManyToOne
+    Product product;
+
     @ManyToOne
     Supplier supplier;
 }

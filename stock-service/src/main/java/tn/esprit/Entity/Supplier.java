@@ -21,9 +21,9 @@ public class Supplier implements Serializable {
     Long phone;
     String email;
 
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier" , cascade = {CascadeType.REMOVE , CascadeType.PERSIST,CascadeType.MERGE})
     List<Adress> adresses;
 
-    @ManyToMany(mappedBy = "suppliers")
-    List<Product> products;
+    @OneToMany(mappedBy = "supplier")
+    List<OfferCall> offerCalls;
 }

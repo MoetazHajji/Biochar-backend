@@ -45,4 +45,10 @@ public class SupplierController {
     public List<Supplier> getAllSupplier(){
         return supplierService.getAllSuppliers();
     }
+
+    @Operation(description = "Add Supplier and adress")
+    @PostMapping("addSupplierWithAdr")
+    public Supplier AddSupplierWithAdresses(@RequestBody Supplier supplier){
+        return supplierService.AddSupplierWithAdresses(supplier);
+    }
 }

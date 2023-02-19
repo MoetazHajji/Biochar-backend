@@ -24,12 +24,12 @@ public class Product implements Serializable {
     @Enumerated(EnumType.STRING)
     Type_product type_product;
 
-    @ManyToMany
-    List<Supplier> suppliers;
-
     @ManyToOne
     Supplies supplies;
 
     @ManyToOne
     Command command;
+
+    @OneToMany(mappedBy = "product")
+    List<OfferCall> offerCalls;
 }
