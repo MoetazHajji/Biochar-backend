@@ -48,8 +48,8 @@ public class OfferCallController {
     }
 
     @Operation(description = "Add Offer call and assign Product")
-    @PostMapping("addCallAndAssignProduct/{id}")
-    public OfferCall addOfferAndAssignProduct(@RequestBody OfferCall offerCall,@PathVariable("id") Long idPro){
-        return callService.addOfferAndAssignProduct(offerCall,idPro);
+    @PostMapping("addCallAndAssignProduct/{idPro}/{idSupp}")
+    public OfferCall addOfferAndAssignProduct(@RequestBody OfferCall offerCall,@PathVariable("idPro") Long idPro,@PathVariable("idSupp") Long idSupp){
+        return callService.addOfferAndAssignProductSupplier(offerCall,idPro,idSupp);
     }
 }

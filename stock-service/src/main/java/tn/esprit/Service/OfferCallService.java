@@ -58,19 +58,6 @@ public class OfferCallService implements IOfferCallService {
         }
         return offer;
     }
-
-    @Override
-    public OfferCall addOfferAndAssignProduct(OfferCall offerCall,Long idPro) {
-        Product product=productRepository.findById(idPro).orElse(null);
-        if(offerCall.getProduct()==null){
-            offerCall.setProduct(product);
-            callRepository.save(offerCall);
-        }else {
-            offerCall.getProduct();
-        }
-        return offerCall;
-    }
-
     @Override
     public OfferCall AffectSupplierToOfferCall(Long idOffer, Long idSupp) {
         OfferCall offerCall=callRepository.findById(idOffer).orElse(null);
@@ -81,8 +68,21 @@ public class OfferCallService implements IOfferCallService {
         }else {
             offerCall.getSupplier();
         }
-        return null;
+        return offerCall;
     }
 
+    @Override
+    public OfferCall addOfferAndAssignProductSupplier(OfferCall offerCall,Long idPro,Long idSupp) {
+        Product product=productRepository.findById(idPro).orElse(null);
+        Supplier supplier=supplierRepository.findById(idSupp).orElse(null);
+        if(offerCall.getProduct()==null&&offerCall.getSupplier()==null){
+            offerCall.setProduct(product);
+            offerCall.setSupplier(supplier);
+            callRepository.save(offerCall);
+        }else {
+            offerCall.getProduct();
+        }
+        return offerCall;
+    }
 
 }

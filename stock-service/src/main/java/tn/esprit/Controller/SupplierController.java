@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
 import tn.esprit.Interface.ISupplierService;
 

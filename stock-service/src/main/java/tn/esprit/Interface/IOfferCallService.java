@@ -14,6 +14,6 @@ public interface IOfferCallService {
     OfferCall getOfferCallById(Long id);
     List<OfferCall> getAllOfferCalls();
     OfferCall AffectProductToOfferCall(Long idPro,Long idOffer);
-    OfferCall addOfferAndAssignProduct(OfferCall offerCall,Long idPro);
+    OfferCall addOfferAndAssignProductSupplier(OfferCall offerCall,Long idPro,Long idSupp);
     OfferCall AffectSupplierToOfferCall(Long idOffer,Long idSupp);
 }
