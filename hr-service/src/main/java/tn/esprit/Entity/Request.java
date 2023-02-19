@@ -13,32 +13,19 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Leave_Authorization implements Serializable {
+public class Request implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_LA;
-    @NonNull
+    Integer id;
     @Temporal(TemporalType.DATE)
-    Date start_date;
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    Date end_date;
-    Float remaining_days;
-    @NonNull
-    String  cause;
-    @NonNull
-    @Enumerated(EnumType.STRING)
-    Type_LA type_la;
-    @NonNull
-    @Enumerated(EnumType.STRING)
-    State_LA state_la;
+    Date date_r;
+    String description_r;
 
     @JsonIgnore
-    @ManyToOne
-    Account account;
+    @OneToOne(mappedBy = "request")
+    Profile profile;
 
 }
