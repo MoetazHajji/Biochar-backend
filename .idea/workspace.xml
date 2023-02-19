@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cea9bf4c-2d0f-40a6-9ebf-22742ae2a1cc" name="Changes" comment="">
+    <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -36,7 +40,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
+    &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -47,19 +51,13 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-
-    &quot;last_opened_file_path&quot;: &quot;C:/Worker/esprit/Architecture des SI II springboot/TP/learn-for-me/TP-6-Secure/spring-boot-https-example-master&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;e8d0ec31f9cfff92025173fa32241d56&quot;
     &quot;last_opened_file_path&quot;: &quot;C:/Users/moete/OneDrive/Desktop/pidev/Biochar-backend&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;7989bba0fabbb4bb9fd9262867bb7331&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\user-service\src\main\java\tn\esprit" />
@@ -209,12 +207,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676459389262</updated>
-      <workItem from="1676459390968" duration="4419000" />
-      <workItem from="1676496331053" duration="1926000" />
       <workItem from="1676459390968" duration="12763000" />
       <workItem from="1676488540492" duration="6178000" />
       <workItem from="1676542063754" duration="116000" />
       <workItem from="1676542192021" duration="148000" />
+      <workItem from="1676732526120" duration="968000" />
     </task>
     <servers />
   </component>
