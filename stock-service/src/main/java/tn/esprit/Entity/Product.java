@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -30,6 +31,7 @@ public class Product implements Serializable {
     @ManyToOne
     Command command;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<OfferCall> offerCalls;
 }

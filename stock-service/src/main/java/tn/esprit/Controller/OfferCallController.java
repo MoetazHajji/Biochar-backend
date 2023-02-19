@@ -46,4 +46,10 @@ public class OfferCallController {
     public List<OfferCall> getAllOfferCalls(){
         return callService.getAllOfferCalls();
     }
+
+    @Operation(description = "Add Offer call and assign Product")
+    @PostMapping("addCallAndAssignProduct/{id}")
+    public OfferCall addOfferAndAssignProduct(@RequestBody OfferCall offerCall,@PathVariable("id") Long idPro){
+        return callService.addOfferAndAssignProduct(offerCall,idPro);
+    }
 }

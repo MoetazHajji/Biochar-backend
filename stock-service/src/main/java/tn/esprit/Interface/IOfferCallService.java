@@ -13,4 +13,7 @@ public interface IOfferCallService {
     void deleteOfferCall(Long id);
     OfferCall getOfferCallById(Long id);
     List<OfferCall> getAllOfferCalls();
+    OfferCall AffectProductToOfferCall(Long idPro,Long idOffer);
+    OfferCall addOfferAndAssignProduct(OfferCall offerCall,Long idPro);
+    OfferCall AffectSupplierToOfferCall(Long idOffer,Long idSupp);
 }

@@ -22,7 +22,6 @@ public class Adress implements Serializable {
     String country;
     Long postal_code;
 
-    @JsonIgnore
     @ManyToOne
     Supplier supplier;
 }
