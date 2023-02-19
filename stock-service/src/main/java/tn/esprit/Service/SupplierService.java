@@ -2,8 +2,11 @@ package tn.esprit.Service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
+import tn.esprit.Interface.IAdressService;
 import tn.esprit.Interface.ISupplierService;
+import tn.esprit.Repository.IAdressRepository;
 import tn.esprit.Repository.ISupplierRepository;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class SupplierService implements ISupplierService {
     ISupplierRepository supplierRepository;
+    IAdressRepository adressRepository;
     @Override
     public Supplier addSupplier(Supplier supplier) {
         return supplierRepository.save(supplier);
@@ -38,5 +42,17 @@ public class SupplierService implements ISupplierService {
         List<Supplier> supplierList = new ArrayList<>();
         supplierRepository.findAll().forEach(supplierList::add);
         return supplierList;
+    }
+
+    @Override
+    public Supplier AddSupplierWithAdresses(Supplier supplier) {
+        supplierRepository.save(supplier);
+        List<Adress> adressList = supplier.getAdresses();
+        supplier.setAdresses(null);
+        for(Adress adress:adressList){
+            adress.setSupplier(supplier);
+            adressRepository.save(adress);
+        }
+        return supplier;
     }
 }
