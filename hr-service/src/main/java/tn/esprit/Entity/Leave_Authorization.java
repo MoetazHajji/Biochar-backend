@@ -12,7 +12,6 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Leave_Authorization implements Serializable {
