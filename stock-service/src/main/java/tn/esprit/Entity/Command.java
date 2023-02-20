@@ -18,10 +18,9 @@ public class Command implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     Date date;
-    String reference;
     String notice;
-    Long quantity;
+    Long quantity_product;
 
-    @OneToMany(mappedBy = "command")
+    @ManyToMany
     List<Product> products;
 }

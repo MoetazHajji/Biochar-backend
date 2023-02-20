@@ -24,5 +24,5 @@ public class Supplier implements Serializable {
     List<Adress> adresses;
 
     @OneToMany(mappedBy = "supplier")
-    List<OfferCall> offerCalls;
+    List<Offer> offers;
 }

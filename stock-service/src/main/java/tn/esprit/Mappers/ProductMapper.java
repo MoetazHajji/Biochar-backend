@@ -11,8 +11,6 @@ public class ProductMapper {
                 .id(product.getId())
                 .name_product(product.getName_product())
                 .type_product(product.getType_product())
-                .reference(product.getReference())
-                .designation(product.getDesignation())
                 .build();
         return productDto;
     }

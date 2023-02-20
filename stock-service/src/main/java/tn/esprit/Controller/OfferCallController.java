@@ -4,9 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Command;
-import tn.esprit.Entity.OfferCall;
-import tn.esprit.Interface.IOfferCallService;
+import tn.esprit.Entity.Offer;
+import tn.esprit.Interface.IOfferService;
 
 import java.util.List;
 
@@ -15,18 +14,18 @@ import java.util.List;
 @Tag(name = "Offer calls management")
 @RequestMapping("offer")
 public class OfferCallController {
-    IOfferCallService callService;
+    IOfferService callService;
 
     @Operation(description = "Add new Offer Call")
     @PostMapping("add")
-    public OfferCall addOfferCall(@RequestBody OfferCall offerCall){
-        return callService.addOfferCall(offerCall);
+    public Offer addOfferCall(@RequestBody Offer offer){
+        return callService.addOfferCall(offer);
     }
 
     @Operation(description = "Modify Offer Call")
     @PutMapping("modify")
-    public OfferCall modifyOfferCall(@RequestBody OfferCall offerCall){
-        return callService.modifyOfferCall(offerCall);
+    public Offer modifyOfferCall(@RequestBody Offer offer){
+        return callService.modifyOfferCall(offer);
     }
 
     @Operation(description = "Delete Command")
@@ -37,19 +36,19 @@ public class OfferCallController {
 
     @Operation(description = "Retreive Offer Call by Id")
     @GetMapping("getAdress/{id}")
-    public OfferCall getOfferCallById(@PathVariable("id") Long id){
+    public Offer getOfferCallById(@PathVariable("id") Long id){
         return callService.getOfferCallById(id);
     }
 
     @Operation(description = "Retreive all Commands")
     @GetMapping("getAllAdress")
-    public List<OfferCall> getAllOfferCalls(){
+    public List<Offer> getAllOfferCalls(){
         return callService.getAllOfferCalls();
     }
 
     @Operation(description = "Add Offer call and assign Product")
     @PostMapping("addCallAndAssignProduct/{idPro}/{idSupp}")
-    public OfferCall addOfferAndAssignProduct(@RequestBody OfferCall offerCall,@PathVariable("idPro") Long idPro,@PathVariable("idSupp") Long idSupp){
-        return callService.addOfferAndAssignProductSupplier(offerCall,idPro,idSupp);
+    public Offer addOfferAndAssignProduct(@RequestBody Offer offer, @PathVariable("idPro") Long idPro, @PathVariable("idSupp") Long idSupp){
+        return callService.addOfferAndAssignProductSupplier(offer,idPro,idSupp);
     }
 }

@@ -18,8 +18,8 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name_product;
-    String designation;
-    String reference;
+    Double price;
+    String description;
 
     @Enumerated(EnumType.STRING)
     Type_product type_product;
@@ -27,10 +27,10 @@ public class Product implements Serializable {
     @ManyToOne
     Supplies supplies;
 
-    @ManyToOne
-    Command command;
+    @ManyToMany(mappedBy = "products")
+    List<Command> commands;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    List<OfferCall> offerCalls;
+    List<Offer> offers;
 }

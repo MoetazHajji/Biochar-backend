@@ -12,4 +12,5 @@ public interface ICommandService {
     void deleteCommand(Long id);
     Command getCommandById(Long id);
     List<Command> getAllCommands();
+    //Command addCommandWithproducts(Command command);
 }
