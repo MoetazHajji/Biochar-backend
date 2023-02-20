@@ -39,4 +39,5 @@ public class TestResultService implements ITestResult {
         testResultRepository.findAll().forEach(TestResults::add);
         return TestResults;
     }
+
 }

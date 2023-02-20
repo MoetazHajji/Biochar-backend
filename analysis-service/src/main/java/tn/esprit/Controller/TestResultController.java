@@ -2,7 +2,6 @@ package tn.esprit.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Sample;
 import tn.esprit.Entity.TestResult;
 import tn.esprit.Interface.ITestResult;
 
