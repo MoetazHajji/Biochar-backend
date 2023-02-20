@@ -29,7 +29,7 @@ public class SpringDocConfig {
     public GroupedOpenApi productPublicApi() {
         return GroupedOpenApi.builder()
                 .group("Only Product Management API")
-                                .pathsToMatch("/product/**")
+                                .pathsToMatch("/Stock/**")
                                 .pathsToExclude("**")
                                 .build();
     }

@@ -1,27 +1,28 @@
 package tn.esprit.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Adress implements Serializable {
+public class Work_Schedule implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String Street;
-    String city;
-    String country;
-    Long postal_code;
-
-    @ManyToOne
-    Supplier supplier;
+    Integer id_WS;
+    @Temporal(TemporalType.DATE)
+    Date start_date;
+    @Temporal(TemporalType.DATE)
+    Date end_date;
+    @Enumerated(EnumType.STRING)
+    Shift shift;
 }
