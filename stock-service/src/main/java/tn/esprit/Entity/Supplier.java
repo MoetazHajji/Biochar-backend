@@ -16,8 +16,11 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
     String name_supplier;
+    @NonNull
     Long phone;
+    @NonNull
     String email;
 
     @OneToMany(mappedBy = "supplier" , cascade = {CascadeType.REMOVE , CascadeType.PERSIST,CascadeType.MERGE})

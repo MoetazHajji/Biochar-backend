@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,8 +18,12 @@ public class Command implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
+    @Temporal(TemporalType.DATE)
     Date date;
+    @NonNull
     String notice;
+    @NonNull
     Long quantity_product;
 
     @ManyToMany

@@ -16,9 +16,15 @@ public class Offer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
+    @Temporal(TemporalType.DATE)
     Date start_date;
+    @NonNull
+    @Temporal(TemporalType.DATE)
     Date end_date;
+    @NonNull
     String quantity;
+    @NonNull
     float prix;
 
     @ManyToOne

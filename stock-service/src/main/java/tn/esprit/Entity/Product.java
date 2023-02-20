@@ -17,16 +17,23 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
     String name_product;
+    @NonNull
+    String reference;
+    @NonNull
     Double price;
+    @NonNull
     String description;
 
+    @NonNull
     @Enumerated(EnumType.STRING)
     Type_product type_product;
 
     @ManyToOne
     Supplies supplies;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "products")
     List<Command> commands;
 

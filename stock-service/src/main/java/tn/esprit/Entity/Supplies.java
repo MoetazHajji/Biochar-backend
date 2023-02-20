@@ -17,9 +17,14 @@ public class Supplies implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
     String unit;
+    @NonNull
     Long quantity;
+    @NonNull
+    @Temporal(TemporalType.DATE)
     Date date;
+    @NonNull
     String location;
 
     @Enumerated(EnumType.STRING)

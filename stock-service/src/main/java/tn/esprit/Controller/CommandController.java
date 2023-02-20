@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Command;
+import tn.esprit.Entity.Product;
 import tn.esprit.Interface.ICommandService;
 
 import java.util.List;
@@ -45,5 +46,19 @@ public class CommandController {
     @GetMapping("getAllAdress")
     public List<Command> getAllCommand(){
         return commandService.getAllCommands();
+    }
+
+    @PutMapping("affectProductsToCommand/{idCom}/{idPro}")
+    public void affectproductsToCommand(@PathVariable("idCom") Long idCom,@PathVariable("idPro") Long idPro){
+         commandService.affectproductsToCommand(idPro, idCom);
+    }
+    @PutMapping("desaffectProdutcsFromEmployee/{idCom}/{idPro}")
+    public void disaffectproductFromCommand(@PathVariable("idCom") Long idCom,@PathVariable("idPro") Long idPro){
+        commandService.disaffectproductFromCommand(idCom,idPro);
+    }
+
+    @PostMapping("addCommandAndAffectProducts/{id}")
+    public List<Long> addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idPro){
+        return commandService.addCommandAndAffectProducts(command,idPro);
     }
 }

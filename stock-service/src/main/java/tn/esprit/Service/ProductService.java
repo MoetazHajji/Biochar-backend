@@ -55,4 +55,11 @@ public class ProductService implements IProductService {
         }
         return product;
     }
+
+    @Override
+    public Double getSommeProducts() {
+        return productRepository.getSumtotale();
+    }
+
+
 }

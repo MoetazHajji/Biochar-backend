@@ -46,4 +46,8 @@ public class ProductController {
     public List<Product> getAllProduct(){
         return productService.getProductList();
     }
+    @GetMapping("getSum")
+    public Double getSumProduct(){
+        return productService.getSommeProducts();
+    }
 }
