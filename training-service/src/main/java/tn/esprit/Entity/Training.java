@@ -39,6 +39,7 @@ public class Training implements Serializable {
     String title;
 
     String subject;
+    String description;
 
     String image;
 
@@ -48,12 +49,15 @@ public class Training implements Serializable {
     @OneToMany(mappedBy = "training",fetch = FetchType.EAGER)
     Set<Trainee> trainees;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     Certificate certificate;
 
-    @OneToMany(mappedBy = "training")
+    @OneToMany(mappedBy = "training",cascade = CascadeType.REMOVE)
     Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     Set<Quiz> quizes;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE,mappedBy = "training")
+    Set<Request> requests;
 }

@@ -26,7 +26,7 @@ public class Certificate implements Serializable {
     String type;
 
     @NonNull
-    String description;
+    String description_c;
 
     @NonNull
     Date a_date;

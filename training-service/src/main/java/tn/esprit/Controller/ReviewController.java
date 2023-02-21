@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Review;
 import tn.esprit.Interface.IReviewService;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @RestController
@@ -19,10 +20,10 @@ public class ReviewController {
 
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public Review add_review(@RequestBody Review r)
+    public Review add_review(@QueryParam("training_id") Long training_id, @RequestBody Review r)
     {
 
-        return reviewService.add_review(r);
+        return reviewService.add_review(training_id,r);
     }
 
     @DeleteMapping("{id}")
@@ -38,9 +39,4 @@ public class ReviewController {
         return reviewService.getAll_review();
     }
 
-    @GetMapping("/{id}")
-    public Review getById_review(@PathVariable("id") Long id)
-    {
-        return reviewService.getById_review(id);
-    }
 }

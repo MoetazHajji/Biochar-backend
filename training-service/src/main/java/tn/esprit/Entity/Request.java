@@ -1,30 +1,30 @@
 package tn.esprit.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Review implements Serializable {
+public class Request implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Temporal(TemporalType.TIME)
+    Date date_r;
 
-    int rating;
-
-    String review;
+    String Description_r;
 
     @ManyToOne
-    @JsonIgnore
     Training training;
 }
