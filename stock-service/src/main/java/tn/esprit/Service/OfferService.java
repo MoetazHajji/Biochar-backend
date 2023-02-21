@@ -47,7 +47,7 @@ public class OfferService implements IOfferService {
     }
 
     @Override
-    public Offer AffectProductToOfferCall(Long idPro, Long idOffer) {
+    public Offer AffectProductToOfferCall(Long idOffer,Long idPro) {
         Offer offer=callRepository.findById(idOffer).orElse(null);
         Product product=productRepository.findById(idPro).orElse(null);
         if(offer.getProduct()==null){
@@ -70,6 +70,7 @@ public class OfferService implements IOfferService {
         }
         return offer;
     }
+
 
     @Override
     public Offer addOfferAndAssignProductSupplier(Offer offer, Long idPro, Long idSupp) {

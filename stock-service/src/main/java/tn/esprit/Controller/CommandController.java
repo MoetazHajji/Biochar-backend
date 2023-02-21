@@ -58,7 +58,12 @@ public class CommandController {
     }
 
     @PostMapping("addCommandAndAffectProducts/{id}")
-    public List<Long> addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idPro){
+    public Command addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idPro){
         return commandService.addCommandAndAffectProducts(command,idPro);
+    }
+
+    @PutMapping("setTotalPrice/{id}")
+    public Command SetTotPriceCommand(@PathVariable("id") Long id){
+        return commandService.SetTotPriceCommand(id);
     }
 }

@@ -26,6 +26,8 @@ public class Command implements Serializable {
     @NonNull
     Long quantity_product;
 
+    Double Total_price;
+
     @ManyToMany
     List<Product> products;
 }

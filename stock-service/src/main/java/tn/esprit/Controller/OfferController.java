@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Tag(name = "Offer calls management")
 @RequestMapping("offer")
-public class OfferCallController {
+public class OfferController {
     IOfferService callService;
 
     @Operation(description = "Add new Offer Call")
@@ -46,9 +46,22 @@ public class OfferCallController {
         return callService.getAllOfferCalls();
     }
 
-    @Operation(description = "Add Offer call and assign Product")
+    @Operation(description = "Add Offer call and assign Product and supplier")
     @PostMapping("addCallAndAssignProduct/{idPro}/{idSupp}")
     public Offer addOfferAndAssignProduct(@RequestBody Offer offer, @PathVariable("idPro") Long idPro, @PathVariable("idSupp") Long idSupp){
         return callService.addOfferAndAssignProductSupplier(offer,idPro,idSupp);
     }
+
+    @Operation(description = "Assign Product to Offer")
+    @PutMapping("AssignProductToOffer/{idOffer}/{idPro}")
+    public Offer AssignProductToOffer( @PathVariable("idOffer") Long idOffer, @PathVariable("idPro") Long idPro){
+        return callService.AffectProductToOfferCall(idOffer,idPro);
+    }
+
+    @Operation(description = "Assign Supplier to Offer")
+    @PutMapping("AssignSupplierToOffer/{idOffer}/{idsupp}")
+    public Offer AssignSupplierToOffer( @PathVariable("idOffer") Long idOffer, @PathVariable("idPro") Long idSupp){
+        return callService.AffectProductToOfferCall(idOffer,idSupp);
+    }
+
 }

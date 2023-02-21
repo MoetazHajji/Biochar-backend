@@ -67,7 +67,7 @@ public class CommandService implements ICommandService {
     }
 
     @Override
-    public List<Long> addCommandAndAffectProducts(Command command, List<Long> idPro) {
+    public Command addCommandAndAffectProducts(Command command, List<Long> idPro) {
         List<Product> productList=new ArrayList<>();
         for (Long idProduct: idPro){
             Product product=productRepository.findById(idProduct).orElse(null);
@@ -75,8 +75,20 @@ public class CommandService implements ICommandService {
             command.setProducts(productList);
         }
         commandRepository.save(command);
-        return idPro;
+        if(command.getTotal_price()==null){
+        Double totpri=commandRepository.calculSumPriceProducts(command.getId());
+        command.setTotal_price(totpri);
+        commandRepository.save(command);
+        }
+        return command;
     }
 
-
+    @Override
+    public Command SetTotPriceCommand(Long id) {
+        Command command=commandRepository.findById(id).orElse(null);
+        Double totpri=commandRepository.calculSumPriceProducts(id);
+        command.setTotal_price(totpri);
+        commandRepository.save(command);
+        return command;
+    }
 }

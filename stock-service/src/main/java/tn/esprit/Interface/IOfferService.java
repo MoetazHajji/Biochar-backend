@@ -12,7 +12,7 @@ public interface IOfferService {
     void deleteOfferCall(Long id);
     Offer getOfferCallById(Long id);
     List<Offer> getAllOfferCalls();
-    Offer AffectProductToOfferCall(Long idPro, Long idOffer);
+    Offer AffectProductToOfferCall( Long idOffer,Long idPro);
     Offer addOfferAndAssignProductSupplier(Offer offer, Long idPro, Long idSupp);
     Offer AffectSupplierToOfferCall(Long idOffer, Long idSupp);
 }

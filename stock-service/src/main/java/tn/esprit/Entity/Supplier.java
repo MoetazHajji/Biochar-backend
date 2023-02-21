@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -26,6 +27,7 @@ public class Supplier implements Serializable {
     @OneToMany(mappedBy = "supplier" , cascade = {CascadeType.REMOVE , CascadeType.PERSIST,CascadeType.MERGE})
     List<Adress> adresses;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "supplier")
     List<Offer> offers;
 }
