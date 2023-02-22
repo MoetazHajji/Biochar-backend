@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Review;
-import tn.esprit.Entity.Training;
+
 import tn.esprit.Interface.IReviewService;
 import tn.esprit.Repository.ReviewRepository;
-import tn.esprit.Repository.TrainingRepository;
+
 
 import java.util.List;
 
@@ -17,12 +17,9 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ReviewService implements IReviewService {
     final ReviewRepository reviewRepository;
-    final TrainingRepository trainingRepository;
 
     @Override
-    public Review add_review(Long training_id,Review r) {
-        Training t = trainingRepository.findById(training_id).orElse(null);
-        r.setTraining(t);
+    public Review add_review(Review r) {
         return reviewRepository.save(r);
     }
 
@@ -34,6 +31,11 @@ public class ReviewService implements IReviewService {
     @Override
     public List<Review> getAll_review() {
         return reviewRepository.findAll();
+    }
+
+    @Override
+    public void delete_all() {
+        reviewRepository.deleteAll();
     }
 
 }

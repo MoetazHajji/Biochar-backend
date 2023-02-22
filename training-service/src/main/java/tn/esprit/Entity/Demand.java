@@ -12,18 +12,19 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Request implements Serializable {
+public class Demand implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Temporal(TemporalType.TIME)
-    Date date_r;
 
-    String Description_r;
+    @NonNull
+    Date date_d;
+
+    String description_r;
 
     @ManyToOne
     Training training;

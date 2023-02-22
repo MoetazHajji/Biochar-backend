@@ -35,4 +35,9 @@ public class QuizService implements IQuizService {
     public Quiz getById_quiz(Long id) {
         return quizRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void delete_all() {
+        quizRepository.deleteAll();
+    }
 }

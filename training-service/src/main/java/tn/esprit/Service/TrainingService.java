@@ -20,20 +20,21 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
+import tn.esprit.Entity.Quiz;
 import tn.esprit.Entity.Trainee;
 import tn.esprit.Entity.Trainer;
 import tn.esprit.Entity.Training;
 import tn.esprit.Interface.ITrainingService;
+import tn.esprit.Repository.QuizRepository;
 import tn.esprit.Repository.TraineeRepository;
 import tn.esprit.Repository.TrainerRepository;
 import tn.esprit.Repository.TrainingRepository;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TrainingService implements ITrainingService {
+    final QuizRepository quizRepository;
     final TrainingRepository trainingRepository;
 
     final TraineeRepository traineeRepository;
@@ -55,7 +57,8 @@ public class TrainingService implements ITrainingService {
     @Override
     public Training add_training_with_image(Training t, MultipartFile image) {
         try {
-            String destination = "C:\\Users\\SBS\\Pictures\\Feedback\\tests\\" + t.getTitle() + ".png";
+
+            t.setImage( "C:\\Users\\SBS\\Pictures\\Feedback\\tests\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
             InputStream inputStream = image.getInputStream();
 
@@ -63,12 +66,12 @@ public class TrainingService implements ITrainingService {
             byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
 
             // Create a new file using the destination path
-            File destinationFile = new File(destination);
+            File destinationFile = new File(t.getImage());
 
 
             // Write the bytes to the new file
             FileUtils.writeByteArrayToFile(destinationFile, bytes);
-            t.setImage(destination);
+
              return trainingRepository.save(t);
         } catch (IOException ioe) {
             log.error("IO Problem : " + ioe.getMessage());
@@ -119,6 +122,7 @@ public class TrainingService implements ITrainingService {
     }
 
     @Override
+    @Transactional
     public boolean add_Trainees_To_Training(Long id_trining, List<Long> id_trainee) {
         List<Trainee> trainees = traineeRepository.findAllById(id_trainee);
         Training training = trainingRepository.findById(id_trining).orElse(null);
@@ -131,6 +135,7 @@ public class TrainingService implements ITrainingService {
     }
 
     @Override
+    @Transactional
     public boolean add_Trainer_To_Training(Long id_trining, Long id_trainer) {
         Training training = trainingRepository.findById(id_trining).orElse(null);
         Trainer trainer = trainerRepository.findById(id_trainer).orElse(null);
@@ -141,33 +146,7 @@ public class TrainingService implements ITrainingService {
 
     @Override
     public List<Training> generate_trainings()  {
-      /*  try {
-            Criteria<String, Classifications> criteria = Criteria.builder()
-                    .setTypes(String.class, Classifications.class)
-                    .build();
 
-            Model model = ModelZoo.loadModel(criteria);
-            NDManager manager = NDManager.newBaseManager();
-            String text = "This is a positive sentence.";
-            NDArray input = manager.create(text);
-            Predictor<String, Float[]> predictor = model.newPredictor(new String[] {"input"});
-            Float[] output = predictor.predict(String.valueOf(input)).singletonOrThrow();
-            return null;
-        }
-        catch (ModelNotFoundException mnfe)
-        {
-            log.error("Model not found : " + mnfe.getMessage());
-        }
-        catch (MalformedModelException mme)
-        {
-            log.error("Malformed model : " + mme.getMessage());
-        }
-        catch (IOException ioe)
-        {
-            log.error("IO error : " + ioe.getMessage());
-        } catch (TranslateException te) {
-            log.error("Translate error : " + te.getMessage());
-        }*/
         return null;
 
     }
@@ -186,6 +165,30 @@ public class TrainingService implements ITrainingService {
         }
 
         return trainingRepository.findAll();
+    }
+
+    @Override
+    public Training get_By_Title_training(String title) {
+        return trainingRepository.findByTitle(title).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Training affect_quizes_to_training(List<Long> ids,String training_title) {
+      Training t =  trainingRepository.findByTitle(training_title).orElse(null);
+      Set<Quiz> quizSet = new HashSet<>();
+      if(t != null) {
+          for (Long id : ids)
+          {
+              Quiz quiz = quizRepository.findById(id).orElse(null);
+              if(quiz != null)
+              quizSet.add(quiz);
+          }
+          t.setQuizes(quizSet);
+          trainingRepository.save(t);
+          return t;
+      }
+      return null;
     }
 
 

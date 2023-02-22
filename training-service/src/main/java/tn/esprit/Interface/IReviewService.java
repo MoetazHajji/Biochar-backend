@@ -5,7 +5,9 @@ import tn.esprit.Entity.Review;
 import java.util.List;
 
 public interface IReviewService {
-    Review add_review(Long training_id,Review r);
+    Review add_review(Review r);
     void delete_review(Long id);
     List<Review> getAll_review();
+
+    void delete_all();
 }

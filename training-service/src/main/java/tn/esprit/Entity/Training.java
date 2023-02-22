@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -13,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Training implements Serializable {
@@ -32,8 +34,12 @@ public class Training implements Serializable {
     @NonNull
     String location;
 
+    @Min(0)
     float duration;
 
+    @Min(0)
+    @Max(23)
+    float time;
     @NonNull
     @Column(unique = true)
     String title;
@@ -43,7 +49,7 @@ public class Training implements Serializable {
 
     String image;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Trainer trainer;
 
     @OneToMany(mappedBy = "training",fetch = FetchType.EAGER)
@@ -59,5 +65,5 @@ public class Training implements Serializable {
     Set<Quiz> quizes;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE,mappedBy = "training")
-    Set<Request> requests;
+    Set<Demand> demands;
 }
