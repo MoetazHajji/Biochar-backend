@@ -3,7 +3,7 @@ package tn.esprit.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Profile;
+import tn.esprit.Dto.ProfileDto;
 import tn.esprit.Service.ProfileService;
 
 import java.util.List;
@@ -17,31 +17,31 @@ public class ProfileRestController {
 
     @PostMapping("/addProfile")
     @ResponseStatus(HttpStatus.CREATED)
-    public Profile addProfile(@RequestBody Profile profile){
+    public ProfileDto addProfile(@RequestBody ProfileDto profile){
         return profileService.addProfile(profile);
     }
 
     @PutMapping("/updateProfile")
     @ResponseStatus(HttpStatus.OK)
-    public Profile updateProfile(@RequestBody Profile profile){
+    public ProfileDto updateProfile(@RequestBody ProfileDto profile){
         return profileService.updateProfile(profile);
     }
 
     @DeleteMapping("/deleteProfile/{idP}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteProfile(@PathVariable("idP") Integer idP){
+    public void deleteProfile(@PathVariable("idP") Long idP){
         profileService.deleteProfile(idP);
     }
 
     @GetMapping("/getAllProfiles")
     @ResponseStatus(HttpStatus.FOUND)
-    public List<Profile> getAllProfiles(){
+    public List<ProfileDto> getAllProfiles(){
         return profileService.retrieveAllProfiles();
     }
 
     @GetMapping("/getProfileById/{idP}")
     @ResponseStatus(HttpStatus.FOUND)
-    public Profile getProfileById(@PathVariable("idP") Integer idP){
+    public ProfileDto getProfileById(@PathVariable("idP") Long idP){
         return profileService.retrieveProfileById(idP);
     }
 

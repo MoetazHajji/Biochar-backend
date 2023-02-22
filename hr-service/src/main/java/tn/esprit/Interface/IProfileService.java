@@ -1,15 +1,15 @@
 package tn.esprit.Interface;
 
-import tn.esprit.Entity.Profile;
+import tn.esprit.Dto.ProfileDto;
 
 import java.util.List;
 
 public interface IProfileService {
 
-    public Profile addProfile(Profile profile);
-    public Profile updateProfile(Profile profile);
-    public void deleteProfile(Integer idP);
-    public List<Profile> retrieveAllProfiles();
-    public Profile retrieveProfileById(Integer idP);
+    public ProfileDto addProfile(ProfileDto profile);
+    public ProfileDto updateProfile(ProfileDto profile);
+    public void deleteProfile(Long idP);
+    public List<ProfileDto> retrieveAllProfiles();
+    public ProfileDto retrieveProfileById(Long idP);
 
 }

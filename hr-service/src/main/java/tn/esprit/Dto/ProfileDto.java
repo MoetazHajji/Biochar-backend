@@ -5,10 +5,12 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProfileDto {
 
-    Integer id;
+    Long id;
     String skills;
     String knowledge;
     Integer experience;

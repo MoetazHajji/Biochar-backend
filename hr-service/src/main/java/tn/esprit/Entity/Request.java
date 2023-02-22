@@ -19,7 +19,7 @@ public class Request implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Long id;
     @Temporal(TemporalType.DATE)
     Date date_r;
     String description_r;

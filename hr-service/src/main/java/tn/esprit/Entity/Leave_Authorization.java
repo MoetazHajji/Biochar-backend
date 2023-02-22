@@ -13,27 +13,28 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Leave_Authorization implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_LA;
-    @NonNull
+    Long id_LA;
+   // @NonNull
     @Temporal(TemporalType.DATE)
     Date start_date;
-    @NonNull
+   // @NonNull
     @Temporal(TemporalType.DATE)
     Date end_date;
     Float remaining_days;
-    @NonNull
+    //@NonNull
     String  cause;
-    @NonNull
+   // @NonNull
     @Enumerated(EnumType.STRING)
     Type_LA type_la;
-    @NonNull
+   // @NonNull
     @Enumerated(EnumType.STRING)
     State_LA state_la;
 

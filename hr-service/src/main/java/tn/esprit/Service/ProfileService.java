@@ -2,12 +2,14 @@ package tn.esprit.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.Dto.ProfileDto;
 import tn.esprit.Entity.Profile;
 import tn.esprit.Interface.IProfileService;
+import tn.esprit.Mapper.ProfileMapper;
 import tn.esprit.Repository.ProfileRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,29 +18,31 @@ public class ProfileService implements IProfileService {
     private final ProfileRepository profileRepository;
 
     @Override
-    public Profile addProfile(Profile profile) {
-        return profileRepository.save(profile);
+    public ProfileDto addProfile(ProfileDto profile) {
+        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile));
+        return ProfileMapper.mapProfileToDto(p);
     }
 
     @Override
-    public Profile updateProfile(Profile profile) {
-        return profileRepository.save(profile);
+    public ProfileDto updateProfile(ProfileDto profile) {
+        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile));
+        return ProfileMapper.mapProfileToDto(p);
     }
 
     @Override
-    public void deleteProfile(Integer idP) {
+    public void deleteProfile(Long idP) {
         profileRepository.deleteById(idP);
     }
 
     @Override
-    public List<Profile> retrieveAllProfiles() {
-        List<Profile> profiles = new ArrayList<>();
-        profileRepository.findAll().forEach(profiles::add);
-        return profiles;
+    public List<ProfileDto> retrieveAllProfiles() {
+        List<Profile> profiles = (List<Profile>) profileRepository.findAll();
+        return profiles.stream().map(ProfileMapper::mapProfileToDto).collect(Collectors.toList());
     }
 
     @Override
-    public Profile retrieveProfileById(Integer idP) {
-        return profileRepository.findById(idP).orElse(null);
+    public ProfileDto retrieveProfileById(Long idP) {
+        Profile p = profileRepository.findById(idP).orElse(null);
+        return ProfileMapper.mapProfileToDto(p);
     }
 }

@@ -1,15 +1,15 @@
 package tn.esprit.Interface;
 
-import tn.esprit.Entity.Work_Schedule;
+import tn.esprit.Dto.Work_ScheduleDto;
 
 import java.util.List;
 
 public interface IWork_ScheduleService {
 
-    public Work_Schedule addWork_Schedule(Work_Schedule workSchedule);
-    public Work_Schedule updateWork_Schedule(Work_Schedule workSchedule);
-    public void deleteWork_Schedule(Integer idWS);
-    public List<Work_Schedule> retrieveAllWork_Schedule();
-    public Work_Schedule retrieveWork_ScheduleById(Integer idWS);
+    public Work_ScheduleDto addWork_Schedule(Work_ScheduleDto workSchedule);
+    public Work_ScheduleDto updateWork_Schedule(Work_ScheduleDto workSchedule);
+    public void deleteWork_Schedule(Long idWS);
+    public List<Work_ScheduleDto> retrieveAllWork_Schedule();
+    public Work_ScheduleDto retrieveWork_ScheduleById(Long idWS);
 
 }

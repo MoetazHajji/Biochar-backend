@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,13 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Work_Schedule implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id_WS;
+    Long id_WS;
     @NonNull
     @Temporal(TemporalType.DATE)
     Date start_date;
@@ -31,7 +33,8 @@ public class Work_Schedule implements Serializable {
     @Enumerated(EnumType.STRING)
     Shift shift;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "work_schedule")
+    @JsonIgnore
+    @ManyToMany
     Set<Account> accounts;
 
 }

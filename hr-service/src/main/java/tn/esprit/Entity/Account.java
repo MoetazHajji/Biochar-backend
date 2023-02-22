@@ -52,6 +52,6 @@ public class Account implements Serializable {
     Set<Leave_Authorization> leave_authorizations;
 
     @JsonIgnore
-    @ManyToOne
-    Work_Schedule work_schedule;
+    @ManyToMany (cascade = CascadeType.PERSIST, mappedBy = "accounts")
+    Set<Work_Schedule> workSchedules;
 }
