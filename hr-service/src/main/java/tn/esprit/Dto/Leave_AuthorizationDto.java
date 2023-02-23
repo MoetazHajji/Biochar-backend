@@ -8,6 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Leave_AuthorizationDto {
@@ -15,6 +16,8 @@ public class Leave_AuthorizationDto {
     Long id_LA;
     Date start_date;
     Date end_date;
+    Date authStartTime;
+    Date authEndTime;
     Float remaining_days;
     String  cause;
     Type_LA type_la;

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.Leave_AuthorizationDto;
+import tn.esprit.Entity.Leave_Authorization;
 import tn.esprit.Service.Leave_AuthService;
 
 import java.util.List;
@@ -17,13 +18,13 @@ public class Leave_AuthRestController {
 
     @PostMapping("/addLeaveAuth")
     @ResponseStatus(HttpStatus.CREATED)
-    public Leave_AuthorizationDto addLA(@RequestBody Leave_AuthorizationDto leaveAuthorization){
+    public Leave_AuthorizationDto addLA(@RequestBody Leave_Authorization leaveAuthorization){
         return leave_authService.addLeaveAuth(leaveAuthorization);
     }
 
     @PutMapping("/updateLeaveAuth")
     @ResponseStatus(HttpStatus.OK)
-    public Leave_AuthorizationDto updateLA(@RequestBody Leave_AuthorizationDto leaveAuthorization){
+    public Leave_AuthorizationDto updateLA(@RequestBody Leave_Authorization leaveAuthorization){
         return leave_authService.updateLeaveAuth(leaveAuthorization);
     }
 
@@ -43,6 +44,24 @@ public class Leave_AuthRestController {
     @ResponseStatus(HttpStatus.FOUND)
     public Leave_AuthorizationDto getLAById(@PathVariable("idLA") Long idLA){
         return leave_authService.retrieveLeaveAuthById(idLA);
+    }
+
+    @PostMapping("/addAndAssignLAToAccount")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Leave_AuthorizationDto addAndAssignLAToAccount(@RequestBody Leave_AuthorizationDto leaveAuthorization){
+        return leave_authService.addAndAssignLAToAccount(leaveAuthorization);
+    }
+
+    @PutMapping("/assignLAToAccount/{idLA}/{idA}")
+    @ResponseStatus(HttpStatus.OK)
+    public Leave_AuthorizationDto assignLAToAccount(@PathVariable("idLA") Long idLA, @PathVariable("idA") Long idA){
+        return leave_authService.assignLAToAccount(idLA,idA);
+    }
+
+    @GetMapping("/updatingRemainingdays/{idA}")
+    @ResponseStatus(HttpStatus.OK)
+    public Leave_AuthorizationDto updatingRemainingdays(@PathVariable("idA") Long idA){
+        return leave_authService.countingRemainingdays(idA);
     }
 
 }

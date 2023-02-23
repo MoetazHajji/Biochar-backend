@@ -25,7 +25,7 @@ public class Profile implements Serializable {
     String knowledge;
     Integer experience;
 
-    @JsonIgnore
+  //  @JsonIgnore
     @OneToOne(mappedBy = "profile")
     Account account;
 

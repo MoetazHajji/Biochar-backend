@@ -44,6 +44,16 @@ public class Work_ScheduleRestController {
     public Work_ScheduleDto getWorkScheduleById(@PathVariable("idWS") Long idWS){
         return work_scheduleService.retrieveWork_ScheduleById(idWS);
     }
+    @PostMapping("/AddAndAssignWorkScheduleToAccount/{idA}")
+    @ResponseStatus(HttpStatus.OK)
+    public Work_ScheduleDto AddAndAssignWorkScheduleToAccount(@RequestBody Work_ScheduleDto workSchedule, @PathVariable("idA") Long idA){
+        return work_scheduleService.AddAndAssignWorkScheduleToAccount(workSchedule,idA);
+    }
 
+    @PutMapping("/assignWsToAcc/{idWs}/{idA}")
+    @ResponseStatus(HttpStatus.OK)
+    public Work_ScheduleDto assignWsToAcc(@PathVariable("idWs") Long idWs, @PathVariable("idA") Long idA){
+        return work_scheduleService.assignWsToAcc(idWs,idA);
+    }
 
 }

@@ -42,6 +42,11 @@ public class Account implements Serializable {
     @NonNull
     @Enumerated(EnumType.STRING)
     Gender gender;
+    @Enumerated(EnumType.STRING)
+    stateRegion state;
+    String city;
+    int zip_code;
+    String adresse;
 
     @JsonIgnore
     @OneToOne

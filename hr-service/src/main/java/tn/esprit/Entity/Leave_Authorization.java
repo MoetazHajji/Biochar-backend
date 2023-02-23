@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +14,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
+
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -22,19 +23,27 @@ public class Leave_Authorization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id_LA;
-   // @NonNull
+
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd")
     Date start_date;
-   // @NonNull
+
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd")
     Date end_date;
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm:ss")
+    Date authStartTime;
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm:ss")
+    Date authEndTime;
     Float remaining_days;
-    //@NonNull
+
     String  cause;
-   // @NonNull
+
     @Enumerated(EnumType.STRING)
     Type_LA type_la;
-   // @NonNull
+
     @Enumerated(EnumType.STRING)
     State_LA state_la;
 

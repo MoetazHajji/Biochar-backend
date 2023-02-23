@@ -34,7 +34,7 @@ public class Work_Schedule implements Serializable {
     Shift shift;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     Set<Account> accounts;
 
 }
