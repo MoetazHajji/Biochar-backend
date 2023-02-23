@@ -79,6 +79,7 @@ public class OfferService implements IOfferService {
         if(offer.getProduct()==null&& offer.getSupplier()==null){
             offer.setProduct(product);
             offer.setSupplier(supplier);
+            offer.setPrix(product.getPrice());
             callRepository.save(offer);
         }else {
             offer.getProduct();

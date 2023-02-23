@@ -13,4 +13,5 @@ public interface IProductService {
     Product getProductById(Long id);
     List<Product> getProductList();
     Product AffectProductToCommand(Long idPro,Long idCommand);
+
 }

@@ -8,9 +8,16 @@ import java.util.Date;
 @Getter @Setter @ToString
 @Builder @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OfferCallDto {
+public class OfferDto {
     Long id;
-    Date date_offer;
+    Date start_date;
+    Date end_date;
     String quantity;
-    float prix;
+    Double prix;
+
+    Long id_Product;
+    String name_product;
+
+    Long id_supplier;
+    String name_supplier;
 }

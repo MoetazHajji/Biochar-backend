@@ -25,6 +25,7 @@ public class Adress implements Serializable {
     @NonNull
     Long postal_code;
 
+    @JsonIgnore
     @ManyToOne
     Supplier supplier;
 }

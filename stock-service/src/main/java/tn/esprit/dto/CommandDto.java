@@ -12,7 +12,6 @@ import java.util.Date;
 public class CommandDto {
     Long id;
     Date date;
-    String reference;
     String notice;
     Long quantity;
 

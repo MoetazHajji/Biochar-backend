@@ -35,12 +35,12 @@ public class SupplierController {
     }
 
     @Operation(description = "Retreive Supplier by ID")
-    @GetMapping("getAdress/{id}")
+    @GetMapping("getSypplierbyId/{id}")
     public Supplier getSupplierById(@PathVariable("id") Long id){
         return supplierService.getSupplierById(id);
     }
     @Operation(description = "Retreive All Suppliers")
-    @GetMapping("getAllAdress")
+    @GetMapping("getAllSupplier")
     public List<Supplier> getAllSupplier(){
         return supplierService.getAllSuppliers();
     }

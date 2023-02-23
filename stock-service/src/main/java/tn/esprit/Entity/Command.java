@@ -23,7 +23,6 @@ public class Command implements Serializable {
     Date date;
     @NonNull
     String notice;
-    @NonNull
     Long quantity_product;
 
     Double Total_price;

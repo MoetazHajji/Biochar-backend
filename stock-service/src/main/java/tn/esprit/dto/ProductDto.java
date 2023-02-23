@@ -13,4 +13,6 @@ public class ProductDto {
     String designation;
     String reference;
     Type_product type_product;
+
+    Long id_Stock;
 }

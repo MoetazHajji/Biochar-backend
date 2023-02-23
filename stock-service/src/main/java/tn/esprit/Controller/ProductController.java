@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Product;
+import tn.esprit.Entity.Stock;
 import tn.esprit.Interface.IProductService;
 
 import java.util.List;
@@ -46,8 +47,7 @@ public class ProductController {
     public List<Product> getAllProduct(){
         return productService.getProductList();
     }
-    @GetMapping("getSum")
-    public Double getSumProduct(){
-        return productService.getSommeProducts();
-    }
+
+
+
 }

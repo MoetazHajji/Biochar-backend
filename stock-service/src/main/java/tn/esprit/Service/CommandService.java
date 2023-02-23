@@ -75,9 +75,11 @@ public class CommandService implements ICommandService {
             command.setProducts(productList);
         }
         commandRepository.save(command);
-        if(command.getTotal_price()==null){
-        Double totpri=commandRepository.calculSumPriceProducts(command.getId());
-        command.setTotal_price(totpri);
+        if(command.getTotal_price()==null && command.getQuantity_product()==null){
+        Double totprix=commandRepository.calculSumPriceProducts(command.getId());
+        Long nbProducts = commandRepository.getNumberProducts(command.getId());
+        command.setTotal_price(totprix);
+        command.setQuantity_product(nbProducts);
         commandRepository.save(command);
         }
         return command;

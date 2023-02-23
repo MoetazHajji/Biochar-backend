@@ -25,7 +25,7 @@ public class Offer implements Serializable {
     @NonNull
     String quantity;
     @NonNull
-    float prix;
+    Double prix;
 
     @ManyToOne
     Product product;

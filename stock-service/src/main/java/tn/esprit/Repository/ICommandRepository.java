@@ -11,4 +11,8 @@ public interface ICommandRepository extends JpaRepository<Command,Long> {
 
     @Query("select sum (pr.price) FROM Command cm join cm.products pr where cm.id= :id")
     Double calculSumPriceProducts(Long id);
+
+    @Query("select count(pr) from Command cm join cm.products pr where cm.id = :id")
+    Long getNumberProducts(Long id);
+
 }

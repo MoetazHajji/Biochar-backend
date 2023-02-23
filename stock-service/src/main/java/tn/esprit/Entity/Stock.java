@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,24 +14,34 @@ import java.util.List;
 @Builder
 @AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Supplies implements Serializable {
+public class Stock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @NonNull
     String unit;
     @NonNull
-    Long quantity;
+    Long nbProduct;
+    @NonNull
+    Double storage;
+
+    Double free_storage;
+
+    Double used_storage;
     @NonNull
     @Temporal(TemporalType.DATE)
     Date date;
     @NonNull
     String location;
 
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    Type_product type_product;
     @Enumerated(EnumType.STRING)
     State state;
 
-    @OneToMany(mappedBy = "supplies")
+
+    @ManyToMany
     List<Product> products;
 
 }
