@@ -4,25 +4,35 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @ToString
 @Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
-@Table( name = "Biologiste")
-public class Biologiste  implements Serializable {
+@Table( name = "Account")
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idBiologiste")
-    private int idBiologiste;
+    @Column(name="id")
+    private int id;
     private String Firstname;
     private String Lastname;
+    private String Cin;
+    private String Phone;
+    private Date dateofbirdh;
     private String Email;
     private String Pasword;
-     @OneToOne(mappedBy = "biologiste")
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="account")
+    Set<Sample> samples;
+    @OneToOne
     Medicalcard medicalcard;
+
+
 
 }
