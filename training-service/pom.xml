@@ -62,9 +62,9 @@
         </dependency>
 
         <dependency>
-            <groupId>ai.djl</groupId>
-            <artifactId>api</artifactId>
-            <version>0.15.0</version>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>0.9</version>
         </dependency>
 
         <dependency>

@@ -7,15 +7,20 @@ import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import tn.esprit.Dto.QuizDto;
 import tn.esprit.Dto.TrainingDto;
+import tn.esprit.Entity.Quiz;
 import tn.esprit.Entity.Training;
 import tn.esprit.Interface.ITrainingService;
+import tn.esprit.Mapper.QuizMapper;
 import tn.esprit.Mapper.TrainingMapper;
 
 import javax.ws.rs.QueryParam;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("training")
@@ -100,5 +105,14 @@ public class TrainingController {
    public TrainingDto affect_quizes_to_training(@PathVariable("ids")List<Long> ids,@PathVariable("training_title") String training_title)
     {
         return TrainingMapper.mapToDto(trainingService.affect_quizes_to_training(ids, training_title));
+    }
+
+    @PostMapping("add_with_quizes")
+    public TrainingDto add_training_with_quizes(@RequestPart TrainingDto trainingDto,@RequestPart Set<QuizDto> quizzes)
+    {
+        Set<Quiz> quizSet = new HashSet<>();
+        quizzes.forEach(quizDto -> quizSet.add(QuizMapper.mapToEntity(quizDto)));
+        Training training = TrainingMapper.mapToEntity(trainingDto);
+        return TrainingMapper.mapToDto(trainingService.add_training_with_quizes(training, quizSet));
     }
 }

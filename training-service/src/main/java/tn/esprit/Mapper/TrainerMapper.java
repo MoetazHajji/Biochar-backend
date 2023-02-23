@@ -41,6 +41,7 @@ public class TrainerMapper {
         trainer.getTrainings().forEach(training -> {titles.add(training.getTitle());});
         else
             titles.add("empty");
+        
         TrainerDto trainerDto = TrainerDto.builder()
                 .id_trainer(trainer.getId())
                 .firstname(trainer.getFirstname())

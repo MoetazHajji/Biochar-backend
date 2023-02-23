@@ -1,20 +1,22 @@
 package tn.esprit.Service;
 
-import ai.djl.MalformedModelException;
-import ai.djl.Model;
-import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
-import ai.djl.ndarray.NDArray;
-import ai.djl.ndarray.NDManager;
-import ai.djl.repository.zoo.Criteria;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.repository.zoo.ModelZoo;
-import ai.djl.translate.TranslateException;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
+import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
+import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.recommender.Recommender;
+import org.apache.mahout.cf.taste.similarity.UserSimilarity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -49,6 +51,8 @@ public class TrainingService implements ITrainingService {
 
     final TrainerRepository trainerRepository;
 
+   // @Value("${mahout.data.path}")
+   //String dataPath;
     @Override
     public Training add_training(Training t) {
         return trainingRepository.save(t);
@@ -58,7 +62,7 @@ public class TrainingService implements ITrainingService {
     public Training add_training_with_image(Training t, MultipartFile image) {
         try {
 
-            t.setImage( "C:\\Users\\SBS\\Pictures\\Feedback\\tests\\" + t.getTitle() + "\\"+t.getTitle()+".png");
+            t.setImage( "C:\\Users\\Nour\\Pictures\\Feedback\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
             InputStream inputStream = image.getInputStream();
 
@@ -191,18 +195,47 @@ public class TrainingService implements ITrainingService {
       return null;
     }
 
+  /*  @Override
+    public List<Long> recommendItems(long userId, int howMany) {
+        try {
+        // Load the recommendation model
+        File modelFile = new File(dataPath, "recommender.model");
+        DataModel dataModel = new FileDataModel(modelFile);
+
+        // Build the user-item similarity matrix
+        UserSimilarity similarity = new PearsonCorrelationSimilarity(dataModel);
+        UserNeighborhood neighborhood = new NearestNUserNeighborhood(10, similarity, dataModel);
+        Recommender recommender = new GenericUserBasedRecommender(dataModel, neighborhood, similarity);
+
+        // Get the recommended items for the user
+        List<RecommendedItem> recommendations = recommender.recommend(userId, howMany);
+
+        // Return the item IDs
+        return recommendations.stream().map(RecommendedItem::getItemID).collect(Collectors.toList());
+        }
+        catch (TasteException te)
+        {
+            log.error(te.getMessage());
+        }
+        catch (IOException ioe)
+        {
+            log.error(ioe.getMessage());
+        }
+        finally {
+            return null;
+        }
+    }*/
+
+    @Override
+    public Training add_training_with_quizes(Training training, Set<Quiz> quizzes) {
+        training.setQuizes(quizzes);
+        return trainingRepository.save(training);
+    }
+
 
     private List<Training> sortByReviews()
     {
-/*
-        return trainingRepository
-                .findAll().stream()
-                .sorted(Comparator.comparingInt(training -> training.getReviews()
-                .stream()
-                .mapToInt(training::getRating)
-                .sum())
-               .reversed())
-               .collect(Collectors.toList());*/
+
         List<Training> trainingsorted = trainingRepository
                 .findAll().stream()
                 .sorted(Comparator.comparingInt(trainig -> trainig.getReviews()
