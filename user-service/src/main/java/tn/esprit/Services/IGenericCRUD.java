@@ -13,4 +13,6 @@ public interface IGenericCRUD<Object> {
     Object Insert( Object object);
     ResponseEntity<Object> update( Object object);
     ResponseEntity<HttpStatus> delete(  long id );
+
+    ResponseEntity<HttpStatus> deleteAll( );
 }

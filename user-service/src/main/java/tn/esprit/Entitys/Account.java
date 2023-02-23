@@ -1,6 +1,7 @@
 package tn.esprit.Entitys;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Builder
 @Table(name ="Account")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,7 +40,7 @@ public class Account {
     Date dateOfBirth;
 
     @Column(name = "date_creation" )
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     Date dateCreation;
 
     @Column(name = "email" )
@@ -51,20 +53,44 @@ public class Account {
     @Enumerated(EnumType.STRING)
     Gender gender;
 
+    @Column(name = "state" )
+    @Enumerated(EnumType.STRING)
+    stateRegion state;
+
+    @Column(name = "city" )
+    String city;
+
+    @Column(name = "zip_code" )
+    int zip_code;
+
+    @Column(name = "adresse" )
+    String adresse;
+
+
     @OneToOne
     User user;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "account" , fetch = FetchType.EAGER)
     Set<Appointment> appointments;
 
-    public Account(String firstname, String lastname, int cin, int phone, Date dateOfBirth, Date dateCreation, String email, Gender gender) {
+
+    // constractor without photo;
+    public Account(String firstname, String lastname, int cin, int phone, Date dateOfBirth,  String email, Gender gender,
+      stateRegion state,String city,int zip_code,String adresse) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.cin = cin;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
-        this.dateCreation = dateCreation;
         this.email = email;
         this.gender = gender;
+        this.state =state;
+        this.city =city;
+        this.zip_code =zip_code;
+        this.adresse =adresse;
     }
 }
+
+
+
