@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -8,22 +9,25 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter @Setter @ToString
+@Builder
+@AllArgsConstructor  @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
     String name_supplier;
+    @NonNull
     Long phone;
+    @NonNull
     String email;
 
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier" , cascade = {CascadeType.REMOVE , CascadeType.PERSIST,CascadeType.MERGE})
     List<Adress> adresses;
 
-    @ManyToMany(mappedBy = "suppliers")
-    List<Product> products;
+    @JsonIgnore
+    @OneToMany(mappedBy = "supplier")
+    List<Offer> offers;
 }

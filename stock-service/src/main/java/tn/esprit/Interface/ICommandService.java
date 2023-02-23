@@ -12,4 +12,8 @@ public interface ICommandService {
     void deleteCommand(Long id);
     Command getCommandById(Long id);
     List<Command> getAllCommands();
+    void affectproductsToCommand(Long idCom,Long idPro);
+    void disaffectproductFromCommand(Long idCom,Long idPro);
+    Command addCommandAndAffectProducts(Command command,List<Long> idPro);
+    Command SetTotPriceCommand(Long id);
 }
