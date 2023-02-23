@@ -2,8 +2,7 @@ package tn.esprit.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import tn.esprit.Entity.Medicalcard;
-import tn.esprit.Entity.Sample;
+import tn.esprit.Entity.Test;
 
-public interface SampleRepository extends JpaRepository<Sample,Integer> {
-
+public interface TestRepository extends JpaRepository<Test,Integer> {
 }

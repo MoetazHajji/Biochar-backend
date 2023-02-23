@@ -2,6 +2,7 @@ package tn.esprit.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.SampleDto;
 import tn.esprit.Entity.Medicalcard;
 import tn.esprit.Entity.Sample;
 import tn.esprit.Interface.IMedicalcard;
@@ -15,7 +16,7 @@ import java.util.List;
 public class SampleController {
     private final ISample iSample;
     @PostMapping("/add")
-    Sample addSample(@RequestBody Sample sample){
+    SampleDto addSample(@RequestBody SampleDto sample){
         return iSample.addOrUpdateSample(sample);
     }
     @DeleteMapping("/delete/{idSample}")
@@ -23,7 +24,7 @@ public class SampleController {
         iSample.removeSample(idSample);
     }
     @PutMapping("/update")
-    Sample updateSample(@RequestBody Sample e){
+    SampleDto updateSample(@RequestBody SampleDto e){
         return iSample.addOrUpdateSample(e);
     }
     @GetMapping("/get/{idSample}")
@@ -31,7 +32,13 @@ public class SampleController {
         return iSample.retriveSample(idSample);
     }
     @GetMapping("/all")
-    List<Sample> getAllSample(){
+    List<SampleDto> getAllSample(){
         return iSample.retrieveAllSample();
+    }
+
+    @PutMapping("/asign/{idSample}/{id}")
+    Sample ModifierDep (@PathVariable ("idSample") Integer idSample,@PathVariable("id") Integer id){
+        return iSample.asignSamTopat(idSample,id);
+
     }
 }

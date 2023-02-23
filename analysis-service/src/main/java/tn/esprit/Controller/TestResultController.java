@@ -2,13 +2,13 @@ package tn.esprit.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-=======
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Sample;
->>>>>>> ecec2b42e55402609b4c863dfb8ad3835f0c1a32
+import tn.esprit.Entity.Test;
 import tn.esprit.Entity.TestResult;
 import tn.esprit.Interface.ITestResult;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -37,5 +37,24 @@ public class TestResultController {
     @GetMapping("/all")
     List<TestResult> getAllSample(){
         return iTestResult.retrieveAllTestResult();
+    }
+    @PostMapping("/readPDF")
+    List<TestResult> readPDFtest(@RequestBody MultipartFile file){
+        try {
+            return iTestResult.readTests(file);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @PutMapping("/asign/{idTestResult}/{idTest}")
+    TestResult ModifierDep (@PathVariable ("idTestResult") Integer idTestResult, @PathVariable("idTest") Integer idTest){
+        return iTestResult.asigntesTosmp(idTestResult,idTest);
+
+    }
+    @GetMapping("/gett/{id}")
+    TestResult affichBYAcounnt(@PathVariable("id") int id){
+        return iTestResult.retriveTestResultBYAcounnt(id);
     }
 }
