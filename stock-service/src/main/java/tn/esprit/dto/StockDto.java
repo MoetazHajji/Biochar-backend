@@ -22,5 +22,5 @@ public class StockDto {
     String location;
     State state;
 
-    String product_name;
+    List<String> product_names;
 }
