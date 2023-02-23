@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
 import tn.esprit.Interface.ISupplierService;
 
@@ -36,12 +35,12 @@ public class SupplierController {
     }
 
     @Operation(description = "Retreive Supplier by ID")
-    @GetMapping("getAdress/{id}")
+    @GetMapping("getSypplierbyId/{id}")
     public Supplier getSupplierById(@PathVariable("id") Long id){
         return supplierService.getSupplierById(id);
     }
     @Operation(description = "Retreive All Suppliers")
-    @GetMapping("getAllAdress")
+    @GetMapping("getAllSupplier")
     public List<Supplier> getAllSupplier(){
         return supplierService.getAllSuppliers();
     }
