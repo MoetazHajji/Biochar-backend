@@ -7,34 +7,25 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Work_Schedule implements Serializable {
+public class Request implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id_WS;
-    @NonNull
+    Long id;
     @Temporal(TemporalType.DATE)
-    Date start_date;
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    Date end_date;
-    @NonNull
-    @Enumerated(EnumType.STRING)
-    Shift shift;
+    Date date_r;
+    String description_r;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    Set<Account> accounts;
+    @OneToOne(mappedBy = "request")
+    Profile profile;
 
 }
