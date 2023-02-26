@@ -14,7 +14,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Account implements Serializable {
@@ -22,24 +21,18 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @NonNull
     String firstname;
-    @NonNull
     String lastname;
-    @NonNull
     int cin;
-    @NonNull
     int phone;
-    @NonNull
     @Temporal(TemporalType.DATE)
     Date dateOfBirth;
-    @NonNull
     @Temporal(TemporalType.DATE)
     Date dateCreation;
-    @NonNull
+    @Temporal(TemporalType.DATE)
+    Date hireDate;
     String email;
     String photo;
-    @NonNull
     @Enumerated(EnumType.STRING)
     Gender gender;
     @Enumerated(EnumType.STRING)

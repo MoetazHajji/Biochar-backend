@@ -5,15 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.ProfileDto;
-import tn.esprit.Entity.Account;
 import tn.esprit.Entity.Profile;
 import tn.esprit.Interface.IProfileService;
 import tn.esprit.Mapper.ProfileMapper;
 import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.ProfileRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,22 +52,10 @@ public class ProfileService implements IProfileService {
         return ProfileMapper.mapProfileToDto(p);
     }
 
-    @Override
-    public void checkExperience() {
-        Date dateNow = new Date(System.currentTimeMillis());
-        List<Account> accounts = new ArrayList<>();
-        accountRepository.findAll().forEach(accounts::add);
-        for (Account account:accounts){
-            if(account.getDateCreation().getMonth()== dateNow.getMonth()){
-                profileRepository.upgradeExperience();
-                log.info("Experience updated with 1 year");
-            }
-        }
-
-    }
 
 
-    // @Scheduled(cron = "0 0 0 31 12 *")
+
+    // @Scheduled(cron = "* * * 30 * *")
 //   @Scheduled(cron = "*/15 * * * * *")
 //    public void updateExperience(){
 //    Date dateNow = new Date(System.currentTimeMillis());
@@ -78,11 +63,10 @@ public class ProfileService implements IProfileService {
 //        accountRepository.findAll().forEach(accounts::add);
 //        for (Account account:accounts){
 //
-//            int months = Math.abs(dateNow.getMonth() - account.getDateCreation().getMonth());
-//            int year =  dateNow.getYear() - account.getDateCreation().getYear();
+//            int months = Math.abs(dateNow.getMonth() - account.getHireDate().getMonth());
+//            int year =  dateNow.getYear() - account.getHireDate().getYear();
 //            int diff = year*12 + months;
 //           diff = (int) (diff /=12);
-//           System.out.println("la valeur de diff ="+diff);
 //           Profile profile = account.getProfile();
 //           profile.setExperience(diff);
 //           profileRepository.save(profile);

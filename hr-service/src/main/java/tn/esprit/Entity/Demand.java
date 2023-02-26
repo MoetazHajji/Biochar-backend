@@ -15,17 +15,17 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Request implements Serializable {
+public class Demand implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Temporal(TemporalType.DATE)
-    Date date_r;
+    Date date_d;
     String description_r;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "request")
+    @OneToOne(mappedBy = "demand")
     Profile profile;
 
 }

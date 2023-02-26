@@ -14,7 +14,6 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -23,11 +22,9 @@ public class Leave_Authorization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id_LA;
-
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd")
     Date start_date;
-
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd")
     Date end_date;
@@ -38,7 +35,6 @@ public class Leave_Authorization implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "HH:mm:ss")
     Date authEndTime;
     Float remaining_days;
-
     String  cause;
 
     @Enumerated(EnumType.STRING)

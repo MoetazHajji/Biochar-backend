@@ -1,6 +1,7 @@
 package tn.esprit.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.Dto.Leave_AuthorizationDto;
 import tn.esprit.Entity.Account;
@@ -12,10 +13,13 @@ import tn.esprit.Mapper.Leave_AuthorizationMapper;
 import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.Leave_AuthorizationRepository;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class Leave_AuthService implements ILeave_AuthService{
 
@@ -75,9 +79,16 @@ public class Leave_AuthService implements ILeave_AuthService{
         Leave_Authorization leaveAuthorization = leave_authorizationRepository.findByAccount_Id(idAccount);
         if (leaveAuthorization.getState_la().equals(State_LA.Accepted)){
             if (leaveAuthorization.getType_la().equals(Type_LA.Leave)){
-                 rest = leaveAuthorization.getRemaining_days() - Math.abs(leaveAuthorization.getStart_date().getDay() - leaveAuthorization.getEnd_date().getDate());
+               Date start_date = leaveAuthorization.getStart_date();
+               Date end_date = leaveAuthorization.getEnd_date();
+               Long dateMillis = Math.abs(end_date.getTime()-start_date.getTime());
+               Long diff = TimeUnit.DAYS.convert(dateMillis, TimeUnit.MILLISECONDS);
+               rest = leaveAuthorization.getRemaining_days() - diff;
             }else {
-                rest = leaveAuthorization.getRemaining_days() - (leaveAuthorization.getAuthStartTime().getTime() - leaveAuthorization.getAuthEndTime().getTime());
+                int start_time = leaveAuthorization.getAuthStartTime().getHours();
+                int end_time = leaveAuthorization.getAuthEndTime().getHours();
+                int time = Math.abs(start_time-end_time);
+                rest = (leaveAuthorization.getRemaining_days())-time;
             }
             leaveAuthorization.setRemaining_days(rest);
         }
