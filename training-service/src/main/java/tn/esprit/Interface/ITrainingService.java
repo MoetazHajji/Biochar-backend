@@ -1,10 +1,8 @@
 package tn.esprit.Interface;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Training;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface ITrainingService {
@@ -27,4 +25,5 @@ public interface ITrainingService {
     Training get_By_Title_training(String title);
 
    Training affect_quizes_to_training(List<Long> ids,String training_title);
+
 }

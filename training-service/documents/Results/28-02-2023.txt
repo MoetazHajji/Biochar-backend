@@ -1,0 +1,20 @@
+Nuclear medicine : 1
+Pediatrics : 1
+Internal medicine : 0
+Dermatology : 1
+Emergency medicine : 1
+Family medicine : 1
+Preventive medicine : 1
+Urology : 1
+Neurology : 1
+Pathology : 1
+Radiation oncology : 1
+Diagnostic radiology : 0
+Surgery : 1
+Medical genetics : 1
+Anesthesiology : 1
+Ophthalmology : 1
+immunology : 3
+Obstetrics and gynecology : 0
+Psychiatry : 1
+Physical medicine and rehabilitation : 0

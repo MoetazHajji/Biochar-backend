@@ -58,7 +58,7 @@ public class Training implements Serializable {
     @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     Certificate certificate;
 
-    @OneToMany(mappedBy = "training",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "training",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     Set<Review> reviews;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE,CascadeType.PERSIST})

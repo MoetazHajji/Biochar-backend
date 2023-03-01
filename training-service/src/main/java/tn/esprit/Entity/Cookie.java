@@ -9,20 +9,29 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 
-@Document(collection = "subject")
+//@Document(collection = "subject")
+@Entity
 @Data
-@Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Cookies implements Serializable {
+public class Cookie implements Serializable {
     @Id
-    BigInteger id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    int id_user;
+    String name;
+    String value;
+    String path;
     @Indexed
-    String user_name;
-    String Content;
+    String domain;
+    Date date;
 }

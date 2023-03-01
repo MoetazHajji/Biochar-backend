@@ -1,20 +1,12 @@
 package tn.esprit.Service;
 
-import ai.djl.MalformedModelException;
-import ai.djl.Model;
-import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
-import ai.djl.ndarray.NDArray;
-import ai.djl.ndarray.NDManager;
-import ai.djl.repository.zoo.Criteria;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.repository.zoo.ModelZoo;
-import ai.djl.translate.TranslateException;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -48,6 +40,7 @@ public class TrainingService implements ITrainingService {
     final TraineeRepository traineeRepository;
 
     final TrainerRepository trainerRepository;
+
 
     @Override
     public Training add_training(Training t) {
@@ -190,6 +183,8 @@ public class TrainingService implements ITrainingService {
       }
       return null;
     }
+
+
 
 
     private List<Training> sortByReviews()

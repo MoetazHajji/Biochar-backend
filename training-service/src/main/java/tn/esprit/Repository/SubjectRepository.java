@@ -1,12 +1,16 @@
 package tn.esprit.Repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import tn.esprit.Entity.Subject;
 
-import java.math.BigInteger;
+
 import java.util.Optional;
 
 
-public interface ISubjectRepository extends MongoRepository<Subject, BigInteger> {
+public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     Optional<Subject> findFirstByTitle(String title);
+
+    @Query("select count(s) from Subject s")
+    Integer getNumber();
 }
