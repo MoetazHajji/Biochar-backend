@@ -9,10 +9,13 @@ import tn.esprit.Entity.Command;
 @Repository
 public interface ICommandRepository extends JpaRepository<Command,Long> {
 
-    @Query("select sum (pr.price) FROM Command cm join cm.products pr where cm.id= :id")
+    @Query("select sum(pr.price)  FROM Command cm join cm.commandLignes cl join cl.product pr where cm.id= :id")
     Double calculSumPriceProducts(Long id);
 
-    @Query("select count(pr) from Command cm join cm.products pr where cm.id = :id")
+    @Query("select count(pr) from Command cm join cm.commandLignes cl join cl.product pr where cm.id = :id")
     Long getNumberProducts(Long id);
+
+    @Query("select sum(cl.quantite_product) from Command cm join cm.commandLignes cl  where cm.id= :id")
+    Long TotalQuantityOfProducts(Long id);
 
 }

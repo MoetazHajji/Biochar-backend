@@ -34,6 +34,10 @@ public class Product implements Serializable {
     //@Column(unique = true,nullable = false,length = 200 )
     String image;
 
+    //@Column(unique = true,nullable = false,length = 200 )
+    Long quantity_stock;
+
+
     @NonNull
     @Enumerated(EnumType.STRING)
     Type_product type_product;
@@ -42,11 +46,15 @@ public class Product implements Serializable {
     @ManyToMany(mappedBy = "products")
     List<Stock> stocks;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToMany(mappedBy = "products")
-    List<Command> commands;
+    List<Command> commands;*/
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     List<Offer> offers;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    List<CommandLigne> commandLignes;
 }

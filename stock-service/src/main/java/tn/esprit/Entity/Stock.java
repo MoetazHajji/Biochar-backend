@@ -23,6 +23,8 @@ public class Stock implements Serializable {
     @NonNull
     Long nbProduct;
     @NonNull
+    Double total_quantity;
+    @NonNull
     Double storage;
 
     Double free_storage;

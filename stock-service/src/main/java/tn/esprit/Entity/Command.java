@@ -23,10 +23,17 @@ public class Command implements Serializable {
     Date date;
     @NonNull
     String notice;
+    @NonNull
     Long quantity_product;
+    @NonNull
+    Long NbPoduct;
 
     Double Total_price;
 
-    @ManyToMany
-    List<Product> products;
+    /*@ManyToMany
+    List<Product> products;*/
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "command")
+    List<CommandLigne> commandLignes;
 }

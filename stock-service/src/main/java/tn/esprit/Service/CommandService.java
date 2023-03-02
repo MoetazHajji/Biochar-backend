@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entity.Command;
+import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Entity.Product;
 import tn.esprit.Interface.ICommandService;
+import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 
@@ -17,7 +19,7 @@ import java.util.List;
 public class CommandService implements ICommandService {
 
     ICommandRepository commandRepository;
-    IProductRepository productRepository;
+    ICommandLigneRepository ligneRepository;
     @Override
     public Command addCommand(Command command) {
         return commandRepository.save(command);
@@ -46,14 +48,41 @@ public class CommandService implements ICommandService {
     }
 
     @Override
+    @Transactional
+    public Command affectCommandToCommandLine(Command command, List<Long> idCommandLines) {
+        commandRepository.save(command);
+        //List<CommandLigne> ligneList = command.getCommandLignes();
+        command.setCommandLignes(null);
+        for (Long idCommandLine:idCommandLines)
+        {
+                CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElse(null);
+                commandLigne.setCommand(command);
+                ligneRepository.save(commandLigne);
+        }
+
+        if(command.getTotal_price()==null && command.getQuantity_product()==null){
+            Long commandId = command.getId();
+            Double totprix=commandRepository.calculSumPriceProducts(commandId);
+            Long nbProducts = commandRepository.getNumberProducts(commandId);
+            Long TotQuantity = commandRepository.TotalQuantityOfProducts(commandId);
+            command.setTotal_price(totprix);
+            command.setNbPoduct(nbProducts);
+            command.setQuantity_product(TotQuantity);
+            commandRepository.save(command);
+        }
+        return  command;
+    }
+
+
+    /*@Override
     public void affectproductsToCommand(Long idCom,Long idPro) {
         Product product=productRepository.findById(idPro).orElse(null);
         Command command=commandRepository.findById(idCom).orElse(null);
             command.getProducts().add(product);
             commandRepository.save(command);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void disaffectproductFromCommand(Long idCom, Long idPro) {
         Command command= commandRepository.findById(idCom).orElse(null);
         int productNb=command.getProducts().size();
@@ -64,9 +93,9 @@ public class CommandService implements ICommandService {
             }
         }
         commandRepository.save(command);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public Command addCommandAndAffectProducts(Command command, List<Long> idPro) {
         List<Product> productList=new ArrayList<>();
         for (Long idProduct: idPro){
@@ -76,10 +105,13 @@ public class CommandService implements ICommandService {
         }
         commandRepository.save(command);
         if(command.getTotal_price()==null && command.getQuantity_product()==null){
-        Double totprix=commandRepository.calculSumPriceProducts(command.getId());
-        Long nbProducts = commandRepository.getNumberProducts(command.getId());
+        Long commandId = command.getId();
+        Double totprix=commandRepository.calculSumPriceProducts(commandId);
+        Long nbProducts = commandRepository.getNumberProducts(commandId);
+        Long TotQuantity = commandRepository.TotalQuantityOfProducts(commandId);
         command.setTotal_price(totprix);
-        command.setQuantity_product(nbProducts);
+        command.setNbPoduct(nbProducts);
+        command.setQuantity_product(TotQuantity);
         commandRepository.save(command);
         }
         return command;
@@ -92,5 +124,5 @@ public class CommandService implements ICommandService {
         command.setTotal_price(totpri);
         commandRepository.save(command);
         return command;
-    }
+    }*/
 }
