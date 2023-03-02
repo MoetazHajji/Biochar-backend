@@ -27,9 +27,18 @@ public class ProductService implements IProductService {
         return productRepository.save(product);
     }
 
+    public boolean ifProductExist(String reference){
+        List<Product> p = productRepository.findProduc(reference);
+        if(p.size()==0){
+            return false;
+        }else
+            return true;
+    }
+
     @Override
     public Product modifyProduct(Product product) {
-        return productRepository.save(product);
+            productRepository.save(product);
+        return product;
     }
 
     @Override
@@ -53,13 +62,11 @@ public class ProductService implements IProductService {
     public Product AffectProductToCommand(Long idPro,Long idCommand) {
         Product product=productRepository.findById(idPro).orElse(null);
         Command command=commandRepository.findById(idCommand).orElse(null);
-        if (product.getCommands()==null){
-           // product.setCommands(command);
+
             productRepository.save(product);
-        }
+
         return product;
     }
-
 
 
 

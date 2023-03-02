@@ -1,6 +1,7 @@
 package tn.esprit.Interface;
 
 import org.springframework.stereotype.Service;
+import tn.esprit.Entity.Command;
 import tn.esprit.Entity.Product;
 
 import java.util.List;
@@ -13,5 +14,6 @@ public interface IProductService {
     Product getProductById(Long id);
     List<Product> getProductList();
     Product AffectProductToCommand(Long idPro,Long idCommand);
+
 
 }

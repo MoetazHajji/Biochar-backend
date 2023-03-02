@@ -6,8 +6,13 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.Entity.Product;
 import tn.esprit.Entity.Type_product;
 
+import java.util.List;
+
 @Repository
 public interface IProductRepository extends JpaRepository<Product,Long> {
     @Query("select pr from Product pr where pr.type_product= :type_product")
     Product getProductByProductType(Type_product type_product);
+
+    @Query("select pr from Product pr where pr.reference= :refrence")
+    List<Product> findProduc(String refrence);
 }

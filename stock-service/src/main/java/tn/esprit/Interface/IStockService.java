@@ -14,7 +14,7 @@ public interface IStockService {
     void deleteStock(Long id);
     Stock getStockById(Long id);
     List<Stock> getAllStocks();
-    Stock AffectProductToSupplies(Long idPro, Long idSupp);
+    Stock AffectProductToSupplies(Long idPro,Long quantity ,Long idStock);
     Long getNbProductsInStock(Long id);
     Double getSumSizeOfProducts(Long id);
 

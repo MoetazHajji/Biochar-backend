@@ -47,8 +47,12 @@ public class CommandController {
     public List<Command> getAllCommand(){
         return commandService.getAllCommands();
     }
+    @PostMapping("AddCommandAndAssignToCommandLigne/{id}")
+    public Command addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idCommandLignes){
+        return commandService.affectCommandToCommandLine(command,idCommandLignes);
+    }
 
-    @PutMapping("affectProductsToCommand/{idCom}/{idPro}")
+    /*@PutMapping("affectProductsToCommand/{idCom}/{idPro}")
     public void affectproductsToCommand(@PathVariable("idCom") Long idCom,@PathVariable("idPro") Long idPro){
          commandService.affectproductsToCommand(idPro, idCom);
     }
@@ -57,13 +61,10 @@ public class CommandController {
         commandService.disaffectproductFromCommand(idCom,idPro);
     }
 
-    @PostMapping("addCommandAndAffectProducts/{id}")
-    public Command addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idPro){
-        return commandService.addCommandAndAffectProducts(command,idPro);
-    }
+
 
     @PutMapping("setTotalPrice/{id}")
     public Command SetTotPriceCommand(@PathVariable("id") Long id){
         return commandService.SetTotPriceCommand(id);
-    }
+    }*/
 }
