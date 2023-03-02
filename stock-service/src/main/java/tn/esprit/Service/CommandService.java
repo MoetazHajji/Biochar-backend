@@ -73,6 +73,18 @@ public class CommandService implements ICommandService {
         return  command;
     }
 
+    @Override
+    public void disaffectCommandFromOrderLine(Long idCom, Long idComL) {
+        Command command= commandRepository.findById(idCom).orElse(null);
+        int productNb=command.getCommandLignes().size();
+        for (int index=0;index<productNb;index++){
+            if(command.getCommandLignes().get(index).getId()==idComL){
+                command.getCommandLignes().remove(index);
+                break;
+            }
+        }
+        commandRepository.save(command);
+    }
 
     /*@Override
     public void affectproductsToCommand(Long idCom,Long idPro) {
@@ -80,19 +92,6 @@ public class CommandService implements ICommandService {
         Command command=commandRepository.findById(idCom).orElse(null);
             command.getProducts().add(product);
             commandRepository.save(command);
-    }*/
-
-    /*@Override
-    public void disaffectproductFromCommand(Long idCom, Long idPro) {
-        Command command= commandRepository.findById(idCom).orElse(null);
-        int productNb=command.getProducts().size();
-        for (int index=0;index<productNb;index++){
-            if(command.getProducts().get(index).getId()==idPro){
-                command.getProducts().remove(index);
-                break;
-            }
-        }
-        commandRepository.save(command);
     }*/
 
    /* @Override
