@@ -14,9 +14,8 @@ public interface ICommandService {
     List<Command> getAllCommands();
     Command affectCommandToCommandLine(Command command, List<Long> idCommandLines);
 
-    /*void affectproductsToCommand(Long idCom,Long idPro);
-    void disaffectproductFromCommand(Long idCom,Long idPro);
-    Command addCommandAndAffectProducts(Command command,List<Long> idPro);
+    void disaffectCommandFromOrderLine(Long idCom, Long idComL);
+    /*Command addCommandAndAffectProducts(Command command,List<Long> idPro);
     Command SetTotPriceCommand(Long id);*/
 
 

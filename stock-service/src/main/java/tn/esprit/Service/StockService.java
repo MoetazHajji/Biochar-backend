@@ -64,7 +64,7 @@ public class StockService implements IStockService {
     public Stock AffectProductToSupplies(Long idPro,Long quantity ,Long idStock) {
         Product product=productRepository.findById(idPro).orElse(null);
         Stock stock =stockRepository.findById(idStock).orElse(null);
-        product.setQuantity_stock(quantity);
+        product.setAutoFillQuantity(quantity);
         stock.getProducts().add(product);
         stockRepository.save(stock);
         if (stock.getType_product().equals(Type_product.REAGENT) ) {

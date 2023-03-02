@@ -22,7 +22,6 @@ public class CommandLigne implements Serializable {
 
     Long quantite_product;
 
-    @JsonIgnore
     @ManyToOne
     Command command;
 
