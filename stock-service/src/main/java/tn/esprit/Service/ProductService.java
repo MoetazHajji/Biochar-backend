@@ -68,6 +68,11 @@ public class ProductService implements IProductService {
         return product;
     }
 
+    @Override
+    public Product addProductToStock(Long idPro, Long quantity) {
+        Product product=productRepository.findById(idPro).orElse(null);
+        return null;
+    }
 
 
 }

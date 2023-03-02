@@ -15,5 +15,6 @@ public interface IProductService {
     List<Product> getProductList();
     Product AffectProductToCommand(Long idPro,Long idCommand);
 
+    Product addProductToStock(Long id, Long quantity);
 
 }

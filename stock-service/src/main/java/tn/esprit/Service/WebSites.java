@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WebSites {
-    /* All Social Media Sites
+    /* All Web And Social Media Sites
      * -------------------------------------------------
      */
 

@@ -23,7 +23,7 @@ public interface IStockRepository extends JpaRepository<Stock,Long> {
     @Query("SELECT  stock.free_storage FROM Stock stock where stock.free_storage=0 " )
     boolean isFullStock();
 
-    @Query("select sum(pr.quantity_stock) from Stock st join st.products pr where st.id = :id")
+    @Query("select sum(pr.autoFillQuantity) from Stock st join st.products pr where st.id = :id")
     Double getTotalQantity(Long id);
 
 }

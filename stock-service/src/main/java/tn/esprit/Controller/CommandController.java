@@ -51,16 +51,15 @@ public class CommandController {
     public Command addCommandAndAffectProducts(@RequestBody Command command, @PathVariable("id") List<Long> idCommandLignes){
         return commandService.affectCommandToCommandLine(command,idCommandLignes);
     }
+    @PutMapping("desaffectProdutcsFromEmployee/{idCom}/{idComL}")
+    public void disaffectproductFromCommand(@PathVariable("idCom") Long idCom,@PathVariable("idComL") Long idComL){
+        commandService.disaffectCommandFromOrderLine(idCom,idComL);
+    }
 
     /*@PutMapping("affectProductsToCommand/{idCom}/{idPro}")
     public void affectproductsToCommand(@PathVariable("idCom") Long idCom,@PathVariable("idPro") Long idPro){
          commandService.affectproductsToCommand(idPro, idCom);
     }
-    @PutMapping("desaffectProdutcsFromEmployee/{idCom}/{idPro}")
-    public void disaffectproductFromCommand(@PathVariable("idCom") Long idCom,@PathVariable("idPro") Long idPro){
-        commandService.disaffectproductFromCommand(idCom,idPro);
-    }
-
 
 
     @PutMapping("setTotalPrice/{id}")

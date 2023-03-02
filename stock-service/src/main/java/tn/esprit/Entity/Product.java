@@ -35,7 +35,11 @@ public class Product implements Serializable {
     String image;
 
     //@Column(unique = true,nullable = false,length = 200 )
-    Long quantity_stock;
+    Long autoFillQuantity;
+
+    Long autoFillThreshold;
+
+
 
 
     @NonNull
