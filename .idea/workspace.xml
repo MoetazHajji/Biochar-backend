@@ -5,16 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockAutoFiller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/AdressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/AdressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandLigneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandLigneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/OfferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/OfferController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IAdressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IAdressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandLigneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandLigneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IOfferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IOfferService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockAutoFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockAutoFiller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IStockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IStockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/AdressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/AdressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/OfferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/OfferService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/WebSites.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/WebSites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +251,13 @@
       <workItem from="1677621942960" duration="990000" />
       <workItem from="1677671305745" duration="12960000" />
       <workItem from="1677704800626" duration="10969000" />
-      <workItem from="1677748744859" duration="10417000" />
+      <workItem from="1677748744859" duration="14363000" />
+      <workItem from="1677776019998" duration="12000" />
+      <workItem from="1677839677579" duration="2123000" />
+      <workItem from="1677841853841" duration="14171000" />
+      <workItem from="1677892665991" duration="3887000" />
+      <workItem from="1677969763506" duration="6316000" />
+      <workItem from="1678030331797" duration="9758000" />
     </task>
     <servers />
   </component>
@@ -264,6 +289,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

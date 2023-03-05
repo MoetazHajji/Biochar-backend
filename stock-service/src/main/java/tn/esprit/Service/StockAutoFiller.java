@@ -13,6 +13,7 @@ import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.IProductRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -24,27 +25,18 @@ public class StockAutoFiller implements IStockAutoFiller {
     ICommandLigneService ligneService;
 
 
-    /*@Override
-    @Scheduled(fixedRate = 1000)
+    @Override
+    @Scheduled(cron = "*/10 * * * * * ")
     public void checkStockLevels() {
-        List<Product> productList=productService.getProductList();
-        List<Stock> stockList = stockService.getAllStocks();
-        for (Stock stock:stockList) {
-            for (Product product : productList) {
-                if (product.getType_product().equals(Type_product.REAGENT)) {
-                    if (stock.getStorage() < product.getAutoFillQuantity()) {
-                        Long quantityToAdd = product.getAutoFillQuantity();
-                        Double availableStockCapacity = stock.getStorage() - stock.getUsed_storage();
-                        if(availableStockCapacity > quantityToAdd){
-                            quantityToAdd = availableStockCapacity;
-                        }
-                        stockService.AffectProductToSupplies(product.getId(), quantityToAdd, stock.getId());
-                        stock.setState(State.AVAILABLE);
-                    } else if (product.getStocks().get(0).getState().equals(State.OUT_OF_STOCK)) {
-                        ligneService.AddLigneAndAssign(ligne,product.getId());
-                    }
+        Set<Stock> stockList = stockService.getAllStocks();
+        for (Stock stock:stockList){
+            //for (Product product:stock.getProducts()) {
+                if (stock.getProducts() != null && stock.getFree_storage() != null && stock.getFree_storage() <= 5.0) {
+                    //stockService.AffectProductToSupplies(product.getId(), stock.getUsed_storage(), stock.getId());
+                    log.info("Stock : " + stock.getId() + "is out of stock");
                 }
-            }
+            //}
         }
-    }*/
+
+    }
 }

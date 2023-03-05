@@ -7,7 +7,9 @@ import tn.esprit.Interface.IAdressService;
 import tn.esprit.Repository.IAdressRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -34,8 +36,8 @@ public class AdressService implements IAdressService {
     }
 
     @Override
-    public List<Adress> getAllAdresses() {
-        List<Adress> adressList = new ArrayList<>();
+    public Set<Adress> getAllAdresses() {
+        Set<Adress> adressList = new HashSet<>();
         adressRepository.findAll().forEach(adressList::add);
         return adressList;
     }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @ToString
@@ -35,5 +36,5 @@ public class Command implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "command")
-    List<CommandLigne> commandLignes;
+    Set<CommandLigne> commandLignes;
 }

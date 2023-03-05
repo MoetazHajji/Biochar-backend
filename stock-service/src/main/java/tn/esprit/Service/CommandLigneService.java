@@ -9,7 +9,9 @@ import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.IProductRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -32,8 +34,8 @@ public class CommandLigneService implements ICommandLigneService {
     }
 
     @Override
-    public List<CommandLigne> getAllOrdersLine() {
-        List<CommandLigne> ligneList = new ArrayList<>();
+    public Set<CommandLigne> getAllOrdersLine() {
+        Set<CommandLigne> ligneList = new HashSet<>();
         ligneRepository.findAll().forEach(ligneList::add);
         return ligneList;
     }

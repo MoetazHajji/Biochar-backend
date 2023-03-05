@@ -12,7 +12,9 @@ import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -41,8 +43,8 @@ public class CommandService implements ICommandService {
     }
 
     @Override
-    public List<Command> getAllCommands() {
-        List<Command> commandList =new ArrayList<>();
+    public Set<Command> getAllCommands() {
+        Set<Command> commandList =new HashSet<>();
         commandRepository.findAll().forEach(commandList::add);
         return commandList;
     }
@@ -78,7 +80,8 @@ public class CommandService implements ICommandService {
         Command command= commandRepository.findById(idCom).orElse(null);
         int productNb=command.getCommandLignes().size();
         for (int index=0;index<productNb;index++){
-            if(command.getCommandLignes().get(index).getId()==idComL){
+            for (CommandLigne ligne:command.getCommandLignes())
+            if(ligne.getId()==idComL){
                 command.getCommandLignes().remove(index);
                 break;
             }

@@ -10,7 +10,9 @@ import tn.esprit.Repository.IAdressRepository;
 import tn.esprit.Repository.ISupplierRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -38,8 +40,8 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public List<Supplier> getAllSuppliers() {
-        List<Supplier> supplierList = new ArrayList<>();
+    public Set<Supplier> getAllSuppliers() {
+        Set<Supplier> supplierList = new HashSet<>();
         supplierRepository.findAll().forEach(supplierList::add);
         return supplierList;
     }
@@ -47,7 +49,7 @@ public class SupplierService implements ISupplierService {
     @Override
     public Supplier AddSupplierWithAdresses(Supplier supplier) {
         supplierRepository.save(supplier);
-        List<Adress> adressList = supplier.getAdresses();
+        Set<Adress> adressList = supplier.getAdresses();
         supplier.setAdresses(null);
         for(Adress adress:adressList){
             adress.setSupplier(supplier);

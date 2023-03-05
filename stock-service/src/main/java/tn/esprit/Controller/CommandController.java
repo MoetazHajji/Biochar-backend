@@ -10,6 +10,7 @@ import tn.esprit.Entity.Product;
 import tn.esprit.Interface.ICommandService;
 
 import java.util.List;
+import java.util.Set;
 
 @Tag(name = "Command Management")
 @AllArgsConstructor
@@ -44,7 +45,7 @@ public class CommandController {
 
     @Operation(description = "Retreive all Commands")
     @GetMapping("getAllAdress")
-    public List<Command> getAllCommand(){
+    public Set<Command> getAllCommand(){
         return commandService.getAllCommands();
     }
     @PostMapping("AddCommandAndAssignToCommandLigne/{id}")

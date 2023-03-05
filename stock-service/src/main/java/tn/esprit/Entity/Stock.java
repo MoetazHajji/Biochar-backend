@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @ToString
@@ -44,6 +45,6 @@ public class Stock implements Serializable {
 
 
     @ManyToMany
-    List<Product> products;
+    Set<Product> products;
 
 }

@@ -6,6 +6,7 @@ import tn.esprit.Entity.Product;
 import tn.esprit.Entity.Stock;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public interface IStockService {
@@ -13,8 +14,8 @@ public interface IStockService {
     Stock modifyStock(Stock stock);
     void deleteStock(Long id);
     Stock getStockById(Long id);
-    List<Stock> getAllStocks();
-    Stock AffectProductToSupplies(Long idPro,Long quantity ,Long idStock);
+    Set<Stock> getAllStocks();
+    Stock AffectProductToSupplies(Long idPro,Double quantity ,Long idStock);
     Long getNbProductsInStock(Long id);
     Double getSumSizeOfProducts(Long id);
 
