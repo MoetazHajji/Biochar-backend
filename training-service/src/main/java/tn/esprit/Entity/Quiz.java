@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 @Entity
@@ -12,7 +14,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Quiz implements Serializable {
@@ -33,6 +35,8 @@ public class Quiz implements Serializable {
 
     String answer_4;
     @NonNull
+    @Min(1)
+    @Max(4)
     int valid_answer;
 
     @Enumerated(EnumType.STRING)

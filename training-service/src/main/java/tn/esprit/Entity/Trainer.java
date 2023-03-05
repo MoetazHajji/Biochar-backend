@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Trainer implements Serializable {
@@ -33,6 +33,6 @@ public class Trainer implements Serializable {
     @Enumerated(EnumType.STRING)
     Type_T type_t;
 
-    @OneToMany(mappedBy = "trainer",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "trainer",fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     Set<Training> trainings;
 }
