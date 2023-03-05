@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -36,14 +37,14 @@ public class Product implements Serializable {
     String image;
 
     //@Column(unique = true,nullable = false,length = 200 )
+    @Min(0)
     Double quantity;
 
+    @Min(0)
     Double autoFillQuantity;
 
+    @Min(0)
     Double autoFillThreshold;
-
-
-
 
     @NonNull
     @Enumerated(EnumType.STRING)

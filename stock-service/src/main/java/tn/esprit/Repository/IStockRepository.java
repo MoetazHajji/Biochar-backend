@@ -24,5 +24,7 @@ public interface IStockRepository extends JpaRepository<Stock,Long> {
 
     @Query("select pr.quantity from Stock st join st.products pr where st.id = :id")
     Double getTotalQantity(Long id);
+    @Query("select pr from Stock  st join st.products pr where st.id =:id ")
+    Product getProductFromById(Long id);
 
 }

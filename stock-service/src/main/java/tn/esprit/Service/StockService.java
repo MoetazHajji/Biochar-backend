@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entity.Product;
 import tn.esprit.Entity.State;
 import tn.esprit.Entity.Stock;
@@ -64,6 +65,7 @@ public class StockService implements IStockService {
 
 
     @Override
+    @Transactional
     public Stock AffectProductToSupplies(Long idPro,Double quantity ,Long idStock) {
         Product product=productRepository.findById(idPro).orElse(null);
         Stock stock =stockRepository.findById(idStock).orElse(null);
@@ -77,16 +79,16 @@ public class StockService implements IStockService {
             stock.getProducts().add(product);
             stockRepository.save(stock);
         }
-        if (product.getType_product().equals(Type_product.REAGENT) && stock.getProducts()!=null && stock.getTotal_quantity() <= stock.getStorage()) {
+        if (product.getType_product().equals(Type_product.REAGENT) && stock.getProducts()!=null && stock.getFree_storage() >= stock.getStorage() - 10) {
             stock.getProducts().add(product);
             Double newQuantity = product.getQuantity() - quantity;
             Long nbProducts = stockRepository.NbProductsInStock(idStock);
-
+            /************** storage ******************/
             Double freeStorge = stock.getFree_storage();
             Double usedStorage = stock.getUsed_storage();
             Double updatedFreeStorage = freeStorge - quantity;
             Double updatedUsedStorage = usedStorage + quantity;
-
+            /************** storage ******************/
             Double totQantity = stock.getTotal_quantity() +quantity;
             stock.setNbProduct(nbProducts);
             stock.setTotal_quantity(totQantity);
