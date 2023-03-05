@@ -11,7 +11,9 @@ import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.IStockRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -52,8 +54,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getProductList() {
-        List<Product> productList=new ArrayList<>();
+    public Set<Product> getProductList() {
+        Set<Product> productList=new HashSet<>();
         productRepository.findAll().forEach(productList::add);
         return productList ;
     }

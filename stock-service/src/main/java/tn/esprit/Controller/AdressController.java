@@ -9,6 +9,7 @@ import tn.esprit.Entity.Adress;
 import tn.esprit.Interface.IAdressService;
 
 import java.util.List;
+import java.util.Set;
 
 @Tag(name = "Adress Management")
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class AdressController {
 
     @Operation(description = "Retreive all adresses")
     @GetMapping("getAllAdress")
-    public List<Adress> getAllAdress(){
+    public Set<Adress> getAllAdress(){
         return adressService.getAllAdresses();
     }
 }

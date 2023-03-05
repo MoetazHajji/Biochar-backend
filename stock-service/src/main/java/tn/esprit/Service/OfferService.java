@@ -11,7 +11,9 @@ import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.ISupplierRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -40,8 +42,8 @@ public class OfferService implements IOfferService {
     }
 
     @Override
-    public List<Offer> getAllOfferCalls() {
-        List<Offer> offers = new ArrayList<>();
+    public Set<Offer> getAllOfferCalls() {
+        Set<Offer> offers = new HashSet<>();
         callRepository.findAll().forEach(offers::add);
         return offers;
     }

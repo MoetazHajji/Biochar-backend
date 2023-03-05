@@ -8,6 +8,7 @@ import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Interface.ICommandLigneService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("commandLigne")
@@ -34,7 +35,7 @@ public class CommandLigneController {
 
     @Operation(description = "Retreive all Command Lignes")
     @GetMapping("getAllCommLignes")
-    public List<CommandLigne> getAllAdress(){
+    public Set<CommandLigne> getAllAdress(){
         return ligneService.getAllOrdersLine();
     }
 }
