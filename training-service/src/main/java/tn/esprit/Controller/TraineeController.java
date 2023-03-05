@@ -13,6 +13,7 @@ import tn.esprit.Mapper.TraineeMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("trainee")
@@ -61,8 +62,8 @@ public class TraineeController {
         traineeService.delete_all();
     }
 
-    @PutMapping("submit/{id_trainee}/{answers}")
-    public int submit_Answer(@PathVariable("answers") List<Integer> answers,@PathVariable("id_trainee") Long id_trainee)
+    @PutMapping("submit/{id_trainee}")
+    public int submit_Answer(@RequestBody Map<String,List<Integer>> answers, @PathVariable("id_trainee") Long id_trainee)
     {
         return traineeService.submit_Answer(answers, id_trainee);
     }

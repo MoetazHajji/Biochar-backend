@@ -2,14 +2,17 @@ package tn.esprit.Mapper;
 
 import tn.esprit.Dto.QuizDto;
 import tn.esprit.Entity.Quiz;
+import tn.esprit.Entity.Type_Q;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class QuizMapper {
 
     public static Quiz mapToEntity(QuizDto quizDto){
-
+        if(quizDto.getType() == Type_Q.QCU)
+            quizDto.getValid().subList(1, quizDto.getValid().size()).clear();
         Quiz quiz = Quiz.builder()
                 .id(quizDto.getId_quiz())
                 .question(quizDto.getQuestion())
@@ -24,6 +27,7 @@ public class QuizMapper {
     }
 
     public static QuizDto mapToDto(Quiz quiz){
+
         QuizDto quizDto = QuizDto.builder()
                 .id_quiz(quiz.getId())
                 .question(quiz.getQuestion())

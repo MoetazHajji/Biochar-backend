@@ -51,7 +51,7 @@ public class TrainingService implements ITrainingService {
      public Training add_training_with_image(Training t, MultipartFile image) {
           try {
 
-               t.setImage( "C:\\Users\\SBS\\Pictures\\Feedback\\tests\\" + t.getTitle() + "\\"+t.getTitle()+".png");
+               t.setImage( "src\\main\\resources\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
                InputStream inputStream = image.getInputStream();
 
@@ -189,15 +189,7 @@ public class TrainingService implements ITrainingService {
 
      private List<Training> sortByReviews()
      {
-/*
-        return trainingRepository
-                .findAll().stream()
-                .sorted(Comparator.comparingInt(training -> training.getReviews()
-                .stream()
-                .mapToInt(training::getRating)
-                .sum())
-               .reversed())
-               .collect(Collectors.toList());*/
+
           List<Training> trainingsorted = trainingRepository
                   .findAll().stream()
                   .sorted(Comparator.comparingInt(trainig -> trainig.getReviews()
@@ -206,5 +198,11 @@ public class TrainingService implements ITrainingService {
                   .collect(Collectors.toList());
           Collections.reverse(trainingsorted);
           return trainingsorted;
+     }
+
+     @Override
+     public Training add_training_with_quizes(Training training, Set<Quiz> quizes) {
+          training.setQuizes(quizes);
+          return trainingRepository.save(training);
      }
 }

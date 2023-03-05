@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Quiz;
 import tn.esprit.Entity.Trainee;
+import tn.esprit.Entity.Type_Q;
 import tn.esprit.Interface.ITraineeService;
 import tn.esprit.Repository.TraineeRepository;
 import tn.esprit.Repository.TrainingRepository;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -49,17 +51,47 @@ public class TraineeService implements ITraineeService {
     }
 
     @Override
-    public int submit_Answer(List<Integer> answers, Long id_trainee) {
+    public int submit_Answer(Map<String,List<Integer>> answers, Long id_trainee) {
 
         Trainee trainee = traineeRepository.findById(id_trainee).orElse(null);
-        if(trainee.getValidate_day() !=null) {
+        if(trainee.getValidate_day() ==null) {
             Set<Quiz> quizzes = trainee.getTraining().getQuizes();
-            int score = 100;
-            float fault_cost = 100 / quizzes.size();
-            int counter = 0;
-            for (Quiz quiz : quizzes) {
-                if (quiz.getValid_answer() != answers.get(counter))
-                    score -= fault_cost;
+            int score = 0;
+            int size = quizzes.size();
+            float cost = 100 / size;
+            for(Map.Entry<String,List<Integer>> answer :answers.entrySet())
+            {
+                 Quiz quiz = null;
+                 for(Quiz quiz1 : quizzes)
+                 {
+                     if(quiz1.getQuestion().trim().equalsIgnoreCase(answer.getKey()))
+                         quiz = quiz1;
+                 }
+                 if(quiz !=null)
+                 {
+                     if(quiz.getType_q() == Type_Q.QCU)
+                     {
+                         if(quiz.getValid_answer().get(0) == answer.getValue().get(0))
+                             score +=cost;
+                     }
+                     else
+                     {
+                         Boolean check = true;
+                         if(quiz.getValid_answer().size()>answers.size())
+                             check = false;
+                         else  {
+                            for(int i =0;i<quiz.getValid_answer().size();i++)
+                            {
+                                if(quiz.getValid_answer().get(i) != answer.getValue().get(i))
+                                    check = false;
+                            }
+
+                         }
+                         if(check)
+                             score += cost;
+                     }
+                 }
+
             }
 
             LocalDate localDate = LocalDate.now();

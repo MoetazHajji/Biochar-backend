@@ -1,9 +1,11 @@
 package tn.esprit.Interface;
 
 import org.springframework.web.multipart.MultipartFile;
+import tn.esprit.Entity.Quiz;
 import tn.esprit.Entity.Training;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ITrainingService {
     Training add_training(Training t);
@@ -25,5 +27,7 @@ public interface ITrainingService {
     Training get_By_Title_training(String title);
 
     Training affect_quizes_to_training(List<Long> ids,String training_title);
+
+    Training add_training_with_quizes(Training training, Set<Quiz> quizes);
 
 }
