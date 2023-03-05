@@ -9,4 +9,6 @@ public interface ITraineeService {
     void delete_trainee(Long id);
     List<Trainee> getAll_trainee();
     Trainee getById_trainee(Long id);
+    void delete_all();
+    int submit_Answer(List<Integer> answers,Long id_trainee);
 }

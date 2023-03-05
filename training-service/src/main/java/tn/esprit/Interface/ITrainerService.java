@@ -9,4 +9,5 @@ public interface ITrainerService {
     void delete_trainer(Long id);
     List<Trainer> getAll_trainer();
     Trainer getById_trainer(Long id);
+    void delete_all();
 }

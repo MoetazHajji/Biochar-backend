@@ -5,10 +5,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.QuizDto;
 import tn.esprit.Entity.Quiz;
 import tn.esprit.Interface.IQuizService;
+import tn.esprit.Mapper.QuizMapper;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,28 +24,40 @@ public class QuizController {
 
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public Quiz add_quiz(@RequestBody Quiz q)
+    public QuizDto add_quiz(@RequestBody QuizDto q)
     {
-
-        return quizService.add_quiz(q);
+        return QuizMapper
+                .mapToDto(quizService
+                        .add_quiz(QuizMapper
+                                .mapToEntity(q)));
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.FOUND)
     public void delete_quiz(@PathVariable("id") Long id)
     {
         quizService.delete_quiz(id);
     }
 
     @GetMapping
-    public List<Quiz> getAll_quiz()
+    public List<QuizDto> getAll_quiz()
     {
-
-        return quizService.getAll_quiz();
+        List<QuizDto> quizDtos = new ArrayList<>();
+        quizService.getAll_quiz()
+                .forEach(quiz -> quizDtos.add(QuizMapper.mapToDto(quiz)));
+        return quizDtos;
     }
 
     @GetMapping("/{id}")
-    public Quiz getById_quiz(@PathVariable("id") Long id)
+    public QuizDto getById_quiz(@PathVariable("id") Long id)
     {
-        return quizService.getById_quiz(id);
+
+        return QuizMapper.mapToDto(quizService.getById_quiz(id));
+    }
+
+    @DeleteMapping("all")
+    public void delete_all()
+    {
+        quizService.delete_all();
     }
 }
