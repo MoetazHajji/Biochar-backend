@@ -28,7 +28,6 @@ public class Trainee implements Serializable {
     @NonNull
     String lastname;
     @NonNull
-    @Column(unique = true)
     String email;
 
     @Max(100)

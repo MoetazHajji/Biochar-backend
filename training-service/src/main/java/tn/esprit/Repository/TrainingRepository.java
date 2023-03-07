@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrainingRepository extends JpaRepository<Training,Long> {
-    @Query("select t from Training t order by t.start_date")
+    @Query("select t from Training t order by t.startdate")
     List<Training> getAllSortedByDate();
 
     @Query("select t from Training t order by t.duration")
@@ -27,6 +27,8 @@ public interface TrainingRepository extends JpaRepository<Training,Long> {
     Optional<Training> get_training_by_trainerId(Long id);
 
 
-    @Query("select t from Training t join t.reviews r where t.end_date<?1 and t.trainer.email = ?2 ")
+    @Query("select t from Training t join t.reviews r where t.enddate<?1 and t.trainer.email = ?2 ")
     List<Training> getTrainingsByEmailAndDate(Date date,String email);
+
+   List<Training> findByStartdateAfter(Date date);
 }

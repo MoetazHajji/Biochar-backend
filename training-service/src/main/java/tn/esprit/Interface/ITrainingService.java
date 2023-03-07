@@ -28,6 +28,6 @@ public interface ITrainingService {
 
     Training affect_quizes_to_training(List<Long> ids,String training_title);
 
-    Training add_training_with_quizes(Training training, Set<Quiz> quizes);
+    Training add_training_with_quizes(Training training, Set<Quiz> quizes,MultipartFile image);
 
 }

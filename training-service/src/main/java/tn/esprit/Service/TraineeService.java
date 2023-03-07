@@ -3,27 +3,31 @@ package tn.esprit.Service;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tn.esprit.Entity.Quiz;
-import tn.esprit.Entity.Trainee;
-import tn.esprit.Entity.Type_Q;
+import tn.esprit.Entity.*;
+import tn.esprit.External.Profile;
 import tn.esprit.Interface.ITraineeService;
+import tn.esprit.Repository.ProfileRepository;
+import tn.esprit.Repository.SubjectRepository;
 import tn.esprit.Repository.TraineeRepository;
 import tn.esprit.Repository.TrainingRepository;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Slf4j
 public class TraineeService implements ITraineeService {
     final TraineeRepository traineeRepository;
-    private final TrainingRepository trainingRepository;
+    final TrainingRepository trainingRepository;
+
+    final SubjectRepository subjectRepository;
+
+    final ProfileRepository profileRepository;
 
     @Override
     public Trainee add_trainee(Trainee t) {
@@ -103,4 +107,85 @@ public class TraineeService implements ITraineeService {
         }
         return -1;
     }
+
+    @Override
+    public List<Training> get_suits(int profile_id) {
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+          List<Training> trainings = trainingRepository.findByStartdateAfter(date);
+        Profile profile = profileRepository.findById(profile_id).orElse(null);
+        double profile_score = calculate_profile_score(profile,date);
+        log.info(trainings.toString());
+        List<Training> filtered_trainings = new ArrayList<>();
+        for(Training training: trainings)
+        {
+           if(training.getType_t() == Type_T.internal)
+           {
+               Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
+               if(subject != null)
+               {
+                   log.info(" "+subject.getComplexity());
+                   log.info(" "+profile_score/10);
+                   if(subject.getComplexity() == (int)profile_score/10 )
+                       filtered_trainings.add(training);
+               }
+               else
+               {
+                   training.setType_t(Type_T.external);
+                   trainingRepository.save(training);
+               }
+           }
+        }
+
+        return filtered_trainings;
+    }
+
+
+    private double calculate_profile_score(Profile profile,Date date)
+    {
+        double knowledge_score = 0;
+        double trainings_score = 0;
+        List<Subject> subjects = subjectRepository.findAll();
+        int size = 0;
+        if(subjects.size() >0) {
+            double knowledge_crit = 40 / subjects.size();
+
+
+            for (Subject subject : subjects) {
+                String knowledge = profile.getKnowledge() + " " + profile.getSkills() + " " + profile.getExperience();
+                if (knowledge.contains(subject.getTitle()))
+                    knowledge_score += knowledge_crit;
+            }
+
+            List<Trainee> trainees = traineeRepository.findByEmail(profile.getEmail());
+            for (Trainee trainee : trainees) {
+                if (!(trainee.getValidate_day() == null && trainee.getTraining().getEnddate().after(date))) {
+                    trainings_score += trainee.getScore();
+                    size++;
+                }
+            }
+        }
+        else
+            knowledge_score = 0;
+        if(size > 10)
+        trainings_score /=size;
+        else if (size <10 && size>0)
+            trainings_score /= size*((1-(size/10))+1);
+        else
+            trainings_score = 0;
+        return knowledge_score + trainings_score*0.6;
+
+    }
+
+    @Override
+    public double getScore(int id_profile)
+    {
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Profile profile =profileRepository.findById(id_profile).orElse(null);
+        if(profile !=null)
+            return calculate_profile_score(profile,date);
+        return 0;
+    }
+
 }
