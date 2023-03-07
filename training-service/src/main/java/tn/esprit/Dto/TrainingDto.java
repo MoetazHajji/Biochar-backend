@@ -1,6 +1,7 @@
 package tn.esprit.Dto;
 
 import lombok.*;
+import tn.esprit.Entity.Type_T;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,7 @@ public class TrainingDto {
     String subject;
     String description;
     String image;
+    Type_T type;
 
     String trainer;
     List<String> trainees;

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +22,6 @@ public class Subject implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Column(unique = true)
-    @Indexed(unique = true)
     String title;
     String description;
     int complexity;

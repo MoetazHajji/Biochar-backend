@@ -4,6 +4,8 @@ package tn.esprit.Dto;
 import lombok.*;
 import tn.esprit.Entity.Type_Q;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -16,6 +18,6 @@ public class QuizDto {
     String answer_2;
     String answer_3;
     String answer_4;
-    int valid;
+    List<Integer> valid;
     Type_Q type;
 }

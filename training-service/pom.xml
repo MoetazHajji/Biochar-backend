@@ -62,10 +62,10 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <dependency>
+      <!--  <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -83,7 +83,7 @@
             <version>4.1.2</version>
         </dependency>
 
-        <dependency>
+      <!--  <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-native-platform</artifactId>
             <version>${dl4j.version}</version>
@@ -93,7 +93,7 @@
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-core</artifactId>
             <version>${dl4j.version}</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>

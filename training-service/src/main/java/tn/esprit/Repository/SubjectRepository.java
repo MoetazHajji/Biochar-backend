@@ -8,7 +8,9 @@ import java.util.Optional;
 
 
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
-    Optional<Subject> findFirstByTitle(String title);
+
+    @Query("select s from Subject  s where lower(s.title)=?1")
+    Optional<Subject> retrieveByTitle(String title);
 
     @Query("select count(s) from Subject s")
     Integer getNumber();

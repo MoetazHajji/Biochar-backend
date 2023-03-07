@@ -25,11 +25,11 @@ public class Training implements Serializable {
 
     @NonNull
     @Temporal (TemporalType.DATE)
-    Date start_date;
+    Date startdate;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    Date end_date;
+    Date enddate;
 
     @NonNull
     String location;
@@ -43,6 +43,8 @@ public class Training implements Serializable {
     @NonNull
     @Column(unique = true)
     String title;
+
+    Type_T type_t;
 
     String subject;
     String description;

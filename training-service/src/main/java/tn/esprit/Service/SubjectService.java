@@ -10,6 +10,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +49,7 @@ public class SubjectService implements ISubjectService {
 
     final TrainingRepository trainingRepository;
 
-   // @Scheduled(cron = "* * 8 * * *")
+    // @Scheduled(cron = "* * 8 * * *")
 
     public List<Subject> add_Data(MultipartFile file) {
         // Map<String, List<String>> data = new HashMap<>();
@@ -93,8 +95,8 @@ public class SubjectService implements ISubjectService {
             }
 
             // log.info("subjects : " + subjects.toString());
-           Delete_all();
-           return subjectRepository.saveAll(subjects);
+            Delete_all();
+            return subjectRepository.saveAll(subjects);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -156,26 +158,36 @@ public class SubjectService implements ISubjectService {
     }
 
     @Override
-    public void add_Cookies(HttpServletRequest request,int id_user) {
+    public void add_Cookies(javax.servlet.http.Cookie[] cookies,int id_user) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        javax.servlet.http.Cookie[] cookies = request.getCookies();
         List<Cookie> cookieList = new ArrayList<>();
 
 
         if (cookies != null) {
             Arrays.stream(cookies).forEach(cookie -> {
+
                 Cookie cookie1 = new Cookie();
                 cookie1.setName(cookie.getName());
                 cookie1.setValue(cookie.getValue());
                 cookie1.setPath(cookie.getPath());
-                cookie1.setDomain(cookie1.getDomain());
-                cookie1.setId_user(id_user);
-                cookieList.add(cookie1);
-            });
+                cookie1.setDomain(cookie.getDomain());
+                cookie1.setUser(id_user);
+                cookie1.setDate(date);
+                if(cookie_validation(cookie1,id_user))
+                {
+                    cookieList.add(cookie1);
+                    log.info("valid");
+                }
 
-            cookiesRepository.saveAll(cookieList);
+            });
+            if(cookieList.size() > 0)
+            {
+                log.info("added");
+                cookiesRepository.saveAll(cookieList);
+            }
+
 
         }
     }
@@ -202,12 +214,14 @@ public class SubjectService implements ISubjectService {
                     cookie.setName(values[4].trim());
                     cookie.setValue(values[5].trim());
                     cookie.setDate(date);
-                    cookie.setId_user(id_user);
+                    cookie.setUser(id_user);
+                    if(cookie_validation(cookie,id_user))
                     cookies.add(cookie);
                 }
                 //Arrays.stream(values).forEach(v -> log.info("--> " + v));
             }
             // log.info(cookies.toString());
+            if(cookies.size() > 0)
             cookiesRepository.saveAll(cookies);
         } catch (IOException ioe) {
         }
@@ -240,7 +254,7 @@ public class SubjectService implements ISubjectService {
         }
     }
 
-   // @Scheduled(fixedDelay = 100000)
+    // @Scheduled(fixedDelay = 100000)
     public List<String> cookies_domains(List<Cookie> cookies) {
 
         List<String> urls_pages = new ArrayList<>();
@@ -288,35 +302,42 @@ public class SubjectService implements ISubjectService {
     private void create_result_text(Map<String,Integer> map) throws IOException {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d-MM-uuuu");
-        File file = new File("C:\\Users\\SBS\\Documents\\Spring\\Biochar-backend\\training-service\\documents\\Results\\"+date.format(formatters)+".txt");
+        File file = new File("src\\main\\resources\\Results\\"+date.format(formatters)+".txt");
+
         String content = "";// "=== " +date + " ===\n";
         FileWriter writer = new FileWriter(file);
+
         for (Map.Entry values : map.entrySet())
         {
-             content +=values.getKey() + " : " + values.getValue().toString() + "\n";
+            content +=values.getKey() + " : " + values.getValue().toString() + "\n";
         }
+
         writer.write(content);
+
         writer.close();
     }
 
 
     private List<String> most_suggested(Map<String,Integer> map)
     {
-      int count = subjectRepository.getNumber();
-      count /=4;
-      map.entrySet().stream().mapToInt(m -> m.getValue());
-      List<Integer> max = getMax(map,count);
+        int count = subjectRepository.getNumber();
+        count /=4;
 
-         return max.stream().map(value -> getKeyByValue(map,value)).collect(Collectors.toList());
+        //List<Integer> max = getMax(map,count);
+        return getMax(map,count);
+
+        //  return max.stream().map(value -> getKeyByValue(map,value)).collect(Collectors.toList());
     }
 
-    private List<Integer> getMax(Map<String,Integer> map,int count)
+    private List<String> getMax(Map<String,Integer> map,int count)
     {
-       return map.entrySet()
+        log.info(map.toString());
+        return map.entrySet()
                 .stream()
-                .map(entry -> entry.getValue())
-                .sorted(Comparator.reverseOrder())
+                //  .map(entry -> entry.getValue())
+                .sorted(Comparator.comparingInt(value -> -value.getValue()))
                 .limit(count)
+                .map(value -> value.getKey())
                 .collect(Collectors.toList());
     }
     private  <K, V> K getKeyByValue(Map<K, V> map, V value) {
@@ -328,79 +349,79 @@ public class SubjectService implements ISubjectService {
     }
 
 
-   private List<Profile> get_profiles()
-   {
-       List<Profile> profiles = new ArrayList<>();
-       profileRepository.findAll().forEach(profiles::add);
-       return profiles;
-   }
+    private List<Profile> get_profiles()
+    {
+        List<Profile> profiles = new ArrayList<>();
+        profileRepository.findAll().forEach(profiles::add);
+        return profiles;
+    }
 
-   private List<String> get_Knowledges(String subject_title)
-   {
-       List<Profile> profiles = get_profiles();
-       List<String> selected = new ArrayList<>();
-       profiles.forEach(profile -> {
-           String infos = profile.getKnowledge() + profile.getSkills() + profile.getExperience();
-           if(infos.toLowerCase().contains(subject_title.toLowerCase()))
-            selected.add(profile.getEmail());
-       });
-          return selected;
-   }
+    private List<String> get_Knowledges(String subject_title)
+    {
+        List<Profile> profiles = get_profiles();
+        List<String> selected = new ArrayList<>();
+        profiles.forEach(profile -> {
+            String infos = profile.getKnowledge() + profile.getSkills() + profile.getExperience();
+            if(infos.toLowerCase().contains(subject_title.toLowerCase()))
+                selected.add(profile.getEmail());
+        });
+        return selected;
+    }
 
-   private Map<String,List<String>> get_acquainted(List<String> subjects_title,Map<String,List<String>> suited)
-   {
-     subjects_title.forEach(subject_title ->
-             {
-                 suited.put(subject_title,get_Knowledges(subject_title));
-             }
-     );
-     return  suited;
-   }
+    private Map<String,List<String>> get_acquainted(List<String> subjects_title,Map<String,List<String>> suited)
+    {
+        subjects_title.forEach(subject_title ->
+                {
+                    suited.put(subject_title,get_Knowledges(subject_title));
+                }
+        );
+        return  suited;
+    }
 
-   private Map<String,List<String>> get_recommended(List<String> subjects_title)
-   {
-       LocalDate localDate = LocalDate.now();
-       Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-       Map<String,List<String>> listed =new HashMap<>();
-       Map<String,List<String>> suited = new HashMap<>();
-       suited = get_acquainted(subjects_title, suited);
-       for (Map.Entry<String,List<String>> profiles : suited.entrySet())
-       {
-          List<String> profiles_email= profiles.getValue();
-           Map<String,Double> group_byratings = new HashMap<>();
-           for(String email : profiles_email)
-           {
-               List<Training> trainings = trainingRepository.getTrainingsByEmailAndDate(date,email);
+    private Map<String,List<String>> get_recommended(List<String> subjects_title)
+    {
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Map<String,List<String>> listed =new HashMap<>();
+        Map<String,List<String>> suited = new HashMap<>();
+        suited = get_acquainted(subjects_title, suited);
+        for (Map.Entry<String,List<String>> profiles : suited.entrySet())
+        {
+            List<String> profiles_email= profiles.getValue();
+            Map<String,Double> group_byratings = new HashMap<>();
+            for(String email : profiles_email)
+            {
+                List<Training> trainings = trainingRepository.getTrainingsByEmailAndDate(date,email);
 
-               double x = 0;
-               if(trainings.size() > 0)
-               {
-                   group_byratings.put(email,trainings.stream().map(training -> get_profile_reviews(training)).reduce((double) 0, (a, b) -> a + b));
-               }
-               else
-                   group_byratings.put(email, (double) -1);
-           }
-          List<String> ordered =  group_byratings.entrySet().stream().sorted(Comparator.comparingDouble(rating -> rating.getValue())).map(rating -> {
-              if(rating.getValue() == -1)
-              return rating.getKey() + "(new)";
-              else
-                  return rating.getKey();
-          }).collect(Collectors.toList());
-           Collections.reverse(ordered);
-           listed.put(profiles.getKey(),ordered);
+                double x = 0;
+                if(trainings.size() > 0)
+                {
+                    group_byratings.put(email,trainings.stream().map(training -> get_profile_reviews(training)).reduce((double) 0, (a, b) -> a + b));
+                }
+                else
+                    group_byratings.put(email, (double) -1);
+            }
+            List<String> ordered =  group_byratings.entrySet().stream().sorted(Comparator.comparingDouble(rating -> rating.getValue())).map(rating -> {
+                if(rating.getValue() == -1)
+                    return rating.getKey() + "(new)";
+                else
+                    return rating.getKey();
+            }).collect(Collectors.toList());
+            Collections.reverse(ordered);
+            listed.put(profiles.getKey(),ordered);
 
-       }
+        }
 
-       return listed;
-   }
+        return listed;
+    }
 
-   private double get_profile_reviews(Training training)
-   {
+    private double get_profile_reviews(Training training)
+    {
 
-            int ratings = training.getReviews().stream().map(review -> review.getRating()).reduce(0, (a, b) -> a + b);
-            return ratings / training.getReviews().size();
+        int ratings = training.getReviews().stream().map(review -> review.getRating()).reduce(0, (a, b) -> a + b);
+        return ratings / training.getReviews().size();
 
-   }
+    }
 
 
     public Map<String,List<String>> Predictions()  {
@@ -445,6 +466,24 @@ public class SubjectService implements ISubjectService {
 
         }
         return null;
+    }
+
+
+    @Scheduled(cron = "* * * */7 * *")
+    public void clear_old_cookies()
+    {
+        LocalDate localDate = LocalDate.now();
+        localDate.minusDays(7);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        cookiesRepository.deleteByDateBefore(date);
+    }
+
+
+    private Boolean cookie_validation(Cookie cookie,int user)
+    {
+        if(cookiesRepository.findFirstByUserAndDomainAndPath(user, cookie.getDomain() ,cookie.getPath()).orElse(null) == null)
+            return true;
+        return false;
     }
 
 }

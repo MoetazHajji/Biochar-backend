@@ -4,6 +4,7 @@ package tn.esprit.Mapper;
 
 import tn.esprit.Dto.TrainingDto;
 import tn.esprit.Entity.Training;
+import tn.esprit.Entity.Type_T;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +12,18 @@ import java.util.List;
 
 public class TrainingMapper {
     public static Training mapToEntity(TrainingDto trainingDto){
+
         Training training = Training.builder()
                 .id(trainingDto.getId_training())
-                .start_date(trainingDto.getStart_date())
-                .end_date(trainingDto.getEnd_date())
+                .startdate(trainingDto.getStart_date())
+                .enddate(trainingDto.getEnd_date())
                 .location(trainingDto.getLocation())
                 .duration(trainingDto.getDuration())
                 .time(trainingDto.getTime())
                 .title(trainingDto.getTitle())
                 .subject(trainingDto.getSubject())
                 .description(trainingDto.getDescription())
+                .type_t(trainingDto.getType())
                 .build();
         return training;
     }
@@ -65,14 +68,15 @@ public class TrainingMapper {
 
         TrainingDto trainingDto = TrainingDto.builder()
                 .id_training(training.getId())
-                .start_date(training.getStart_date())
-                .end_date(training.getEnd_date())
+                .start_date(training.getStartdate())
+                .end_date(training.getEnddate())
                 .location(training.getLocation())
                 .duration(training.getDuration())
                 .time(training.getTime())
                 .title(training.getTitle())
                 .subject(training.getSubject())
                 .description(training.getDescription())
+                .type(training.getType_t())
                 .image(training.getImage())
                 .trainer(trainer)
                 .trainees(trainees)

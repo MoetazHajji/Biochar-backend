@@ -12,15 +12,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.Entity.Quiz;
-import tn.esprit.Entity.Trainee;
-import tn.esprit.Entity.Trainer;
-import tn.esprit.Entity.Training;
+import tn.esprit.Entity.*;
 import tn.esprit.Interface.ITrainingService;
-import tn.esprit.Repository.QuizRepository;
-import tn.esprit.Repository.TraineeRepository;
-import tn.esprit.Repository.TrainerRepository;
-import tn.esprit.Repository.TrainingRepository;
+import tn.esprit.Repository.*;
 
 import javax.transaction.Transactional;
 import java.io.File;
@@ -41,30 +35,21 @@ public class TrainingService implements ITrainingService {
 
      final TrainerRepository trainerRepository;
 
+     final SubjectRepository subjectRepository;
+
 
      @Override
      public Training add_training(Training t) {
+
+          t = training_type_check(t);
           return trainingRepository.save(t);
      }
 
      @Override
      public Training add_training_with_image(Training t, MultipartFile image) {
+         t = training_type_check(t);
           try {
-
-               t.setImage( "C:\\Users\\SBS\\Pictures\\Feedback\\tests\\" + t.getTitle() + "\\"+t.getTitle()+".png");
-
-               InputStream inputStream = image.getInputStream();
-
-               // Create a byte array to hold the content of the uploaded file
-               byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
-
-               // Create a new file using the destination path
-               File destinationFile = new File(t.getImage());
-
-
-               // Write the bytes to the new file
-               FileUtils.writeByteArrayToFile(destinationFile, bytes);
-
+               t.setImage(image_handling(image,t.getTitle()));
                return trainingRepository.save(t);
           } catch (IOException ioe) {
                log.error("IO Problem : " + ioe.getMessage());
@@ -189,15 +174,7 @@ public class TrainingService implements ITrainingService {
 
      private List<Training> sortByReviews()
      {
-/*
-        return trainingRepository
-                .findAll().stream()
-                .sorted(Comparator.comparingInt(training -> training.getReviews()
-                .stream()
-                .mapToInt(training::getRating)
-                .sum())
-               .reversed())
-               .collect(Collectors.toList());*/
+
           List<Training> trainingsorted = trainingRepository
                   .findAll().stream()
                   .sorted(Comparator.comparingInt(trainig -> trainig.getReviews()
@@ -206,5 +183,62 @@ public class TrainingService implements ITrainingService {
                   .collect(Collectors.toList());
           Collections.reverse(trainingsorted);
           return trainingsorted;
+     }
+
+     @Override
+     @Transactional
+     public Training add_training_with_quizes(Training training, Set<Quiz> quizes,MultipartFile image) {
+          try {
+               training = training_type_check(training);
+               filter_quizes(quizes);
+               if (quizes.size() > 0)
+                    training.setQuizes(quizes);
+               training.setImage(image_handling(image,training.getTitle()));
+               return trainingRepository.save(training);
+          }catch (IOException ioe) {
+          log.error("IO Problem : " + ioe.getMessage());
+          return null;
+     }
+     }
+
+
+     private void filter_quizes(Set<Quiz> quizzes)
+     {
+          for(Quiz quiz : quizzes)
+          {
+               if(quizRepository.checkIfQuestionExists(quiz.getQuestion().trim()))
+                    quizzes.remove(quiz);
+
+          }
+     }
+
+     private String image_handling(MultipartFile image,String title) throws IOException {
+          String destination ="src\\main\\resources\\" + title + "\\"+title+".png";
+          //t.setImage( "src\\main\\resources\\" + t.getTitle() + "\\"+t.getTitle()+".png");
+
+          InputStream inputStream = image.getInputStream();
+
+          // Create a byte array to hold the content of the uploaded file
+          byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
+
+          // Create a new file using the destination path
+          File destinationFile = new File(destination);
+
+
+          // Write the bytes to the new file
+          FileUtils.writeByteArrayToFile(destinationFile, bytes);
+          return destination;
+     }
+
+     private Training training_type_check(Training training)
+     {
+
+
+            if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
+                 training.setType_t(Type_T.external);
+           else
+               training.setType_t(Type_T.internal);
+
+          return training;
      }
 }

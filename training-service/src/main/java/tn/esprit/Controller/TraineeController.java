@@ -6,13 +6,17 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.TraineeDto;
+import tn.esprit.Dto.TrainingDto;
 import tn.esprit.Entity.Trainee;
+import tn.esprit.Entity.Training;
 import tn.esprit.Interface.ITraineeService;
 import tn.esprit.Interface.ITrainingService;
 import tn.esprit.Mapper.TraineeMapper;
+import tn.esprit.Mapper.TrainingMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("trainee")
@@ -61,9 +65,23 @@ public class TraineeController {
         traineeService.delete_all();
     }
 
-    @PutMapping("submit/{id_trainee}/{answers}")
-    public int submit_Answer(@PathVariable("answers") List<Integer> answers,@PathVariable("id_trainee") Long id_trainee)
+    @PutMapping("submit/{id_trainee}")
+    public int submit_Answer(@RequestBody Map<String,List<Integer>> answers, @PathVariable("id_trainee") Long id_trainee)
     {
         return traineeService.submit_Answer(answers, id_trainee);
+    }
+
+    @GetMapping("get_suits/{id_profile}")
+    public List<TrainingDto> get_suits(@PathVariable("id_profile") int id_profile)
+    {
+        List<TrainingDto> trainings = new ArrayList<>();
+        traineeService.get_suits(id_profile).forEach(training -> trainings.add(TrainingMapper.mapToDto(training)));
+        return trainings;
+    }
+
+    @GetMapping("get_score/{id_profile}")
+    public double get_score(@PathVariable("id_profile") int id_profile)
+    {
+       return traineeService.getScore(id_profile);
     }
 }
