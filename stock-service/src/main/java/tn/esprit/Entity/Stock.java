@@ -49,7 +49,7 @@ public class Stock implements Serializable {
     State state;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     Set<Product> products;
 
 }

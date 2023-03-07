@@ -35,7 +35,7 @@ public class StockAutoFiller implements IStockAutoFiller {
         Set<Stock> stockList = stockService.getAllStocks();
         for (Stock stock:stockList){
             for (Product product:stock.getProducts()) {
-                if (stock.getProducts() != null && stock.getFree_storage() != null && stock.getFree_storage() >= stock.getStorage() - 10) {
+                if (stock.getProducts() != null && stock.getFree_storage() != null && stock.getFree_storage() >= stock.getStorage() -10 ) {
                     stockService.AffectProductToSupplies(product.getId(), stock.getStorage()-10, stock.getId());
                     log.info("Stock : " + stock.getId() + "is out of stock");
                     log.info("the product needed : " + product.getId());

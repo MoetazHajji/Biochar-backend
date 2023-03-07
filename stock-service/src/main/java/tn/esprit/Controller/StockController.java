@@ -65,5 +65,9 @@ public class StockController {
         return stocksService.getSumSizeOfProducts(id);
     }
 
+    @PutMapping("withdraw/{quantity}/{id}")
+    void withdrawStock(@PathVariable("quantity") Double quantity,@PathVariable("id") Long idstock){
+        stocksService.withdrawStock(quantity, idstock);
+    }
 
 }

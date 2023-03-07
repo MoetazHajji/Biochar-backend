@@ -47,6 +47,11 @@ public class ProductController {
         return productService.getProductList();
     }
 
+    @GetMapping("getMostOrdredProducts")
+    public List<Product> getMostOrderedProduct(){
+        return productService.getMostOrderedProduct();
+    }
+
 
 
 }

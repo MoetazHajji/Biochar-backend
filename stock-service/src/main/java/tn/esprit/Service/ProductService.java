@@ -76,5 +76,11 @@ public class ProductService implements IProductService {
         return null;
     }
 
+    @Override
+    public List<Product> getMostOrderedProduct() {
+        List<Product> productList= productRepository.FindAllProductsByOrderCountDesc();
+        return productList.subList(0,Math.min(5, productList.size()));
+    }
+
 
 }

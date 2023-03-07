@@ -18,5 +18,6 @@ public interface IStockService {
     Stock AffectProductToSupplies(Long idPro,Double quantity ,Long idStock);
     Long getNbProductsInStock(Long id);
     Double getSumSizeOfProducts(Long id);
+    Stock withdrawStock(Double quantity,Long idstock);
 
 }
