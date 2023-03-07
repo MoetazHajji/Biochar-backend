@@ -36,6 +36,8 @@ public class Product implements Serializable {
     //@Column(unique = true,nullable = false,length = 200 )
     String image;
 
+    Long count_order;
+
     //@Column(unique = true,nullable = false,length = 200 )
     @Min(0)
     Double quantity;
@@ -46,6 +48,8 @@ public class Product implements Serializable {
     @Min(0)
     Double autoFillThreshold;
 
+
+
     @NonNull
     @Enumerated(EnumType.STRING)
     Type_product type_product;
@@ -54,9 +58,6 @@ public class Product implements Serializable {
     @ManyToMany(mappedBy = "products")
     Set<Stock> stocks;
 
-    /*@JsonIgnore
-    @ManyToMany(mappedBy = "products")
-    List<Command> commands;*/
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")

@@ -24,6 +24,14 @@ public class CommandLigneService implements ICommandLigneService {
     public CommandLigne AddLigneAndAssign(CommandLigne ligne, Long idProd) {
         Product product = productRepository.findById(idProd).orElse(null);
         ligne.setProduct(product);
+        if(product.getCount_order()==null){
+            product.setCount_order(1L);
+            productRepository.save(product);
+        }else {
+            Long CountToUpdate=product.getCount_order();
+            CountToUpdate++;
+            product.setCount_order(CountToUpdate);
+        }
         ligneRepository.save(ligne);
         return ligne;
     }

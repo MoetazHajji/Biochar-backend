@@ -18,4 +18,7 @@ public interface IProductService {
 
     Product addProductToStock(Long id, Long quantity);
 
+    List<Product>  getMostOrderedProduct();
+
+
 }

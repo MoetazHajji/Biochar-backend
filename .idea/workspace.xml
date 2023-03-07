@@ -5,10 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Configuration/PythonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Configuration/SchedulerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Externel/OrderHelper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IScrapperService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/PDFGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ScrapperService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/python/scrape.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/StockController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IStockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IStockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" afterDir="false" />
     </list>
@@ -176,9 +193,9 @@
       <item itemvalue="Spring Boot.InternshipServiceApplication" />
       <item itemvalue="Spring Boot.TrainingServiceApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServerApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.AnalysisServiceApplication" />
-      <item itemvalue="Spring Boot.DiscoveryServerApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -234,7 +251,8 @@
       <workItem from="1677892665991" duration="3887000" />
       <workItem from="1677969763506" duration="6316000" />
       <workItem from="1678030331797" duration="9758000" />
-      <workItem from="1678042438189" duration="5897000" />
+      <workItem from="1678042438189" duration="18154000" />
+      <workItem from="1678108738584" duration="22674000" />
     </task>
     <servers />
   </component>

@@ -79,26 +79,24 @@ public class StockService implements IStockService {
             stock.getProducts().add(product);
             stockRepository.save(stock);
         }
-        if (product.getType_product().equals(Type_product.REAGENT) && stock.getProducts()!=null && stock.getFree_storage() >= stock.getStorage() - 10) {
+        if (product.getType_product().equals(Type_product.REAGENT) && stock.getProducts()!=null && stock.getFree_storage() <= stock.getStorage() - 10) {
             stock.getProducts().add(product);
             Double newQuantity = product.getQuantity() - quantity;
             Long nbProducts = stockRepository.NbProductsInStock(idStock);
+            Double totQantity = stock.getTotal_quantity() +quantity;
             /************** storage ******************/
             Double freeStorge = stock.getFree_storage();
             Double usedStorage = stock.getUsed_storage();
-            Double updatedFreeStorage = freeStorge - quantity;
-            Double updatedUsedStorage = usedStorage + quantity;
+            Double updatedUsedStorage = freeStorge - quantity;
+            Double updatedFreeStorage = stock.getStorage() - totQantity;
             /************** storage ******************/
-            Double totQantity = stock.getTotal_quantity() +quantity;
             stock.setNbProduct(nbProducts);
             stock.setTotal_quantity(totQantity);
             product.setQuantity(newQuantity);
             stock.setState(State.AVAILABLE);
 
-
             //Double productsSize = product.getSize_product() * quantity;
-            stock.setUsed_storage(updatedUsedStorage);
-            //Double freeStorage=stock.getStorage() - productsSize;
+            stock.setUsed_storage(totQantity);
             stock.setFree_storage(updatedFreeStorage);
             stockRepository.save(stock);
         }
@@ -112,6 +110,20 @@ public class StockService implements IStockService {
         } else if (stock.getFree_storage() <= 5.0) {
             stock.setState(State.OUT_OF_STOCK);
         }
+        return stock;
+    }
+
+    @Override
+    public Stock withdrawStock(Double quantity, Long idstock) {
+        Stock stock= stockRepository.findById(idstock).orElse(null);
+        Double newQuantity = stock.getTotal_quantity() - quantity;
+        Double newFreeQuantity = stock.getFree_storage() + quantity;
+        Double newUsedQuantity = stock.getUsed_storage() - quantity;
+
+        stock.setTotal_quantity(newQuantity);
+        stock.setFree_storage(newFreeQuantity);
+        stock.setUsed_storage(newUsedQuantity);
+        stockRepository.save(stock);
         return stock;
     }
 
