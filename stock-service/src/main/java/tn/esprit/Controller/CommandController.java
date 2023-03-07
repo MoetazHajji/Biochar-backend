@@ -1,8 +1,10 @@
 package tn.esprit.Controller;
 
+import com.lowagie.text.DocumentException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Command;
 import tn.esprit.Entity.Product;
@@ -65,19 +67,17 @@ public class CommandController {
         commandService.disaffectCommandFromOrderLine(idCom,idComL);
     }
 
-    @GetMapping("/pdf/generate/{id}")
-    public void generatePDF(HttpServletResponse response,@PathVariable("id") Long id) throws IOException {
-        response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
 
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
-        response.setHeader(headerKey, headerValue);
+    @GetMapping("/commands/{commandId}/pdf")
+    public ResponseEntity<byte[]> generatePdfForCommand(@PathVariable Long commandId) throws DocumentException {
+        byte[] pdf = pdfGeneratorService.generatePdfForCommand(commandId);
 
-        this.pdfGeneratorService.export(response,id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDisposition(ContentDisposition.builder("inline").filename("command-" + commandId + ".pdf").build());
+
+        return new ResponseEntity<>(pdf, headers, HttpStatus.OK);
     }
-
 
 
     /*@PutMapping("affectProductsToCommand/{idCom}/{idPro}")

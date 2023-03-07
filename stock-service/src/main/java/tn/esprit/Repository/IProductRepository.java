@@ -23,4 +23,8 @@ public interface IProductRepository extends JpaRepository<Product,Long> {
 
     @Query("SELECT pr FROM Product pr ORDER BY pr.count_order desc ")
     List<Product> FindAllProductsByOrderCountDesc();
+
+    @Query("select pr from Product pr join pr.commandLignes lg where lg.command.id = :id ")
+    Set<Product> findProductsByCommandId(@Param("id") Long commandId);
+
 }

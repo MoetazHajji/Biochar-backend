@@ -2,17 +2,19 @@ package tn.esprit.Service;
 
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
-import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Command;
+import tn.esprit.Entity.Product;
 import tn.esprit.Repository.ICommandRepository;
+import tn.esprit.Repository.IProductRepository;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Set;
 
@@ -20,77 +22,75 @@ import java.util.Set;
 @AllArgsConstructor
 public class PDFGeneratorService {
     ICommandRepository commandRepository;
-    public void export (HttpServletResponse response,Long id) throws IOException, DocumentException {
-        List<Command> commandList = commandRepository.findAll();
-        Command command =commandRepository.findById(id).orElse(null);
-        // Creating the Object of Document
-        Document document = new Document(PageSize.A4);
+    IProductRepository productRepository;
 
-        // Getting instance of PdfWriter
-        PdfWriter.getInstance(document, response.getOutputStream());
+    public byte[] generatePdfForCommand(Long commandId) throws DocumentException {
+        // Fetch the products for the given command ID
+        Command command = commandRepository.findById(commandId).orElse(null);
+        Set<Product> products = productRepository.findProductsByCommandId(commandId);
 
-        // Opening the created document to modify it
+        // Create a new PDF document
+        Document document = new Document();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PdfWriter.getInstance(document, outputStream);
+
+        // Open the document
         document.open();
 
-        // Creating font
-        // Setting font style and size
-        Font fontTiltle = FontFactory.getFont(FontFactory.TIMES_ROMAN);
-        fontTiltle.setSize(20);
+        Font labelFont = new Font(Font.TIMES_ROMAN, 12, Font.BOLD);
+        Font valueFont = new Font(Font.TIMES_ROMAN, 12);
 
-        // Creating paragraph
-        Paragraph paragraph = new Paragraph("List Of Students", fontTiltle);
+        // Add a title to the document
+        Font titleFont = new Font(Font.HELVETICA, 24, Font.BOLD);
+        Paragraph title = new Paragraph("Command #" + command.getId() + " Summary", titleFont);
+        title.setAlignment(Element.ALIGN_CENTER);
+        document.add(title);
 
-        // Aligning the paragraph in document
-        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        // Add the customer's name and email to the document
+        Font customerFont = new Font(Font.HELVETICA, 12, Font.BOLD);
+        Paragraph customer = new Paragraph("Customer: Charles Nicolle (charles.nicole@gmail.com)", customerFont);
+        customer.setSpacingBefore(20);
+        document.add(customer);
 
-        // Adding the created paragraph in document
+        // Add a table of products to the document
+        PdfPTable table = new PdfPTable(new float[] { 1, 3, 2 });
+        table.setWidthPercentage(100);
+        table.setSpacingBefore(20f);
+        table.setSpacingAfter(20f);
+
+        PdfPCell cell1 = new PdfPCell(new Paragraph("Name", labelFont));
+        cell1.setBackgroundColor(Color.LIGHT_GRAY);
+        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell1);
+        PdfPCell cell2 = new PdfPCell(new Paragraph("Description", labelFont));
+        cell2.setBackgroundColor(Color.LIGHT_GRAY);
+        cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell2);
+        PdfPCell cell3 = new PdfPCell(new Paragraph("Price", labelFont));
+        cell3.setBackgroundColor(Color.LIGHT_GRAY);
+        cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell3);
+
+
+        // Add the product information to the document
+        for (Product product : products) {
+            table.addCell(new PdfPCell(new Paragraph(product.getName_product(), valueFont)));
+            table.addCell(new PdfPCell(new Paragraph(product.getDescription(), valueFont)));
+            table.addCell(new PdfPCell(new Paragraph(product.getPrice().toString() +"dt", valueFont)));
+            document.add(table);
+        }
+
+        // Add the total price to the document
+        Double totalPrice = command.getTotal_price();
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Chunk("Total Price: " + totalPrice.toString() + "dt"));
         document.add(paragraph);
 
-        // Creating a table of 3 columns
-        PdfPTable table = new PdfPTable(3);
 
-        // Setting width of table, its columns and spacing
-        table.setWidthPercentage(100f);
-        table.setWidths(new int[] { 3, 3, 3 });
-        table.setSpacingBefore(5);
-
-        // Create Table Cells for table header
-        PdfPCell cell = new PdfPCell();
-
-        // Setting the background color and padding
-        cell.setBackgroundColor(Color.GREEN);
-        cell.setPadding(5);
-
-        // Creating font
-        // Setting font style and size
-        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN);
-        font.setColor(Color.WHITE);
-
-        // Adding headings in the created table cell/ header
-        // Adding Cell to table
-        cell.setPhrase(new Phrase("ID", font));
-        table.addCell(cell);
-        cell.setPhrase(new Phrase("Notice", font));
-        table.addCell(cell);
-        cell.setPhrase(new Phrase("Total price", font));
-        table.addCell(cell);
-        cell.setPhrase(new Phrase("Products", font));
-        table.addCell(cell);
-        // Iterating over the list of students
-        for (Command commands : commandList) {
-            // Adding command id
-            table.addCell(String.valueOf(command.getId()));
-            // Adding product notice
-            table.addCell(command.getNotice());
-            // Adding command total price
-            table.addCell(String.valueOf(command.getTotal_price()));
-            // Adding command products
-            table.addCell(String.valueOf(command.getCommandLignes()));
-        }
-        // Adding the created table to document
-        document.add(table);
-
-        // Closing the document
+        // Close the document
         document.close();
-        }
+
+        // Return the PDF document as a byte array
+        return outputStream.toByteArray();
+    }
 }
