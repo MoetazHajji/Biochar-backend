@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,6 +19,7 @@ public class Subject implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name_subject;
-@OneToMany(mappedBy = "subject",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "subject")
+    @JsonIgnore
     Set<Internship> internships;
 }

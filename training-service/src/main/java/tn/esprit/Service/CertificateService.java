@@ -3,22 +3,34 @@ package tn.esprit.Service;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Certificate;
+import tn.esprit.Entity.Training;
 import tn.esprit.Interface.ICertificateService;
 import tn.esprit.Repository.CertificateRepository;
+import tn.esprit.Repository.TrainingRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Slf4j
 public class CertificateService implements ICertificateService {
      final CertificateRepository certificateRepository;
 
+     final TrainingRepository trainingRepository;
      @Override
+     @Transactional
      public Certificate add_certificate(Certificate c) {
-          return certificateRepository.save(c);
+          Training t = c.getTraining();
+          Certificate certificate = certificateRepository.save(c);
+          t.setCertificate(certificate);
+          trainingRepository.save(t);
+          certificate.setTraining(t);
+          return certificate;
      }
 
      @Override
@@ -35,4 +47,11 @@ public class CertificateService implements ICertificateService {
      public Certificate getById_certificat(Long id) {
           return certificateRepository.findById(id).orElse(null);
      }
+
+     @Override
+     public void delete_all() {
+          certificateRepository.deleteAll();
+     }
+
+
 }
