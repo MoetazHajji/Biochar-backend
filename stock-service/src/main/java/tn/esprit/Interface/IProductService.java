@@ -20,5 +20,7 @@ public interface IProductService {
 
     List<Product>  getMostOrderedProduct();
 
+    void updateProductQuantity(Product product, Long quantity);
+
 
 }

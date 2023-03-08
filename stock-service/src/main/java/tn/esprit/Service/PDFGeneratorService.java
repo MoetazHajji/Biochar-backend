@@ -12,10 +12,8 @@ import tn.esprit.Entity.Product;
 import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 
-import javax.swing.border.Border;
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 import java.util.Set;
 
 @Service

@@ -30,15 +30,19 @@ public class StockAutoFiller implements IStockAutoFiller {
 
     @Override
     @Transactional
-    @Scheduled(cron = "*/2000 * * * * * ")
+    @Scheduled(cron = "*/10 * * * * * ")
     public void checkStockLevels() {
         Set<Stock> stockList = stockService.getAllStocks();
         for (Stock stock:stockList){
             for (Product product:stock.getProducts()) {
-                if (stock.getProducts() != null && stock.getFree_storage() != null && stock.getFree_storage() >= stock.getStorage() -10 ) {
-                    stockService.AffectProductToSupplies(product.getId(), stock.getStorage()-10, stock.getId());
+                if (stock.getProducts() != null && stock.getFree_storage() != null && stock.getFree_storage() >= stock.getStorage() - 10 ) {
                     log.info("Stock : " + stock.getId() + "is out of stock");
                     log.info("the product needed : " + product.getId());
+                    if (product.getQuantity() <= product.getAutoFillQuantity()){
+                        stockService.AffectProductToSupplies(product.getId(), product.getQuantity(), stock.getId());
+                    }else if (product.getQuantity() > product.getAutoFillQuantity()) {
+                        stockService.AffectProductToSupplies(product.getId(), product.getAutoFillQuantity(), stock.getId());
+                    }
                 }
             }
         }

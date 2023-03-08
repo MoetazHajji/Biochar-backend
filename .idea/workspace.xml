@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/resources/static/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/resources/static/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/MapsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/PDFGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/PDFGeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/static/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/static/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +233,8 @@
       <workItem from="1677969763506" duration="6316000" />
       <workItem from="1678030331797" duration="9758000" />
       <workItem from="1678042438189" duration="18154000" />
-      <workItem from="1678108738584" duration="29871000" />
+      <workItem from="1678108738584" duration="34274000" />
+      <workItem from="1678271668499" duration="6800000" />
     </task>
     <servers />
   </component>
