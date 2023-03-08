@@ -8,6 +8,7 @@ import tn.esprit.Entity.Product;
 import tn.esprit.Entity.State;
 import tn.esprit.Entity.Stock;
 import tn.esprit.Entity.Type_product;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Exception.NoProductException;
 import tn.esprit.Exception.OutOfStockException;
 import tn.esprit.Interface.IStockService;
@@ -41,7 +42,7 @@ public class StockService implements IStockService {
 
     @Override
     public Stock getStockById(Long id) {
-        return stockRepository.findById(id).orElse(null);
+        return stockRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Stock with id "+ id +" not found : " ));
     }
 
     @Override
@@ -66,8 +67,8 @@ public class StockService implements IStockService {
     @Override
     @Transactional
     public Stock AffectProductToSupplies(Long idPro,Double quantity ,Long idStock) {
-        Product product=productRepository.findById(idPro).orElse(null);
-        Stock stock =stockRepository.findById(idStock).orElse(null);
+        Product product=productRepository.findById(idPro).orElseThrow(() -> new ElementNotFoundException("Product with id "+ idPro +" not found : " ));
+        Stock stock =stockRepository.findById(idStock).orElseThrow(() -> new ElementNotFoundException("Stock with id "+ idStock +" not found : " ));
         if(stock.getUsed_storage()==null){
             stock.setUsed_storage(quantity);
             stock.setFree_storage(stock.getStorage() - quantity);
@@ -115,7 +116,7 @@ public class StockService implements IStockService {
 
     @Override
     public Stock withdrawStock(Double quantity, Long idstock) {
-        Stock stock= stockRepository.findById(idstock).orElse(null);
+        Stock stock= stockRepository.findById(idstock).orElseThrow(() -> new ElementNotFoundException("Stock with id "+ idstock +" not found : " ));
         Double newQuantity = stock.getTotal_quantity() - quantity;
         Double newFreeQuantity = stock.getFree_storage() + quantity;
         Double newUsedQuantity = stock.getUsed_storage() - quantity;

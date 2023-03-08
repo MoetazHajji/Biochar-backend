@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.IAdressService;
 import tn.esprit.Interface.ISupplierService;
 import tn.esprit.Repository.IAdressRepository;
@@ -36,7 +37,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Supplier getSupplierById(Long id) {
-        return supplierRepository.findById(id).orElse(null);
+        return supplierRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Supplier with id "+ id +" not found : " ));
     }
 
     @Override
