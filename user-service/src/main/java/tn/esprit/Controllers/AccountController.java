@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.AccountDto;
 import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Appointment;
+import tn.esprit.Services.IAccountService;
 import tn.esprit.Services.IGenericCRUD;
 
 import java.util.List;
@@ -16,24 +18,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/Account")
 public class AccountController {
-    private IGenericCRUD<Account> IAccountService;
+    private  IAccountService iAccountService;
     @Autowired
-    public AccountController(@Qualifier("Account") IGenericCRUD<Account> IAccountService){this.IAccountService = IAccountService;}
+    public AccountController(@Qualifier("Account") IAccountService iAccountService){this.iAccountService = iAccountService;}
 
     @GetMapping
-    public List<Account> SelectAll () {return  IAccountService. SelectAll () ;}
+    public List<AccountDto> SelectAll () {return  iAccountService. SelectAll () ;}
 
     @GetMapping("{id}")
-    public ResponseEntity<Account> SelectBy (@PathVariable int id) {return  IAccountService.SelectBy ( id) ;}
+    public ResponseEntity<AccountDto> SelectBy (@PathVariable int id) {return ResponseEntity.ok( iAccountService.SelectBy ( id) );}
 
-    @PostMapping
-    public Account Insert( @RequestBody Account account) {return  IAccountService.Insert(   account);}
+    //@PostMapping
+    //public AccountDto Insert( @RequestBody AccountDto accountDto) {return  iAccountService.Insert(   accountDto);}
 
     @PutMapping
-    public  ResponseEntity<Account> update( @RequestBody Account account){return  IAccountService.update(  account);}
+    public  ResponseEntity<AccountDto> update( @RequestBody AccountDto accountDto){return ResponseEntity.ok( iAccountService.update(  accountDto));}
+
+    @PutMapping ("AssignUserToAccount/{idUser}/{idAccount}")
+    public AccountDto assignUserToAccount(@PathVariable("idUser")  Long idUser , @PathVariable("idAccount")   Long idAccount){return  iAccountService.assignUserToAccount( idUser,  idAccount);}
 
     @DeleteMapping("{id}")
-    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){return  IAccountService.delete( id ); }
+    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){   iAccountService.delete( id ); return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
 }
 
 
