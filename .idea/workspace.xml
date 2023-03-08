@@ -5,50 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Anesthesiology/Anesthesiology.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Bio/Bio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Chemio/Chemio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Data.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Dermatology/Dermatology.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Immunology/Immunology.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Infect/Infect.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Lukemia/Lukemia.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Neurology/Neurology.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Results/5-03-2023.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training-service/src/main/resources/Results/ok.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Exception/ElementNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/PDFGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/PDFGeneratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/AdressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/AdressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandLigneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/OfferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/OfferService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockAutoFiller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/static/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/static/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/SubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/SubjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TraineeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TraineeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TrainingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Controller/TrainingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Dto/QuizDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Dto/QuizDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Dto/TrainingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Dto/TrainingDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Cookie.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Cookie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Trainee.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Trainee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Training.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Entity/Training.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ISubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ISubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITraineeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITraineeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITrainingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Interface/ITrainingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Mapper/QuizMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Mapper/QuizMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Mapper/TrainingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Mapper/TrainingMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/CookiesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/CookiesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/ProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/QuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/QuizRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/SubjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TraineeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TraineeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TrainingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Repository/TrainingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/SubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/SubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TraineeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TraineeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TrainingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/training-service/src/main/java/tn/esprit/Service/TrainingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +240,7 @@
       <workItem from="1678042438189" duration="18154000" />
       <workItem from="1678108738584" duration="34274000" />
       <workItem from="1678271668499" duration="7281000" />
-      <workItem from="1678283576814" duration="675000" />
+      <workItem from="1678283576814" duration="1997000" />
     </task>
     <servers />
   </component>

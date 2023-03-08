@@ -3,6 +3,7 @@ package tn.esprit.Service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Adress;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.IAdressService;
 import tn.esprit.Repository.IAdressRepository;
 
@@ -32,7 +33,7 @@ public class AdressService implements IAdressService {
 
     @Override
     public Adress getAdressById(Long id) {
-        return adressRepository.findById(id).orElse(null);
+        return adressRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Address with id "+ id +" not found : " ));
     }
 
     @Override

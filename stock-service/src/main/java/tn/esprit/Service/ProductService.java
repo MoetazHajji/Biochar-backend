@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Command;
 import tn.esprit.Entity.Product;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Exception.NoProductException;
 import tn.esprit.Interface.IProductService;
 import tn.esprit.Repository.ICommandRepository;
@@ -49,7 +50,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Offer with id "+ id +" not found : " ));
     }
 
     @Override

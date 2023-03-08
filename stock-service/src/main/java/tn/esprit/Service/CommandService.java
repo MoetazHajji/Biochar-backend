@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entity.Command;
 import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Entity.Product;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.ICommandService;
 import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.ICommandRepository;
@@ -39,7 +40,7 @@ public class CommandService implements ICommandService {
 
     @Override
     public Command getCommandById(Long id) {
-        return commandRepository.findById(id).orElse(null);
+        return commandRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Command with id "+ id +" not found : " ));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class CommandService implements ICommandService {
         command.setCommandLignes(null);
         for (Long idCommandLine:idCommandLines)
         {
-                CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElse(null);
+                CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElseThrow(() -> new ElementNotFoundException("Command Ligne with id "+ idCommandLine +" not found : " ));
                 commandLigne.setCommand(command);
                 ligneRepository.save(commandLigne);
         }
@@ -77,7 +78,7 @@ public class CommandService implements ICommandService {
 
     @Override
     public void disaffectCommandFromOrderLine(Long idCom, Long idComL) {
-        Command command= commandRepository.findById(idCom).orElse(null);
+        Command command= commandRepository.findById(idCom).orElseThrow(() -> new ElementNotFoundException("Command with id "+ idCom +" not found : " ));
         int productNb=command.getCommandLignes().size();
         for (int index=0;index<productNb;index++){
             for (CommandLigne ligne:command.getCommandLignes())

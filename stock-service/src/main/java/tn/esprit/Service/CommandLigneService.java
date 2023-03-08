@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Entity.Product;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.ICommandLigneService;
 import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.IProductRepository;
@@ -22,7 +23,7 @@ public class CommandLigneService implements ICommandLigneService {
 
     @Override
     public CommandLigne AddLigneAndAssign(CommandLigne ligne, Long idProd) {
-        Product product = productRepository.findById(idProd).orElse(null);
+        Product product = productRepository.findById(idProd).orElseThrow(() -> new ElementNotFoundException("Product with id "+ idProd +" not found : " ));
         ligne.setProduct(product);
         if(product.getCount_order()==null){
             product.setCount_order(1L);
@@ -38,7 +39,7 @@ public class CommandLigneService implements ICommandLigneService {
 
     @Override
     public CommandLigne GetCommandById(Long id) {
-        return ligneRepository.findById(id).orElse(null);
+        return ligneRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Command with id "+ id +" not found : " ));
     }
 
     @Override
