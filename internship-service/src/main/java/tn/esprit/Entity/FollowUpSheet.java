@@ -1,11 +1,15 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,12 +21,14 @@ public class FollowUpSheet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    float rate;
     String description;
-    Date date;
-    @ManyToOne
+    @ElementCollection
+    Set<Integer> scores;
+
+    @OneToOne(mappedBy = "followUpSheet")
+    @JsonIgnore
     Internship internship;
-    @ManyToOne
-    Test test;
+    @OneToMany(mappedBy = "followUpSheet",cascade = CascadeType.PERSIST)
+    Set<Test> tests;
 
 }

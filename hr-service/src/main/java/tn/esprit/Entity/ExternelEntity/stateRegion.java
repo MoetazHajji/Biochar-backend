@@ -1,4 +1,4 @@
-package tn.esprit.Entity;
+package tn.esprit.Entity.ExternelEntity;
 
 public enum stateRegion {
     Ariana,

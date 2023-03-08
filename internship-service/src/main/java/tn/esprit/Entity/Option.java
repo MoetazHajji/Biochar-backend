@@ -1,31 +1,25 @@
 package tn.esprit.Entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Request implements Serializable {
-
+public class Option implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    @Temporal(TemporalType.DATE)
-    Date date_r;
-    String description_r;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "request")
-    Profile profile;
-
+    int id;
+    String text;
+    Boolean correct;
+    @ManyToOne
+            @JsonIgnore
+    Question question;
 }

@@ -5,6 +5,6 @@ import tn.esprit.External.Profile;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends CrudRepository<Profile,Integer> {
+public interface ProfileRepository extends CrudRepository<Profile,Long> {
 
 }

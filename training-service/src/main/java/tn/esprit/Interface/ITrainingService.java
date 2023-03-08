@@ -20,7 +20,6 @@ public interface ITrainingService {
 
     boolean add_Trainer_To_Training(Long id_trining,Long id_trainer);
 
-    List<Training> generate_trainings();
 
     List<Training> get_sorted_trainings(int by);
 
