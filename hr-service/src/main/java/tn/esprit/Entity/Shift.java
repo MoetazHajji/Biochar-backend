@@ -4,6 +4,6 @@ public enum Shift {
     Morning,
     Afternoon,
     Night,
-    Weekend,
-    Central
+    Night_Guard,
+    Day_Guard
 }

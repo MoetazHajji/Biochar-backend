@@ -1,12 +1,13 @@
-package tn.esprit.Entity;
+package tn.esprit.Entity.ExternelEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.Entity.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Account implements Serializable {
@@ -22,24 +22,15 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @NonNull
     String firstname;
-    @NonNull
     String lastname;
-    @NonNull
     int cin;
-    @NonNull
     int phone;
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    Date dateOfBirth;
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    Date dateCreation;
-    @NonNull
+    LocalDate dateOfBirth;
+    LocalDate dateCreation;
+    LocalDate hireDate;
     String email;
     String photo;
-    @NonNull
     @Enumerated(EnumType.STRING)
     Gender gender;
     @Enumerated(EnumType.STRING)
@@ -47,9 +38,15 @@ public class Account implements Serializable {
     String city;
     int zip_code;
     String adresse;
+    @Enumerated(EnumType.STRING)
+    Roles role;
+    @Enumerated(EnumType.STRING)
+    Team team ;
+    @Enumerated(EnumType.STRING)
+    Shift shift;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(mappedBy = "account")
     Profile profile;
 
     @JsonIgnore
@@ -57,6 +54,22 @@ public class Account implements Serializable {
     Set<Leave_Authorization> leave_authorizations;
 
     @JsonIgnore
-    @ManyToMany (cascade = CascadeType.PERSIST, mappedBy = "accounts")
+    @OneToMany (mappedBy = "account")
     Set<Work_Schedule> workSchedules;
+
+
+    public Account(String firstname, int cin, Roles role, Shift shift) {
+        this.firstname = firstname;
+        this.cin = cin;
+        this.role = role;
+        this.shift = shift;
+    }
+
+    public Account(String firstname, int cin, Roles role, Team team, Shift shift) {
+        this.firstname = firstname;
+        this.cin = cin;
+        this.role = role;
+        this.team = team;
+        this.shift = shift;
+    }
 }
