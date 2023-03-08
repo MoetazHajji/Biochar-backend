@@ -30,7 +30,7 @@ public class StockAutoFiller implements IStockAutoFiller {
 
     @Override
     @Transactional
-    @Scheduled(cron = "*/10 * * * * * ")
+    @Scheduled(fixedDelay = 110000000)
     public void checkStockLevels() {
         Set<Stock> stockList = stockService.getAllStocks();
         for (Stock stock:stockList){
@@ -43,6 +43,9 @@ public class StockAutoFiller implements IStockAutoFiller {
                     }else if (product.getQuantity() > product.getAutoFillQuantity()) {
                         stockService.AffectProductToSupplies(product.getId(), product.getAutoFillQuantity(), stock.getId());
                     }
+                    /*if(product.getQuantity()<= product.getAutoFillQuantity()){
+
+                    }*/
                 }
             }
         }

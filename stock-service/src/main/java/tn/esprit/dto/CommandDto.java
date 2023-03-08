@@ -14,7 +14,9 @@ public class CommandDto {
     Date date;
     String notice;
     Long quantity;
+    double total_price;
 
     Long idProduct;
     String name_product;
+    double price_product;
 }
