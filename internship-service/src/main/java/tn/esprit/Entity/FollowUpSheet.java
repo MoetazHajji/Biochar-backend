@@ -21,12 +21,12 @@ public class FollowUpSheet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-   String description;
-   @ElementCollection
-   Set<Integer> scores;
+    String description;
+    @ElementCollection
+    Set<Integer> scores;
 
     @OneToOne(mappedBy = "followUpSheet")
-            @JsonIgnore
+    @JsonIgnore
     Internship internship;
     @OneToMany(mappedBy = "followUpSheet",cascade = CascadeType.PERSIST)
     Set<Test> tests;

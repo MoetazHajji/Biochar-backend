@@ -25,7 +25,7 @@ public class Detail implements Serializable {
     String level_of_study;
     String specialite;
     @OneToOne(mappedBy = "detail")
-            @JsonIgnore
+    @JsonIgnore
     Internship internship;
 
 

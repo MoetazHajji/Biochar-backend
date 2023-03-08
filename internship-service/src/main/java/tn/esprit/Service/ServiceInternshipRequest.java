@@ -68,8 +68,8 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
     public InternshipRequest add_request_with_cv(InternshipRequest ir, MultipartFile cv) {
         try {
             String data = extractTextFromPDF(cv);
-          if ((!validate_data(data))||(ir.getEnd_date().before(ir.getStart_date())))
-             return null;
+            if ((!validate_data(data))||(ir.getEnd_date().before(ir.getStart_date())))
+                return null;
         }
         catch (IOException ioException){
             log.warn("pdf file inappropriate!");
@@ -100,41 +100,41 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
             log.error("pdf error!");
             return "" ;
         }
-          }
+    }
 
-          private boolean validate_data(String data){
-              if(!isFormal(data))
-                  return false;
-              if (!isLongEnough(data,200,2000))
-              return false;
-              try {
-                  if (!check_bad_words(data))
-                      return false;
-              }catch (IOException ioException)
-              {
-                  log.error(ioException.getMessage());
-                  log.error("fichier text a un problem!");
-              }
-          return true;
-          }
-          private Boolean isFormal(String text)
-          {
-              int informalCount = 0;
-              String[] tokens = text.split("\\s+");
-              for (String token : tokens) {
-                  if (token.matches("(?i:i|me|my|you|your|he|him|his|she|her|hers|it|its|we|us|our|they|them|their|this|that|these|those)")) {
-                      informalCount++;
-                  }
-                  if (token.matches("(?i:gonna|wanna|gotta|shoulda|coulda|woulda|ain't|dunno|cuz|lol|omg|wtf)")) {
-                      informalCount++;
-                  }
-              }
-              double informalRatio = (double) informalCount / tokens.length;
-              if (informalRatio > 0.2) {
-                  return false;
-              }
-              return true;
-          }
+    private boolean validate_data(String data){
+        if(!isFormal(data))
+            return false;
+        if (!isLongEnough(data,200,2000))
+            return false;
+        try {
+            if (!check_bad_words(data))
+                return false;
+        }catch (IOException ioException)
+        {
+            log.error(ioException.getMessage());
+            log.error("fichier text a un problem!");
+        }
+        return true;
+    }
+    private Boolean isFormal(String text)
+    {
+        int informalCount = 0;
+        String[] tokens = text.split("\\s+");
+        for (String token : tokens) {
+            if (token.matches("(?i:i|me|my|you|your|he|him|his|she|her|hers|it|its|we|us|our|they|them|their|this|that|these|those)")) {
+                informalCount++;
+            }
+            if (token.matches("(?i:gonna|wanna|gotta|shoulda|coulda|woulda|ain't|dunno|cuz|lol|omg|wtf)")) {
+                informalCount++;
+            }
+        }
+        double informalRatio = (double) informalCount / tokens.length;
+        if (informalRatio > 0.2) {
+            return false;
+        }
+        return true;
+    }
     private boolean isLongEnough(String text,double minimumwordsPerPage,double maximumwordsperpage) {
 
 
@@ -144,7 +144,7 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
 
         if ((wordCount<=maximumwordsperpage)&(wordCount>=minimumwordsPerPage))
             return true;
-            return false;
+        return false;
 
     }
     private Boolean check_bad_words(String data) throws IOException {

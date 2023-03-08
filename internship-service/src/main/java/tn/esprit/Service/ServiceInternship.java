@@ -26,7 +26,7 @@ public class ServiceInternship implements IServiceInternship {
     public Internship addInternship(Internship i,int request_id) {
         InternshipRequest ir = rir.findById(request_id).orElse(null);
         i.setInternshipRequest(ir);
-       return ri.save(i);
+        return ri.save(i);
 
     }
 
@@ -45,14 +45,14 @@ public class ServiceInternship implements IServiceInternship {
     public Internship findInternship(Integer idInternship) {
         return ri.findById(idInternship).orElse(null);
     }
-     @Override
+    @Override
     public Test findtestbydate(Date dateoftheday){
 
-         Test t = null;
-         for(Test test : rt.findAll()) {
-             if (test.getDate().getTime() == dateoftheday.getTime())
-                 t = test;
-         }
-       return t;
+        Test t = null;
+        for(Test test : rt.findAll()) {
+            if (test.getDate().getTime() == dateoftheday.getTime())
+                t = test;
+        }
+        return t;
     }
 }

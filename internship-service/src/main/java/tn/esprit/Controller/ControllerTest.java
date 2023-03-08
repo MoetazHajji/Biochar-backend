@@ -31,12 +31,12 @@ public class ControllerTest {
         return ist.findTest(idTest);
     }
     @PutMapping("/createTest/{followUpSheetid}")
-   public Test affecttesttofollowupsheet(@PathVariable("followUpSheetid") int followUpSheetid,@RequestBody Test test){
-       return ist.affecttesttofollowupsheet(followUpSheetid, test);
+    public Test affecttesttofollowupsheet(@PathVariable("followUpSheetid") int followUpSheetid,@RequestBody Test test){
+        return ist.affecttesttofollowupsheet(followUpSheetid, test);
     }
 
     @GetMapping("/getresult/{testId}")
-   public int getresult(@PathVariable("testId") int testId, @RequestBody List<String> internAnswers) {
+    public int getresult(@PathVariable("testId") int testId, @RequestBody List<String> internAnswers) {
         return ist.getresult(testId,internAnswers);
     }
 

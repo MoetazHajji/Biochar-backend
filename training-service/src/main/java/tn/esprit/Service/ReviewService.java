@@ -5,8 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Review;
+
 import tn.esprit.Interface.IReviewService;
 import tn.esprit.Repository.ReviewRepository;
+
 
 import java.util.List;
 
@@ -32,7 +34,8 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
-    public Review getById_review(Long id) {
-        return reviewRepository.findById(id).orElse(null);
+    public void delete_all() {
+        reviewRepository.deleteAll();
     }
+
 }

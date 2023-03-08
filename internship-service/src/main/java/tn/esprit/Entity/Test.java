@@ -24,10 +24,10 @@ public class Test implements Serializable {
     @Temporal(TemporalType.DATE)
     Date date;
 
-@ManyToOne
-@JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     FollowUpSheet followUpSheet;
-@OneToMany(mappedBy = "test",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "test",cascade = CascadeType.PERSIST)
     List<Question> questions;
 
 }

@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -7,22 +8,33 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter @Setter @ToString
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Command implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @NonNull
+    @Temporal(TemporalType.DATE)
     Date date;
-    String reference;
+    @NonNull
     String notice;
-    Long quantity;
+    @NonNull
+    Long quantity_product;
+    @NonNull
+    Long NbPoduct;
 
+    Double Total_price;
+
+    /*@ManyToMany
+    List<Product> products;*/
+
+    @JsonIgnore
     @OneToMany(mappedBy = "command")
-    List<Product> products;
+    Set<CommandLigne> commandLignes;
 }

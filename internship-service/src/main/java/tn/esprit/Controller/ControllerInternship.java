@@ -34,10 +34,10 @@ public class ControllerInternship {
     public List<Internship> getAllInternship() {
         return ist.getAllInternship();
     }
-@GetMapping("getbyDate/{dateoftheday}")
-public Test findtestbydate(@PathVariable("dateoftheday")  Date dateoftheday){
-       return ist.findtestbydate(dateoftheday);
-}
+    @GetMapping("getbyDate/{dateoftheday}")
+    public Test findtestbydate(@PathVariable("dateoftheday")  Date dateoftheday){
+        return ist.findtestbydate(dateoftheday);
+    }
     @GetMapping("get/{id}")
     public Internship getInternship(@PathVariable("id") Integer idInternship)
     {

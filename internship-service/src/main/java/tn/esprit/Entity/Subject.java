@@ -19,7 +19,7 @@ public class Subject implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name_subject;
-@OneToMany(mappedBy = "subject")
-        @JsonIgnore
+    @OneToMany(mappedBy = "subject")
+    @JsonIgnore
     Set<Internship> internships;
 }

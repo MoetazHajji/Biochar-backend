@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -13,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Training implements Serializable {
@@ -23,37 +25,47 @@ public class Training implements Serializable {
 
     @NonNull
     @Temporal (TemporalType.DATE)
-    Date start_date;
+    Date startdate;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    Date end_date;
+    Date enddate;
 
     @NonNull
     String location;
 
+    @Min(0)
     float duration;
 
+    @Min(0)
+    @Max(23)
+    float time;
     @NonNull
     @Column(unique = true)
     String title;
 
+    Type_T type_t;
+
     String subject;
+    String description;
 
     String image;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     Trainer trainer;
 
     @OneToMany(mappedBy = "training",fetch = FetchType.EAGER)
     Set<Trainee> trainees;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     Certificate certificate;
 
-    @OneToMany(mappedBy = "training")
+    @OneToMany(mappedBy = "training",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     Set<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     Set<Quiz> quizes;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE,mappedBy = "training")
+    Set<Demand> demands;
 }

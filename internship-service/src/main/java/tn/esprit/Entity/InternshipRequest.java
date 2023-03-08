@@ -29,14 +29,14 @@ public class InternshipRequest implements Serializable {
     @NotNull
     String CV;
     @Enumerated(EnumType.STRING)
-     Status status = Status.pending;
+    Status status = Status.pending;
     @Temporal(TemporalType.DATE)
     Date start_date;
     @Temporal(TemporalType.DATE)
     Date end_date;
 
     @OneToOne(mappedBy = "internshipRequest")
-            @JsonIgnore
+    @JsonIgnore
     Internship internship;
 
 

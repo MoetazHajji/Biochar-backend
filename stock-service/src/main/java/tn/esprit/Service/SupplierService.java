@@ -2,17 +2,24 @@ package tn.esprit.Service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
+import tn.esprit.Exception.ElementNotFoundException;
+import tn.esprit.Interface.IAdressService;
 import tn.esprit.Interface.ISupplierService;
+import tn.esprit.Repository.IAdressRepository;
 import tn.esprit.Repository.ISupplierRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class SupplierService implements ISupplierService {
     ISupplierRepository supplierRepository;
+    IAdressRepository adressRepository;
     @Override
     public Supplier addSupplier(Supplier supplier) {
         return supplierRepository.save(supplier);
@@ -30,13 +37,25 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Supplier getSupplierById(Long id) {
-        return supplierRepository.findById(id).orElse(null);
+        return supplierRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Supplier with id "+ id +" not found : " ));
     }
 
     @Override
-    public List<Supplier> getAllSuppliers() {
-        List<Supplier> supplierList = new ArrayList<>();
+    public Set<Supplier> getAllSuppliers() {
+        Set<Supplier> supplierList = new HashSet<>();
         supplierRepository.findAll().forEach(supplierList::add);
         return supplierList;
+    }
+
+    @Override
+    public Supplier AddSupplierWithAdresses(Supplier supplier) {
+        supplierRepository.save(supplier);
+        Set<Adress> adressList = supplier.getAdresses();
+        supplier.setAdresses(null);
+        for(Adress adress:adressList){
+            adress.setSupplier(supplier);
+            adressRepository.save(adress);
+        }
+        return supplier;
     }
 }
