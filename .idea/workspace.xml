@@ -5,58 +5,197 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/OfferController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/StockController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Offer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IOfferService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IStockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/AdressMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/CommandMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/OfferMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/ProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/StockMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Mappers/SupplierMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IStockRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/OfferService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/StockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/AdressDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/CommandDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/OfferDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/ProductDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/StockDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/dto/SupplierDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/HikariCP-4.0.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/access-bridge-32.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/antlr-2.7.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/antlr-runtime-3.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/aspectjweaver-1.9.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/attoparser-2.0.5.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/bcpkix-jdk15on-1.64.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/bcprov-jdk15on-1.64.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/byte-buddy-1.12.22.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/charsets.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/classmate-1.5.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/cldrdata.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/commons-codec-1.15.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/commons-configuration-1.10.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/commons-jxpath-1.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/commons-lang-2.6.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/commons-math-2.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/deploy.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/dnsns.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/eureka-client-1.10.17.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/eureka-core-1.10.17.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/evictor-1.0.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/forms-7.1.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/gson-2.9.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/guava-19.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/guice-4.1.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/hibernate-commons-annotations-5.1.2.Final.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/hibernate-core-5.6.14.Final.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/html2pdf-3.0.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/httpclient-4.5.14.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/httpcore-4.4.16.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/idea_rt.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/io-7.0.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/istack-commons-runtime-3.0.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jaccess.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-annotations-2.13.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-core-2.13.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-databind-2.13.4.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-datatype-jdk8-2.13.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-datatype-jsr310-2.13.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jackson-module-parameter-names-2.13.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.activation-1.2.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.activation-api-1.2.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.annotation-api-1.3.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.mail-1.6.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.persistence-api-2.2.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.transaction-api-1.3.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jakarta.xml.bind-api-2.3.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jandex-2.4.2.Final.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/javaws.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/javax.inject-1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jaxb-runtime-2.3.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jboss-logging-3.4.3.Final.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jce.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jettison-1.4.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jfr.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jfxrt.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jfxswt.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/joda-time-2.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jsr305-3.0.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jsr311-api-1.1.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jsse.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jul-to-slf4j-1.7.36.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/jython-2.7.3.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/kernel-7.1.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/layout-7.1.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/localedata.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/log4j-api-2.17.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/log4j-to-slf4j-2.17.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/logback-classic-1.2.11.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/logback-core-1.2.11.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/lombok-1.18.24.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/management-agent.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/mxparser-1.2.2.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/mysql-connector-j-8.0.32.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/nashorn.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/netflix-eventbus-0.3.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/netflix-infix-0.3.0.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/openpdf-1.3.26.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/packages.idx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/plugin.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/reactive-streams-1.0.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/reactor-core-3.4.26.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/reactor-extra-3.4.9.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/resources.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/rt.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/servo-core-0.12.21.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/slf4j-api-1.7.36.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/snakeyaml-1.30.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spire.pdf-9.2.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-aop-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-aspects-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-beans-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-autoconfigure-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-devtools-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-aop-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-cache-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-data-jpa-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-jdbc-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-json-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-logging-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-mail-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-thymeleaf-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-tomcat-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-boot-starter-web-2.7.8.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-commons-3.1.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-context-3.1.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-loadbalancer-3.1.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-netflix-eureka-client-3.1.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-starter-3.1.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-starter-loadbalancer-3.1.5.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-cloud-starter-netflix-eureka-client-3.1.4.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-context-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-context-support-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-core-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-data-commons-2.7.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-data-jpa-2.7.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-expression-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-jcl-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-jdbc-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-orm-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-security-crypto-5.7.6.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-security-rsa-1.0.11.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-tx-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-web-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/spring-webmvc-5.3.25.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/stax2-api-4.2.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/stringtemplate-3.2.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/styled-xml-parser-7.1.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/sunec.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/sunjce_provider.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/sunmscapi.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/sunpkcs11.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/svg-7.1.12.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/thymeleaf-3.0.15.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/thymeleaf-extras-java8time-3.0.4.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/thymeleaf-spring5-3.0.15.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/tomcat-embed-core-9.0.71.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/tomcat-embed-el-9.0.71.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/tomcat-embed-websocket-9.0.71.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/txw2-2.3.7.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/unbescape-1.1.6.RELEASE.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/woodstox-core-6.2.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/xmlpull-1.1.3.1.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/xstream-1.4.18.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.jython_cache/packages/zipfs.pkc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/GraphController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TableExtractionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Exception/ElementNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/IEmail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ISchuduld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/PdfGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/SchedulrServicee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/templates/barGraph.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/templates/pieChart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/2795.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/331721650_916562909536447_2999551099813590380_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/Siwar_Atiya_lab4.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/gvjhdjv.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/moy-1-1-1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/patients2023-03-67_20_03_446.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Leave_Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Leave_Authorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Work_Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Work_Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Configuration/SpringDocConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Configuration/SpringDocConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/AdressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/AdressController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/CommandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/SupplierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Controller/SuppliesController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Adress.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Adress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Supplies.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Entity/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ICommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Interface/ISuppliesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ICommandRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/ISuppliesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Repository/IOfferCallRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/CommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/tn/esprit/Service/SuppliesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/AnalysisServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/AnalysisServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/MedicalcardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/MedicalcardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/SampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TestResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Controller/TestResultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Dto/MedicalcardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Dto/MedicalcardDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Dto/SampleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Dto/SampleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Medicalcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Medicalcard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Sample.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Sample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Entity/TestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/IMedicalcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/IMedicalcard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ISample.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ISample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ITestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Interface/ITestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Mappers/MedicalcardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Mappers/MedicalcardMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/TestResultRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Repository/TestResultRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/MedicalcardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/MedicalcardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/SampleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/SampleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/TestResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/java/tn/esprit/Service/TestResultService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/analysis-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,15 +208,24 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
         <option value="com.haulmont.jpb.JpaRepository" />
+        <option value="Interface" />
+        <option value="Python Script" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -105,33 +253,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "D:/4SAE6/S1/Spring/kaddem",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "spring.configuration.checksum": "928448d24bc950779184a582c3465353"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/analysis-service/src/main/resources" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\pidev\RECOVER\Biochar-backend\analysis-service\src\main\resources" />
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\user-service\src\main\java\tn\esprit" />
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\training-service\src\main\java\tn\esprit" />
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\stock-service\src\main\java" />
       <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\internship-service\src\main\java\tn\esprit" />
-      <recent name="C:\Users\moete\OneDrive\Desktop\Biochar-backend\hr-service\src\main\java\tn\esprit" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -141,17 +278,15 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.HrServiceApplication">
-    <configuration name="AnalysisServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="Analysis-Service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.AnalysisServiceApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="ACTIVE_PROFILES" />
+  <component name="RunManager" selected="Spring Boot.AnalysisServiceApplication">
+    <configuration name="AnalysisServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="analysis-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tn.esprit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.AnalysisServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,26 +308,26 @@
     </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.ApiGatewayApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tn.esprit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.ApiGatewayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="DiscoveryServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="discovery-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.DiscoveryServerApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tn.esprit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.DiscoveryServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -213,13 +348,13 @@
     </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="discovery-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.Main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tn.esprit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.Main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -246,22 +381,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.AnalysisServiceApplication (1)" />
       <item itemvalue="Spring Boot.HrServiceApplication" />
       <item itemvalue="Spring Boot.InternshipServiceApplication" />
       <item itemvalue="Spring Boot.StockServiceApplication" />
       <item itemvalue="Spring Boot.TrainingServiceApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
-      <item itemvalue="Spring Boot.AnalysisServiceApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.DiscoveryServerApplication" />
       <item itemvalue="Spring Boot.Main" />
+      <item itemvalue="Spring Boot.AnalysisServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.ApiGatewayApplication" />
         <item itemvalue="Spring Boot.DiscoveryServerApplication" />
-        <item itemvalue="Spring Boot.AnalysisServiceApplication" />
         <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
@@ -283,11 +417,28 @@
       <workItem from="1676920363449" duration="4240000" />
       <workItem from="1676925572510" duration="1952000" />
       <workItem from="1676969021770" duration="52151000" />
+      <workItem from="1677669282403" duration="4594000" />
+      <workItem from="1677686467910" duration="7216000" />
+      <workItem from="1677836844167" duration="72932000" />
+      <workItem from="1677972001512" duration="112054000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:com.google.inject:guice" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.cloud:spring-cloud-context" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate:hibernate-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -302,6 +453,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.UncheckedIOException" package="java.io" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

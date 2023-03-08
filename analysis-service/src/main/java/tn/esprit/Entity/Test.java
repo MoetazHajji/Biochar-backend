@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @ToString
@@ -21,8 +22,9 @@ public class Test implements Serializable {
     private int idTest;
     private String nameTest;
     private float price;
+    private Date dateTest;
     @ManyToOne
     Sample sample;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="test")
+    @OneToMany( mappedBy="test")
     Set<TestResult> testResults;
 }

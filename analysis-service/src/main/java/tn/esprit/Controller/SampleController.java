@@ -3,9 +3,7 @@ package tn.esprit.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.SampleDto;
-import tn.esprit.Entity.Medicalcard;
 import tn.esprit.Entity.Sample;
-import tn.esprit.Interface.IMedicalcard;
 import tn.esprit.Interface.ISample;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public class SampleController {
     }
 
     @PutMapping("/asign/{idSample}/{id}")
-    Sample ModifierDep (@PathVariable ("idSample") Integer idSample,@PathVariable("id") Integer id){
+    Sample ModifierDep (@PathVariable ("idSample") Integer idSample,@PathVariable("id") Long id){
         return iSample.asignSamTopat(idSample,id);
 
     }

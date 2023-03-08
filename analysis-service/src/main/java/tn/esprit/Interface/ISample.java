@@ -17,5 +17,5 @@ public interface ISample {
 
     List<SampleDto> retrieveAllSample();
 
-    Sample asignSamTopat(int idSample, int id);
+    Sample asignSamTopat(int idSample, Long id);
 }

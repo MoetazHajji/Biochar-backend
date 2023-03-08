@@ -3,11 +3,8 @@ package tn.esprit.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.TestDto;
-import tn.esprit.Entity.Sample;
 import tn.esprit.Entity.Test;
-import tn.esprit.Entity.TestResult;
 import tn.esprit.Interface.ITest;
-import tn.esprit.Interface.ITestResult;
 
 import java.util.List;
 

@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @ToString
@@ -21,7 +21,8 @@ public class Sample implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idSample")
     private Integer idSample;
-    private Date date;
+
+    private LocalDate date;
     private String numSample;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="sample")

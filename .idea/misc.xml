@@ -10,7 +10,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Analysis/pom.xml" />
-        <option value="$PROJECT_DIR$/analysis-service/pom.xml" />
         <option value="$PROJECT_DIR$/internship-service/pom.xml" />
         <option value="$PROJECT_DIR$/stock-service/pom.xml" />
         <option value="$PROJECT_DIR$/training-service/pom.xml" />
