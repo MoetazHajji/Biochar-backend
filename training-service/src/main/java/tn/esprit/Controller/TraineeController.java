@@ -88,6 +88,6 @@ public class TraineeController {
     @GetMapping("get_score/{id_profile}")
     public double get_score(@PathVariable("id_profile") Long id_profile)
     {
-       return traineeService.getScore(id_profile);
+        return traineeService.getScore(id_profile);
     }
 }

@@ -8,6 +8,7 @@ import tn.esprit.Entity.Product;
 import tn.esprit.Interface.IProductService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -42,8 +43,13 @@ public class ProductController {
 
     @Operation(description = "Retreive all products")
     @GetMapping("getAllAdress")
-    public List<Product> getAllProduct(){
+    public Set<Product> getAllProduct(){
         return productService.getProductList();
+    }
+
+    @GetMapping("getMostOrdredProducts")
+    public List<Product> getMostOrderedProduct(){
+        return productService.getMostOrderedProduct();
     }
 
 

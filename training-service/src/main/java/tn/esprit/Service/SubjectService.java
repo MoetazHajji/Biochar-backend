@@ -216,13 +216,13 @@ public class SubjectService implements ISubjectService {
                     cookie.setDate(date);
                     cookie.setUser(id_user);
                     if(cookie_validation(cookie,id_user))
-                    cookies.add(cookie);
+                        cookies.add(cookie);
                 }
                 //Arrays.stream(values).forEach(v -> log.info("--> " + v));
             }
             // log.info(cookies.toString());
             if(cookies.size() > 0)
-            cookiesRepository.saveAll(cookies);
+                cookiesRepository.saveAll(cookies);
         } catch (IOException ioe) {
         }
 

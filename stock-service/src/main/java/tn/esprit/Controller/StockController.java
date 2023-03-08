@@ -9,6 +9,7 @@ import tn.esprit.Interface.IStockService;
 import tn.esprit.Service.StockService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -44,13 +45,13 @@ public class StockController {
 
     @Operation(description = "Retreive all Stock")
     @GetMapping("getAllStocks")
-    public List<Stock> getAllStock(){
+    public Set<Stock> getAllStock(){
         return stocksService.getAllStocks();
     }
 
     @Operation(description = "Affect product to stock")
     @PutMapping("AssignProductToStock/{idPro}/{quan}/{idSto}")
-    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro,@PathVariable("quan") Long quantity, @PathVariable("idSto") Long idStock){
+    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro,@PathVariable("quan") Double quantity, @PathVariable("idSto") Long idStock){
         return stocksService.AffectProductToSupplies(idPro,quantity,idStock);
     }
 
@@ -64,5 +65,9 @@ public class StockController {
         return stocksService.getSumSizeOfProducts(id);
     }
 
+    @PutMapping("withdraw/{quantity}/{id}")
+    void withdrawStock(@PathVariable("quantity") Double quantity,@PathVariable("id") Long idstock){
+        stocksService.withdrawStock(quantity, idstock);
+    }
 
 }

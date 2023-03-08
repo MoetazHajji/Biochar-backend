@@ -5,9 +5,11 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @ToString
@@ -24,11 +26,15 @@ public class Stock implements Serializable {
     Long nbProduct;
     @NonNull
     Double total_quantity;
+
     @NonNull
+    @Min(0)
     Double storage;
 
+    @Min(0)
     Double free_storage;
 
+    @Min(0)
     Double used_storage;
     @NonNull
     @Temporal(TemporalType.DATE)
@@ -43,7 +49,7 @@ public class Stock implements Serializable {
     State state;
 
 
-    @ManyToMany
-    List<Product> products;
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    Set<Product> products;
 
 }

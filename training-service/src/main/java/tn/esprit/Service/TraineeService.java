@@ -108,7 +108,7 @@ public class TraineeService implements ITraineeService {
     public Map<String,List<Training>> get_suits(Long profile_id) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-          List<Training> trainings = trainingRepository.findByStartdateAfter(date);
+        List<Training> trainings = trainingRepository.findByStartdateAfter(date);
         Profile profile = profileRepository.findById(profile_id).orElse(null);
         double profile_score = calculate_profile_score(profile,date);
 
@@ -119,23 +119,23 @@ public class TraineeService implements ITraineeService {
         filtered_trainings.put("external",trainings2);
         for(Training training: trainings)
         {
-           if(training.getType_t() == Type_T.internal)
-           {
-               Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
-               if(subject != null)
-               {
-                   if(subject.getComplexity() == (int)profile_score/10 ) {
-                       filtered_trainings.get("internal").add(training);
-                   }
-               }
-               else
-               {
-                   training.setType_t(Type_T.external);
-                   filtered_trainings.get("external").add(training);
-                   trainingRepository.save(training);
-               }
-           }else
-            filtered_trainings.get("external").add(training);
+            if(training.getType_t() == Type_T.internal)
+            {
+                Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
+                if(subject != null)
+                {
+                    if(subject.getComplexity() == (int)profile_score/10 ) {
+                        filtered_trainings.get("internal").add(training);
+                    }
+                }
+                else
+                {
+                    training.setType_t(Type_T.external);
+                    filtered_trainings.get("external").add(training);
+                    trainingRepository.save(training);
+                }
+            }else
+                filtered_trainings.get("external").add(training);
         }
 
         return filtered_trainings;
@@ -169,7 +169,7 @@ public class TraineeService implements ITraineeService {
         else
             knowledge_score = 0;
         if(size > 10)
-        trainings_score /=size;
+            trainings_score /=size;
         else if (size <10 && size>0)
             trainings_score /= size*((1-(size/10))+1);
         else

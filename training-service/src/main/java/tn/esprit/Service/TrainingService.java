@@ -137,8 +137,8 @@ public class TrainingService implements ITrainingService {
                     return trainingRepository.getAllSortedByDate();
                case 1:
                     return trainingRepository.getAllSortedByDuration();
-             //  case 2:
-              //      return trainingRepository.getAllSortedByReviews();
+               //  case 2:
+               //      return trainingRepository.getAllSortedByReviews();
                case 2:
                     return sortByReviews();
 
@@ -240,9 +240,9 @@ public class TrainingService implements ITrainingService {
      {
 
 
-            if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
-                 training.setType_t(Type_T.external);
-           else
+          if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
+               training.setType_t(Type_T.external);
+          else
                training.setType_t(Type_T.internal);
 
           return training;
@@ -252,10 +252,10 @@ public class TrainingService implements ITrainingService {
      @Scheduled(fixedDelay = 3000)
      public void delete_unused()
      {
-        traineeRepository.findAll().forEach(trainee -> {
-             if(trainee.getTraining() == null)
-                  traineeRepository.deleteById(trainee.getId());
-        });
+          traineeRepository.findAll().forEach(trainee -> {
+               if(trainee.getTraining() == null)
+                    traineeRepository.deleteById(trainee.getId());
+          });
           trainerRepository.findAll().forEach(trainer -> {
                if(trainer.getTrainings() == null || trainer.getTrainings().size() ==0)
                     trainerRepository.deleteById(trainer.getId());

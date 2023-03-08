@@ -8,6 +8,7 @@ import tn.esprit.Entity.Supplier;
 import tn.esprit.Interface.ISupplierService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -41,7 +42,7 @@ public class SupplierController {
     }
     @Operation(description = "Retreive All Suppliers")
     @GetMapping("getAllSupplier")
-    public List<Supplier> getAllSupplier(){
+    public Set<Supplier> getAllSupplier(){
         return supplierService.getAllSuppliers();
     }
 

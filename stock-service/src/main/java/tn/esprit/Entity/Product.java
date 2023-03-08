@@ -5,8 +5,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @ToString
@@ -34,11 +36,17 @@ public class Product implements Serializable {
     //@Column(unique = true,nullable = false,length = 200 )
     String image;
 
+    Long count_order;
+
     //@Column(unique = true,nullable = false,length = 200 )
-    Long autoFillQuantity;
+    @Min(0)
+    Double quantity;
 
-    Long autoFillThreshold;
+    @Min(0)
+    Double autoFillQuantity;
 
+    @Min(0)
+    Double autoFillThreshold;
 
 
 
@@ -48,11 +56,8 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "products")
-    List<Stock> stocks;
+    Set<Stock> stocks;
 
-    /*@JsonIgnore
-    @ManyToMany(mappedBy = "products")
-    List<Command> commands;*/
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")

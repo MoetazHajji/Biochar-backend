@@ -8,6 +8,7 @@ import tn.esprit.Entity.Offer;
 import tn.esprit.Interface.IOfferService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -42,7 +43,7 @@ public class OfferController {
 
     @Operation(description = "Retreive all Commands")
     @GetMapping("getAllAdress")
-    public List<Offer> getAllOfferCalls(){
+    public Set<Offer> getAllOfferCalls(){
         return callService.getAllOfferCalls();
     }
 
