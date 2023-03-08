@@ -3,11 +3,12 @@ package tn.esprit.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.Entity.ExternelEntity.Account;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -22,15 +23,28 @@ public class Work_Schedule implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id_WS;
-    @Temporal(TemporalType.DATE)
-    Date start_date;
-    @Temporal(TemporalType.DATE)
-    Date end_date;
+    LocalDate dateWork;
+    LocalTime start_time;
+    LocalTime end_time;
     @Enumerated(EnumType.STRING)
     Shift shift;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    Set<Account> accounts;
+    @ManyToOne()
+    Account account;
 
+    public Work_Schedule(LocalDate dateWork, LocalTime start_time, LocalTime end_time, Shift shift) {
+        this.dateWork = dateWork;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.shift = shift;
+    }
+
+    public Work_Schedule(LocalDate dateWork, LocalTime start_time, LocalTime end_time, Shift shift, Account account) {
+        this.dateWork = dateWork;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.shift = shift;
+        this.account = account;
+    }
 }

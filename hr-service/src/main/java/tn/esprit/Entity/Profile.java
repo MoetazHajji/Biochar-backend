@@ -3,6 +3,8 @@ package tn.esprit.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.Entity.ExternelEntity.Account;
+import tn.esprit.Entity.ExternelEntity.Demand;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +27,7 @@ public class Profile implements Serializable {
     String knowledge;
     Integer experience;
 
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(cascade = CascadeType.PERSIST)
     Account account;
 
     @JsonIgnore

@@ -1,8 +1,9 @@
-package tn.esprit.Entity;
+package tn.esprit.Entity.ExternelEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.Entity.Profile;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -11,7 +11,8 @@ public interface IProfileService {
     public void deleteProfile(Long idP);
     public List<ProfileDto> retrieveAllProfiles();
     public ProfileDto retrieveProfileById(Long idP);
-
+    public void updateExperience();
+    public ProfileDto addAndAssignProfileToAccount(ProfileDto profile, Long idA);
 
 
 }

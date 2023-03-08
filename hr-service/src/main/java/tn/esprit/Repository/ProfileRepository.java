@@ -13,5 +13,4 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
     @Query(value = "UPDATE profile SET experience=experience+1;", nativeQuery = true)
     int upgradeExperience();
 
-
 }
