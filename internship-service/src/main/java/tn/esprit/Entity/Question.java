@@ -1,6 +1,6 @@
 package tn.esprit.Entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,18 +16,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Test implements Serializable {
+public class Question implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
-    @Temporal(TemporalType.DATE)
-    Date date;
-
-    @ManyToOne
-    @JsonIgnore
-    FollowUpSheet followUpSheet;
-    @OneToMany(mappedBy = "test",cascade = CascadeType.PERSIST)
-    List<Question> questions;
-
+    String text;
+@ManyToOne(cascade = CascadeType.PERSIST)
+@JsonIgnore
+    Test test;
+@OneToMany(mappedBy = "question",cascade = CascadeType.PERSIST)
+List<Option> options;
 }

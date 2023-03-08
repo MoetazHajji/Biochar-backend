@@ -1,33 +1,25 @@
 package tn.esprit.Entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Test implements Serializable {
+public class Option implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
-    @Temporal(TemporalType.DATE)
-    Date date;
-
+    String text;
+    Boolean correct;
     @ManyToOne
-    @JsonIgnore
-    FollowUpSheet followUpSheet;
-    @OneToMany(mappedBy = "test",cascade = CascadeType.PERSIST)
-    List<Question> questions;
-
+            @JsonIgnore
+    Question question;
 }
