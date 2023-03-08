@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Trainer implements Serializable {
@@ -26,6 +27,7 @@ public class Trainer implements Serializable {
     String lastname;
     @NonNull
     @Column(unique = true)
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.(com|tn)")
     String email;
     @Column(unique = true)
     int phone_number;
@@ -33,6 +35,6 @@ public class Trainer implements Serializable {
     @Enumerated(EnumType.STRING)
     Type_T type_t;
 
-    @OneToMany(mappedBy = "trainer",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "trainer",fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     Set<Training> trainings;
 }

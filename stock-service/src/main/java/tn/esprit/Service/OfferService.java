@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Offer;
 import tn.esprit.Entity.Product;
 import tn.esprit.Entity.Supplier;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.IOfferService;
 import tn.esprit.Repository.IOfferCallRepository;
 import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.ISupplierRepository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -36,20 +39,20 @@ public class OfferService implements IOfferService {
 
     @Override
     public Offer getOfferCallById(Long id) {
-        return callRepository.findById(id).orElse(null);
+        return callRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Offer with id "+ id +" not found : " ));
     }
 
     @Override
-    public List<Offer> getAllOfferCalls() {
-        List<Offer> offers = new ArrayList<>();
+    public Set<Offer> getAllOfferCalls() {
+        Set<Offer> offers = new HashSet<>();
         callRepository.findAll().forEach(offers::add);
         return offers;
     }
 
     @Override
     public Offer AffectProductToOfferCall(Long idOffer,Long idPro) {
-        Offer offer=callRepository.findById(idOffer).orElse(null);
-        Product product=productRepository.findById(idPro).orElse(null);
+        Offer offer=callRepository.findById(idOffer).orElseThrow(() -> new ElementNotFoundException("Offer with id "+ idOffer +" not found : " ));
+        Product product=productRepository.findById(idPro).orElseThrow(() -> new ElementNotFoundException("Product Ligne with id "+ idPro +" not found : " ));
         if(offer.getProduct()==null){
             offer.setProduct(product);
             callRepository.save(offer);
@@ -60,8 +63,8 @@ public class OfferService implements IOfferService {
     }
     @Override
     public Offer AffectSupplierToOfferCall(Long idOffer, Long idSupp) {
-        Offer offer =callRepository.findById(idOffer).orElse(null);
-        Supplier supplier=supplierRepository.findById(idSupp).orElse(null);
+        Offer offer =callRepository.findById(idOffer).orElseThrow(() -> new ElementNotFoundException("Offer  with id "+ idOffer +" not found : " ));
+        Supplier supplier=supplierRepository.findById(idSupp).orElseThrow(() -> new ElementNotFoundException("Supplier  with id "+ idSupp +" not found : " ));
         if (offer.getSupplier()==null){
             offer.setSupplier(supplier);
             callRepository.save(offer);
@@ -74,8 +77,8 @@ public class OfferService implements IOfferService {
 
     @Override
     public Offer addOfferAndAssignProductSupplier(Offer offer, Long idPro, Long idSupp) {
-        Product product=productRepository.findById(idPro).orElse(null);
-        Supplier supplier=supplierRepository.findById(idSupp).orElse(null);
+        Product product=productRepository.findById(idPro).orElseThrow(() -> new ElementNotFoundException("Product  with id "+ idPro +" not found : " ));;
+        Supplier supplier=supplierRepository.findById(idSupp).orElseThrow(() -> new ElementNotFoundException("Supplierwith id "+ idSupp +" not found : " ));;
         if(offer.getProduct()==null&& offer.getSupplier()==null){
             offer.setProduct(product);
             offer.setSupplier(supplier);

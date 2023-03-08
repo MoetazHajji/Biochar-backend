@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Command;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public interface ICommandService {
@@ -11,9 +12,12 @@ public interface ICommandService {
     Command modifyCommand(Command command);
     void deleteCommand(Long id);
     Command getCommandById(Long id);
-    List<Command> getAllCommands();
-    void affectproductsToCommand(Long idCom,Long idPro);
-    void disaffectproductFromCommand(Long idCom,Long idPro);
-    Command addCommandAndAffectProducts(Command command,List<Long> idPro);
-    Command SetTotPriceCommand(Long id);
+    Set<Command> getAllCommands();
+    Command affectCommandToCommandLine(Command command, List<Long> idCommandLines);
+
+    void disaffectCommandFromOrderLine(Long idCom, Long idComL);
+    /*Command addCommandAndAffectProducts(Command command,List<Long> idPro);
+    Command SetTotPriceCommand(Long id);*/
+
+
 }

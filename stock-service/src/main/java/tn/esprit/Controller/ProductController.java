@@ -4,12 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Product;
-import tn.esprit.Entity.Stock;
 import tn.esprit.Interface.IProductService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -44,8 +43,13 @@ public class ProductController {
 
     @Operation(description = "Retreive all products")
     @GetMapping("getAllAdress")
-    public List<Product> getAllProduct(){
+    public Set<Product> getAllProduct(){
         return productService.getProductList();
+    }
+
+    @GetMapping("getMostOrdredProducts")
+    public List<Product> getMostOrderedProduct(){
+        return productService.getMostOrderedProduct();
     }
 
 

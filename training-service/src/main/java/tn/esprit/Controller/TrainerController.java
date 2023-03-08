@@ -5,9 +5,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.TrainerDto;
 import tn.esprit.Entity.Trainer;
 import tn.esprit.Interface.ITrainerService;
+import tn.esprit.Interface.ITrainingService;
+import tn.esprit.Mapper.TrainerMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,12 +21,17 @@ import java.util.List;
 public class TrainerController {
     final ITrainerService trainerService;
 
+    final ITrainingService trainingService;
+
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public Trainer add_trainer(@RequestBody Trainer r)
+    public TrainerDto add_trainer(@RequestBody TrainerDto r)
     {
 
-        return trainerService.add_trainer(r);
+        return TrainerMapper
+                .mapToDto(trainerService
+                        .add_trainer(TrainerMapper
+                                .mapToEntity(r,trainingService)));
     }
 
     @DeleteMapping("{id}")
@@ -32,15 +41,24 @@ public class TrainerController {
     }
 
     @GetMapping
-    public List<Trainer> getAll_trainer()
+    public List<TrainerDto> getAll_trainer()
     {
-
-        return trainerService.getAll_trainer();
+        List<TrainerDto> trainerDtos = new ArrayList<>();
+        trainerService.getAll_trainer()
+                .forEach(trainer -> trainerDtos.add(TrainerMapper.mapToDto(trainer)));
+        return trainerDtos;
     }
 
     @GetMapping("/{id}")
-    public Trainer getById_trainer(@PathVariable("id") Long id)
+    public TrainerDto getById_trainer(@PathVariable("id") Long id)
     {
-        return trainerService.getById_trainer(id);
+
+        return TrainerMapper.mapToDto(trainerService.getById_trainer(id));
+    }
+
+    @DeleteMapping("all")
+    public void delete_all()
+    {
+        trainerService.delete_all();
     }
 }

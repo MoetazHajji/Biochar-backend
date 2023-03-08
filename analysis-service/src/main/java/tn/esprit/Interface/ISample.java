@@ -1,15 +1,21 @@
 package tn.esprit.Interface;
 
+import tn.esprit.Dto.SampleDto;
 import tn.esprit.Entity.Sample;
 
 import java.util.List;
 
 public interface ISample {
-    Sample addOrUpdateSample(Sample sample);
+
+
+    SampleDto addOrUpdateSample(SampleDto sampleDto);
 
     void removeSample(int idSample);
 
     Sample retriveSample(int idSample);
 
-    List<Sample> retrieveAllSample();
+
+    List<SampleDto> retrieveAllSample();
+
+    Sample asignSamTopat(int idSample, int id);
 }

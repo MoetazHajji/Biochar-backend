@@ -23,7 +23,7 @@ public class QuizService implements IQuizService {
 
     @Override
     public void delete_quiz(Long id) {
-         quizRepository.deleteById(id);
+        quizRepository.deleteById(id);
     }
 
     @Override
@@ -34,5 +34,10 @@ public class QuizService implements IQuizService {
     @Override
     public Quiz getById_quiz(Long id) {
         return quizRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void delete_all() {
+        quizRepository.deleteAll();
     }
 }

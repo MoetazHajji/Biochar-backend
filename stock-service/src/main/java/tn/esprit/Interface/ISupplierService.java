@@ -5,6 +5,7 @@ import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.Supplier;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public interface ISupplierService {
@@ -12,6 +13,6 @@ public interface ISupplierService {
     Supplier modifySupplier(Supplier supplier);
     void deleteSupplier(Long id);
     Supplier getSupplierById(Long id);
-    List<Supplier> getAllSuppliers();
+    Set<Supplier> getAllSuppliers();
     Supplier AddSupplierWithAdresses(Supplier supplier);
 }

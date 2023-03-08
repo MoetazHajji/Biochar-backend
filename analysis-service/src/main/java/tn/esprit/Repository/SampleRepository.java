@@ -5,4 +5,5 @@ import tn.esprit.Entity.Medicalcard;
 import tn.esprit.Entity.Sample;
 
 public interface SampleRepository extends JpaRepository<Sample,Integer> {
+
 }
