@@ -1,13 +1,13 @@
 Nuclear medicine : 2
-Pediatrics : 2
+Pediatrics : 4
 Internal medicine : 0
-Dermatology : 4
+Dermatology : 2
 Emergency medicine : 2
 Family medicine : 2
 Preventive medicine : 2
 Neurology : 2
 Pathology : 2
-Immunology : 3
+Immunology : 4
 Radiation oncology : 2
 Diagnostic radiology : 0
 Surgery : 2
@@ -16,4 +16,4 @@ Anesthesiology : 2
 Ophthalmology : 2
 Obstetrics and gynecology : 0
 Psychiatry : 2
-Physical medicine and rehabilitation : 0
+Physical medicine and rehabilitation : 1

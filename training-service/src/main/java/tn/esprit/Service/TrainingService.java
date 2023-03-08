@@ -137,10 +137,11 @@ public class TrainingService implements ITrainingService {
                     return trainingRepository.getAllSortedByDate();
                case 1:
                     return trainingRepository.getAllSortedByDuration();
+             //  case 2:
+              //      return trainingRepository.getAllSortedByReviews();
                case 2:
-                    return trainingRepository.getAllSortedByReviews();
-               case 3:
                     return sortByReviews();
+
           }
 
           return trainingRepository.findAll();

@@ -73,7 +73,7 @@ public class TraineeController {
     }
 
     @GetMapping("get_suits/{id_profile}")
-    public Map<String,List<TrainingDto>> get_suits(@PathVariable("id_profile") int id_profile)
+    public Map<String,List<TrainingDto>> get_suits(@PathVariable("id_profile") Long id_profile)
     {
         List<TrainingDto> training1 = new ArrayList<>();
         List<TrainingDto> training2 = new ArrayList<>();
@@ -86,7 +86,7 @@ public class TraineeController {
     }
 
     @GetMapping("get_score/{id_profile}")
-    public double get_score(@PathVariable("id_profile") int id_profile)
+    public double get_score(@PathVariable("id_profile") Long id_profile)
     {
        return traineeService.getScore(id_profile);
     }

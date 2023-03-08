@@ -62,53 +62,50 @@ public class TraineeService implements ITraineeService {
             Set<Quiz> quizzes = trainee.getTraining().getQuizes();
             int score = 0;
             int size = quizzes.size();
-            float cost = 100 / size;
-            for(Map.Entry<String,List<Integer>> answer :answers.entrySet())
-            {
-                 Quiz quiz = null;
-                 for(Quiz quiz1 : quizzes)
-                 {
-                     if(quiz1.getQuestion().trim().equalsIgnoreCase(answer.getKey()))
-                         quiz = quiz1;
-                 }
-                 if(quiz !=null)
-                 {
-                     if(quiz.getType_q() == Type_Q.QCU)
-                     {
-                         if(quiz.getValid_answer().get(0) == answer.getValue().get(0))
-                             score +=cost;
-                     }
-                     else
-                     {
-                         Boolean check = true;
-                         if(quiz.getValid_answer().size()>answers.size())
-                             check = false;
-                         else  {
-                            for(int i =0;i<quiz.getValid_answer().size();i++)
-                            {
-                                if(quiz.getValid_answer().get(i) != answer.getValue().get(i))
-                                    check = false;
+            if(size>0) {
+                float cost = 100 / size;
+                for (Map.Entry<String, List<Integer>> answer : answers.entrySet()) {
+                    Quiz quiz = null;
+                    for (Quiz quiz1 : quizzes) {
+                        if (quiz1.getQuestion().trim().equalsIgnoreCase(answer.getKey()))
+                            quiz = quiz1;
+                    }
+                    if (quiz != null) {
+                        if (quiz.getType_q() == Type_Q.QCU) {
+                            if (quiz.getValid_answer().get(0) == answer.getValue().get(0))
+                                score += cost;
+                        } else {
+                            Boolean check = true;
+                            if (quiz.getValid_answer().size() > answers.size())
+                                check = false;
+                            else {
+                                for (int i = 0; i < quiz.getValid_answer().size(); i++) {
+                                    if (quiz.getValid_answer().get(i) != answer.getValue().get(i))
+                                        check = false;
+                                }
+
                             }
+                            if (check)
+                                score += cost;
+                        }
+                    }
+                }
 
-                         }
-                         if(check)
-                             score += cost;
-                     }
-                 }
+                LocalDate localDate = LocalDate.now();
+                Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                trainee.setValidate_day(date);
+                trainee.setScore(score);
+                traineeRepository.save(trainee);
+                return score;
             }
-
-            LocalDate localDate = LocalDate.now();
-            Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            trainee.setValidate_day(date);
-            trainee.setScore(score);
-            traineeRepository.save(trainee);
-            return score;
+            else
+                return -1;
         }
-        return -1;
+        return -2;
     }
 
     @Override
-    public Map<String,List<Training>> get_suits(int profile_id) {
+    public Map<String,List<Training>> get_suits(Long profile_id) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
           List<Training> trainings = trainingRepository.findByStartdateAfter(date);
@@ -182,7 +179,7 @@ public class TraineeService implements ITraineeService {
     }
 
     @Override
-    public double getScore(int id_profile)
+    public double getScore(Long id_profile)
     {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());

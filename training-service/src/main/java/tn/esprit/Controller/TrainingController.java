@@ -79,8 +79,8 @@ public class TrainingController {
         return null;
     }
 
-    @PutMapping("assignTrainees")
-    public boolean add_Trainees_to_training(@QueryParam("id_training") Long id_training,@QueryParam("id_trainee") List<Long> id_trainee)
+    @PutMapping("assignTrainees/{id_training}/{id_trainee}")
+    public boolean add_Trainees_to_training(@PathVariable("id_training") Long id_training,@PathVariable("id_trainee") List<Long> id_trainee)
     {
         return trainingService.add_Trainees_To_Training(id_training,id_trainee);
     }
