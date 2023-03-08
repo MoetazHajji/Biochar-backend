@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -26,6 +27,7 @@ public class Trainer implements Serializable {
     String lastname;
     @NonNull
     @Column(unique = true)
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.(com|tn)")
     String email;
     @Column(unique = true)
     int phone_number;

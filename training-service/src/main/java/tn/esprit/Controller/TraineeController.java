@@ -15,6 +15,7 @@ import tn.esprit.Mapper.TraineeMapper;
 import tn.esprit.Mapper.TrainingMapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,11 +73,16 @@ public class TraineeController {
     }
 
     @GetMapping("get_suits/{id_profile}")
-    public List<TrainingDto> get_suits(@PathVariable("id_profile") int id_profile)
+    public Map<String,List<TrainingDto>> get_suits(@PathVariable("id_profile") int id_profile)
     {
-        List<TrainingDto> trainings = new ArrayList<>();
-        traineeService.get_suits(id_profile).forEach(training -> trainings.add(TrainingMapper.mapToDto(training)));
-        return trainings;
+        List<TrainingDto> training1 = new ArrayList<>();
+        List<TrainingDto> training2 = new ArrayList<>();
+        Map<String,List<TrainingDto>> map = new HashMap<>();
+        traineeService.get_suits(id_profile).get("internal").forEach(training -> training1.add(TrainingMapper.mapToDto(training)));
+        traineeService.get_suits(id_profile).get("external").forEach(training -> training2.add(TrainingMapper.mapToDto(training)));
+        map.put("internal",training1);
+        map.put("external",training2);
+        return map;
     }
 
     @GetMapping("get_score/{id_profile}")

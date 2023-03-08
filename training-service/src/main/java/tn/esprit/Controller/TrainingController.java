@@ -107,7 +107,7 @@ public class TrainingController {
         return TrainingMapper.mapToDto(trainingService.affect_quizes_to_training(ids, training_title));
     }
 
-    @PostMapping("add_with_quizes")
+    @PutMapping("add_with_quizes")
     public TrainingDto add_training_with_quizes(@RequestPart TrainingDto training,@RequestPart Set<QuizDto> quizzes,@RequestPart MultipartFile image)
     {
         Set<Quiz> quizSet = new HashSet<>();

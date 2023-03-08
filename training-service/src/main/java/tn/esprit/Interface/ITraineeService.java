@@ -16,7 +16,7 @@ public interface ITraineeService {
     void delete_all();
     int submit_Answer(Map<String,List<Integer>> answers, Long id_trainee);
 
-    List<Training> get_suits(int profile_id);
+    Map<String,List<Training>> get_suits(int profile_id);
 
     double getScore(int id_profile);
 }
