@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,21 +41,26 @@ public class TrainingService implements ITrainingService {
 
      @Override
      public Training add_training(Training t) {
-
-          t = training_type_check(t);
-          return trainingRepository.save(t);
+          if(validate_date(t)) {
+               t = training_type_check(t);
+               return trainingRepository.save(t);
+          }
+          return null;
      }
 
      @Override
      public Training add_training_with_image(Training t, MultipartFile image) {
-         t = training_type_check(t);
-          try {
-               t.setImage(image_handling(image,t.getTitle()));
-               return trainingRepository.save(t);
-          } catch (IOException ioe) {
-               log.error("IO Problem : " + ioe.getMessage());
-               return null;
+          if(validate_date(t)) {
+               t = training_type_check(t);
+               try {
+                    t.setImage(image_handling(image, t.getTitle()));
+                    return trainingRepository.save(t);
+               } catch (IOException ioe) {
+                    log.error("IO Problem : " + ioe.getMessage());
+                    return null;
+               }
           }
+          return null;
 
      }
 
@@ -122,12 +128,7 @@ public class TrainingService implements ITrainingService {
           return true;
      }
 
-     @Override
-     public List<Training> generate_trainings()  {
 
-          return null;
-
-     }
 
      @Override
      public List<Training> get_sorted_trainings(int by) {
@@ -136,10 +137,11 @@ public class TrainingService implements ITrainingService {
                     return trainingRepository.getAllSortedByDate();
                case 1:
                     return trainingRepository.getAllSortedByDuration();
+               //  case 2:
+               //      return trainingRepository.getAllSortedByReviews();
                case 2:
-                    return trainingRepository.getAllSortedByReviews();
-               case 3:
                     return sortByReviews();
+
           }
 
           return trainingRepository.findAll();
@@ -188,17 +190,21 @@ public class TrainingService implements ITrainingService {
      @Override
      @Transactional
      public Training add_training_with_quizes(Training training, Set<Quiz> quizes,MultipartFile image) {
-          try {
-               training = training_type_check(training);
-               filter_quizes(quizes);
-               if (quizes.size() > 0)
-                    training.setQuizes(quizes);
-               training.setImage(image_handling(image,training.getTitle()));
-               return trainingRepository.save(training);
-          }catch (IOException ioe) {
-          log.error("IO Problem : " + ioe.getMessage());
-          return null;
-     }
+          if(validate_date(training)) {
+               try {
+                    training = training_type_check(training);
+                    filter_quizes(quizes);
+                    if (quizes.size() > 0)
+                         training.setQuizes(quizes);
+                    training.setImage(image_handling(image, training.getTitle()));
+                    return trainingRepository.save(training);
+               } catch (IOException ioe) {
+                    log.error("IO Problem : " + ioe.getMessage());
+                    return null;
+               }
+          }
+          else
+               return null;
      }
 
 
@@ -234,11 +240,33 @@ public class TrainingService implements ITrainingService {
      {
 
 
-            if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
-                 training.setType_t(Type_T.external);
-           else
+          if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
+               training.setType_t(Type_T.external);
+          else
                training.setType_t(Type_T.internal);
 
           return training;
+     }
+
+
+     @Scheduled(fixedDelay = 3000)
+     public void delete_unused()
+     {
+          traineeRepository.findAll().forEach(trainee -> {
+               if(trainee.getTraining() == null)
+                    traineeRepository.deleteById(trainee.getId());
+          });
+          trainerRepository.findAll().forEach(trainer -> {
+               if(trainer.getTrainings() == null || trainer.getTrainings().size() ==0)
+                    trainerRepository.deleteById(trainer.getId());
+          });
+     }
+
+     private Boolean validate_date(Training training)
+     {
+          if(training.getEnddate().before(training.getStartdate()))
+               return false;
+          return true;
+
      }
 }

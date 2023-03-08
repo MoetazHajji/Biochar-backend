@@ -25,5 +25,5 @@ public class Subject implements Serializable {
     String title;
     String description;
     int complexity;
-    int priority;
+   // int priority;
 }

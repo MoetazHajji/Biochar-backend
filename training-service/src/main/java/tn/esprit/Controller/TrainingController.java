@@ -79,8 +79,8 @@ public class TrainingController {
         return null;
     }
 
-    @PutMapping("assignTrainees")
-    public boolean add_Trainees_to_training(@QueryParam("id_training") Long id_training,@QueryParam("id_trainee") List<Long> id_trainee)
+    @PutMapping("assignTrainees/{id_training}/{id_trainee}")
+    public boolean add_Trainees_to_training(@PathVariable("id_training") Long id_training,@PathVariable("id_trainee") List<Long> id_trainee)
     {
         return trainingService.add_Trainees_To_Training(id_training,id_trainee);
     }
@@ -107,7 +107,7 @@ public class TrainingController {
         return TrainingMapper.mapToDto(trainingService.affect_quizes_to_training(ids, training_title));
     }
 
-    @PostMapping("add_with_quizes")
+    @PutMapping("add_with_quizes")
     public TrainingDto add_training_with_quizes(@RequestPart TrainingDto training,@RequestPart Set<QuizDto> quizzes,@RequestPart MultipartFile image)
     {
         Set<Quiz> quizSet = new HashSet<>();

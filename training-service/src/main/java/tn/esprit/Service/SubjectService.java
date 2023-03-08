@@ -77,10 +77,10 @@ public class SubjectService implements ISubjectService {
                                 indexes.put("complexity", cell.getColumnIndex());
                                 check_headers[2] = true;
                                 break;
-                            case "priority":
+                        /*    case "priority":
                                 indexes.put("priority", cell.getColumnIndex());
                                 check_headers[3] = true;
-                                break;
+                                break;*/
                             default:
                                 break;
                         }
@@ -136,12 +136,12 @@ public class SubjectService implements ISubjectService {
             }
 
         }
-        if (check_headers[3]) {
+     /*   if (check_headers[3]) {
             try {
                 subject.setPriority(String_to_Int(row.getCell(indexes.get("priority")).toString().trim()));
             } catch (Exception e) {
             }
-        }
+        }*/
         // log.info("valid");
         return subject;
 
@@ -216,13 +216,13 @@ public class SubjectService implements ISubjectService {
                     cookie.setDate(date);
                     cookie.setUser(id_user);
                     if(cookie_validation(cookie,id_user))
-                    cookies.add(cookie);
+                        cookies.add(cookie);
                 }
                 //Arrays.stream(values).forEach(v -> log.info("--> " + v));
             }
             // log.info(cookies.toString());
             if(cookies.size() > 0)
-            cookiesRepository.saveAll(cookies);
+                cookiesRepository.saveAll(cookies);
         } catch (IOException ioe) {
         }
 
@@ -361,7 +361,7 @@ public class SubjectService implements ISubjectService {
         List<Profile> profiles = get_profiles();
         List<String> selected = new ArrayList<>();
         profiles.forEach(profile -> {
-            String infos = profile.getKnowledge() + profile.getSkills() + profile.getExperience();
+            String infos = profile.getKnowledge() + profile.getSkills() ;
             if(infos.toLowerCase().contains(subject_title.toLowerCase()))
                 selected.add(profile.getEmail());
         });
@@ -469,7 +469,7 @@ public class SubjectService implements ISubjectService {
     }
 
 
-    @Scheduled(cron = "* * * */7 * *")
+    @Scheduled(cron = "0 0 0 */7 * *")
     public void clear_old_cookies()
     {
         LocalDate localDate = LocalDate.now();
