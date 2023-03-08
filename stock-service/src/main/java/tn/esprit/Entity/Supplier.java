@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter @ToString
@@ -25,9 +26,9 @@ public class Supplier implements Serializable {
     String email;
 
     @OneToMany(mappedBy = "supplier" , cascade = {CascadeType.REMOVE , CascadeType.PERSIST,CascadeType.MERGE})
-    List<Adress> adresses;
+    Set<Adress> adresses;
 
     @JsonIgnore
     @OneToMany(mappedBy = "supplier")
-    List<Offer> offers;
+    Set<Offer> offers;
 }

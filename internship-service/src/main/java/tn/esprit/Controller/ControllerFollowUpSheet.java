@@ -31,7 +31,7 @@ public class ControllerFollowUpSheet {
         return isf.getAllFollowUpSheet();
     }
 
-    @GetMapping("get/{id}")
+    @GetMapping("/get/{id}")
     public FollowUpSheet getFollowUpSheet(@PathVariable("id") Integer idFollowUpSheet)
     {
         return isf.findFollowUpSheet(idFollowUpSheet);

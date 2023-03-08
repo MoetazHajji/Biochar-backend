@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Stock;
 import tn.esprit.Interface.IStockService;
+import tn.esprit.Service.StockService;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -15,6 +17,7 @@ import java.util.List;
 @RequestMapping("/stock")
 public class StockController {
     IStockService stocksService;
+    StockService stockSer;
 
     @Operation(description = "Create new Stock")
     @PostMapping("add")
@@ -35,21 +38,21 @@ public class StockController {
     }
 
     @Operation(description = "Retreive Stock by ID")
-    @GetMapping("getAdress/{id}")
+    @GetMapping("getStock/{id}")
     public Stock getStockById(@PathVariable("id") Long id){
         return stocksService.getStockById(id);
     }
 
     @Operation(description = "Retreive all Stock")
-    @GetMapping("getAllAdress")
-    public List<Stock> getAllStock(){
+    @GetMapping("getAllStocks")
+    public Set<Stock> getAllStock(){
         return stocksService.getAllStocks();
     }
 
     @Operation(description = "Affect product to stock")
-    @PutMapping("AssignProductToStock/{idPro}/{idSto}")
-    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro, @PathVariable("idSto") Long idStock){
-        return stocksService.AffectProductToSupplies(idPro,idStock);
+    @PutMapping("AssignProductToStock/{idPro}/{quan}/{idSto}")
+    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro,@PathVariable("quan") Double quantity, @PathVariable("idSto") Long idStock){
+        return stocksService.AffectProductToSupplies(idPro,quantity,idStock);
     }
 
     @GetMapping("getNbProducts/{id}")
@@ -61,4 +64,10 @@ public class StockController {
     public Double getSumSizeOfProducts(@PathVariable Long id){
         return stocksService.getSumSizeOfProducts(id);
     }
+
+    @PutMapping("withdraw/{quantity}/{id}")
+    void withdrawStock(@PathVariable("quantity") Double quantity,@PathVariable("id") Long idstock){
+        stocksService.withdrawStock(quantity, idstock);
+    }
+
 }

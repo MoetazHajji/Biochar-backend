@@ -12,6 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Certificate implements Serializable {
@@ -26,10 +27,11 @@ public class Certificate implements Serializable {
     String type;
 
     @NonNull
-    String description;
+    String description_c;
 
     @NonNull
-    Date a_date;
+    @Column(unique = true)
+    Long number;
 
     @OneToOne(mappedBy = "certificate")
     Training training;

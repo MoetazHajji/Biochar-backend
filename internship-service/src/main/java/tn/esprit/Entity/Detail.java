@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,6 +24,9 @@ public class Detail implements Serializable {
     Diploma diploma;
     String level_of_study;
     String specialite;
+    @OneToOne(mappedBy = "detail")
+    @JsonIgnore
+    Internship internship;
 
 
 

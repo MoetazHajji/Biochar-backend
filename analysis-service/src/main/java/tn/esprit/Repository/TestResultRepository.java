@@ -5,4 +5,5 @@ import tn.esprit.Entity.TestResult;
 
 
 public interface TestResultRepository extends JpaRepository<TestResult,Integer> {
+    TestResult getTestResultByTest_Sample_Account_Id(int id);
 }

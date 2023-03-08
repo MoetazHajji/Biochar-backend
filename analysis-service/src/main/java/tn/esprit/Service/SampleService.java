@@ -3,24 +3,30 @@ package tn.esprit.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.Dto.SampleDto;
+import tn.esprit.Entity.Account;
 import tn.esprit.Entity.Sample;
 import tn.esprit.Interface.ISample;
+import tn.esprit.Mappers.SampleMapper;
+import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.SampleRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class SampleService implements ISample {
 
     private final SampleRepository sampleRepository;
-
-
+    private final AccountRepository accountRepository;
 
     @Override
-    public Sample addOrUpdateSample(Sample sample) {
-        return sampleRepository.save(sample);
+    public SampleDto addOrUpdateSample(SampleDto sampleDto) {
+        Sample sample= sampleRepository.save(SampleMapper.mapToEntity(sampleDto));
+
+        return SampleMapper.mapToDto(sample);
     }
 
     @Override
@@ -33,10 +39,18 @@ public class SampleService implements ISample {
         return sampleRepository.findById(idSample).orElse(null);
     }
     @Override
-    public List<Sample> retrieveAllSample() {
+    public List<SampleDto> retrieveAllSample() {
 
-        List<Sample> Samples =new ArrayList<>();
-        sampleRepository.findAll().forEach(Samples::add);
-        return Samples;
+        return  sampleRepository.findAll().stream().map(sample -> SampleMapper.mapToDto(sample)).collect(Collectors.toList());
+
     }
+    @Override
+    public Sample asignSamTopat(int idSample, int id) {
+        Account d = accountRepository.findById(id).orElse(null);
+        Sample e = sampleRepository.findById(idSample).orElse(null);
+        e.setAccount(d);
+
+        return sampleRepository.save(e);
+    }
+
 }

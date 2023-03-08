@@ -9,5 +9,6 @@ public interface ICertificateService {
     void delete_certificate(Long id);
     List<Certificate> getAll_certificate();
     Certificate getById_certificat(Long id);
+    void delete_all();
 
 }

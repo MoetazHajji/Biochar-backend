@@ -9,4 +9,6 @@ public interface IQuizService {
     void delete_quiz(Long id);
     List<Quiz> getAll_quiz();
     Quiz getById_quiz(Long id);
+
+    void delete_all();
 }

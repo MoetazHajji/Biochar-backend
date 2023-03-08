@@ -3,8 +3,11 @@ package tn.esprit.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.Entity.ExternelEntity.Account;
+import tn.esprit.Entity.ExternelEntity.Demand;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.io.Serializable;
 
 @Entity
@@ -23,14 +26,14 @@ public class Profile implements Serializable {
     Long id;
     String skills;
     String knowledge;
+    @Max(value = 37, message = "Maximum years of experience must be 37! It's time for retirement!")
     Integer experience;
 
-  //  @JsonIgnore
-    @OneToOne(mappedBy = "profile")
+    @OneToOne(cascade = CascadeType.PERSIST)
     Account account;
 
     @JsonIgnore
     @OneToOne
-    Request request;
+    Demand demand;
 
 }
