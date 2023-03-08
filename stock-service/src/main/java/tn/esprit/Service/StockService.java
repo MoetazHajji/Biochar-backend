@@ -2,7 +2,6 @@ package tn.esprit.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entity.Product;
@@ -15,9 +14,7 @@ import tn.esprit.Interface.IStockService;
 import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.IStockRepository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -136,6 +133,5 @@ public class StockService implements IStockService {
         stockRepository.save(stock);
         return stock;
     }
-
 
 }
