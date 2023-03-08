@@ -8,6 +8,7 @@ import tn.esprit.Entity.ExternelEntity.Account;
 import tn.esprit.Entity.Leave_Authorization;
 import tn.esprit.Entity.State_LA;
 import tn.esprit.Entity.Type_LA;
+import tn.esprit.Exception.WrongPeriodException;
 import tn.esprit.Interface.ILeave_AuthService;
 import tn.esprit.Mapper.Leave_AuthorizationMapper;
 import tn.esprit.Repository.AccountRepository;
@@ -32,7 +33,7 @@ public class Leave_AuthService implements ILeave_AuthService{
     public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idA) {
         Account account = accountRepository.findById(idA).orElse(null);
         if(la.getEnd_date().before(la.getStart_date())){
-            return null;
+            throw new WrongPeriodException("End Date must be >= Start Date");
         }else {
             la.setAccount(account);
             Leave_Authorization leaveAuthorization = leave_authorizationRepository.save(la);
@@ -60,9 +61,11 @@ public class Leave_AuthService implements ILeave_AuthService{
     @Override
     public Leave_AuthorizationDto addAndAssignLAToAccount(Leave_Authorization la, Long idA) {
         Account account = accountRepository.findById(idA).orElse(null);
-        if(la.getEnd_date().before(la.getStart_date())){
-            return null;
-        }else {
+        if(la.getType_la().equals(Type_LA.Leave)){
+            if(la.getEnd_date().before(la.getStart_date())){
+                throw new WrongPeriodException("End Date must be >= Start Date");
+            }
+        }
             Leave_Authorization leaveAuthorization = leave_authorizationRepository.save(la);
             leaveAuthorization.setAccount(account);
             leaveAuthorization.setState_la(State_LA.Pending);
@@ -74,7 +77,6 @@ public class Leave_AuthService implements ILeave_AuthService{
             }else {
                 return null;
             }
-        }
     }
 
     @Override
