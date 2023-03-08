@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Command;
 import tn.esprit.Entity.Product;
-import tn.esprit.Entity.Stock;
+import tn.esprit.Exception.NoProductException;
 import tn.esprit.Interface.IProductService;
 import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.IStockRepository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,6 +79,16 @@ public class ProductService implements IProductService {
     public List<Product> getMostOrderedProduct() {
         List<Product> productList= productRepository.FindAllProductsByOrderCountDesc();
         return productList.subList(0,Math.min(5, productList.size()));
+    }
+
+    @Override
+    public void updateProductQuantity(Product product, Long quantity) {
+        if(quantity < 0){
+            throw  new NoProductException("Quantity cannot be negative");
+        }
+        if (quantity == 0){
+            throw  new NoProductException("Product is out of stock");
+        }
     }
 
 
