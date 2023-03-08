@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import tn.esprit.Entity.Detail;
 
 public interface RepoDetail extends JpaRepository<Detail,Integer> {
+
+
 }

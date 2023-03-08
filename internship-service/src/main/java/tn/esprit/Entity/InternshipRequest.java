@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -18,17 +19,24 @@ public class InternshipRequest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int duration;
+    String duration;
+    @NotNull
+    String nom;
+    @NotNull
+    String prenom;
     String motif;
     String motivation;
     @NotNull
     String CV;
     @Enumerated(EnumType.STRING)
-     Status status;
+     Status status = Status.pending;
+    @Temporal(TemporalType.DATE)
     Date start_date;
+    @Temporal(TemporalType.DATE)
     Date end_date;
-    Date sending_date;
-    @ManyToOne
+
+    @OneToOne(mappedBy = "internshipRequest")
+            @JsonIgnore
     Internship internship;
 
 

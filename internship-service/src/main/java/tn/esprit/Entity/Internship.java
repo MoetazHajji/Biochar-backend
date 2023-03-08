@@ -18,18 +18,17 @@ public class Internship implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @NotNull
-    String certificate;
+
     @Enumerated(EnumType.STRING)
     State state;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     Subject subject;
-    @OneToMany(mappedBy = "internship",cascade = CascadeType.PERSIST)
-    Set<InternshipRequest> internshipRequests;
+    @OneToOne
+    InternshipRequest internshipRequest;
     @OneToOne(cascade = CascadeType.PERSIST)
     Detail detail;
-    @OneToMany(mappedBy = "internship",cascade = CascadeType.PERSIST)
-    Set<FollowUpSheet> followUpSheets;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    FollowUpSheet followUpSheet;
 
 
 }
