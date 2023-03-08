@@ -29,16 +29,6 @@ public class Leave_AuthService implements ILeave_AuthService{
      AccountRepository accountRepository;
 
     @Override
-    public Leave_AuthorizationDto addLeaveAuth(Leave_Authorization la) {
-        if(la.getEnd_date().before(la.getStart_date())){
-            return null;
-        }else{
-            Leave_Authorization leaveAuthorization = leave_authorizationRepository.save(la);
-            return Leave_AuthorizationMapper.mapLeaveAuthToDto(leaveAuthorization);
-        }
-    }
-
-    @Override
     public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idA) {
         Account account = accountRepository.findById(idA).orElse(null);
         if(la.getEnd_date().before(la.getStart_date())){
@@ -79,9 +69,11 @@ public class Leave_AuthService implements ILeave_AuthService{
             Long nbr = leave_authorizationRepository.nbLeaveAndAuth(idA);
             if(nbr == 0){
                 leaveAuthorization.setRemaining_days(Long.valueOf(720));
+                leave_authorizationRepository.save(leaveAuthorization);
+                return Leave_AuthorizationMapper.mapLeaveAuthToDto(leaveAuthorization);
+            }else {
+                return null;
             }
-            leave_authorizationRepository.save(leaveAuthorization);
-            return Leave_AuthorizationMapper.mapLeaveAuthToDto(leaveAuthorization);
         }
     }
 

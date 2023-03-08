@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface ILeave_AuthService {
 
-    public Leave_AuthorizationDto addLeaveAuth(Leave_Authorization la);
-   // public Leave_AuthorizationDto addLeaveAuth(Leave_AuthorizationDto la);
     public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idAs);
    // public Leave_AuthorizationDto updateLeaveAuth(Leave_AuthorizationDto la);
     public void deleteLeaveAuth(Long idLA);

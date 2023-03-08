@@ -18,12 +18,6 @@ public class Leave_AuthRestController {
 
     private final Leave_AuthService leave_authService;
 
-    @PostMapping("/addLeaveAuth")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Leave_AuthorizationDto addLA(@RequestBody Leave_Authorization leaveAuthorization){
-        return leave_authService.addLeaveAuth(leaveAuthorization);
-    }
-
     @PutMapping("/updateLeaveAuth/{idA}")
     @ResponseStatus(HttpStatus.OK)
     public Leave_AuthorizationDto updateLA(@RequestBody Leave_Authorization leaveAuthorization, @PathVariable("idA") Long idA){
@@ -54,11 +48,11 @@ public class Leave_AuthRestController {
         return leave_authService.addAndAssignLAToAccount(leaveAuthorization, idA);
     }
 
-    @PutMapping("/assignLAToAccount/{idLA}/{idA}")
+    /*@PutMapping("/assignLAToAccount/{idLA}/{idA}")
     @ResponseStatus(HttpStatus.OK)
     public Leave_AuthorizationDto assignLAToAccount(@PathVariable("idLA") Long idLA, @PathVariable("idA") Long idA){
         return leave_authService.assignLAToAccount(idLA,idA);
-    }
+    }*/
 
     @PostMapping("/updatingRemainingdays")
     @ResponseStatus(HttpStatus.OK)

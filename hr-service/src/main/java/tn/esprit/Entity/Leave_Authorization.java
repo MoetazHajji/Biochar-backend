@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import tn.esprit.Entity.ExternelEntity.Account;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class Leave_Authorization implements Serializable {
     LocalTime authStartTime;
     LocalTime authEndTime;
     Long remaining_days;
+    @NotBlank(message = "You have to add your reason for leave/authorization demand!")
     String cause;
     @Enumerated(EnumType.STRING)
     Type_LA type_la;

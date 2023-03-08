@@ -5,41 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89e34598-b448-4f4f-9f2a-c4dc43db32b5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/AppRunner/bean_ResetData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/Account.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/Roles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Configuration/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Configuration/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/Leave_AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/Leave_AuthRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/ProfileRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/ProfileRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/Work_ScheduleRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Controller/Work_ScheduleRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Leave_AuthorizationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Leave_AuthorizationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Shift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/State_LA.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/State_LA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Work_ScheduleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Dto/Work_ScheduleDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Account.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Demand.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/Demand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/Gender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Leave_Authorization.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Leave_Authorization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Shift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/State_LA.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/State_LA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Work_Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/Work_Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/stateRegion.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Entity/ExternelEntity/stateRegion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/ILeave_AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/ILeave_AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/IProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/IProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/IWork_ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Interface/IWork_ScheduleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Mapper/Leave_AuthorizationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Mapper/Leave_AuthorizationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Mapper/Work_ScheduleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Mapper/Work_ScheduleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/AccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/Leave_AuthorizationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/Leave_AuthorizationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/ProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/Work_ScheduleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Repository/Work_ScheduleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/Leave_AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/Leave_AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/ProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/Work_ScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/java/tn/esprit/Service/Work_ScheduleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hr-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +246,7 @@
       <workItem from="1677923676065" duration="17827000" />
       <workItem from="1677951854774" duration="19970000" />
       <workItem from="1678115780023" duration="38577000" />
-      <workItem from="1678267496251" duration="18087000" />
+      <workItem from="1678267496251" duration="23777000" />
     </task>
     <servers />
   </component>
