@@ -15,10 +15,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 import tn.esprit.Entity.Cookie;
 import tn.esprit.Entity.Subject;
 import tn.esprit.Entity.Training;
 import tn.esprit.External.Profile;
+import tn.esprit.External.Profile_e;
 import tn.esprit.Interface.ISubjectService;
 import tn.esprit.Repository.CookiesRepository;
 import tn.esprit.Repository.ProfileRepository;
@@ -48,6 +50,8 @@ public class SubjectService implements ISubjectService {
     final ProfileRepository profileRepository;
 
     final TrainingRepository trainingRepository;
+
+    final WebClient webClient;
 
     // @Scheduled(cron = "* * 8 * * *")
 
@@ -468,6 +472,20 @@ public class SubjectService implements ISubjectService {
         return null;
     }
 
+    @Override
+    public List<Profile_e> getProfiles() {
+        List<Profile_e> profile_es = new ArrayList<>();
+        Profile_e[] profile_array = webClient.get()
+                .uri("http://localhost:9060/biochar/Profile/getAllProfiles",
+                        uriBuilder -> uriBuilder.build())
+                .retrieve()
+                .bodyToMono(Profile_e[].class)
+                .block();
+        profile_es.addAll(Arrays.asList(profile_array));
+
+        return profile_es;
+    }
+
 
     @Scheduled(cron = "0 0 0 */7 * *")
     public void clear_old_cookies()
@@ -485,5 +503,7 @@ public class SubjectService implements ISubjectService {
             return true;
         return false;
     }
+
+
 
 }
