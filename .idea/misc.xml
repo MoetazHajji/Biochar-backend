@@ -9,8 +9,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/analysis-service/pom.xml" />
-        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
         <option value="$PROJECT_DIR$/hr-service/pom.xml" />
         <option value="$PROJECT_DIR$/internship-service/pom.xml" />
         <option value="$PROJECT_DIR$/training-service/pom.xml" />

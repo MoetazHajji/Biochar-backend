@@ -15,7 +15,7 @@ public interface ISubjectService {
 
     List<Subject> add_Data(MultipartFile file);
 
-    void add_Cookies(HttpServletRequest request,int id_user);
+    void add_Cookies(javax.servlet.http.Cookie[] cookies,int id_user);
 
     void add_Cookies_File(MultipartFile file,int id_user);
 

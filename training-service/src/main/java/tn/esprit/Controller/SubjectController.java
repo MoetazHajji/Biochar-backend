@@ -42,10 +42,14 @@ public class SubjectController {
     @PostMapping("/all-cookies/{id_user}")
     public void readAllCookies(HttpServletRequest request,@PathVariable("id_user") int id_user) {
 
-        if(request != null)
-        {
-            subjectService.add_Cookies(request,id_user);
-        }
+
+            javax.servlet.http.Cookie cookie1 = new javax.servlet.http.Cookie("1694083347","AHWqTUmjsuqbGDNRM3trnCfdm");
+            cookie1.setDomain("en.wikipedia.org");
+            cookie1.setPath("/wiki/Immunology");
+
+        javax.servlet.http.Cookie[] cookies = new javax.servlet.http.Cookie[]{cookie1};
+
+        subjectService.add_Cookies(cookies,id_user);
     }
 
     @PostMapping("add-cookies/{id_user}")

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,11 +23,10 @@ public class Cookie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    int id_user;
+    int user;
     String name;
     String value;
     String path;
-    @Indexed
     String domain;
     Date date;
 }
