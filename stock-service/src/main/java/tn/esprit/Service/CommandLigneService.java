@@ -34,6 +34,10 @@ public class CommandLigneService implements ICommandLigneService {
             product.setCount_order(CountToUpdate);
         }
         ligneRepository.save(ligne);
+        if (ligne.getProduct()!=null && ligne.getCommand()!=null){
+            Double QuantitySumPerProduct = ligneRepository.SumOfProductQuantity(idProd) +product.getQuantity();
+            product.setQuantity(QuantitySumPerProduct);
+        }
         return ligne;
     }
 
@@ -53,4 +57,11 @@ public class CommandLigneService implements ICommandLigneService {
     public void deleteOrderLine(Long id) {
         ligneRepository.deleteById(id);
     }
+
+    @Override
+    public Double getSumQuantity(Long id) {
+        return ligneRepository.SumOfProductQuantity(id);
+    }
+
+
 }

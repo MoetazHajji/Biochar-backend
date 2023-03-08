@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Product;
 import tn.esprit.Interface.IProductService;
+import tn.esprit.Interface.IScrapperService;
+import tn.esprit.Service.ScrapperService;
 
 import java.util.List;
 import java.util.Set;
@@ -16,7 +18,7 @@ import java.util.Set;
 @RequestMapping("/product")
 public class ProductController {
     IProductService productService;
-
+    ScrapperService scrapperService;
     @Operation(description = "Create new product")
     @PostMapping("add")
     public Product addProduct(@RequestBody Product product){
@@ -51,7 +53,10 @@ public class ProductController {
     public List<Product> getMostOrderedProduct(){
         return productService.getMostOrderedProduct();
     }
-
+    @GetMapping("getPrFromUrl")
+    public List<Product> getPrFromUrl(){
+        return scrapperService.run();
+    }
 
 
 }

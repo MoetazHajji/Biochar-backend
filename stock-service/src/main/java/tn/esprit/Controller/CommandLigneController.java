@@ -38,4 +38,9 @@ public class CommandLigneController {
     public Set<CommandLigne> getAllAdress(){
         return ligneService.getAllOrdersLine();
     }
+
+    @GetMapping("getQuantity/{id}")
+    public Double getSumQuantity(@PathVariable("id") Long id){
+        return ligneService.getSumQuantity(id);
+    }
 }

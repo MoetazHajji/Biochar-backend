@@ -15,7 +15,7 @@ import tn.esprit.Service.ScrapperService;
 public class SchedulerConfig {
     private TaskExecutor taskExecutor;
 
-    /*@Scheduled(fixedDelay = 1000)
+    /*@Scheduled(fixedDelay = 10000)
     public void scheduledTask(){
         taskExecutor.execute(new ScrapperService());
     }*/
