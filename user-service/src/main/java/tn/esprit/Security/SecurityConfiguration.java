@@ -28,10 +28,16 @@ public class SecurityConfiguration {
         .csrf().disable()
         .authorizeHttpRequests()
         .antMatchers("/user/auth/**").permitAll()
+        //.antMatchers("/Account/**").authenticated()
+        .antMatchers("/Appointment/**").hasAuthority(Roles.Patient.name())
+        .antMatchers("/Appointment/**").hasAuthority(Roles.Receptionist.name())
 
 
-        .antMatchers("/Appointment/**").permitAll()
             .antMatchers("/Account/**").permitAll()
+
+
+       // .antMatchers("/Appointment/**").permitAll()
+       .antMatchers("/User/**").permitAll()
        // .anyRequest().authenticated()
 
 
@@ -43,9 +49,9 @@ public class SecurityConfiguration {
             .antMatchers("/Page/management-users/**").hasAuthority(Roles.Chief_Service.name())
            // .antMatchers("/Page/management-patient/**").hasRole("ROLE_"+Roles.Patient.name())
            // .antMatchers("/Page/management-users/**").hasRole(Roles.Chief_Service.name())
-
-
            // .antMatchers("/api/v1/User-Conroller/*").hasRole("ADMIN")
+
+
         .and()
           .sessionManagement()
           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
