@@ -27,13 +27,13 @@ public class ProfileService implements IProfileService {
 
     @Override
     public ProfileDto addProfile(ProfileDto profile) {
-        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile));
+        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile,accountRepository));
         return ProfileMapper.mapProfileToDto(p);
     }
 
     @Override
     public ProfileDto updateProfile(ProfileDto profile) {
-        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile));
+        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile,accountRepository));
         return ProfileMapper.mapProfileToDto(p);
     }
 
@@ -75,9 +75,8 @@ public class ProfileService implements IProfileService {
     }
 
     @Override
-    public ProfileDto addAndAssignProfileToAccount(ProfileDto profile, Long idA) {
-        Account account = accountRepository.findById(idA).orElse(null);
-        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile));
+    public ProfileDto addAndAssignProfileToAccount(ProfileDto profile) {
+        Profile p = profileRepository.save(ProfileMapper.mapProfileToEntity(profile,accountRepository));
         return ProfileMapper.mapProfileToDto(p);
     }
 

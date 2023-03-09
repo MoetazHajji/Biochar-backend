@@ -51,10 +51,10 @@ public class ProfileRestController {
         profileService.updateExperience();
     }
 
-    @PostMapping("addAndAssignProfileToAccount/{idA}")
+    @PostMapping("addAndAssignProfileToAccount")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfileDto addAndAssignProfileToAccount(@RequestBody ProfileDto profile, @PathVariable("idA") Long idA){
-        return profileService.addAndAssignProfileToAccount(profile, idA);
+    public ProfileDto addAndAssignProfileToAccount(@RequestBody ProfileDto profile){
+        return profileService.addAndAssignProfileToAccount(profile);
     }
 
 }
