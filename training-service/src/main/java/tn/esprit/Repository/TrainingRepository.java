@@ -15,7 +15,7 @@ public interface TrainingRepository extends JpaRepository<Training,Long> {
     @Query("select t from Training t order by t.duration")
     List<Training> getAllSortedByDuration();
 
-    @Query("select t from Training t order by size(t.reviews)")
+    @Query("select t from Training t order by size(t.reviews) desc ")
     List<Training> getAllSortedByReviews();
 
     Optional<Training> findByTitle(String title);

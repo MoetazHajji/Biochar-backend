@@ -8,6 +8,7 @@ import tn.esprit.Dto.CertificateDto;
 import tn.esprit.Entity.Certificate;
 import tn.esprit.Interface.ITrainingService;
 
+import java.util.Random;
 
 
 @RequiredArgsConstructor
@@ -23,7 +24,9 @@ public class CertificateMapper {
                 .type(certificateDto.getType())
                 .description_c(certificateDto.getDescription())
                 .training(trainingService.get_By_Title_training(certificateDto.getTraining()))
+                .number(0l)
                 .build();
+
         return certificate;
     }
 
@@ -37,6 +40,7 @@ public class CertificateMapper {
                 .title(certificate.getTitle())
                 .type(certificate.getType())
                 .description(certificate.getDescription_c())
+                .number(certificate.getNumber())
                 .training(title)
                 .build();
         return certificateDto;

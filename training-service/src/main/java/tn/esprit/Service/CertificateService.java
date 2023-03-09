@@ -13,6 +13,7 @@ import tn.esprit.Repository.TrainingRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,19 @@ public class CertificateService implements ICertificateService {
      @Override
      @Transactional
      public Certificate add_certificate(Certificate c) {
+
+
+
+          Long rand_nbr = c.getNumber();
+          if(c.getId() ==null) {
+               Random rand = new Random();
+                rand_nbr = Math.abs(rand.nextLong());
+          }
+          else
+          {
+          rand_nbr =  certificateRepository.findById(c.getId()).orElse(null).getNumber();
+          }
+          c.setNumber(rand_nbr);
           Training t = c.getTraining();
           Certificate certificate = certificateRepository.save(c);
           t.setCertificate(certificate);
