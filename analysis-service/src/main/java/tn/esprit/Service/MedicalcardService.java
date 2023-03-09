@@ -20,6 +20,9 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,7 +40,9 @@ private final Path root= Paths.get("uploads");
     @Override
     public Medicalcard addOrUpdateMedicalcard( Medicalcard medicalcard) {
         //Medicalcard medicalcard= medicalcardRepository.save(medicalcard);
-
+        LocalDate localDate = LocalDate.now();
+        Date date_creation = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        medicalcard.setDate_creation(date_creation);
             return medicalcardRepository.save(medicalcard);
 
     }

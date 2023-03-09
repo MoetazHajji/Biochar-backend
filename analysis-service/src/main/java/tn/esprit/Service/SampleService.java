@@ -54,5 +54,14 @@ public class SampleService implements ISample {
 
         return sampleRepository.save(e);
     }
+    @Override
+    public SampleDto AddAndAsignsampleToAccount(SampleDto ws, Long id) {
+        Sample sample = SampleMapper.mapToEntity(ws);
+        sample = sampleRepository.save(sample);
+        Account a = accountRepository.findById(id).orElse(null);
+        sample.setAccount(a);
+        sampleRepository.save(sample);
+        return SampleMapper.mapToDto(sample);
+    }
 
 }
