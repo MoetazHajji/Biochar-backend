@@ -39,7 +39,7 @@ public class TrainingController {
                                 .mapToEntity(t)));
     }
 
-    @PostMapping("imaged")
+    @PutMapping("imaged")
     @ResponseStatus(HttpStatus.CREATED)
     public TrainingDto add_training(@RequestPart TrainingDto t,@RequestPart MultipartFile image)
     {
@@ -89,7 +89,7 @@ public class TrainingController {
         return trainingService.add_Trainer_To_Training(id_training,id_trainer);
     }
     @GetMapping("sorted")
-    public List<TrainingDto> get_sorted_trainings(@QueryParam("by") int by) {
+    public List<TrainingDto> get_sorted_trainings(@QueryParam("by") String by) {
         List<TrainingDto> trainingDtos = new ArrayList<>();
         trainingService.get_sorted_trainings(by).forEach(training -> trainingDtos.add(TrainingMapper.mapToDto(training)));
         return trainingDtos;
@@ -113,5 +113,16 @@ public class TrainingController {
         Set<Quiz> quizSet = new HashSet<>();
         quizzes.forEach(quizDto -> quizSet.add(QuizMapper.mapToEntity(quizDto)));
         return TrainingMapper.mapToDto(trainingService.add_training_with_quizes(TrainingMapper.mapToEntity(training),quizSet,image));
+    }
+
+    @GetMapping("get_dispo")
+    public List<TrainingDto> getAvailable()
+    {
+        List<TrainingDto> trainingDtos = new ArrayList<>();
+
+        trainingService.getAvailable().forEach(training -> {
+            trainingDtos.add(TrainingMapper.mapToDto(training));
+        });
+        return trainingDtos;
     }
 }

@@ -13,5 +13,6 @@ public class CertificateDto {
     String title;
     String type;
     String description;
+    Long number;
     String training;
 }

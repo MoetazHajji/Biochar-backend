@@ -26,5 +26,5 @@ public interface ISubjectService {
 
     Map<String,List<String>> Predictions();
 
-    List<Profile_e> getProfiles();
+    //List<Profile_e> getProfiles();
 }

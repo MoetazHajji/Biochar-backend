@@ -21,7 +21,7 @@ public interface ITrainingService {
     boolean add_Trainer_To_Training(Long id_trining,Long id_trainer);
 
 
-    List<Training> get_sorted_trainings(int by);
+    List<Training> get_sorted_trainings(String by);
 
     Training get_By_Title_training(String title);
 
@@ -29,4 +29,5 @@ public interface ITrainingService {
 
     Training add_training_with_quizes(Training training, Set<Quiz> quizes,MultipartFile image);
 
+    List<Training> getAvailable();
 }
