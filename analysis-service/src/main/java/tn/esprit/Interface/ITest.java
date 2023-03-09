@@ -18,4 +18,6 @@ public interface ITest {
     List<TestDto> retrieveAllTest();
 
     Test asigntesTosmp(int idTest, int idSample);
+
+    TestDto AddAndAsignTestToSample(TestDto ws, int idSample);
 }

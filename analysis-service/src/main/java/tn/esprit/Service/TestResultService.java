@@ -210,10 +210,8 @@ public class TestResultService implements ITestResult {
             if(words.length >1)
             map.put(i,words);
         }
-
         for(String[] line : map.values())
         {
-
             TestResult testResult = new TestResult();
             testResult.setDate(date);
             testResult.setTeest(line[0]);
