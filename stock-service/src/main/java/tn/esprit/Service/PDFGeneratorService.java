@@ -81,7 +81,7 @@ public class PDFGeneratorService {
         // Add the total price to the document
         Double totalPrice = command.getTotal_price();
         Paragraph paragraph = new Paragraph();
-        paragraph.add(new Chunk("Total Price: " + totalPrice.toString() + "dt"));
+        paragraph.add(new Chunk("Total Price: " + totalPrice.toString() + "dt" + "                                                                                          Tunis at : " + command.getDate()));
         document.add(paragraph);
 
 

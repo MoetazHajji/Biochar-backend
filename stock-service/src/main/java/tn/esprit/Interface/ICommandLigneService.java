@@ -15,4 +15,6 @@ public interface ICommandLigneService {
     Set<CommandLigne> getAllOrdersLine();
 
     void deleteOrderLine(Long id);
+
+    Double getSumQuantity(Long id);
 }

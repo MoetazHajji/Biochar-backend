@@ -7,12 +7,12 @@ import java.util.List;
 public interface IProfileService {
 
     public ProfileDto addProfile(ProfileDto profile);
-    public ProfileDto updateProfile(ProfileDto profile);
+    ProfileDto updateProfile(ProfileDto profile);
     public void deleteProfile(Long idP);
     public List<ProfileDto> retrieveAllProfiles();
     public ProfileDto retrieveProfileById(Long idP);
-    public void checkExperience();
-
+    public void updateExperience();
+    public ProfileDto addAndAssignProfileToAccount(ProfileDto profile);
 
 
 }

@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Entity.*;
+import tn.esprit.Exception.OutOfStockException;
 import tn.esprit.Interface.ICommandLigneService;
 import tn.esprit.Interface.IProductService;
 import tn.esprit.Interface.IStockAutoFiller;
@@ -30,7 +31,7 @@ public class StockAutoFiller implements IStockAutoFiller {
 
     @Override
     @Transactional
-    @Scheduled(cron = "*/10 * * * * * ")
+    @Scheduled(fixedDelay = 3000)
     public void checkStockLevels() {
         Set<Stock> stockList = stockService.getAllStocks();
         for (Stock stock:stockList){
@@ -42,6 +43,8 @@ public class StockAutoFiller implements IStockAutoFiller {
                         stockService.AffectProductToSupplies(product.getId(), product.getQuantity(), stock.getId());
                     }else if (product.getQuantity() > product.getAutoFillQuantity()) {
                         stockService.AffectProductToSupplies(product.getId(), product.getAutoFillQuantity(), stock.getId());
+                    }else if(product.getQuantity()<= product.getAutoFillQuantity()){
+                        throw new OutOfStockException("We can't add product " + product.getName_product() + " because nothing left ");
                     }
                 }
             }

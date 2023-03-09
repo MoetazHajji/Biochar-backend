@@ -1,14 +1,21 @@
 package tn.esprit.Controller;
 
+import com.lowagie.text.DocumentException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.Entity.Sample;
-import tn.esprit.Entity.Test;
 import tn.esprit.Entity.TestResult;
+import tn.esprit.Interface.IEmail;
+import tn.esprit.Interface.ISchuduld;
 import tn.esprit.Interface.ITestResult;
+import tn.esprit.Service.PdfGenerator;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -16,6 +23,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestResultController {
     private final ITestResult iTestResult;
+
+    private final IEmail iEmail;
+    private final ISchuduld iSchuduld;
 
     @PostMapping("/add")
     TestResult addtestResult(@RequestBody TestResult e){
@@ -53,8 +63,48 @@ public class TestResultController {
         return iTestResult.asigntesTosmp(idTestResult,idTest);
 
     }
-    @GetMapping("/gett/{id}")
-    TestResult affichBYAcounnt(@PathVariable("id") int id){
+    @GetMapping("/get/{id}")
+   List<TestResult>  affichBYAcounnt(@PathVariable("id") Long id){
         return iTestResult.retriveTestResultBYAcounnt(id);
     }
+    @GetMapping("/getres")
+    void affichBYResult() {
+        try {
+            iSchuduld.Reminder();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+   @GetMapping("/exporttopdf/{id}")
+   public void generatePdfFile(HttpServletResponse response, @PathVariable("id") Long id) throws DocumentException, IOException, MessagingException {
+
+
+       response.setContentType("application/pdf");
+
+       DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD_HH_MM_SS");
+
+       String currentDateTime = dateFormat.format(new Date());
+
+       String headerkey = "Content-Disposition";
+
+       String headervalue = "attachment; filename=patients" + currentDateTime + ".pdf";
+
+       response.setHeader(headerkey, headervalue);
+
+       List<TestResult> testtt = iTestResult.retriveTestResultBYAcounnt(id);
+
+       PdfGenerator generator = new PdfGenerator();
+
+       generator.generateToEtudiant(testtt, response);
+       iEmail.sendMessageWithAttachmentpatient("C:\\Users\\siwar\\Downloads\\".concat(headervalue.substring(21)));
+   }
+    @GetMapping("/getttt")
+   long affich(){
+        return iTestResult.countttt();
+    }
+    @GetMapping("/g")
+    TestResult affichhhh(){
+        return iTestResult.cou();
+    }
+
 }

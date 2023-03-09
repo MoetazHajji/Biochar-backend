@@ -7,9 +7,12 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Dto.MedicalcardDto;
+import tn.esprit.Entity.Account;
 import tn.esprit.Entity.Medicalcard;
+import tn.esprit.Exception.ElementNotFoundException;
 import tn.esprit.Interface.IMedicalcard;
 import tn.esprit.Mappers.MedicalcardMapper;
+import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.MedicalcardRepository;
 
 import java.io.IOException;
@@ -17,6 +20,9 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,14 +33,17 @@ import java.util.stream.Stream;
 public class MedicalcardService implements IMedicalcard {
 
     private final MedicalcardRepository medicalcardRepository;
+    private final AccountRepository accountRepository;
 
 private final Path root= Paths.get("uploads");
 
     @Override
-    public MedicalcardDto addOrUpdateMedicalcard(MedicalcardDto medicalcardDto) {
-        Medicalcard medicalcard= medicalcardRepository.save(MedicalcardMapper.mapToEntity(medicalcardDto));
-
-            return MedicalcardMapper.mapToDto(medicalcard);
+    public Medicalcard addOrUpdateMedicalcard( Medicalcard medicalcard) {
+        //Medicalcard medicalcard= medicalcardRepository.save(medicalcard);
+        LocalDate localDate = LocalDate.now();
+        Date date_creation = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        medicalcard.setDate_creation(date_creation);
+            return medicalcardRepository.save(medicalcard);
 
     }
 
@@ -45,7 +54,7 @@ private final Path root= Paths.get("uploads");
 
     @Override
     public Medicalcard retriveMedicalcard(int idMedicalcard) {
-        return medicalcardRepository.findById(idMedicalcard).orElse(null);
+        return medicalcardRepository.findById(idMedicalcard).orElseThrow(() -> new ElementNotFoundException("Medical card with id "+ idMedicalcard +" not found : " ));
     }
     @Override
     public List<MedicalcardDto> retrieveAllMedicalcards() {
@@ -100,6 +109,17 @@ private final Path root= Paths.get("uploads");
         try {
             return Files.walk(this.root,1).filter(path -> !path.equals(this.root)).map(this.root::relativize) ;
         } catch (IOException e) {
-            throw new RuntimeException(e);      }
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public Medicalcard asignDepToEt(Integer idMedicalcard, Long id) {
+        Medicalcard e = medicalcardRepository.findById(idMedicalcard).orElse(null);
+        Account d = accountRepository.findById(id).orElse(null);
+        e.setAccount(d);
+
+        return medicalcardRepository.save(e);
     }
 }

@@ -5,6 +5,7 @@ import tn.esprit.Entity.TestResult;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface ITestResult {
 
@@ -20,5 +21,17 @@ public interface ITestResult {
 
     TestResult asigntesTosmp(int idTestResult, int idTest);
 
-    TestResult retriveTestResultBYAcounnt(int id);
+    List<TestResult>  retriveTestResultBYAcounnt(Long id);
+
+    TestResult retriveTestResult(String resultat);
+
+    long countttt();
+
+    long counttt();
+
+    long countt();
+
+    TestResult cou();
+
+    Map<Integer,String[]> divide_table(String table);
 }

@@ -14,5 +14,6 @@ public class ProfileDto {
     String skills;
     String knowledge;
     Integer experience;
+    Long account_id;
 
 }

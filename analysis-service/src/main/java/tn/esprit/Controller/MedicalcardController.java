@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import tn.esprit.Dto.MedicalcardDto;
 import tn.esprit.Entity.Medicalcard;
-import tn.esprit.Entity.TypeDossier;
 import tn.esprit.Interface.IMedicalcard;
 
 import java.util.List;
@@ -21,27 +20,27 @@ import java.util.stream.Collectors;
 public class MedicalcardController {
     private final IMedicalcard iMedicalcard;
 
-    @PostMapping("/add/{inputString}")
-    MedicalcardDto addMedicalcard(@RequestBody MedicalcardDto medicalcardDto, @PathVariable String inputString){
-        TypeDossier inputEnum = TypeDossier.valueOf(inputString.toUpperCase());
-
-        if (inputEnum.compareTo(TypeDossier.NEW) == 0) {
-            // execute function 1
-            return iMedicalcard.addOrUpdateMedicalcard(medicalcardDto);
-        } else {
-            // execute function 2
-            return null;
-        }
+    @PostMapping("/add/NEW")
+    Medicalcard addMedicalcard(@RequestBody Medicalcard medicalcard ){
+            return iMedicalcard.addOrUpdateMedicalcard(medicalcard);
 
     }
+
+    @PostMapping("/add/OLD")
+    ResponseEntity<String>  addMedicalcard( @RequestParam MultipartFile file ){
+            iMedicalcard.save(file);
+            return ResponseEntity.ok("fichier enregistré avec secsee"+file.getOriginalFilename());
+
+    }
+
    @DeleteMapping("/delete/{idMedicalcard}")
     void deleteEtudiant(@PathVariable("idMedicalcard") Integer idMedicalcard){
         iMedicalcard.removeMedicalcard(idMedicalcard);
     }
-     @PutMapping("/update")
+     /*@PutMapping("/update")
      MedicalcardDto updateEtudiant(@RequestBody MedicalcardDto e){
         return iMedicalcard.addOrUpdateMedicalcard(e);
-    }
+    }*/
      @GetMapping("/get/{idMedicalcard}")
      Medicalcard getStudent(@PathVariable("idMedicalcard") Integer idMedicalcard){
          return iMedicalcard.retriveMedicalcard(idMedicalcard);
@@ -50,11 +49,8 @@ public class MedicalcardController {
      List<MedicalcardDto> getAllMedicalcard(){
          return iMedicalcard.retrieveAllMedicalcards();
      }
-    @PostMapping("/envoyer")
-    public ResponseEntity<?> uploadFile(@RequestParam MultipartFile file){
-    iMedicalcard.save(file);
-    return ResponseEntity.ok("fichier enregistré avec secsee"+file.getOriginalFilename());
-}
+
+
     @GetMapping("/files")
 public ResponseEntity<List<Medicalcard>> getAlldocs(){
         List<Medicalcard> medicalcards = iMedicalcard.loadAll().map(path -> {
@@ -69,6 +65,12 @@ public ResponseEntity<List<Medicalcard>> getAlldocs(){
     public  ResponseEntity<?> getFile(@PathVariable String filename){
         Resource file = iMedicalcard.load(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment: filename= \""+file.getFilename()+"\"").body(file);
+    }
+
+    @PutMapping("/asignmedtoacc/{idMedicalcard}/{id}")
+    Medicalcard ModifierDep (@PathVariable ("idMedicalcard") Integer idMedicalcard, @PathVariable("id") Long id){
+        return iMedicalcard.asignDepToEt(idMedicalcard,id);
+
     }
 }
 

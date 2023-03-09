@@ -7,10 +7,10 @@ import tn.esprit.Entitys.User;
 import java.util.List;
 
 public interface IGenericCRUD<Object> {
-
     List<Object> SelectAll ();
-    ResponseEntity<Object>  SelectBy (long id);
+    Object  SelectBy (long id);
     Object Insert( Object object);
-    ResponseEntity<Object> update( Object object);
-    ResponseEntity<HttpStatus> delete(  long id );
+    Object update( Object object);
+    boolean delete(  long id );
+    ResponseEntity<HttpStatus> deleteAll( );
 }

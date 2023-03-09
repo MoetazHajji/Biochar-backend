@@ -45,4 +45,16 @@ public class ProfileRestController {
         return profileService.retrieveProfileById(idP);
     }
 
+    @PostMapping("/updateExperience")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateExperience(){
+        profileService.updateExperience();
+    }
+
+    @PostMapping("addAndAssignProfileToAccount")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProfileDto addAndAssignProfileToAccount(@RequestBody ProfileDto profile){
+        return profileService.addAndAssignProfileToAccount(profile);
+    }
+
 }

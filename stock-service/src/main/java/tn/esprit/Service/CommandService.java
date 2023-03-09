@@ -12,6 +12,7 @@ import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -58,9 +59,9 @@ public class CommandService implements ICommandService {
         command.setCommandLignes(null);
         for (Long idCommandLine:idCommandLines)
         {
-                CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElseThrow(() -> new ElementNotFoundException("Command Ligne with id "+ idCommandLine +" not found : " ));
-                commandLigne.setCommand(command);
-                ligneRepository.save(commandLigne);
+            CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElseThrow(() -> new ElementNotFoundException("Command Ligne with id "+ idCommandLine +" not found : " ));
+            commandLigne.setCommand(command);
+            ligneRepository.save(commandLigne);
         }
 
         if(command.getTotal_price()==null && command.getQuantity_product()==null){
