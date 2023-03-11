@@ -145,6 +145,7 @@ public class TraineeService implements ITraineeService {
         List<Subject> subjects = subjectRepository.findAll();
         int size = 0;
         if(subjects.size() >0) {
+
             double knowledge_crit = 20 / subjects.size();
 
             for (Subject subject : subjects) {
@@ -172,8 +173,12 @@ public class TraineeService implements ITraineeService {
         int experience = profile.getExperience();
         if(experience > 10)
             experience = 10;
+<<<<<<< HEAD
 
         return knowledge_score + trainings_score*0.6+experience*2;
+=======
+        return knowledge_score + trainings_score*0.6+experience;
+>>>>>>> 102443cc9b44e3437356c17fdebd41b29388e138
 
     }
 
