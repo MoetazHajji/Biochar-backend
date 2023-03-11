@@ -117,26 +117,22 @@ public class TraineeService implements ITraineeService {
         List<Training> trainings2 = new ArrayList<>();
         filtered_trainings.put("internal",trainings1);
         filtered_trainings.put("external",trainings2);
-        for(Training training: trainings)
-        {
-            if(training.getType_t() == Type_T.internal)
-            {
-                Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
-                if(subject != null)
-                {
-                    if(subject.getComplexity() == (int)profile_score/10 ) {
-                        filtered_trainings.get("internal").add(training);
+        for(Training training: trainings) {
+
+                if (training.getType_t() == Type_T.internal) {
+                    Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
+                    if (subject != null) {
+                        if (subject.getComplexity() == (int) profile_score / 10) {
+                            filtered_trainings.get("internal").add(training);
+                        }
+                    } else {
+                        training.setType_t(Type_T.external);
+                        filtered_trainings.get("external").add(training);
+                        trainingRepository.save(training);
                     }
-                }
-                else
-                {
-                    training.setType_t(Type_T.external);
+                } else
                     filtered_trainings.get("external").add(training);
-                    trainingRepository.save(training);
-                }
-            }else
-                filtered_trainings.get("external").add(training);
-        }
+            }
 
         return filtered_trainings;
     }
@@ -149,7 +145,7 @@ public class TraineeService implements ITraineeService {
         List<Subject> subjects = subjectRepository.findAll();
         int size = 0;
         if(subjects.size() >0) {
-            double knowledge_crit = 30 / subjects.size();
+            double knowledge_crit = 20 / subjects.size();
 
             for (Subject subject : subjects) {
                 String knowledge = profile.getKnowledge() + " " + profile.getSkills() ;
@@ -176,7 +172,8 @@ public class TraineeService implements ITraineeService {
         int experience = profile.getExperience();
         if(experience > 10)
             experience = 10;
-        return knowledge_score + trainings_score*0.6+experience;
+
+        return knowledge_score + trainings_score*0.6+experience*2;
 
     }
 
