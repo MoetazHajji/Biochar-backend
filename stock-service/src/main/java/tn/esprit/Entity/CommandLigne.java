@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

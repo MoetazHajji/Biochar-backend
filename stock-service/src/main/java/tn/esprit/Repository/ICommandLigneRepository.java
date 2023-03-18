@@ -7,6 +7,6 @@ import tn.esprit.Entity.CommandLigne;
 
 @Repository
 public interface ICommandLigneRepository extends JpaRepository<CommandLigne,Long> {
-     @Query("select sum(cl.quantite_product) from CommandLigne cl join cl.product pr where pr.id = :id")
+     @Query("select cl.quantite_product from CommandLigne cl join cl.product pr where pr.id = :id")
     Double SumOfProductQuantity(Long id);
 }
