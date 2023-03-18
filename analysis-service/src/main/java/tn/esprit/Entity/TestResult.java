@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @ToString
 @Setter
@@ -37,5 +36,6 @@ public class TestResult implements Serializable {
         this.PLAGE_DE_REFERENCE=String.valueOf(text3);
         this.date=new Date();
     }
+
 
 }

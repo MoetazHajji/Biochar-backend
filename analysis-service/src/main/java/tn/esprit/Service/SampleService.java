@@ -11,6 +11,7 @@ import tn.esprit.Mappers.SampleMapper;
 import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.SampleRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ public class SampleService implements ISample {
 
     @Override
     public SampleDto addOrUpdateSample(SampleDto sampleDto) {
+        sampleDto.setDate(LocalDate.now());
         Sample sample= sampleRepository.save(SampleMapper.mapToEntity(sampleDto));
 
         return SampleMapper.mapToDto(sample);
@@ -45,12 +47,21 @@ public class SampleService implements ISample {
 
     }
     @Override
-    public Sample asignSamTopat(int idSample, int id) {
+    public Sample asignSamTopat(int idSample, Long id) {
         Account d = accountRepository.findById(id).orElse(null);
         Sample e = sampleRepository.findById(idSample).orElse(null);
         e.setAccount(d);
 
         return sampleRepository.save(e);
+    }
+    @Override
+    public SampleDto AddAndAsignsampleToAccount(SampleDto ws, Long id) {
+        Sample sample = SampleMapper.mapToEntity(ws);
+        sample = sampleRepository.save(sample);
+        Account a = accountRepository.findById(id).orElse(null);
+        sample.setAccount(a);
+        sampleRepository.save(sample);
+        return SampleMapper.mapToDto(sample);
     }
 
 }

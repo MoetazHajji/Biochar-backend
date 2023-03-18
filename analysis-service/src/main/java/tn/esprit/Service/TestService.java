@@ -55,4 +55,14 @@ import java.util.stream.Collectors;
 
         return testRepository.save(d);
     }
+
+    @Override
+    public TestDto AddAndAsignTestToSample(TestDto ws, int idSample) {
+        Test test = TestMapper.mapToEntity(ws);
+        test = testRepository.save(test);
+        Sample a = sampleRepository.findById(idSample).orElse(null);
+        test.setSample(a);
+        testRepository.save(test);
+        return TestMapper.mapToDto(test);
+    }
 }

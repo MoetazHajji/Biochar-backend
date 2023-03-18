@@ -1,13 +1,11 @@
 package tn.esprit.Controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.TestDto;
-import tn.esprit.Entity.Sample;
 import tn.esprit.Entity.Test;
-import tn.esprit.Entity.TestResult;
 import tn.esprit.Interface.ITest;
-import tn.esprit.Interface.ITestResult;
 
 import java.util.List;
 
@@ -46,5 +44,11 @@ public class TestController {
     Test ModifierDep (@PathVariable ("idTest") Integer idTest, @PathVariable("idSample") Integer idSample){
         return iTest.asigntesTosmp(idTest,idSample);
 
+    }
+
+    @PostMapping("/AddAndAssignTestToSample/{idSample}")
+    @ResponseStatus(HttpStatus.OK)
+    public TestDto AddAndAssignTestToSample(@RequestBody TestDto testDto, @PathVariable("idSample") int idSample){
+        return iTest.AddAndAsignTestToSample(testDto,idSample);
     }
 }

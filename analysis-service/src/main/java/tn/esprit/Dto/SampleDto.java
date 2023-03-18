@@ -2,7 +2,7 @@ package tn.esprit.Dto;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 @ToString
 @Builder
 @Setter
@@ -10,6 +10,6 @@ import java.util.Date;
 @Getter
 public class SampleDto {
     private Integer idSample;
-    private Date date;
+    private LocalDate date;
     private String numSample;
 }

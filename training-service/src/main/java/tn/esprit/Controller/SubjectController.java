@@ -81,6 +81,6 @@ public class SubjectController {
     @GetMapping("getProfiles")
     public List<Profile_e> getProfiles()
     {
-        return subjectService.getProfiles();
+        return null;
     }
 }
