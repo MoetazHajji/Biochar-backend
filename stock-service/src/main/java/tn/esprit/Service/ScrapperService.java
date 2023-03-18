@@ -63,7 +63,7 @@ public class ScrapperService {
             e.printStackTrace();
         }*/
         List<Product> avaialbe_products = new ArrayList<>();
-        Set<Product> productList= productService.getProductList();
+        List<Product> productList= productService.getMostOrderedProduct();
         String data = getUrls("https://www.tunisianet.com.tn/420-carte-mere");
         System.out.println(data);
        // List<Product> products = productRepository.getListProductByName(name);
