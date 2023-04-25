@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import tn.esprit.Entity.*;
 import tn.esprit.External.Profile;
 import tn.esprit.Interface.ITraineeService;
-import tn.esprit.Repository.ProfileRepository;
 import tn.esprit.Repository.SubjectRepository;
 import tn.esprit.Repository.TraineeRepository;
 import tn.esprit.Repository.TrainingRepository;
@@ -27,7 +26,7 @@ public class TraineeService implements ITraineeService {
 
     final SubjectRepository subjectRepository;
 
-    final ProfileRepository profileRepository;
+    final Connections connections;
 
     @Override
     public Trainee add_trainee(Trainee t) {
@@ -109,7 +108,7 @@ public class TraineeService implements ITraineeService {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         List<Training> trainings = trainingRepository.findByStartdateAfter(date);
-        Profile profile = profileRepository.findById(profile_id).orElse(null);
+        Profile profile = connections.getAccountProfileById(profile_id);
         double profile_score = calculate_profile_score(profile,date);
 
         Map<String,List<Training>> filtered_trainings = new HashMap<>();
@@ -154,7 +153,7 @@ public class TraineeService implements ITraineeService {
                     knowledge_score += knowledge_crit;
             }
 
-            List<Trainee> trainees = traineeRepository.findByEmail(profile.getEmail());
+            List<Trainee> trainees = traineeRepository.findByEmail(connections.getAccountEmailById(profile.getId()));
             for (Trainee trainee : trainees) {
                 if (!(trainee.getValidate_day() == null && trainee.getTraining().getEnddate().after(date))) {
                     trainings_score += trainee.getScore();
@@ -173,12 +172,10 @@ public class TraineeService implements ITraineeService {
         int experience = profile.getExperience();
         if(experience > 10)
             experience = 10;
-<<<<<<< HEAD
+
 
         return knowledge_score + trainings_score*0.6+experience*2;
-=======
-        return knowledge_score + trainings_score*0.6+experience;
->>>>>>> 102443cc9b44e3437356c17fdebd41b29388e138
+
 
     }
 
@@ -187,7 +184,7 @@ public class TraineeService implements ITraineeService {
     {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Profile profile =profileRepository.findById(id_profile).orElse(null);
+        Profile profile =connections.getAccountProfileById(id_profile);
         if(profile !=null)
             return calculate_profile_score(profile,date);
         return 0;

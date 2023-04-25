@@ -7,18 +7,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
+
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Profile implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String skills;
     String knowledge;
-    int experience;
-    String email;
+    Integer experience;
+    Long account_id;
 }
