@@ -28,6 +28,7 @@ public class SecurityConfiguration {
         .csrf().disable()
         .authorizeHttpRequests()
         .antMatchers("/user/auth/**").permitAll()
+        .antMatchers("/Account/**").permitAll()
         //.antMatchers("/Account/**").authenticated()
         .antMatchers("/Appointment/**").hasAuthority(Roles.Patient.name())
         .antMatchers("/Appointment/**").hasAuthority(Roles.Receptionist.name())

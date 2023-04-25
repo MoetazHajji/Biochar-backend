@@ -14,7 +14,7 @@ public interface ITraineeService {
     List<Trainee> getAll_trainee();
     Trainee getById_trainee(Long id);
     void delete_all();
-    int submit_Answer(Map<String,List<Integer>> answers, Long id_trainee);
+        int submit_Answer(Map<String,List<Integer>> answers, Long id_trainee);
 
     Map<String,List<Training>> get_suits(Long profile_id );
 

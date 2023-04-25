@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -37,9 +38,9 @@ public class Training implements Serializable {
     @Min(0)
     float duration;
 
-    @Min(0)
-    @Max(23)
-    float time;
+
+
+    String time;
     @NonNull
     @Column(unique = true)
     String title;

@@ -3,9 +3,7 @@ package tn.esprit.Interface;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Cookie;
 import tn.esprit.Entity.Subject;
-import tn.esprit.External.Profile_e;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 

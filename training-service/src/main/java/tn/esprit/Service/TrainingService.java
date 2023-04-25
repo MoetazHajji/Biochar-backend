@@ -234,7 +234,7 @@ public class TrainingService implements ITrainingService {
      }
 
      private String image_handling(MultipartFile image,String title) throws IOException {
-          String destination ="src\\main\\resources\\" + title + "\\"+title+".png";
+          String destination ="src\\main\\resources\\images\\" + title + "\\"+title+".png";
           //t.setImage( "src\\main\\resources\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
           InputStream inputStream = image.getInputStream();
@@ -264,7 +264,7 @@ public class TrainingService implements ITrainingService {
      }
 
 
-     @Scheduled(fixedDelay = 3000)
+    // @Scheduled(fixedDelay = 3000)
      public void delete_unused()
      {
           traineeRepository.findAll().forEach(trainee -> {
@@ -285,7 +285,7 @@ public class TrainingService implements ITrainingService {
 
      }
 
-     @Scheduled(fixedDelay = 50000)
+   //  @Scheduled(fixedDelay = 50000)
      public void update_training_type()
      {
           for(Training training :trainingRepository.findAll())
