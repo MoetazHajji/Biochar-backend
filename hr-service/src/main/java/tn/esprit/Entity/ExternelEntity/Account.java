@@ -8,6 +8,7 @@ import tn.esprit.Entity.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,7 @@ public class Account implements Serializable {
     int cin;
     int phone;
     LocalDate dateOfBirth;
-    LocalDate dateCreation;
+    LocalDateTime createdAt;
     LocalDate hireDate;
     String email;
     String photo;
