@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
 
-        <module>analysis-service</module>
+
         <module>stock-service</module>
         <module>hr-service</module>
         <module>training-service</module>
@@ -18,6 +18,7 @@
         <module>internship-service</module>
         <module>discovery-server</module>
         <module>api-gateway</module>
+        <module>mail-service</module>
     </modules>
 
     <properties>

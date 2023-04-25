@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/Page")
+@RequestMapping("/biochar")
 public class testPage {
 
 
@@ -21,18 +21,16 @@ public class testPage {
     public String users_index(){
         return "user/index";
     }
-    @GetMapping("/management-analysis")
+
+
+
+    @GetMapping("/internship/**")
     public String analysis_index(){
-        return "analysis/index";
+        return "internship-service";
     }
-    @GetMapping("/management-internship")
-    public String management_index(){
-        return "internship/index";
-    }
-    @GetMapping("/management-patient")
-    public ResponseEntity<String>  patient_index(){
-        return  ResponseEntity.ok("patient/index");
-    }
+    @GetMapping("/stock-service/**")
+    public String management_index(){   return "stock-service"; }
+
 
 
 

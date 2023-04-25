@@ -19,6 +19,7 @@ import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,7 +53,7 @@ public class AccountService  implements IAccountService {
     }
     @Override
     public AccountDto Insert(AccountDto object) {
-        object.setDateCreation( new Date(System.currentTimeMillis()));
+        object.setCreatedAt(   LocalDateTime.now() );
         Account account = AccountMapper.mapToEntity(object);
         return  AccountMapper.mapToDto( accountRepository.save(account));
     }

@@ -2,10 +2,7 @@ package tn.esprit.Mappers;
 
 import tn.esprit.Dto.AccountDto;
 import tn.esprit.Dto.UserDto;
-import tn.esprit.Entitys.Account;
-import tn.esprit.Entitys.Gender;
-import tn.esprit.Entitys.User;
-import tn.esprit.Entitys.stateRegion;
+import tn.esprit.Entitys.*;
 
 import java.util.Date;
 
@@ -18,7 +15,7 @@ public class AccountMapper {
                 .cin(accountDto.getCin())
                 .phone(accountDto.getPhone())
                 .dateOfBirth(accountDto.getDateOfBirth())
-                .dateCreation(accountDto.getDateCreation())
+                .createdAt(accountDto.getCreatedAt())
                 .email(accountDto.getEmail())
                 .photo(accountDto.getPhoto())
                 .gender(accountDto.getGender())
@@ -26,8 +23,10 @@ public class AccountMapper {
                 .city(accountDto.getCity())
                 .zip_code(accountDto.getZip_code())
                 .adresse(accountDto.getAdresse())
+                .team(accountDto.getTeam())
+                .shift(accountDto.getShift())
                 //.user(accountDto.getUser())
-                .appointments(accountDto.getAppointments())
+                //.appointments(accountDto.getAppointments())
                 .build();
     }
     public static AccountDto mapToDto(Account account){
@@ -38,7 +37,7 @@ public class AccountMapper {
                 .cin(account.getCin())
                 .phone(account.getPhone())
                 .dateOfBirth(account.getDateOfBirth())
-                .dateCreation(account.getDateCreation())
+                .createdAt(account.getCreatedAt())
                 .email(account.getEmail())
                 .photo(account.getPhoto())
                 .gender(account.getGender())
@@ -47,8 +46,10 @@ public class AccountMapper {
                 .zip_code(account.getZip_code())
                 .adresse(account.getAdresse())
                 //.user(account.getUser())
-                .appointments(account.getAppointments())
-                .roles(account.getUser().getRoles())
+                //.appointments(account.getAppointments())
+                .team(account.getTeam())
+                .shift(account.getShift())
+                .role(account.getUser().getRoles())
                 .build();
     }
 }

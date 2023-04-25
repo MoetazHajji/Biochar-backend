@@ -7,35 +7,39 @@ import tn.esprit.Entitys.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
 
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountDto {
     long id;
+    LocalDateTime createdAt;
     String firstname;
     String lastname;
     int cin;
     int phone;
     LocalDate dateOfBirth;
-    Date dateCreation;
     LocalDate hireDate;
     String email;
     String photo;
     Gender gender;
-    stateRegion state;
+    StateRegion state;
     String city;
     int zip_code;
     String adresse;
-    Roles roles;
+    Roles role;
+    Team team ;
+    Shift shift;
     //User user;
-    Set<Appointment> appointments;
+    //Set<Appointment> appointments;
 }
 
 

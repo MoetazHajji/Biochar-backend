@@ -66,7 +66,7 @@ public class FileService implements IFileService {
         startTimeSpan.text(String.valueOf(appointment.getAppointmentStartTime()));
         endTimeSpan.text(String.valueOf(appointment.getAppointmentEndTime()));
         reason.text(appointment.getReason());
-        firstVisitSpan.text((appointment.is_first_visit()? "Yes":"No"));
+        firstVisitSpan.text((appointment.isFirstVisit()? "Yes":"No"));
         statusSpan.text(String.valueOf(appointment.getAppointmentStatus()));
         createAt.text(String.valueOf(appointment.getCreatedAt()));
         paragrahelink.attr("href",pageHomeLink);

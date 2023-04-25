@@ -29,24 +29,23 @@ public class SecurityConfiguration {
         .authorizeHttpRequests()
         .antMatchers("/user/auth/**").permitAll()
         //.antMatchers("/Account/**").authenticated()
-        .antMatchers("/Appointment/**").hasAuthority(Roles.Patient.name())
-        .antMatchers("/Appointment/**").hasAuthority(Roles.Receptionist.name())
-
-
+            .antMatchers("/Appointment/**").permitAll()
             .antMatchers("/Account/**").permitAll()
+       // .antMatchers("/Appointment/**").hasAuthority(Roles.Patient.name())
+      //  .antMatchers("/Appointment/**").hasAuthority(Roles.Receptionist.name())
+        .antMatchers("/TimeOff/**").hasAuthority(Roles.Chief_Service.name())
 
 
-       // .antMatchers("/Appointment/**").permitAll()
+
+            .antMatchers("/biochar/stock-service/**").hasAuthority(Roles.Chief_Service.name())
+            .antMatchers("/biochar/internship/**").hasAuthority(Roles.Intern.name())
        .antMatchers("/User/**").permitAll()
        // .anyRequest().authenticated()
 
 
             .antMatchers("/api/v1/demo-controller").authenticated()
 
-            //.antMatchers("/api/v1/User-Conroller").hasAuthority("ADMIN")
-            .antMatchers("/Page/management-patient/**").hasAuthority(Roles.Patient.name())
-            .antMatchers("/Page/management-users/**").hasAuthority(Roles.Chief_Service.name())
-            .antMatchers("/Page/management-users/**").hasAuthority(Roles.Chief_Service.name())
+
            // .antMatchers("/Page/management-patient/**").hasRole("ROLE_"+Roles.Patient.name())
            // .antMatchers("/Page/management-users/**").hasRole(Roles.Chief_Service.name())
            // .antMatchers("/api/v1/User-Conroller/*").hasRole("ADMIN")
