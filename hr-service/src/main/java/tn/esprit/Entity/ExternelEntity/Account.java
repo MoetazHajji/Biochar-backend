@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -35,7 +36,7 @@ public class Account implements Serializable {
     @Enumerated(EnumType.STRING)
     Gender gender;
     @Enumerated(EnumType.STRING)
-    stateRegion state;
+    StateRegion state;
     String city;
     int zip_code;
     String adresse;
