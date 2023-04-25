@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
 
-
+        <module>analysis-service</module>
         <module>stock-service</module>
         <module>hr-service</module>
         <module>training-service</module>
