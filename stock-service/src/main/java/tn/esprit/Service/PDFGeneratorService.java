@@ -40,7 +40,7 @@ public class PDFGeneratorService {
 
         // Add a title to the document
         Font titleFont = new Font(Font.HELVETICA, 24, Font.BOLD);
-        Paragraph title = new Paragraph("Command #" + command.getId() + " Summary", titleFont);
+        Paragraph title = new Paragraph("Command #" + command.getId() );
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
 
