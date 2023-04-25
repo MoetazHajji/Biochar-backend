@@ -1,6 +1,6 @@
 package tn.esprit.Entity.ExternelEntity;
 
-public enum stateRegion {
+public enum StateRegion {
     Ariana,
     Béja,
     Ben_Arous,
