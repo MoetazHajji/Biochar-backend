@@ -6,6 +6,7 @@ import tn.esprit.Entity.Subject;
 import tn.esprit.Entity.Test;
 import tn.esprit.Interface.IServiceTest;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @AllArgsConstructor
@@ -30,9 +31,9 @@ public class ControllerTest {
     {
         return ist.findTest(idTest);
     }
-    @PutMapping("/createTest/{followUpSheetid}")
-    public Test affecttesttofollowupsheet(@PathVariable("followUpSheetid") int followUpSheetid,@RequestBody Test test){
-        return ist.affecttesttofollowupsheet(followUpSheetid, test);
+    @PutMapping("aff")
+    public Test affect(@QueryParam("followUpSheetid") int followUpSheetid, @QueryParam("idtest") int idtest){
+        return ist.affecttesttofollowupsheet(followUpSheetid, idtest);
     }
 
     @GetMapping("/getresult/{testId}")

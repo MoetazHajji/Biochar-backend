@@ -107,7 +107,10 @@ public class StockService implements IStockService {
             stock.setTotal_quantity(totQantity);
             stock.setState(State.AVAILABLE);
             stockRepository.save(stock);
-        }  if (stock.getFree_storage() == stock.getStorage() ) {
+        }   if (product.getQuantity() <0 || stock.getUsed_storage()<0 || stock.getFree_storage() <0 || stock.getTotal_quantity() <0 ){
+            throw new NoProductException("Prduct quantity or stock quantity or storage can't be negative");
+        }
+        if (stock.getFree_storage() == stock.getStorage() ) {
             stock.setState(State.OUT_OF_STOCK);
             throw new OutOfStockException("Product is out of stock ");
         }

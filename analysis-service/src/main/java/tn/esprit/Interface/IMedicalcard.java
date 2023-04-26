@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public interface IMedicalcard {
 
-    MedicalcardDto addOrUpdateMedicalcard(MedicalcardDto medicalcardDto);
+    Medicalcard addOrUpdateMedicalcard(Medicalcard medicalcard);
 
     void removeMedicalcard(int idMedicalcard);
 
@@ -26,4 +26,5 @@ public interface IMedicalcard {
     public void save(MultipartFile file);
     public Resource load(String filename);
     public Stream<Path> loadAll();
+    Medicalcard asignDepToEt(Integer idMedicalcard, Long id);
 }

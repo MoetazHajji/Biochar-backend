@@ -15,10 +15,10 @@ import java.util.List;
 public class ControllerSubject {
     IServiceSubject iss;
 
-    // @PostMapping("/add")
-    // public Subject addSubject (@RequestBody Subject s) {
-    // return iss.addSubject(s);
-    //  }
+    @PostMapping("/add")
+    public Subject addSubject (@RequestBody Subject s) {
+    return iss.addSubject(s);
+    }
     @PutMapping("/update")
     public Subject updateSubject(@RequestBody Subject s) {
         return iss.addSubject(s);

@@ -8,8 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.UserDto;
+import tn.esprit.Entitys.Roles;
 import tn.esprit.Entitys.User;
 import tn.esprit.Services.IGenericCRUD;
+import tn.esprit.Services.IUserService;
 
 import java.util.Date;
 import java.util.List;
@@ -18,24 +21,44 @@ import java.util.List;
 @RestController
 @RequestMapping("/User")
 public class UserController {
-    private IGenericCRUD<User> IUserService;
+    private IUserService iUserService;
     @Autowired
-    public UserController(@Qualifier("User") IGenericCRUD<User> IUserService){this.IUserService = IUserService;}
+    public UserController(@Qualifier("User") IUserService iUserService){this.iUserService = iUserService;}
 
     @GetMapping
-    public List<User> SelectAll () {return  IUserService. SelectAll () ;}
+    public List<UserDto> SelectAll () {return  iUserService. SelectAll () ;}
 
     @GetMapping("{id}")
-    public ResponseEntity<User> SelectBy (@PathVariable int id) {return  IUserService.SelectBy ( id) ;}
+    public ResponseEntity<UserDto> SelectBy (@PathVariable int id) {return ResponseEntity.ok(  iUserService.SelectBy ( id)) ;}
 
-    @PostMapping
-    public User Insert( @RequestBody User user) {return  IUserService.Insert(   user);}
+    // @PostMapping
+    // public UserDto Insert( @RequestBody UserDto user) {return  iUserService.Insert(   user);}
 
     @PutMapping
-    public  ResponseEntity<User> update( @RequestBody User user){return  IUserService.update(  user);}
+    public  ResponseEntity<UserDto> update( @RequestBody UserDto user){return  ResponseEntity.ok( iUserService.update(  user));}
+
+    @PutMapping("sendMailCode/{email}")
+    String sendMailCode_ForgotPassword(@PathVariable("email")  String email){
+        return  iUserService.sendMailCode_ForgotPassword( email );}
+
+    @PutMapping("confirmationCode/{code}/{password}")
+    boolean confirmationCode(@PathVariable("code") String code,@PathVariable("password")  String password){
+        return iUserService.confirmationCode( code,  password);
+    }
 
     @DeleteMapping("{id}")
-    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){return  IUserService.delete( id ); }
+    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){  iUserService.delete( id ); return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+
+    @PutMapping("updateRole/{id_user}/{role}")
+    ResponseEntity<UserDto>   updateRole(@PathVariable("id_user") long id_user,@PathVariable("role") Roles role){
+        return  ResponseEntity.ok(   iUserService.updateRole( id_user,  role));
+    }
+
+
+
+
+
+
 
 }
 
@@ -46,7 +69,6 @@ public class UserController {
      "username":"belhsen97",
      "password":"97747369",
      "roles":"Doctor",
-     "permissions":"admin",
-     "isEnabled":true
+     "permissions":"admin"
 }
  */

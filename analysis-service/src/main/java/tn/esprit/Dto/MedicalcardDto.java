@@ -3,8 +3,7 @@ package tn.esprit.Dto;
 import lombok.*;
 import tn.esprit.Entity.TypeDossier;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+
 import java.util.Date;
 
 @ToString
@@ -14,7 +13,11 @@ import java.util.Date;
 @Getter
 public class MedicalcardDto {
     private int idMedicalcard;
-    private int card_number ;
+
+    //@Pattern(regexp = "[a-zA-Z0-9]{3}-\\d{4}-\\d{2}-\\d{2}", message = "Invalid format")
+    //@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")
+
+    private String card_number ;
     private Date date_creation;
     private String review;
     private String Doc;

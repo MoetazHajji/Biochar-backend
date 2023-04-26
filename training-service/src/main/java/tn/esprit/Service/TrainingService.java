@@ -21,6 +21,8 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -131,15 +133,15 @@ public class TrainingService implements ITrainingService {
 
 
      @Override
-     public List<Training> get_sorted_trainings(int by) {
-          switch (by) {
-               case 0:
+     public List<Training> get_sorted_trainings(String by) {
+          switch (by.trim().toLowerCase()) {
+               case "date":
                     return trainingRepository.getAllSortedByDate();
-               case 1:
+               case "duration":
                     return trainingRepository.getAllSortedByDuration();
-               //  case 2:
-               //      return trainingRepository.getAllSortedByReviews();
-               case 2:
+               case "reviews":
+                    return trainingRepository.getAllSortedByReviews();
+               case "ratings":
                     return sortByReviews();
 
           }
@@ -193,10 +195,16 @@ public class TrainingService implements ITrainingService {
           if(validate_date(training)) {
                try {
                     training = training_type_check(training);
+                    log.info("===========>"+quizes.toString());
                     filter_quizes(quizes);
-                    if (quizes.size() > 0)
+                    log.info("---------->"+quizes.toString());
+                    if (quizes.size() > 0) {
+                         log.info("++++++++++++++++>"+quizes.toString());
                          training.setQuizes(quizes);
+
+                    }
                     training.setImage(image_handling(image, training.getTitle()));
+                    log.info("*********************>"+training.getQuizes().toString());
                     return trainingRepository.save(training);
                } catch (IOException ioe) {
                     log.error("IO Problem : " + ioe.getMessage());
@@ -205,6 +213,13 @@ public class TrainingService implements ITrainingService {
           }
           else
                return null;
+     }
+
+     @Override
+     public List<Training> getAvailable() {
+          LocalDate localDate = LocalDate.now();
+          Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+          return trainingRepository.findByStartdateAfter(date);
      }
 
 
@@ -219,7 +234,7 @@ public class TrainingService implements ITrainingService {
      }
 
      private String image_handling(MultipartFile image,String title) throws IOException {
-          String destination ="src\\main\\resources\\" + title + "\\"+title+".png";
+          String destination ="src\\main\\resources\\images\\" + title + "\\"+title+".png";
           //t.setImage( "src\\main\\resources\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
           InputStream inputStream = image.getInputStream();
@@ -249,7 +264,7 @@ public class TrainingService implements ITrainingService {
      }
 
 
-     @Scheduled(fixedDelay = 3000)
+    // @Scheduled(fixedDelay = 3000)
      public void delete_unused()
      {
           traineeRepository.findAll().forEach(trainee -> {
@@ -269,4 +284,30 @@ public class TrainingService implements ITrainingService {
           return true;
 
      }
+
+   //  @Scheduled(fixedDelay = 50000)
+     public void update_training_type()
+     {
+          for(Training training :trainingRepository.findAll())
+          {
+               Boolean check = false;
+               for(Subject subject : subjectRepository.findAll())
+               {
+
+                    if(training.getTitle().trim().equalsIgnoreCase(subject.getTitle().trim()))
+                    {
+                         check = true;
+                    }
+
+               }
+
+               if(check)
+                    training.setType_t(Type_T.internal);
+               else
+                    training.setType_t(Type_T.external);
+               trainingRepository.save(training);
+          }
+     }
+
+
 }

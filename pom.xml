@@ -18,6 +18,7 @@
         <module>internship-service</module>
         <module>discovery-server</module>
         <module>api-gateway</module>
+        <module>mail-service</module>
     </modules>
 
     <properties>
@@ -53,7 +54,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>3.0.4</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
