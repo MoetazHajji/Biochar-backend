@@ -9,7 +9,7 @@ import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Appointment;
 import tn.esprit.Entitys.AppointmentStatus;
-import tn.esprit.exception.Mappers.AppointmentMapper;
+import tn.esprit.Mappers.AppointmentMapper;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.AppointmentRepository;
 

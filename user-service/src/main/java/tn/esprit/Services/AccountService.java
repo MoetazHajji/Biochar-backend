@@ -3,19 +3,26 @@ package tn.esprit.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.AccountDto;
 import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.Account;
+import tn.esprit.Entitys.Appointment;
+import tn.esprit.Entitys.Gender;
 import tn.esprit.Entitys.User;
-import tn.esprit.exception.Mappers.AccountMapper;
-import tn.esprit.exception.Mappers.AppointmentMapper;
+import tn.esprit.Mappers.AccountMapper;
+import tn.esprit.Mappers.AppointmentMapper;
+import tn.esprit.Mappers.UserMapper;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +33,8 @@ public class AccountService  implements IAccountService {
     private AccountRepository accountRepository;
     private IAppointementService iAppointementService;
 
+    @Autowired
+    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
     @Autowired
     public AccountService(AccountRepository accountRepository ,
                           UserRepository userRepository,
@@ -48,6 +57,8 @@ public class AccountService  implements IAccountService {
     @Override
     public AccountDto Insert(AccountDto object) {
         object.setCreatedAt(   LocalDateTime.now() );
+        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  object  );
+        kafkaTemplateAccountDto.flush();
         Account account = AccountMapper.mapToEntity(object);
         return  AccountMapper.mapToDto( accountRepository.save(account));
     }
@@ -57,6 +68,8 @@ public class AccountService  implements IAccountService {
         Account account = accountRepository.findById(object.getId()).
                 orElseThrow(()-> new RessourceNotFoundException("Service Account : update Account not existe with id : "+object.getId()))  ;
         //account.setEmail(object.getEmail());
+        kafkaTemplateAccountDto.  send("topic-service-user-account-update",  object  );
+        kafkaTemplateAccountDto.flush();
         account = accountRepository.save(AccountMapper.mapToEntity(object));
         return AccountMapper.mapToDto(account) ;
     }
@@ -66,6 +79,8 @@ public class AccountService  implements IAccountService {
         boolean deleted = false;
         Account account = accountRepository.findById(id) .
                 orElseThrow(()-> new RessourceNotFoundException("Service Account : delete Account not existe with id : "+id)) ;
+        kafkaTemplateAccountDto.  send("topic-service-user-account-delete",  AccountMapper.mapToDto(account)  );
+        kafkaTemplateAccountDto.flush();
         if (account != null ) {
             accountRepository.delete(account);
             deleted = true;

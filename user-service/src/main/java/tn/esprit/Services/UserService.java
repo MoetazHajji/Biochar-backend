@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.*;
-import tn.esprit.exception.Mappers.UserMapper;
+import tn.esprit.Mappers.UserMapper;
 import tn.esprit.Models.Msg;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;

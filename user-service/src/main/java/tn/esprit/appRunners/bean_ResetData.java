@@ -2,24 +2,51 @@ package tn.esprit.appRunners;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.data.repository.query.Param;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.*;
-import tn.esprit.exception.Mappers.IObjectMapperConvert;
+import tn.esprit.Mappers.IObjectMapperConvert;
+import tn.esprit.Models.Msg;
 import tn.esprit.Repositorys.AccountRepository;
+import tn.esprit.Repositorys.AppointmentRepository;
+import tn.esprit.Repositorys.TimeOffRepository;
+import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.Services.*;
+import tn.esprit.exception.ErrorDetails;
 
+import javax.mail.MessagingException;
+import javax.persistence.*;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.*;
 
 
@@ -27,17 +54,17 @@ import java.util.*;
 @Slf4j
 @Component
 public class bean_ResetData implements CommandLineRunner {
-    @Autowired
-    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
-    @Autowired
-    IObjectMapperConvert objectMapperConvert ;
+    //    @Autowired
+//    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+//    @Autowired
+//    IObjectMapperConvert objectMapperConvert ;
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
-       // this.reset( );
+        // this.reset( );
 
-        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
-        kafkaTemplateAccountDto.flush();
+//        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+//        kafkaTemplateAccountDto.flush();
 
     }
 
@@ -45,23 +72,23 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-    @KafkaListener(topics = "topic-service-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
-    public void consume_insert  (String payload)
-    {
-        System.out.println("yaaaaaaaaaaaaaaaaaa rabiiiiiiiiiiiiiiiiiiii");
-        AccountDto accountDto = null ;
-        System.out.println("topic-service-account-selectAll :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
-        }
-        catch (JsonProcessingException e) {
-            System.out.println("ERROR topic-service-account-selectAll :  = " + e.getMessage());
-        }
-        System.out.println("KafkaConsumer consume : topic-service-account-selectAll = " +  accountDto );
-    }
+//    @KafkaListener(topics = "topic-service-user-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
+//    public void consume_insert  (String payload)
+//    {
+//
+//        AccountDto accountDto = null ;
+//        System.out.println("topic-service-account-selectAll :  = " + payload);
+//        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
+//        }
+//        catch (JsonProcessingException e) {
+//            System.out.println("ERROR topic-service-account-selectAll :  = " + e.getMessage());
+//        }
+//        System.out.println("KafkaConsumer consume : topic-service-account-selectAll = " +  accountDto );
+//    }
 
 
-    AccountDto accountDto = new AccountDto( 1, LocalDateTime.now(),
-            "nessrine" ,"adoulsi" ,10820305,55775085,
+    AccountDto accountDto = new AccountDto( LocalDateTime.now(),
+            "firstname" ,"lastname" ,10820305,55775085,
             LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
             StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
             Team.Team_A ,
@@ -91,8 +118,8 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-      //  kafkaTemplate.send("TopicString",accountDto);
-      //  kafkaTemplate.flush();
+        //  kafkaTemplate.send("TopicString",accountDto);
+        //  kafkaTemplate.flush();
 
     /*  Msg msg = new Msg( "subject",  "email",  "body");
         try {
