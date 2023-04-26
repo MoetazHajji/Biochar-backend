@@ -1,4 +1,4 @@
-package tn.esprit.Mappers;
+package tn.esprit.exception.Mappers;
 
 import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Dto.UserDto;

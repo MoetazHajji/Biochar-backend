@@ -5,11 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import tn.esprit.Entitys.*;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Set;
 
 
 @Builder
@@ -40,6 +37,7 @@ public class AccountDto {
     Shift shift;
     //User user;
     //Set<Appointment> appointments;
+
 }
 
 

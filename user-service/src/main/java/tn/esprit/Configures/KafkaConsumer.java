@@ -1,21 +1,10 @@
 package tn.esprit.Configures;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import tn.esprit.Dto.AccountDto;
-import tn.esprit.Dto.AppointmentDto;
-import tn.esprit.Entitys.User;
-import tn.esprit.Mappers.IObjectMapperConvert;
-import tn.esprit.Models.Msg;
-
-import java.util.List;
+import tn.esprit.exception.Mappers.IObjectMapperConvert;
 
 @Component
 @Slf4j
