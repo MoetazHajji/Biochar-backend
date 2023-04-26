@@ -8,20 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.AccountDto;
 import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.Account;
-import tn.esprit.Entitys.Appointment;
-import tn.esprit.Entitys.Gender;
 import tn.esprit.Entitys.User;
-import tn.esprit.Mappers.AccountMapper;
-import tn.esprit.Mappers.AppointmentMapper;
-import tn.esprit.Mappers.UserMapper;
+import tn.esprit.exception.Mappers.AccountMapper;
+import tn.esprit.exception.Mappers.AppointmentMapper;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

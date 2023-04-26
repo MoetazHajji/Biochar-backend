@@ -1,6 +1,4 @@
 package tn.esprit.Services;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -11,18 +9,13 @@ import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Appointment;
 import tn.esprit.Entitys.AppointmentStatus;
-import tn.esprit.Entitys.User;
-import tn.esprit.Mappers.AccountMapper;
-import tn.esprit.Mappers.AppointmentMapper;
+import tn.esprit.exception.Mappers.AppointmentMapper;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.AppointmentRepository;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
