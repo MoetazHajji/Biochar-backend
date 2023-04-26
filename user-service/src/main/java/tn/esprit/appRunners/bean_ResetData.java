@@ -54,17 +54,17 @@ import java.util.*;
 @Slf4j
 @Component
 public class bean_ResetData implements CommandLineRunner {
-    @Autowired
-    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
-    @Autowired
-    IObjectMapperConvert objectMapperConvert ;
+//    @Autowired
+//    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+//    @Autowired
+//    IObjectMapperConvert objectMapperConvert ;
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
        // this.reset( );
 
-        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
-        kafkaTemplateAccountDto.flush();
+//        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+//        kafkaTemplateAccountDto.flush();
 
     }
 
@@ -72,22 +72,22 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-    @KafkaListener(topics = "topic-service-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
-    public void consume_insert  (String payload)
-    {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        AccountDto accountDto = null ;
-        System.out.println("topic-service-account-selectAll :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
-        }
-        catch (JsonProcessingException e) {
-            System.out.println("ERROR topic-service-account-selectAll :  = " + e.getMessage());
-        }
-        System.out.println("KafkaConsumer consume : topic-service-account-selectAll = " +  accountDto );
-    }
+//    @KafkaListener(topics = "topic-service-user-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
+//    public void consume_insert  (String payload)
+//    {
+//
+//        AccountDto accountDto = null ;
+//        System.out.println("topic-service-account-selectAll :  = " + payload);
+//        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
+//        }
+//        catch (JsonProcessingException e) {
+//            System.out.println("ERROR topic-service-account-selectAll :  = " + e.getMessage());
+//        }
+//        System.out.println("KafkaConsumer consume : topic-service-account-selectAll = " +  accountDto );
+//    }
 
 
-    AccountDto accountDto = new AccountDto( 1 , LocalDateTime.now(),
+    AccountDto accountDto = new AccountDto( LocalDateTime.now(),
             "firstname" ,"lastname" ,10820305,55775085,
             LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
             StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
