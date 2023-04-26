@@ -27,7 +27,7 @@ public class KafkaConsumer {
 
 
 
-     @KafkaListener(topics = "TopicString", groupId = "group_id_String", containerFactory = "StringKafkaListenerContainerFactory")
+    @KafkaListener(topics = "TopicString", groupId = "group_id_String", containerFactory = "StringKafkaListenerContainerFactory")
     public void consume  (String msg)
     {
         log.info("KafkaConsumer consume : message = " + msg);

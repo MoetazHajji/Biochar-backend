@@ -40,7 +40,7 @@ public class AccountController {
 
     @GetMapping
     public List<AccountDto> SelectAll () {
-     List<AccountDto>  accountDtos = iAccountService. SelectAll () ;
+        List<AccountDto>  accountDtos = iAccountService. SelectAll () ;
         return  accountDtos;}
 
     @GetMapping("{id}")

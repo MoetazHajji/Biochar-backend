@@ -54,14 +54,14 @@ import java.util.*;
 @Slf4j
 @Component
 public class bean_ResetData implements CommandLineRunner {
-//    @Autowired
+    //    @Autowired
 //    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
 //    @Autowired
 //    IObjectMapperConvert objectMapperConvert ;
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
-       // this.reset( );
+        // this.reset( );
 
 //        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
 //        kafkaTemplateAccountDto.flush();
@@ -118,8 +118,8 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-      //  kafkaTemplate.send("TopicString",accountDto);
-      //  kafkaTemplate.flush();
+        //  kafkaTemplate.send("TopicString",accountDto);
+        //  kafkaTemplate.flush();
 
     /*  Msg msg = new Msg( "subject",  "email",  "body");
         try {
