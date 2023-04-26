@@ -3,7 +3,7 @@ package tn.esprit.Entitys;
 import lombok.*;
 
 import javax.persistence.*;
-
+import java.io.Serializable;
 
 @Builder
 @Entity
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Token {
+public class Token implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

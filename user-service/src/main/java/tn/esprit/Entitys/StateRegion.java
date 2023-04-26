@@ -1,6 +1,6 @@
 package tn.esprit.Entitys;
 
-public enum stateRegion {
+public enum StateRegion {
     Ariana,
     Béja,
     Ben_Arous,
@@ -24,5 +24,5 @@ public enum stateRegion {
     Tataouine,
     Tozeur,
     Tunis,
-    Zaghouan,
+    Zaghouan
 }

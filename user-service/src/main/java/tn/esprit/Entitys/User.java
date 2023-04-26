@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -22,7 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id" )
@@ -53,7 +53,8 @@ public class User implements UserDetails {
 
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user" ,cascade = {CascadeType.PERSIST,CascadeType.REMOVE} , fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user" ,
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Account account;
 
 
@@ -64,7 +65,11 @@ public class User implements UserDetails {
         this.roles = roles;
         this.permissions = permissions;
     }
-
+    public User(String username, String password, Roles roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
     public User(String username, String password, Account account) {
         this.username = username;
         this.password = password;

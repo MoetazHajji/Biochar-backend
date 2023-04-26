@@ -59,9 +59,11 @@ public class AuthenticationService {
                              .email(request.getEmail())
                              .user(savedUser).build();
     accountRepository.save(account);
+    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    System.out.println(account.getEmail());
     try {
-      Msg msg = new Msg("Forget Password",
-                         "belhsenbachouch97@gmail.com",
+      Msg msg = new Msg("verify mailing",
+              account.getEmail() ,  //      "belhsenbachouch97@gmail.com",
                               iFileService.Edit_ConfirmMailPage(user.getUsername(),
                                                         "http://localhost:8099/biochar/user-service/user/auth/confirm_email/"+code,
                                                 "http://locahost:8099/biochar/"));
@@ -110,7 +112,7 @@ public class AuthenticationService {
 
         Msg msg = new Msg("Forgot Password",
                 email,
-                iFileService.Edit_forgotPasswordPage("belhsen",
+                iFileService.Edit_forgotPasswordPage(user.getUsername(),
                         code,
                         "http://localhost:8099/biochar/user-service/user/auth/confirmationCode/"+code,"http://locahost:8099/biochar/")
         );

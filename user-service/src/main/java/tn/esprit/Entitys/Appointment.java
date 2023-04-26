@@ -4,9 +4,10 @@ package tn.esprit.Entitys;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
+import java.io.Serializable;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ import java.util.Date;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Appointment {
+public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id" )
@@ -28,13 +29,13 @@ public class Appointment {
     String reason;
 
     @Column(name = "created_at" )
-    Date createdAt ;
+    LocalDateTime createdAt ;
 
     @Column(name = "comments" )
     String comments;
 
     @Column(name = "is_first_visit" )
-    boolean is_first_visit ;
+    boolean firstVisit ;
 
 
     @Column(name = "appointment_date", columnDefinition = "DATE")
@@ -56,14 +57,14 @@ public class Appointment {
     @ManyToOne()
     Account account;
 
-    public Appointment(String reason, String comments, boolean is_first_visit) {
-        this.reason=reason;   this.comments=comments;  this.is_first_visit=is_first_visit;
+    public Appointment(String reason, String comments, boolean firstVisit) {
+        this.reason=reason;   this.comments=comments;  this.firstVisit=firstVisit;
     }
 
-    public Appointment(String reason, String comments, boolean is_first_visit, LocalDate appointmentDate, LocalTime appointmentStartTime, LocalTime appointmentEndTime) {
+    public Appointment(String reason, String comments, boolean firstVisit, LocalDate appointmentDate, LocalTime appointmentStartTime, LocalTime appointmentEndTime) {
         this.reason = reason;
         this.comments = comments;
-        this.is_first_visit = is_first_visit;
+        this.firstVisit = firstVisit;
         this.appointmentDate = appointmentDate;
         this.appointmentStartTime = appointmentStartTime;
         this.appointmentEndTime = appointmentEndTime;

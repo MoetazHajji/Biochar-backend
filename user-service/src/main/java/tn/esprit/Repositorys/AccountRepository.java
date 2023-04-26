@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Roles;
-import tn.esprit.Entitys.stateRegion;
+import tn.esprit.Entitys.StateRegion;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Long countAccountsByRole(@Param("role") Roles role   );
 
     @Query("select count (ac) from  Account ac JOIN  ac.user u   where  ((u.roles = :role)and(ac.state = :state)) ")
-    Long countAccountsByRoleAndState(@Param("role") stateRegion state , @Param("role") Roles role   );
+    Long countAccountsByRoleAndState(@Param("role") StateRegion state , @Param("role") Roles role   );
 
     @Query("select count (ac) from  Account ac JOIN  ac.user u   where ((u.roles = tn.esprit.Entitys.Roles.Patient)and(ac.firstname = :firstname)) ")
     Long countPatientsByFirstname(@Param("firstname") String firstname    );

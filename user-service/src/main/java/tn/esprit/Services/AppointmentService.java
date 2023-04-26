@@ -19,6 +19,7 @@ import tn.esprit.Repositorys.AppointmentRepository;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class AppointmentService   implements IAppointementService {
 
     @Override
     public AppointmentDto Insert(AppointmentDto object) {
-        object.setCreatedAt( new Date(System.currentTimeMillis()));
+        object.setCreatedAt(LocalDateTime.now());
         object.setAppointmentStatus(this.Verify( AppointmentMapper.mapToEntity( object )  ));
         Appointment appointment = AppointmentMapper.mapToEntity(object);
         return AppointmentMapper.mapToDto( appointmentRepository.save(appointment));
@@ -65,7 +66,7 @@ public class AppointmentService   implements IAppointementService {
         appointment.setReason(object.getReason());
         //appointment.setDate_sending(object.getDate_sending());
         appointment.setComments(object.getComments());
-        appointment.set_first_visit(object.is_first_visit());
+        appointment.setFirstVisit(object.isFirstVisit());
         appointmentRepository.save(appointment);
         return  AppointmentMapper.mapToDto(appointment) ;
     }
@@ -117,7 +118,7 @@ public class AppointmentService   implements IAppointementService {
         Account account = accountRepository.findById(idAccount).orElse(null);
         Appointment appt =  AppointmentMapper.mapToEntity( appointmentDto );
         appt.setAppointmentStatus(this.Verify( appt  ));
-        appt.setCreatedAt( new Date(System.currentTimeMillis()));
+        appt.setCreatedAt(LocalDateTime.now());
         appt =  appointmentRepository.save(appt);
         appt.setAccount(account);
         return AppointmentMapper.mapToDto(appointmentRepository.save(appt));
@@ -125,16 +126,16 @@ public class AppointmentService   implements IAppointementService {
 
 
     private AppointmentStatus Verify( Appointment appointment ) {
-        AppointmentStatus appointmentStatus = null ;
+        AppointmentStatus appointmentStatus =  AppointmentStatus.Available;
         LocalDate dayNow = LocalDate.now();
         if (iTimeOffService.verify (appointment.getAppointmentDate() ,appointment.getAppointmentStartTime(), appointment.getAppointmentEndTime()))
         {appointmentStatus =  AppointmentStatus.Booked; }
-        else { appointmentStatus =  AppointmentStatus.Available;}
+
 
         if (  appointmentRepository. isInBetweenTwoTimeAndDate(
                 appointment.getAppointmentStartTime() ,
                 appointment.getAppointmentEndTime())){ appointmentStatus =  AppointmentStatus.Booked; }
-        else {appointmentStatus =  AppointmentStatus.Available;}
+
         //  if (appointment.getAppointmentDate().isAfter(  dayNow ) ){ appointmentStatus =  AppointmentStatus.Booked; }
         return appointmentStatus;
     }
