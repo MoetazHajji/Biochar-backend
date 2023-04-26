@@ -7,7 +7,7 @@ public class CommandMapper {
     public static CommandDto mapToDo(Command command){
         CommandDto commandDto=CommandDto.builder()
                 .id(command.getId())
-                .date(command.getDate())
+                //.date(command.getDate())
                 .notice(command.getNotice())
                 .build();
         return commandDto;
@@ -15,7 +15,7 @@ public class CommandMapper {
     public static Command mapToEntity(CommandDto commandDto){
         Command command=Command.builder()
                 .id(commandDto.getId())
-                .date(commandDto.getDate())
+                //.date(commandDto.getDate())
                 .notice(commandDto.getNotice())
                 .build();
 

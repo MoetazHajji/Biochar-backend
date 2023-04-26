@@ -25,7 +25,7 @@ public class bean_ResetData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Bean One of Reset Data  run method Started !!" );
+        log.info("Bean of Reset Data  run method Started !!" );
          this.reset( );
     }
 
@@ -35,11 +35,11 @@ public class bean_ResetData implements CommandLineRunner {
     private void reset(){
 
       // accountRepository.deleteAll();
-       /* for ( Account account : accountSet)
+      /* for ( Account account : accountSet)
         {
             accountRepository.save(account);
-        }*/
-
+        }
+*/
        //workScheduleRepository.deleteAll();
     }
 

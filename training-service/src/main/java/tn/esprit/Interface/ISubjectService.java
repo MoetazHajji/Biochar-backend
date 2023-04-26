@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Cookie;
 import tn.esprit.Entity.Subject;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +23,7 @@ public interface ISubjectService {
     void clearCookies();
 
     Map<String,List<String>> Predictions();
+
+    //List<Profile_e> getProfiles();
+
 }

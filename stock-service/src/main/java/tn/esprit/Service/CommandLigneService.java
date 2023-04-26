@@ -34,9 +34,10 @@ public class CommandLigneService implements ICommandLigneService {
             product.setCount_order(CountToUpdate);
         }
         ligneRepository.save(ligne);
-        if (ligne.getProduct()!=null && ligne.getCommand()!=null){
-            Double QuantitySumPerProduct = ligneRepository.SumOfProductQuantity(idProd) +product.getQuantity();
+        if (ligne.getProduct()!=null){
+            Double QuantitySumPerProduct = ligneRepository.SumOfProductQuantity(idProd) + product.getQuantity();
             product.setQuantity(QuantitySumPerProduct);
+            productRepository.save(product);
         }
         return ligne;
     }
