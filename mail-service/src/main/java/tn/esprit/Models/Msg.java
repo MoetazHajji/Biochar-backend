@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Msg {
+    Long id;
     String subject;
     //@Email
     //@NotNull

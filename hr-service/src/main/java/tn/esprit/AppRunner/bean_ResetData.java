@@ -42,9 +42,9 @@ public class bean_ResetData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean of Reset Data  run method Started !!" );
-         this.reset( );
-    //    kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
-      //  kafkaTemplateAccountDto.flush();
+        this.reset( );
+        //    kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+        //  kafkaTemplateAccountDto.flush();
     }
 
     private final Work_ScheduleRepository workScheduleRepository ;
@@ -52,13 +52,13 @@ public class bean_ResetData implements CommandLineRunner {
     private final AccountRepository accountRepository;
     private void reset(){
 
-      // accountRepository.deleteAll();
+        // accountRepository.deleteAll();
       /* for ( Account account : accountSet)
         {
             accountRepository.save(account);
         }
 */
-       //workScheduleRepository.deleteAll();
+        //workScheduleRepository.deleteAll();
 
 
 

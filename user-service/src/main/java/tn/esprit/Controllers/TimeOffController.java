@@ -13,27 +13,30 @@ import tn.esprit.Services.IUserService;
 
 import java.util.List;
 
-@Controller
+
 @RestController
-@RequestMapping("/TimeOff")
+@RequestMapping("/timeoff")
 public class TimeOffController {
 
     private IGenericCRUD<TimeOff> iTimeOffService;
     @Autowired
-    public TimeOffController(@Qualifier("TimeOff") IGenericCRUD<TimeOff> iTimeOffService){this.iTimeOffService = iTimeOffService;}
+    public TimeOffController(@Qualifier("TimeOff") IGenericCRUD<TimeOff> iTimeOffService){
+        this.iTimeOffService = iTimeOffService;}
 
     @GetMapping
     public List<TimeOff> SelectAll () {return  iTimeOffService. SelectAll () ;}
 
     @GetMapping("{id}")
     public ResponseEntity<TimeOff> SelectBy (@PathVariable int id) {return ResponseEntity.ok( iTimeOffService.SelectBy ( id)) ;}
-
-    @PostMapping
-    public TimeOff Insert( @RequestBody TimeOff user) {return  iTimeOffService.Insert(   user);}
+    @PostMapping()
+    public ResponseEntity<TimeOff> Insert( @RequestBody TimeOff user) {  return  ResponseEntity.ok( iTimeOffService.Insert(   user ));}
 
     @PutMapping
     public  ResponseEntity<TimeOff> update( @RequestBody TimeOff user){return ResponseEntity.ok( iTimeOffService.update(  user));}
 
     @DeleteMapping("{id}")
     public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){   iTimeOffService.delete( id ); return new ResponseEntity<>(HttpStatus.NO_CONTENT);}
+    @DeleteMapping("/all")
+    public  ResponseEntity<HttpStatus> deleteAll(  ){   iTimeOffService.deleteAll(); return new ResponseEntity<>(HttpStatus.NO_CONTENT);}
+
 }

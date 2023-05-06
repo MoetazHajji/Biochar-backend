@@ -1,9 +1,7 @@
-package tn.esprit.exception.Mappers;
+package tn.esprit.Mappers;
 
 import tn.esprit.Dto.TimeOffDto;
-import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.TimeOff;
-import tn.esprit.Entitys.User;
 
 public class TimeOffMapper {
     public static TimeOff mapToEntity(TimeOffDto timeOffDto){

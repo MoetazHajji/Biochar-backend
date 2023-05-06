@@ -1,18 +1,14 @@
 package tn.esprit.appRunners;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import tn.esprit.Dto.AccountDto;
 import tn.esprit.Entitys.*;
-import tn.esprit.exception.Mappers.IObjectMapperConvert;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Services.*;
 
@@ -27,17 +23,27 @@ import java.util.*;
 @Slf4j
 @Component
 public class bean_ResetData implements CommandLineRunner {
-    @Autowired
-    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
-    @Autowired
-    IObjectMapperConvert objectMapperConvert ;
+    //    @Autowired
+//    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+//    @Autowired
+//    IObjectMapperConvert objectMapperConvert ;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
-       // this.reset( );
+        // this.reset( );
 
-        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
-        kafkaTemplateAccountDto.flush();
+//        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+//        kafkaTemplateAccountDto.flush();
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        //System.out.println(AccountService.defaultUserPhoto);
+        //   File directory = new File("./");
+        //File directory = new File("./"+"user-service/src/main/resources/folder");
+        //System.out.println(directory.getAbsolutePath());
+
+
+        // System.out.println( MyConfigInitParameters.staticLinkServiceUser );
+        //  System.out.println( AttachmentMapper.host_ContextPath );
 
     }
 
@@ -45,23 +51,9 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-    @KafkaListener(topics = "topic-service-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
-    public void consume_insert  (String payload)
-    {
-        System.out.println("yaaaaaaaaaaaaaaaaaa rabiiiiiiiiiiiiiiiiiiii");
-        AccountDto accountDto = null ;
-        System.out.println("topic-service-account-selectAll :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
-        }
-        catch (JsonProcessingException e) {
-            System.out.println("ERROR topic-service-account-selectAll :  = " + e.getMessage());
-        }
-        System.out.println("KafkaConsumer consume : topic-service-account-selectAll = " +  accountDto );
-    }
 
-
-    AccountDto accountDto = new AccountDto( 1, LocalDateTime.now(),
-            "nessrine" ,"adoulsi" ,10820305,55775085,
+    AccountDto accountDto = new AccountDto( LocalDateTime.now(),
+            "firstname" ,"lastname" ,10820305,55775085,
             LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
             StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
             Team.Team_A ,
@@ -91,8 +83,8 @@ public class bean_ResetData implements CommandLineRunner {
 
 
 
-      //  kafkaTemplate.send("TopicString",accountDto);
-      //  kafkaTemplate.flush();
+        //  kafkaTemplate.send("TopicString",accountDto);
+        //  kafkaTemplate.flush();
 
     /*  Msg msg = new Msg( "subject",  "email",  "body");
         try {
@@ -252,8 +244,6 @@ public class bean_ResetData implements CommandLineRunner {
     @Autowired
     IAppointementService iAppointementService ;
 
-    @Autowired
-    IEmailSenderService iEmailSenderService;
     @Autowired
     IFileService iFileService;
 
@@ -417,5 +407,3 @@ System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
         System.out.println("Resource directory: " + resourceDirectory);*/
-
-

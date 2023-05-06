@@ -1,7 +1,6 @@
-package tn.esprit.exception.Mappers;
+package tn.esprit.Mappers;
 
 import tn.esprit.Dto.UserDto;
-import tn.esprit.Entitys.Roles;
 import tn.esprit.Entitys.User;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class UserMapper {
                 .roles(user.getRoles())
                 //.permissions(user.getPermissions())
                 //.ListPermissions(ListPermissions(user.getPermissions() ))
-                //.isEnabled(user.isEnabled())
+                .isEnabled(user.isEnabled())
                 .build();
     }
     private static List<String> ListPermissions(String permissions ){

@@ -7,6 +7,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import tn.esprit.Config.IMAPConfig;
+import tn.esprit.Libs.IOutils;
 import tn.esprit.Mappers.IObjectMapperConvert;
 import tn.esprit.Models.Attachment;
 import tn.esprit.Models.BodyContent;
@@ -30,7 +31,7 @@ public class IMAPMail implements IIMAPMail{
     }
     IMAPStore emailStore;
 
-    List <Msg> msgs = new ArrayList<Msg>();
+
 
 
 
@@ -38,7 +39,8 @@ public class IMAPMail implements IIMAPMail{
     private KafkaTemplate<Object,  List<Msg> > kafkaTemplate;
     @Autowired
     IObjectMapperConvert objectMapperConvert ;
-
+    @Autowired
+    IMsgService iMsgService ;
     @Override
     public void connect () throws MessagingException {
         //1) get the session object
@@ -59,17 +61,23 @@ public class IMAPMail implements IIMAPMail{
 
             long startTime = System.currentTimeMillis();
 
-             //importFileToRecieveMsgs( emailConfig.getFilePath() );
-             msgs = (List<Msg>) objectMapperConvert.importFileToCollection( emailConfig.getFilePath(),List.class, Msg.class);
+
+           MsgService.RecieveMsgs = (List<Msg>) objectMapperConvert.importFileToCollection( emailConfig.getFilePath(),List.class, Msg.class);
 
             //4) retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
             for (int i = 0; i < messages.length; i++) {
                 Message message = messages[i];
-                if( i > msgs.size() - 1) {
-                    msgs.add( convertToMsg(  message  ));
+               /* if ( MsgService.RecieveMsgs == null){
+                    iMsgService.Insert( convertToMsg(  message  ));
+                    System.out.println("count i :"+ i);
+                }*/
+                 if( i > MsgService.RecieveMsgs .size() - 1) {
+                 //   MsgService.RecieveMsgs.add( convertToMsg(  message  ));
+                    iMsgService.Insert( convertToMsg(  message  ));
                     System.out.println("count i :"+ i);
                 }
+
             }
 
 
@@ -78,14 +86,14 @@ public class IMAPMail implements IIMAPMail{
             long timeElapsed = endTime - startTime;
             System.out.println("Execution time in milliseconds: " + timeElapsed);
 
-            System.out.println("messages: " + messages.length + " msgs :" +msgs.size());
+            System.out.println("messages: " + messages.length + " msgs :" +MsgService.RecieveMsgs.size());
 
             System.out.println("----------------finich-----------------");
             //5) close the store and folder objects
             emailFolder.close(false);
             emailStore.close();
 
-            kafkaTemplate.send("topic-service-mail-imap-recierver-all-mails",msgs);
+            kafkaTemplate.send("topic-service-mail-imap-recierver-all-mails",MsgService.RecieveMsgs);
             kafkaTemplate.flush();
 
 
