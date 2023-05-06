@@ -1,0 +1,24 @@
+package tn.esprit.Mappers;
+
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import tn.esprit.Dto.AttachementDto;
+import tn.esprit.Entitys.Attachment;
+
+public class AttachmentMapper {
+
+
+    public static String host_ContextPath = "";
+
+    public static AttachementDto mapToDto(Attachment attachment  ){
+        String downloadURl = AttachmentMapper.host_ContextPath +attachment.getId();
+        return AttachementDto.builder()
+                .id(attachment.getId())
+                .fileName(attachment.getFileName())
+                .downloadURL(downloadURl)
+                .fileType(attachment.getFileType())
+                .fileSize(attachment.getFileSize())
+                .build();
+    }
+}

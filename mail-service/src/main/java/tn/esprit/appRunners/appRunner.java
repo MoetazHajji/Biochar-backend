@@ -13,6 +13,7 @@ import tn.esprit.Models.Attachment;
 import tn.esprit.Models.BodyContent;
 import tn.esprit.Models.Msg;
 import tn.esprit.Service.IIMAPMail;
+import tn.esprit.Service.ISMTPMail;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,6 +30,8 @@ public class appRunner implements CommandLineRunner {
     @Autowired
     private IIMAPMail iimapMail;
     @Autowired
+    private ISMTPMail ismtpMail;
+    @Autowired
     IObjectMapperConvert objectMapperConvert ;
     @Autowired
     private KafkaTemplate<Object,  Msg > kafkaTemplate;
@@ -36,7 +39,8 @@ public class appRunner implements CommandLineRunner {
     private KafkaTemplate<Object,  SMTPConfig > kafkaTemplateSMTPConfig;
     @Override
     public void run(String... args) throws Exception {
-
+       // iimapMail.connect();
+     //   iimapMail.receiveAllEmail();
 //        kafkaTemplateSMTPConfig.send("topic-service-mail-sender-configuration",
 //                new SMTPConfig(
 //                 "smtp.gmail.com",true,true ,"belhsenbachouch55@gmail.com","oegamwscnzzvekpu")

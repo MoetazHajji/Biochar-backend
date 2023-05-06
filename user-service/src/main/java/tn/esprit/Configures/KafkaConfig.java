@@ -1,8 +1,6 @@
 package tn.esprit.Configures;
 
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -12,15 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import tn.esprit.Dto.AccountDto;
-import tn.esprit.Dto.AppointmentDto;
-import tn.esprit.Entitys.User;
-import tn.esprit.Models.Msg;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @EnableKafka

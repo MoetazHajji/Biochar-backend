@@ -6,25 +6,40 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entitys.Appointment;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
+import org.springframework.web.multipart.MultipartFile;
+import tn.esprit.Libs.MockMultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 @Service("File")
 public class FileService implements IFileService {
-    public  String link_forgotPassword_HTML = "./user-service/src/main/resources/folder/forgot_password.html";
-    public  String link_ConfirmMail_HTML = "./user-service/src/main/resources/folder/verify-mail-correct.html";
-    public  String link_ReminderAppointement_HTML = "./user-service/src/main/resources/folder/reminder-appointement.html";
-    public  String link_sendMailSuggestionForPatient = "./user-service/src/main/resources/folder/sendMailSuggestionForPatient.html";
+    public static String link_forgotPassword_HTML = "";
+    public static String link_ConfirmMail_HTML = "";
+    public static String link_ReminderAppointement_HTML = "";
+    public static String link_sendMailSuggestionForPatient = "";
+    public static String  defaultUserPhoto = "";
+    public static String pageHomeLink = "";
 
-
+    public static String pathLogin = "";
     @Override
-    public String Edit_sendMailSuggestionPage ( String username , Appointment appt, String link , String pageHomeLink ) throws IOException {
+    public String Edit_sendMailSuggestionPage ( String username , Appointment appt, String link ) throws IOException {
         //https://zetcode.com/java/jsoup/
         File input = ResourceUtils.getFile(link_sendMailSuggestionForPatient);
         Document doc = Jsoup.parse(input,  "UTF-8");
@@ -37,14 +52,14 @@ public class FileService implements IFileService {
         dateElement.text(String.valueOf(appt.getAppointmentDate()));
         timeElement.text(String.valueOf(appt.getAppointmentStartTime()));
         sr_link.attr("href", link );
-        paragrahelink.attr("href",pageHomeLink);
+        paragrahelink.attr("href",FileService.pageHomeLink);
         return doc.html();
     }
 
 
     @Override
 //"http://baeldung.com"
-    public String Edit_ReminderAppointementPage (String username , Appointment appointment , String pageHomeLink ) throws IOException {
+    public String Edit_ReminderAppointementPage (String username , Appointment appointment ) throws IOException {
         //https://zetcode.com/java/jsoup/
         File input = ResourceUtils.getFile(link_ReminderAppointement_HTML);
         Document doc = Jsoup.parse(input,  "UTF-8");
@@ -69,12 +84,12 @@ public class FileService implements IFileService {
         firstVisitSpan.text((appointment.isFirstVisit()? "Yes":"No"));
         statusSpan.text(String.valueOf(appointment.getAppointmentStatus()));
         createAt.text(String.valueOf(appointment.getCreatedAt()));
-        paragrahelink.attr("href",pageHomeLink);
+        paragrahelink.attr("href",FileService.pageHomeLink);
         return doc.html();
     }
     @Override
 //"http://baeldung.com"
-    public String Edit_ConfirmMailPage (String username ,  String link , String pageHomeLink ) throws IOException {
+    public String Edit_ConfirmMailPage (String username ,  String link  ) throws IOException {
         //https://zetcode.com/java/jsoup/
         File input = ResourceUtils.getFile(link_ConfirmMail_HTML);
         Document doc = Jsoup.parse(input,  "UTF-8");
@@ -83,12 +98,12 @@ public class FileService implements IFileService {
         Element paragrahelink = doc.getElementById("verify-mail-link-page-home-a");
         herder_username.text( "Dear "+ username+",");
         sr_link.attr("href", link );
-        paragrahelink.attr("href",pageHomeLink);
+        paragrahelink.attr("href",FileService.pageHomeLink);
         return doc.html();
     }
    @Override
 //"http://baeldung.com"
-   public String Edit_forgotPasswordPage (String username , String code , String link , String pageHomeLink ) throws IOException {
+   public String Edit_forgotPasswordPage (String username , String code   ) throws IOException {
      //https://zetcode.com/java/jsoup/
          File input = ResourceUtils.getFile(link_forgotPassword_HTML);
          Document doc = Jsoup.parse(input,  "UTF-8");
@@ -98,8 +113,8 @@ public class FileService implements IFileService {
          Element paragrahelink = doc.getElementById("forgot-password-link-page-home-a");
          herder_username.text( "Hi "+ username+",");
          paragrahecode.text(code);
-         sr_link.attr("href", link );
-         paragrahelink.attr("href",pageHomeLink);
+         sr_link.attr("href", pageHomeLink+pathLogin+"/"+code );
+         paragrahelink.attr("href",FileService.pageHomeLink);
          return doc.html();
    }
     @Override
@@ -114,5 +129,18 @@ public class FileService implements IFileService {
         writer.write(data) ;
         writer.flush();
         writer.close();
+    }
+    @Override
+    public MultipartFile importFileToMultipartFile(String filePath) throws IOException {
+        File file = ResourceUtils.getFile(filePath);
+        if (file.exists()) {
+            Path path = Paths.get(filePath);
+            String name = file.getName();
+            String originalFileName = name.substring(0, name.lastIndexOf('.'));
+            String contentType = Files.probeContentType(path);
+            byte[] content = Files.readAllBytes(path);
+            return new MockMultipartFile(originalFileName, name, contentType, content);
+        }
+        return null;
     }
 }

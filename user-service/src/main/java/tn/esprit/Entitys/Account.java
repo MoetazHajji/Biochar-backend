@@ -37,7 +37,6 @@ public class Account implements Serializable {
     @Column(name = "cin" )
     int cin;
 
-
     @Column(name = "phone" )
     int phone;
 
@@ -52,9 +51,6 @@ public class Account implements Serializable {
 
     @Column(name = "email" )
     String email;
-
-    @Column(name = "photo" )
-    String photo;
 
     @Column(name = "gender" )
     @Enumerated(EnumType.STRING)
@@ -83,6 +79,8 @@ public class Account implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    Attachment attachment;
 
     @OneToMany(mappedBy = "account" , fetch = FetchType.EAGER , cascade = {CascadeType.PERSIST,CascadeType.REMOVE} )
     Set<Appointment> appointments;

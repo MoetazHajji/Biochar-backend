@@ -31,8 +31,8 @@ public class UserController {
     @GetMapping("{id}")
     public ResponseEntity<UserDto> SelectBy (@PathVariable int id) {return ResponseEntity.ok(  iUserService.SelectBy ( id)) ;}
 
-    // @PostMapping
-    // public UserDto Insert( @RequestBody UserDto user) {return  iUserService.Insert(   user);}
+     @PostMapping
+     public UserDto Insert( @RequestBody UserDto user) {return  iUserService.Insert(   user);}
 
     @PutMapping
     public  ResponseEntity<UserDto> update( @RequestBody UserDto user){return  ResponseEntity.ok( iUserService.update(  user));}

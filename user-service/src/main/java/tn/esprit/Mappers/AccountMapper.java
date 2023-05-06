@@ -1,6 +1,8 @@
 package tn.esprit.Mappers;
 
 import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AccountDtoTopic;
+import tn.esprit.Dto.AttachementDto;
 import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.*;
 
@@ -17,19 +19,20 @@ public class AccountMapper {
                 .dateOfBirth(accountDto.getDateOfBirth())
                 .createdAt(accountDto.getCreatedAt())
                 .email(accountDto.getEmail())
-                .photo(accountDto.getPhoto())
                 .gender(accountDto.getGender())
                 .state(accountDto.getState())
                 .city(accountDto.getCity())
                 .zip_code(accountDto.getZip_code())
                 .adresse(accountDto.getAdresse())
                 .team(accountDto.getTeam())
+                .hireDate(accountDto.getHireDate())
                 .shift(accountDto.getShift())
-                //.user(accountDto.getUser())
-                //.appointments(accountDto.getAppointments())
+                .appointments(accountDto.getAppointments())
                 .build();
     }
     public static AccountDto mapToDto(Account account){
+        String  downloadURL = ( account.getAttachment() == null ? null  :
+                AttachmentMapper.mapToDto( account.getAttachment()  ).getDownloadURL() );
         return AccountDto.builder()
                 .id(account.getId())
                 .firstname(account.getFirstname())
@@ -39,17 +42,41 @@ public class AccountMapper {
                 .dateOfBirth(account.getDateOfBirth())
                 .createdAt(account.getCreatedAt())
                 .email(account.getEmail())
-                .photo(account.getPhoto())
+                .photo(downloadURL)
                 .gender(account.getGender())
                 .state(account.getState())
                 .city(account.getCity())
                 .zip_code(account.getZip_code())
                 .adresse(account.getAdresse())
-                //.user(account.getUser())
-                //.appointments(account.getAppointments())
+                .appointments(account.getAppointments())
                 .team(account.getTeam())
+                .hireDate(account.getHireDate())
                 .shift(account.getShift())
-                .role(account.getUser().getRoles())
+                .role(  (account.getUser()==null ? null : account.getUser().getRoles() )    )
+                .build();
+    }
+    public static AccountDtoTopic mapToDtoTopic(Account account){
+        String  downloadURL = ( account.getAttachment() == null ? null  :
+                AttachmentMapper.mapToDto( account.getAttachment()  ).getDownloadURL() );
+        return AccountDtoTopic.builder()
+                .id(account.getId())
+                .firstname(account.getFirstname())
+                .lastname(account.getLastname())
+                .cin(account.getCin())
+                .phone(account.getPhone())
+                .dateOfBirth(account.getDateOfBirth())
+                .createdAt(account.getCreatedAt())
+                .email(account.getEmail())
+                .photo(downloadURL)
+                .gender(account.getGender())
+                .state(account.getState())
+                .city(account.getCity())
+                .zip_code(account.getZip_code())
+                .adresse(account.getAdresse())
+                .team(account.getTeam())
+                .hireDate(account.getHireDate())
+                .shift(account.getShift())
+                .role( (account.getUser()==null ? null : account.getUser().getRoles() )  )
                 .build();
     }
 }

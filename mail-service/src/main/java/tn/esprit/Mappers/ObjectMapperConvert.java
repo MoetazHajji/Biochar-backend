@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Service;
+import tn.esprit.Models.Msg;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class ObjectMapperConvert implements  IObjectMapperConvert {
             JavaType type = mapper.getTypeFactory().constructCollectionType(collectionClass, elementClass);
             return  mapper.readValue(content, type);
         }
-        return null;
+        return new ArrayList<>();
     }
     @Override                                           // Msg.class
     public Object  importFileToObject(String filePath , Class<?> elementClass) throws IOException {
