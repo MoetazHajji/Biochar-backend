@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/Appointment")
+@RequestMapping("/appointment")
 public class AppointmentController {
     private IAppointementService iAppointmentService;
     @Autowired
@@ -24,8 +24,8 @@ public class AppointmentController {
     public List<AppointmentDto> SelectAll () {return  iAppointmentService. SelectAll () ;}
     @GetMapping("{id}")
     public ResponseEntity<AppointmentDto> SelectBy (@PathVariable int id) {return ResponseEntity.ok( iAppointmentService.SelectBy ( id)) ;}
-    // @PostMapping
-    // public AppointmentDto Insert(@RequestBody AppointmentDto appointmentDto) {return  iAppointmentService.Insert(   appointmentDto);}
+     @PostMapping
+     public AppointmentDto Insert(@RequestBody AppointmentDto appointmentDto) {return  iAppointmentService.Insert(   appointmentDto);}
     @PutMapping
     public  ResponseEntity<AppointmentDto> update( @RequestBody AppointmentDto appointmentDto){return  ResponseEntity.ok( iAppointmentService.update(  appointmentDto));}
     @PutMapping ("assignUserToAccount/{idAppointment}/{idAccount}")

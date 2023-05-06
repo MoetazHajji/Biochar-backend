@@ -10,11 +10,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler {
 
     // handling specific exception
-    @ExceptionHandler(RessourceNotFoundException.class)
+    /*@ExceptionHandler(RessourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundHandling(RessourceNotFoundException exception, WebRequest request){
         ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),
                 LocalTime.now(),
@@ -40,5 +40,5 @@ public class GlobalExceptionHandler {
                 exception.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 }

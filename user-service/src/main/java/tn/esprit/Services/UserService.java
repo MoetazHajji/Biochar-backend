@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.*;
 import tn.esprit.Mappers.UserMapper;
-import tn.esprit.Models.Msg;
+import tn.esprit.Entitys.Msg;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;
 
@@ -22,19 +22,17 @@ import java.util.stream.Collectors;
 @Service("User")
 public class UserService  implements IUserService {
     private UserRepository userRepository;
-    private IEmailSenderService IEmailSenderService;
     //private PasswordEncoder passwordEncoder;
 
 
 
     @Autowired // Methode 2
-    public UserService(UserRepository userRepository ,
-                       //PasswordEncoder passwordEncoder,
-                       @Qualifier("EmailSender") IEmailSenderService IEmailSenderService)
+    public UserService(UserRepository userRepository
+                       //,PasswordEncoder passwordEncoder,
+                      )
     {
         this.userRepository = userRepository;
         //this.passwordEncoder =  passwordEncoder;
-        this.IEmailSenderService =  IEmailSenderService;
     }
 
     @Override
@@ -109,7 +107,7 @@ public class UserService  implements IUserService {
             User user = userRepository.findUserByEmail(  email   );
             user.setPassword(code);
             Msg msg = new Msg("Forgot Password",email,"your code verification : "+code);
-            IEmailSenderService.SendSimpleEmail(msg);
+            //IEmailSenderService.SendSimpleEmail(msg);
             userRepository.save(user);
             return code;}
         else { return  code;}
@@ -120,6 +118,15 @@ public class UserService  implements IUserService {
         System.out.println(userRepository.isCorrectPassword( code ));
         if (   userRepository.isCorrectPassword( code )) {
             User user= userRepository.findUserByPassword( code);
+            user.setPassword(   password   );
+            userRepository.save(user);
+            return true;}
+        else {return false;}
+    }
+    public boolean updatePassword(String oldpassword, String password) {
+        System.out.println(userRepository.isCorrectPassword( oldpassword ));
+        if (   userRepository.isCorrectPassword( oldpassword )) {
+            User user= userRepository.findUserByPassword( oldpassword);
             user.setPassword(   password   );
             userRepository.save(user);
             return true;}

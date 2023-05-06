@@ -1,7 +1,6 @@
 package tn.esprit.Interface;
 
 import org.springframework.web.multipart.MultipartFile;
-import tn.esprit.Entity.TestResult;
 
 import java.io.IOException;
 import java.util.List;

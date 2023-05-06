@@ -36,7 +36,9 @@ public class GatewayConfig {
 
 
                 .route("user-service", r -> r.path("/biochar/user-service/**").uri("lb://user-service"))
-                .route("mail-service", r -> r.path("/biochar/mail-service/**").uri("lb://mail-service"))
+                .route("mail-service", r -> r.path("/biochar/mail-service/**")
+                       // .filters(f -> f.filter(filterAuthentificate.apply( new FilterAuthentificate.Config())))
+                        .uri("lb://mail-service"))
 
 
                 .route("discovery-server", r -> r.path("/eureka/web").filters(f -> f.setPath("/")).uri("http://localhost:8761"))
@@ -45,6 +47,7 @@ public class GatewayConfig {
 
                 .build();
     }
+
 }
 
 

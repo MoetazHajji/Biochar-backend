@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Models.AuthenticationRequest;
 import tn.esprit.Models.AuthenticationResponse;
-import tn.esprit.Models.RegisterRequest;
 import tn.esprit.Services.AuthenticationService;
 
 @RestController
@@ -15,7 +14,7 @@ public class AuthenticationController {
   private final AuthenticationService service;
 
   @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+  public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request) {
     return ResponseEntity.ok(service.register(request));
   }
 
@@ -35,8 +34,7 @@ public class AuthenticationController {
     }
 
  @PostMapping("/authenticate")
- public ResponseEntity<AuthenticationResponse> authenticate(
-         @RequestBody AuthenticationRequest request
+ public ResponseEntity<AuthenticationResponse> authenticate( @RequestBody AuthenticationRequest request
  ) throws Exception {
    return ResponseEntity.ok(service.authenticate(request));
  }

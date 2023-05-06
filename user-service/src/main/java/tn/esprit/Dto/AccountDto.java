@@ -58,8 +58,7 @@ public class AccountDto {
         this.team = team;
         this.shift = shift;
     }
-    //User user;
-    //Set<Appointment> appointments;
+    Set<Appointment> appointments;
 }
 
 

@@ -27,7 +27,7 @@ public class UserMapper {
                 .roles(user.getRoles())
                 //.permissions(user.getPermissions())
                 //.ListPermissions(ListPermissions(user.getPermissions() ))
-                //.isEnabled(user.isEnabled())
+                .isEnabled(user.isEnabled())
                 .build();
     }
     private static List<String> ListPermissions(String permissions ){
