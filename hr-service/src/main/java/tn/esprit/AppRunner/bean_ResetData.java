@@ -8,7 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AccountDtoTopic;
 import tn.esprit.Entity.ExternelEntity.*;
 import tn.esprit.Entity.Shift;
 import tn.esprit.Mapper.IObjectMapperConvert;
@@ -27,15 +27,15 @@ import java.util.Set;
 @Transactional
 public class bean_ResetData implements CommandLineRunner {
     @Autowired
-    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+    private KafkaTemplate<Object, AccountDtoTopic > kafkaTemplateAccountDto;
     @Autowired
     IObjectMapperConvert objectMapperConvert ;
-    AccountDto accountDto = new AccountDto( 1 , LocalDateTime.now(),
+    AccountDtoTopic  accountDto = new AccountDtoTopic( 1 , LocalDateTime.now(),
             "firstname" ,"lastname" ,10820305,55775085,
             LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo", Gender.male,
             StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
             Team.Team_A ,
-            tn.esprit.Dto.Shift.Afternoon);
+            tn.esprit.Dto.Shift.Afternoon) ;
 
 
 
