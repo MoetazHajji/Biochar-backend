@@ -1,7 +1,6 @@
 package tn.esprit.Mappers;
 
 import tn.esprit.Dto.UserDto;
-import tn.esprit.Entitys.Roles;
 import tn.esprit.Entitys.User;
 
 import java.util.ArrayList;

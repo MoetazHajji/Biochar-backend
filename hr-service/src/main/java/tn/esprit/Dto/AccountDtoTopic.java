@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountDto {
+public class AccountDtoTopic {
     long id;
     LocalDateTime createdAt;
     String firstname;

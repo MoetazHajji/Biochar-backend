@@ -18,5 +18,6 @@ public class Work_ScheduleDto {
     LocalTime start_time;
     LocalTime end_time;
     Shift shift;
+    Long account_id;
 
 }

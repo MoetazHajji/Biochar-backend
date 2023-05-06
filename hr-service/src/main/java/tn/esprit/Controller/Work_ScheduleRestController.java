@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Dto.CalenderGroupWSDto;
+import tn.esprit.Dto.CalenderWSDto;
 import tn.esprit.Dto.Work_ScheduleDto;
 import tn.esprit.Service.Work_ScheduleService;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("WorkSchedule")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Work_ScheduleRestController {
 
     private final Work_ScheduleService work_scheduleService;
@@ -36,9 +39,13 @@ public class Work_ScheduleRestController {
     }
 
     @GetMapping("/getAllWorkSchedule")
-    @ResponseStatus(HttpStatus.FOUND)
-    public List<Work_ScheduleDto> getAllWorkSchedules(){
+    public List<CalenderGroupWSDto> getAllWorkSchedules(){
         return work_scheduleService.retrieveAllWork_Schedule();
+    }
+
+    @GetMapping("/getWorkSchedulesByAcc/{idA}")
+    public List<CalenderWSDto> getWorkSchedulesByAcc(@PathVariable("idA") Long idA){
+        return work_scheduleService.retrieveWork_ScheduleByAccount(idA);
     }
 
     @GetMapping("/getWorkScheduleById/{idWS}")
@@ -59,13 +66,11 @@ public class Work_ScheduleRestController {
     }
 
     @GetMapping("/getWorkSchedulesByOneDate/{date}")
-    @ResponseStatus(HttpStatus.FOUND)
     public List<Work_ScheduleDto> getWorkSchedulesByOneDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
         return work_scheduleService.retrieveWorkScheduleByDate(date);
     }
 
     @GetMapping("/getWorkScheduleByPeriod/{startDate}/{endDate}")
-    @ResponseStatus(HttpStatus.FOUND)
     public List<Work_ScheduleDto> getWorkScheduleByPeriod(@PathVariable("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @PathVariable("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return work_scheduleService.retrieveWorkScheduleByPeriod(startDate, endDate);
     }

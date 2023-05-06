@@ -61,5 +61,3 @@ public class AccountDto {
     Set<Appointment> appointments;
 }
 
-
-

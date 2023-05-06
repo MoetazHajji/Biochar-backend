@@ -71,9 +71,9 @@ public class AccountService  implements IAccountService {
         object.setCreatedAt(   LocalDateTime.now() );
         Account account = AccountMapper.mapToEntity(object);
         try {
-        MultipartFile multipartFile = ifileService.importFileToMultipartFile(FileService.defaultUserPhoto);
-        Attachment attachment  = iAttachmentService.saveAttachment(multipartFile);
-        account.setAttachment(attachment);   }
+            MultipartFile multipartFile = ifileService.importFileToMultipartFile(FileService.defaultUserPhoto);
+            Attachment attachment  = iAttachmentService.saveAttachment(multipartFile);
+            account.setAttachment(attachment);   }
         catch (IOException e) {   System.out.println("IOException: "+e.getMessage());  }
         catch (Exception e) {     System.out.println("Exception: "+e.getMessage());    }
 
@@ -152,7 +152,5 @@ public class AccountService  implements IAccountService {
         return AccountMapper.mapToDto( accountRepository.save(account) ) ;
     }
 }
-
-
 
 

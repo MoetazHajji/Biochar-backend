@@ -37,13 +37,13 @@ public class bean_ResetData implements CommandLineRunner {
 //        kafkaTemplateAccountDto.flush();
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         //System.out.println(AccountService.defaultUserPhoto);
-      //   File directory = new File("./");
-   //File directory = new File("./"+"user-service/src/main/resources/folder");
-    //System.out.println(directory.getAbsolutePath());
+        //   File directory = new File("./");
+        //File directory = new File("./"+"user-service/src/main/resources/folder");
+        //System.out.println(directory.getAbsolutePath());
 
 
-       // System.out.println( MyConfigInitParameters.staticLinkServiceUser );
-      //  System.out.println( AttachmentMapper.host_ContextPath );
+        // System.out.println( MyConfigInitParameters.staticLinkServiceUser );
+        //  System.out.println( AttachmentMapper.host_ContextPath );
 
     }
 
@@ -407,5 +407,3 @@ System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
         System.out.println("Resource directory: " + resourceDirectory);*/
-
-
