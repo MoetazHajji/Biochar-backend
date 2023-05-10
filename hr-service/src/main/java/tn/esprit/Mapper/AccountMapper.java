@@ -1,11 +1,11 @@
 package tn.esprit.Mapper;
 
-import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AccountDtoTopic;
 import tn.esprit.Dto.Shift;
 import tn.esprit.Entity.ExternelEntity.Account;
 
 public class AccountMapper {
-    public static Account mapToEntity(AccountDto accountDto){
+    public static Account mapToEntity(AccountDtoTopic accountDto){
         return Account.builder()
                 .id(accountDto.getId())
                 .firstname(accountDto.getFirstname())
@@ -26,8 +26,8 @@ public class AccountMapper {
                 .role(accountDto.getRole())
                 .build();
     }
-    public static AccountDto mapToDto(Account account){
-        return AccountDto.builder()
+    public static AccountDtoTopic mapToDto(Account account){
+        return AccountDtoTopic.builder()
                 .id(account.getId())
                 .firstname(account.getFirstname())
                 .lastname(account.getLastname())

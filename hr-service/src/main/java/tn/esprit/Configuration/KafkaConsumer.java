@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AccountDtoTopic;
 import tn.esprit.Entity.ExternelEntity.Account;
 import tn.esprit.Mapper.AccountMapper;
 import tn.esprit.Mapper.IObjectMapperConvert;
@@ -15,7 +15,7 @@ import tn.esprit.Repository.AccountRepository;
 public class KafkaConsumer {
 
     @Autowired
-    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+    private KafkaTemplate<Object, AccountDtoTopic > kafkaTemplateAccountDto;
     @Autowired
     IObjectMapperConvert objectMapperConvert ;
     @Autowired
@@ -24,10 +24,10 @@ public class KafkaConsumer {
     @KafkaListener(topics = "topic-service-user-account-insert", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
     public void consume_insert  (String payload)
     {
-        AccountDto accountDto = null ;
+        AccountDtoTopic accountDtoTopic  = null ;
         System.out.println("topic-service-account-insert :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
-            Account account = AccountMapper.mapToEntity(accountDto);
+        try {  accountDtoTopic   = (AccountDtoTopic) objectMapperConvert.convertToObject(payload, AccountDtoTopic.class);
+            Account account = AccountMapper.mapToEntity(accountDtoTopic);
             accountRepository.save(account);
 
         }
@@ -38,9 +38,9 @@ public class KafkaConsumer {
     @KafkaListener(topics = "topic-service-account-update", groupId = "topic-service-user-account-groupe-1", containerFactory = "StringKafkaListenerContainerFactory")
     public void consume_update  (String payload)
     {
-        AccountDto accountDto = null ;
+        AccountDtoTopic accountDto = null ;
         System.out.println("topic-service-account-update :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
+        try {  accountDto   = (AccountDtoTopic) objectMapperConvert.convertToObject(payload, AccountDtoTopic.class);
             Account account = AccountMapper.mapToEntity(accountDto);
             accountRepository.save(account);
         }
@@ -52,9 +52,9 @@ public class KafkaConsumer {
     public void consume_delete (String payload)
     {
 
-        AccountDto accountDto = null ;
+        AccountDtoTopic accountDto = null ;
         System.out.println("topic-service-account-delete :  = " + payload);
-        try {  accountDto   = (AccountDto) objectMapperConvert.convertToObject(payload,AccountDto.class);
+        try {  accountDto   = (AccountDtoTopic) objectMapperConvert.convertToObject(payload,AccountDtoTopic.class);
             Account account = AccountMapper.mapToEntity(accountDto);
             accountRepository.delete(account);
         }

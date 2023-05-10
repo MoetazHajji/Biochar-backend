@@ -1,12 +1,7 @@
 package tn.esprit.Mappers;
 
 import tn.esprit.Dto.AppointmentDto;
-import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.Appointment;
-import tn.esprit.Entitys.AppointmentStatus;
-import tn.esprit.Entitys.User;
-
-import java.util.Date;
 
 public class AppointmentMapper {
     public static Appointment mapToEntity(AppointmentDto appointmentDto){
@@ -45,4 +40,3 @@ public class AppointmentMapper {
                 .build();
     }
 }
-

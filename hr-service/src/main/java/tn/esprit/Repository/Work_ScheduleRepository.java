@@ -15,6 +15,10 @@ import java.util.List;
 
 public interface Work_ScheduleRepository extends JpaRepository<Work_Schedule, Long> {
 
+    List<Work_Schedule> findWork_SchedulesByAccount_Id(Long idA);
+    @Query("select ws from Work_Schedule ws group by ws.start_time")
+    List<Work_Schedule> findWSByGroup();
+
     @Query("select ws from Work_Schedule ws where ws.dateWork= ?1")
     List<Work_Schedule> findWorkSchedulesByWorkDate(LocalDate date);
     @Query("select ws from Work_Schedule ws where ws.dateWork in (?1, ?2)")

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class UserMapper {
 
-  static   List<Permission>  listPermissions  = new ArrayList<Permission>(){{
+    static   List<Permission>  listPermissions  = new ArrayList<Permission>(){{
         add( new Permission(1, TypePermission.Front,Roles.Chief_Service,"/*") );
         add( new Permission(2, TypePermission.Front,Roles.Patient,"/analysisPatient") );
         add( new Permission(2, TypePermission.Front,Roles.Patient,"/admin/account/edit-detailled/*") );
@@ -37,10 +37,10 @@ public class UserMapper {
     public static UserDto mapToDto(User user){
         List<String> ListPathPermission = new ArrayList<String>();
         if ( user != null ){
-         ListPathPermission = listPermissions.stream()
-                .filter(p -> p.getRoles() == user.getRoles())
-                 .map(p -> p.getPath())
-                .collect(Collectors.toList());}
+            ListPathPermission = listPermissions.stream()
+                    .filter(p -> p.getRoles() == user.getRoles())
+                    .map(p -> p.getPath())
+                    .collect(Collectors.toList());}
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())

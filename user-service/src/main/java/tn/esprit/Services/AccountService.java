@@ -77,9 +77,9 @@ public class AccountService  implements IAccountService {
         object.setCreatedAt(   LocalDateTime.now() );
         Account account = AccountMapper.mapToEntity(object);
         try {
-        MultipartFile multipartFile = ifileService.importFileToMultipartFile(FileService.defaultUserPhoto);
-        Attachment attachment  = iAttachmentService.saveAttachment(multipartFile);
-        account.setAttachment(attachment);   }
+            MultipartFile multipartFile = ifileService.importFileToMultipartFile(FileService.defaultUserPhoto);
+            Attachment attachment  = iAttachmentService.saveAttachment(multipartFile);
+            account.setAttachment(attachment);   }
         catch (IOException e) {   System.out.println("IOException: "+e.getMessage());  }
         catch (Exception e) {     System.out.println("Exception: "+e.getMessage());    }
 
@@ -153,26 +153,26 @@ public class AccountService  implements IAccountService {
     {
 
         if ( accountRepository. isCorrectUsername(username   ) ) {
-        Account account = accountRepository.findAccountByUsername(username);
-        Appointment apppt =   AppointmentMapper.mapToEntity( object );
-        apppt.setAppointmentEndTime(apppt.getAppointmentStartTime().plusMinutes(30));
-        iAppointementService.Verify(apppt);
-        if ( iAppointementService.Verify(apppt) == AppointmentStatus.Booked )
-        { return AuthenticationResponse.builder(). status(AuthenticationStatus.UNSUCCESSFUL).
-                message("Unsuccesful add your appointement may be you add in date weekenend , old date , appointment Booked ").build(); }
-        apppt.setCreatedAt(LocalDateTime.now());
-        apppt = appointmentRepository.save(apppt);
-        apppt.setAccount(account);
-        account.getAppointments().add(apppt);
-        account =  accountRepository.save(account);
-         return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
+            Account account = accountRepository.findAccountByUsername(username);
+            Appointment apppt =   AppointmentMapper.mapToEntity( object );
+            apppt.setAppointmentEndTime(apppt.getAppointmentStartTime().plusMinutes(30));
+            iAppointementService.Verify(apppt);
+            if ( iAppointementService.Verify(apppt) == AppointmentStatus.Booked )
+            { return AuthenticationResponse.builder(). status(AuthenticationStatus.UNSUCCESSFUL).
+                    message("Unsuccesful add your appointement may be you add in date weekenend , old date , appointment Booked ").build(); }
+            apppt.setCreatedAt(LocalDateTime.now());
+            apppt = appointmentRepository.save(apppt);
+            apppt.setAccount(account);
+            account.getAppointments().add(apppt);
+            account =  accountRepository.save(account);
+            return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
                     message("Successful add your appointement").build();
         }
-      return AuthenticationResponse.builder(). status(AuthenticationStatus.UNSUCCESSFUL).
-         message("Successful update role and state enable user").build();
-   }
-        //return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
-               // message("Successful update role and state enable user").build();
+        return AuthenticationResponse.builder(). status(AuthenticationStatus.UNSUCCESSFUL).
+                message("Successful update role and state enable user").build();
+    }
+    //return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
+    // message("Successful update role and state enable user").build();
 
 
 }

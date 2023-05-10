@@ -1,8 +1,11 @@
 package tn.esprit.Interface;
 
+<<<<<<< HEAD
 import org.springframework.web.multipart.MultipartFile;
+=======
+import tn.esprit.Entity.TestResult;
+>>>>>>> 41213c82bd231b05c1cac2c0506ff883f71b1048
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

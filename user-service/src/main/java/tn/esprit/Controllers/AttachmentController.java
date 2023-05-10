@@ -47,7 +47,7 @@ public class AttachmentController {
                 .contentType(MediaType.parseMediaType(attachment.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION,
                         "attachment; filename=\"" + attachment.getFileName()
-                + "\"")
+                                + "\"")
                 .body(new ByteArrayResource(attachment.getData()));
     }
 }
