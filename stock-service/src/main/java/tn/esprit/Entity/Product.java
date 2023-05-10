@@ -19,10 +19,10 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    //@Column(unique = true,nullable = false,length = 20 )
+    @Column(unique = true,nullable = false,length = 20 )
     String name_product;
 
-    //@Column(unique = true,nullable = false,length = 25 )
+    @Column(unique = true,nullable = false,length = 25 )
     String reference;
 
     //@Column(unique = false,nullable = false)

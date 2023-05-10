@@ -74,6 +74,12 @@ public class OfferService implements IOfferService {
         return offer;
     }
 
+    @Override
+    public List<Offer> getOffersForProduct(Long idProd) {
+        Product product=productRepository.findById(idProd).orElse(null);
+        return product.getOffers();
+    }
+
 
     @Override
     public Offer addOfferAndAssignProductSupplier(Offer offer, Long idPro, Long idSupp) {

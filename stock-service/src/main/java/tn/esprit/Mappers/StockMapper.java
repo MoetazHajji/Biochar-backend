@@ -12,7 +12,7 @@ public class StockMapper {
         stock.getProducts().forEach(product -> prList.add(product.getName_product()));
         StockDto stockDto=StockDto.builder()
                 .id(stock.getId())
-                .date(stock.getDate())
+                //.date(stock.getDate())
                 .location(stock.getLocation())
                 .storage(stock.getStorage())
                 .free_storage(stock.getFree_storage())
@@ -24,7 +24,7 @@ public class StockMapper {
     public static Stock mapToEntity(StockDto stockDto){
         Stock stock=Stock.builder()
                 .id(stockDto.getId())
-                .date(stockDto.getDate())
+                //.date(stockDto.getDate())
                 .location(stockDto.getLocation())
                 .storage(stockDto.getStorage())
                 .free_storage(stockDto.getFree_storage())

@@ -108,6 +108,12 @@ public class CommandService implements ICommandService {
         commandRepository.save(command);
     }
 
+    @Override
+    public Set<CommandLigne> getCommandLigneOfCommand(Long idCom) {
+        Command command = commandRepository.findById(idCom).orElseThrow(() -> new ElementNotFoundException("Command with id "+ idCom +" not found : " ));
+        return command.getCommandLignes();
+    }
+
     /*@Override
     public void affectproductsToCommand(Long idCom,Long idPro) {
         Product product=productRepository.findById(idPro).orElse(null);
@@ -146,4 +152,5 @@ public class CommandService implements ICommandService {
         commandRepository.save(command);
         return command;
     }*/
+
 }

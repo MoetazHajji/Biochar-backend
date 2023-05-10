@@ -16,4 +16,5 @@ public interface IOfferService {
     Offer AffectProductToOfferCall( Long idOffer,Long idPro);
     Offer addOfferAndAssignProductSupplier(Offer offer, Long idPro, Long idSupp);
     Offer AffectSupplierToOfferCall(Long idOffer, Long idSupp);
+    List<Offer> getOffersForProduct(Long idProd);
 }

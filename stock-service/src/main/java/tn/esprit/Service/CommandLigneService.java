@@ -34,11 +34,12 @@ public class CommandLigneService implements ICommandLigneService {
             product.setCount_order(CountToUpdate);
         }
         ligneRepository.save(ligne);
-        if (ligne.getProduct()!=null){
+       /* if (ligne.getProduct()!=null){
             Double QuantitySumPerProduct = ligneRepository.SumOfProductQuantity(idProd) + product.getQuantity();
             product.setQuantity(QuantitySumPerProduct);
             productRepository.save(product);
-        }
+        }*/
+        System.out.println();
         return ligne;
     }
 
@@ -62,6 +63,12 @@ public class CommandLigneService implements ICommandLigneService {
     @Override
     public Double getSumQuantity(Long id) {
         return ligneRepository.SumOfProductQuantity(id);
+    }
+
+    @Override
+    public Product getProductFromCmd(Long idCmd) {
+        CommandLigne cmdl= ligneRepository.findById(idCmd).orElse(null);
+        return cmdl.getProduct() ;
     }
 
 

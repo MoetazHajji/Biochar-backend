@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Command;
+import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Entity.Product;
 import tn.esprit.Interface.ICommandService;
 import tn.esprit.Interface.IProductService;
@@ -24,6 +25,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/command")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CommandController {
     ICommandService commandService;
     IProductService productService;
@@ -54,7 +56,7 @@ public class CommandController {
     }
 
     @Operation(description = "Retreive all Commands")
-    @GetMapping("getAllAdress")
+    @GetMapping("getAllCommands")
     public Set<Command> getAllCommand(){
         return commandService.getAllCommands();
     }
@@ -77,6 +79,10 @@ public class CommandController {
         headers.setContentDisposition(ContentDisposition.builder("inline").filename("command-" + commandId + ".pdf").build());
 
         return new ResponseEntity<>(pdf, headers, HttpStatus.OK);
+    }
+    @GetMapping("getProduForCommand/{id}")
+    Set<CommandLigne> getCommandLigneOfCommand(@PathVariable("id") Long idCom){
+        return commandService.getCommandLigneOfCommand(idCom);
     }
 
 
