@@ -25,7 +25,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/command")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class CommandController {
     ICommandService commandService;
     IProductService productService;

@@ -31,7 +31,7 @@ public class StockAutoFiller implements IStockAutoFiller {
 
     @Override
     @Transactional
-    @Scheduled(fixedDelay = 3000)
+    @Scheduled(fixedDelay = 500000)
     public void checkStockLevels() {
         Set<Stock> stockList = stockService.getAllStocks();
         for (Stock stock:stockList){

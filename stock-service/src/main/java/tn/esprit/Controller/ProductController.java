@@ -19,7 +19,7 @@ import java.util.Set;
 @RestController
 @Tag(name = "Product Management")
 @RequestMapping("/product")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     IProductService productService;
     ScrapperService scrapperService;
