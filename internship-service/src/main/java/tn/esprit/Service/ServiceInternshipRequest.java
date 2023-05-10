@@ -56,7 +56,9 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
     public List<InternshipRequest> getAllInternshipRequest() {
         List<InternshipRequest> InternshipRequestList = new ArrayList<>();
         rir.findAll().forEach(InternshipRequestList::add);
+
         return InternshipRequestList;
+        //return rir.findAll();
     }
 
     @Override
@@ -69,12 +71,8 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
         try {
             String data = extractTextFromPDF(cv);
             if ((!validate_data(data))||(ir.getEnd_date().before(ir.getStart_date())))
-                return null;
-        }
-        catch (IOException ioException){
-            log.warn("pdf file inappropriate!");
-        }
-        try {
+               return null;
+
             ir.setCV("src\\main\\resources\\Files\\"+ir.getNom()+"_"+ir.getPrenom()+".pdf");
             InputStream inputStream = cv.getInputStream();
             byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
@@ -87,19 +85,20 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
         }
     }
 
-    //pdf to string
+
+/*    @Override
+    public InternshipRequest add_request_with_cv(InternshipRequest ir) {
+            return rir.save(ir);
+    }*/
+
+
     private String extractTextFromPDF(MultipartFile cv) throws IOException {
         InputStream inputStream;
         inputStream = cv.getInputStream();
         byte[] pdfBytes = FileCopyUtils.copyToByteArray(inputStream);
-        try (PDDocument document = PDDocument.load(pdfBytes)) {
+        PDDocument document = PDDocument.load(pdfBytes);
             PDFTextStripper stripper = new PDFTextStripper();
-            log.warn(stripper.getText(document));
             return stripper.getText(document);
-        } catch (IOException exception) {
-            log.error("pdf error!");
-            return "" ;
-        }
     }
 
     private boolean validate_data(String data){
@@ -131,42 +130,45 @@ public class ServiceInternshipRequest implements IServiceInternshipRequest {
         }
         double informalRatio = (double) informalCount / tokens.length;
         if (informalRatio > 0.2) {
+
             return false;
         }
+
         return true;
     }
     private boolean isLongEnough(String text,double minimumwordsPerPage,double maximumwordsperpage) {
-
-
-
         String[] words = text.split("\\s+");
         int wordCount = words.length;
+        if ((wordCount<=maximumwordsperpage)&(wordCount>=minimumwordsPerPage)) {
 
-        if ((wordCount<=maximumwordsperpage)&(wordCount>=minimumwordsPerPage))
             return true;
-        return false;
 
+        }
+
+        return false;
     }
     private Boolean check_bad_words(String data) throws IOException {
-
         Resource resource = new FileSystemResource("C:/Users/HP/Desktop/pidev2023/Biochar-backend/internship-service/src/main/resources/Files/Bad.txt");
         InputStream inputStream = resource.getInputStream();
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null)
         {
             stringBuilder.append(line);
-            stringBuilder.append("  ");
+            stringBuilder.append("/");
         }
-        String[] badWords = stringBuilder.toString().split("\\s+");
+        String[] badWords = stringBuilder.toString().split("/");
 
         for(String bad : badWords)
         {
-            if(data.contains(bad))
+
+            if(data.contains(" "+bad+" ")) {
+
                 return false;
+            }
         }
+
         return true;
 
     }
