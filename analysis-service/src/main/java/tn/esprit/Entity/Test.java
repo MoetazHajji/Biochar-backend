@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @ToString
@@ -22,7 +22,7 @@ public class Test implements Serializable {
     private int idTest;
     private String nameTest;
     private float price;
-    private Date dateTest;
+    private LocalDate dateTest;
     @ManyToOne
     Sample sample;
     @OneToMany( mappedBy="test")

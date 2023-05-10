@@ -27,4 +27,6 @@ public interface IMedicalcard {
     public Resource load(String filename);
     public Stream<Path> loadAll();
     Medicalcard asignDepToEt(Integer idMedicalcard, Long id);
+
+    MedicalcardDto AddAndAsignmedicalToAccount(MedicalcardDto mc, Long id);
 }

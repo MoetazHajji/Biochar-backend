@@ -4,10 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @ToString
+@Builder
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,11 +22,9 @@ public class Account implements Serializable {
     private Long id;
     private String Firstname;
     private String Lastname;
-    private String Cin;
-    private String Phone;
-    private Date dateofbirdh;
+    private int Phone;
+    private LocalDate dateofbirdh;
     private String Email;
-    private String Pasword;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="account")

@@ -22,7 +22,7 @@ public interface ITestResult {
 
     List<TestResult>  retriveTestResultBYAcounnt(Long id);
 
-    TestResult retriveTestResult(String resultat);
+    //TestResult retriveTestResult(String resultat);
 
     long countttt();
 
@@ -32,5 +32,5 @@ public interface ITestResult {
 
     TestResult cou();
 
-    Map<Integer,String[]> divide_table(String table);
+    Map<Integer,String[]> divide_table(String table,int idTest);
 }

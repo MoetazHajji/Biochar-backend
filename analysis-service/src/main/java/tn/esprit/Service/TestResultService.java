@@ -160,11 +160,11 @@ public class TestResultService implements ITestResult {
         return testResultRepository.getTestResultByTest_Sample_Account_Id(id);
 
     }
-    @Override
+    /*@Override
     public TestResult retriveTestResult(String resultat) {
         return testResultRepository.getTestResultByResultat(resultat);
 
-    }
+    }*/
     @Override
     public long countttt() {
         return testResultRepository.countTestResultByDa();
@@ -187,7 +187,7 @@ public class TestResultService implements ITestResult {
     }
 
     @Override
-    public Map<Integer,String[]> divide_table(String table) {
+    public Map<Integer,String[]> divide_table(String table, int idTest) {
         String[] lines = table.split("\n");
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -208,6 +208,8 @@ public class TestResultService implements ITestResult {
             testResult.setResultat(line[1]);
             testResult.setUnite(line[2]);
             testResult.setPLAGE_DE_REFERENCE(line[3]);
+            Test d = testRepository.findById(idTest).orElse(null);
+            testResult.setTest(d);
             testResultRepository.save(testResult);
         }
         return map;
