@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Entity.Product;
 import tn.esprit.Entity.Stock;
 import tn.esprit.Interface.IStockService;
 import tn.esprit.Service.StockService;
@@ -15,6 +16,7 @@ import java.util.Set;
 @RestController
 @Tag(name = "Stock Management")
 @RequestMapping("/stock")
+@CrossOrigin(origins = "http://localhost:4200")
 public class StockController {
     IStockService stocksService;
     StockService stockSer;
@@ -50,8 +52,8 @@ public class StockController {
     }
 
     @Operation(description = "Affect product to stock")
-    @PutMapping("AssignProductToStock/{idPro}/{quan}/{idSto}")
-    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro,@PathVariable("quan") Double quantity, @PathVariable("idSto") Long idStock){
+        @PutMapping("AssignProductToStock/{idPro}/{idSto}")
+    public Stock AffectProductToSupplies(@PathVariable("idPro") Long idPro,@RequestBody Double quantity, @PathVariable("idSto") Long idStock){
         return stocksService.AffectProductToSupplies(idPro,quantity,idStock);
     }
 
@@ -65,9 +67,14 @@ public class StockController {
         return stocksService.getSumSizeOfProducts(id);
     }
 
-    @PutMapping("withdraw/{quantity}/{id}")
-    void withdrawStock(@PathVariable("quantity") Double quantity,@PathVariable("id") Long idstock){
+    @PutMapping("withdraw/{id}")
+    void withdrawStock(@RequestBody Double quantity,@PathVariable("id") Long idstock){
         stocksService.withdrawStock(quantity, idstock);
+    }
+
+    @GetMapping("getProdForStock/{id}")
+    public Set<Product> getProductsForStock(@PathVariable("id") Long idStock){
+        return  stocksService.getProductsForStock(idStock);
     }
 
 }

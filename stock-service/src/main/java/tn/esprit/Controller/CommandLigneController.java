@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Entity.Adress;
 import tn.esprit.Entity.CommandLigne;
+import tn.esprit.Entity.Product;
 import tn.esprit.Interface.ICommandLigneService;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("commandLigne")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CommandLigneController {
     ICommandLigneService ligneService;
 
@@ -42,5 +44,10 @@ public class CommandLigneController {
     @GetMapping("getQuantity/{id}")
     public Double getSumQuantity(@PathVariable("id") Long id){
         return ligneService.getSumQuantity(id);
+    }
+
+    @GetMapping("getProductOfCmdl/{id}")
+    public Product getProductFromCmd(@PathVariable("id") Long idCmd){
+        return  ligneService.getProductFromCmd(idCmd);
     }
 }

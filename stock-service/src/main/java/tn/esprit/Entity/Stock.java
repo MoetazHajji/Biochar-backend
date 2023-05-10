@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -37,8 +38,7 @@ public class Stock implements Serializable {
     @Min(0)
     Double used_storage;
     @NonNull
-    @Temporal(TemporalType.DATE)
-    Date date;
+    LocalDate date;
     @NonNull
     String location;
 

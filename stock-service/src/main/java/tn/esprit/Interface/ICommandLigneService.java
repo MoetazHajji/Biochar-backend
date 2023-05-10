@@ -2,6 +2,7 @@ package tn.esprit.Interface;
 
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.CommandLigne;
+import tn.esprit.Entity.Product;
 
 import java.util.List;
 import java.util.Set;
@@ -17,4 +18,6 @@ public interface ICommandLigneService {
     void deleteOrderLine(Long id);
 
     Double getSumQuantity(Long id);
+
+    Product getProductFromCmd(Long idCmd);
 }

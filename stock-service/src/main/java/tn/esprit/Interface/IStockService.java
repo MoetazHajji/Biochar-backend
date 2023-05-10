@@ -20,4 +20,6 @@ public interface IStockService {
     Double getSumSizeOfProducts(Long id);
     Stock withdrawStock(Double quantity,Long idstock);
 
+    Set<Product> getProductsForStock(Long idPro);
+
 }

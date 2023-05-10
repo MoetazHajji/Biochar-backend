@@ -15,7 +15,9 @@ import tn.esprit.Interface.IStockService;
 import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.IStockRepository;
 
+import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -27,7 +29,14 @@ public class StockService implements IStockService {
 
     @Override
     public Stock addStock(Stock stock) {
-        return stockRepository.save(stock);
+        stock.setDate(LocalDate.now());
+        stockRepository.save(stock);
+        if(stock.getFree_storage()==null && stock.getUsed_storage()==null){
+            stock.setFree_storage(stock.getStorage());
+            stock.setUsed_storage(0.0);
+            stockRepository.save(stock);
+        }
+        return stock;
     }
 
     @Override
@@ -137,5 +146,13 @@ public class StockService implements IStockService {
         stockRepository.save(stock);
         return stock;
     }
+
+    @Override
+    public Set<Product> getProductsForStock(Long idStock) {
+        Stock stock = stockRepository.findById(idStock).orElse(null);
+        return stock.getProducts();
+    }
+
+
 
 }
