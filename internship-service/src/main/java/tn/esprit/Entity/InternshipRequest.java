@@ -35,7 +35,7 @@ public class InternshipRequest implements Serializable {
     @Temporal(TemporalType.DATE)
     Date end_date;
 
-    @OneToOne(mappedBy = "internshipRequest")
+    @OneToOne(mappedBy = "internshipRequest",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @JsonIgnore
     Internship internship;
 

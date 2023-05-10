@@ -18,5 +18,6 @@ public interface IServiceInternshipRequest {
     InternshipRequest findInternshipRequest(Integer idInternshipRequest);
 
     InternshipRequest add_request_with_cv(InternshipRequest ir,MultipartFile cv);
+  //  InternshipRequest add_request_with_cv(InternshipRequest ir);
 
 }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.Entity.Internship;
 import tn.esprit.Entity.InternshipRequest;
+import tn.esprit.Entity.Status;
 import tn.esprit.Entity.Test;
 import tn.esprit.Interface.IServiceInternship;
 import tn.esprit.Repository.RepoInternship;
@@ -25,9 +26,9 @@ public class ServiceInternship implements IServiceInternship {
     @Override
     public Internship addInternship(Internship i,int request_id) {
         InternshipRequest ir = rir.findById(request_id).orElse(null);
+        ir.setStatus(Status.accepted);
         i.setInternshipRequest(ir);
         return ri.save(i);
-
     }
 
     @Override
@@ -40,6 +41,7 @@ public class ServiceInternship implements IServiceInternship {
         List<Internship> InternshipList = new ArrayList<>();
         ri.findAll().forEach(InternshipList::add);
         return InternshipList;
+        //return ri.findAll();
     }
     @Override
     public Internship findInternship(Integer idInternship) {
