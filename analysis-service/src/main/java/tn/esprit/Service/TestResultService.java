@@ -1,27 +1,17 @@
 package tn.esprit.Service;
 
-import com.spire.pdf.PdfDocument;
-import com.spire.pdf.utilities.PdfTable;
-import com.spire.pdf.utilities.PdfTableExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Test;
 import tn.esprit.Entity.TestResult;
 import tn.esprit.Interface.ITestResult;
 import tn.esprit.Repository.TestRepository;
 import tn.esprit.Repository.TestResultRepository;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -105,7 +95,7 @@ public class TestResultService implements ITestResult {
 
         return null;
     }*/
-   @Override
+  /* @Override
    public List<TestResult> readTests(MultipartFile file) throws IOException {
 
        log.info("file :"+file.getSize());
@@ -155,7 +145,7 @@ public class TestResultService implements ITestResult {
        }
 
        return null;
-   }
+   }*/
 
     @Override
     public TestResult asigntesTosmp(int idTestResult, int idTest) {

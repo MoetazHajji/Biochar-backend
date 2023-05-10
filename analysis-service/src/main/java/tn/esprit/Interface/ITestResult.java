@@ -15,7 +15,7 @@ public interface ITestResult {
 
     List<TestResult> retrieveAllTestResult();
 
-    List<TestResult> readTests(MultipartFile file) throws IOException;
+    //List<TestResult> readTests(MultipartFile file) throws IOException;
 
     TestResult asigntesTosmp(int idTestResult, int idTest);
 
