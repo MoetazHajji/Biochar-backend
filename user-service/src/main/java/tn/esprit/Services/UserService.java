@@ -64,7 +64,7 @@ public class UserService  implements IUserService {
         user.setPassword(object.getPassword());
         user.setEnabled(object.isEnabled());
         user.setRoles(object.getRoles());
-        user.setPermissions(object.getPermissions());
+        //user.setPermissions(object.getPermissions());
         user = userRepository.save(user);
         return  UserMapper.mapToDto( user )  ;
     }

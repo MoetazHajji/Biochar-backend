@@ -28,6 +28,11 @@ public class AppointmentController {
      public AppointmentDto Insert(@RequestBody AppointmentDto appointmentDto) {return  iAppointmentService.Insert(   appointmentDto);}
     @PutMapping
     public  ResponseEntity<AppointmentDto> update( @RequestBody AppointmentDto appointmentDto){return  ResponseEntity.ok( iAppointmentService.update(  appointmentDto));}
+    @DeleteMapping("{id}")
+    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){   iAppointmentService.delete( id ); return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);}
+
+
+
     @PutMapping ("assignUserToAccount/{idAppointment}/{idAccount}")
     public AppointmentDto  assignUserToAccount(@PathVariable("idAppointment")  Long idAppointment, @PathVariable("idAccount")  Long idAccount){
         return   iAppointmentService.assignAppointmentToAccount( idAppointment,  idAccount);
@@ -36,6 +41,6 @@ public class AppointmentController {
     public AppointmentDto  AddAppointmentAndAssignToAccount(  @PathVariable("idAccount")  Long idAccount , @RequestBody  AppointmentDto appointmentDto){
         return   iAppointmentService.AddAppointmentAndAssignToAccount( idAccount,  appointmentDto);
     }
-    @DeleteMapping("{id}")
-    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){   iAppointmentService.delete( id ); return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);}
+
+
 }

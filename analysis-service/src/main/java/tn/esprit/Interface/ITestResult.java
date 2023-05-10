@@ -1,5 +1,6 @@
 package tn.esprit.Interface;
-
+import tn.esprit.Entity.TestResult;
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.TestResult;
 
 import java.util.List;

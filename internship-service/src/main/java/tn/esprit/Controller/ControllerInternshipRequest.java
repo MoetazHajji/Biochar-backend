@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/InternshipRequest")
+@CrossOrigin(origins = "*")
 public class ControllerInternshipRequest {
     IServiceInternshipRequest isir;
 
@@ -37,4 +38,10 @@ public class ControllerInternshipRequest {
     {
         return isir.add_request_with_cv(ir,cv);
     }
+
+/*    @PutMapping("/add_request")
+    public InternshipRequest add_request_with_cv(@RequestBody InternshipRequest ir)
+    {
+        return isir.add_request_with_cv(ir);
+    }*/
 }

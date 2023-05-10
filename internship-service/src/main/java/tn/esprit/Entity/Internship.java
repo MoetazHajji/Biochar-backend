@@ -18,6 +18,8 @@ public class Internship implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    String nom;
+    String prenom;
 
     @Enumerated(EnumType.STRING)
     State state;
