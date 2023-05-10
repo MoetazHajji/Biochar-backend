@@ -1,8 +1,6 @@
 package tn.esprit.Mappers;
 
-import tn.esprit.Dto.MedicalcardDto;
 import tn.esprit.Dto.TestDto;
-import tn.esprit.Entity.Medicalcard;
 import tn.esprit.Entity.Test;
 
 public class TestMapper {
@@ -12,6 +10,7 @@ public class TestMapper {
                 .idTest(test.getIdTest())
                 .nameTest(test.getNameTest())
                 .price(test.getPrice())
+                .dateTest(test.getDateTest())
                 .build();
         return testDto;
     }
@@ -20,6 +19,7 @@ public class TestMapper {
                 .idTest(testDto.getIdTest())
                 .nameTest(testDto.getNameTest())
                 .price(testDto.getPrice())
+                       .dateTest(testDto.getDateTest())
                 .build();
         return test;
     }

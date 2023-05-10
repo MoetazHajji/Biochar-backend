@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/maps")
 @Slf4j
-//@CrossOrigin(origins = "http://localhost:4200")
 public class MapsController {
     @GetMapping("/geocode")
     public GeocodingResult[] geocodeAddress(@RequestParam("address") String address) throws Exception {

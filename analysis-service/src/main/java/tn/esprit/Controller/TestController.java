@@ -8,7 +8,7 @@ import tn.esprit.Entity.Test;
 import tn.esprit.Interface.ITest;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("Test")
 @RequiredArgsConstructor

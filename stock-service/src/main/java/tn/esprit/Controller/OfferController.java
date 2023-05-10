@@ -14,7 +14,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Tag(name = "Offer calls management")
 @RequestMapping("offer")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class OfferController {
     IOfferService callService;
 

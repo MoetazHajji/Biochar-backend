@@ -122,4 +122,14 @@ private final Path root= Paths.get("uploads");
 
         return medicalcardRepository.save(e);
     }
+
+    @Override
+    public MedicalcardDto AddAndAsignmedicalToAccount(MedicalcardDto mc, Long id) {
+        Medicalcard medicalcard = MedicalcardMapper.mapToEntity(mc);
+        medicalcard = medicalcardRepository.save(medicalcard);
+        Account a = accountRepository.findById(id).orElse(null);
+        medicalcard.setAccount(a);
+        medicalcardRepository.save(medicalcard);
+        return MedicalcardMapper.mapToDto(medicalcard);
+    }
 }
