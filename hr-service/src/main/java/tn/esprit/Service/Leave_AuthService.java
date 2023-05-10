@@ -29,14 +29,17 @@ public class Leave_AuthService implements ILeave_AuthService{
      Leave_AuthorizationRepository leave_authorizationRepository;
      AccountRepository accountRepository;
 
+     Leave_AuthorizationMapper leaveAuthorizationMapper;
+
     @Override
-    public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idA) {
+    public Leave_AuthorizationDto updateLeaveAuth(Leave_AuthorizationDto la, Long idA) {
+        Leave_Authorization leaveAuth = leaveAuthorizationMapper.mapLeaveAuthToEntity(la);
         Account account = accountRepository.findById(idA).orElse(null);
-        if(la.getEnd_date().before(la.getStart_date())){
+        if(leaveAuth.getEnd_date().before(leaveAuth.getStart_date())){
             throw new WrongPeriodException("End Date must be >= Start Date");
         }else {
-            la.setAccount(account);
-            Leave_Authorization leaveAuthorization = leave_authorizationRepository.save(la);
+            leaveAuth.setAccount(account);
+            Leave_Authorization leaveAuthorization = leave_authorizationRepository.save(leaveAuth);
             return Leave_AuthorizationMapper.mapLeaveAuthToDto(leaveAuthorization);
         }
     }

@@ -14,8 +14,8 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
-    @Query("SELECT CASE WHEN COUNT(appt) > 0 THEN true ELSE false END FROM Appointment appt WHERE (((appt.appointmentStartTime >= :startime) AND (appt.appointmentStartTime < :endtime)) OR ((appt.appointmentEndTime > :startime) AND  (appt.appointmentEndTime <= :endtime) ) OR ((appt.appointmentStartTime <= :startime) AND (appt.appointmentEndTime >= :endtime) )  OR ((appt.appointmentStartTime >= :startime) AND (appt.appointmentEndTime <= :endtime)))")
-    boolean isInBetweenTwoTimeAndDate(@Param("startime") LocalTime startime, @Param("endtime") LocalTime endtime  );
+    //@Query("SELECT CASE WHEN COUNT(appt) > 0 THEN true ELSE false END FROM Appointment appt WHERE (((appt.appointmentStartTime >= :startime) AND (appt.appointmentStartTime < :endtime)) OR ((appt.appointmentEndTime > :startime) AND  (appt.appointmentEndTime <= :endtime) ) OR ((appt.appointmentStartTime <= :startime) AND (appt.appointmentEndTime >= :endtime) )  OR ((appt.appointmentStartTime >= :startime) AND (appt.appointmentEndTime <= :endtime)))")
+    //boolean isInBetweenTwoTimeAndDate(  @Param("startime") LocalTime startime, @Param("endtime") LocalTime endtime  );
 
 
     @Query("SELECT appt  FROM Appointment appt WHERE  ( (appt.appointmentStatus is not null ) AND (appt.appointmentDate = :tommorow )  AND (appt.appointmentStatus = tn.esprit.Entitys.AppointmentStatus.Available ) )")

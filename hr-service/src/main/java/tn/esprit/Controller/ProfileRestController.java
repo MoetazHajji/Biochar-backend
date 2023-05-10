@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("Profile")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProfileRestController {
 
     private final ProfileService profileService;
@@ -34,15 +35,18 @@ public class ProfileRestController {
     }
 
     @GetMapping("/getAllProfiles")
-    @ResponseStatus(HttpStatus.FOUND)
     public List<ProfileDto> getAllProfiles(){
         return profileService.retrieveAllProfiles();
     }
 
     @GetMapping("/getProfileById/{idP}")
-    @ResponseStatus(HttpStatus.FOUND)
     public ProfileDto getProfileById(@PathVariable("idP") Long idP){
         return profileService.retrieveProfileById(idP);
+    }
+
+    @GetMapping("/getProfileByAcc/{idA}")
+    public ProfileDto getProfileByAcc(@PathVariable("idA") Long idA){
+        return profileService.retrieveProfileByAccount(idA);
     }
 
     @PostMapping("/updateExperience")

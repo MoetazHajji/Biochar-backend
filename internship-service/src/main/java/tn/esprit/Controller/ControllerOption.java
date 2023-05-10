@@ -6,6 +6,7 @@ import tn.esprit.Entity.Detail;
 import tn.esprit.Entity.Option;
 import tn.esprit.Interface.IServiceOption;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,7 +16,8 @@ public class ControllerOption {
     IServiceOption iso;
 
     @PutMapping("/update")
-    public Option updateOption(@RequestBody Option o,@PathVariable("id") Integer questionid) {
+    public Option updateOption(@RequestBody Option o,@QueryParam("questionid") int questionid) {
+        System.out.printf(questionid + "");
         return iso.addOption(o,questionid);
     }
 

@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ILeave_AuthService {
 
-    public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idAs);
-   // public Leave_AuthorizationDto updateLeaveAuth(Leave_AuthorizationDto la);
+   //s public Leave_AuthorizationDto updateLeaveAuth(Leave_Authorization la, Long idAs);
+    public Leave_AuthorizationDto updateLeaveAuth(Leave_AuthorizationDto la, Long idA);
     public void deleteLeaveAuth(Long idLA);
     public List<Leave_AuthorizationDto> retrieveAllLeaveAuths();
     public Leave_AuthorizationDto retrieveLeaveAuthById(Long idLA);
@@ -19,5 +19,7 @@ public interface ILeave_AuthService {
     public void checkAndUpdateLeaveStatus();
     public List<Leave_AuthorizationDto> retrieveLAByAccountId(Long idA);
     public List<Leave_AuthorizationDto> retrieveLeaveAuthByPeriod(Date startDate, Date endDate);
+
+    //public List<Float> extractNumbersFromString(String inputString);
 
 }

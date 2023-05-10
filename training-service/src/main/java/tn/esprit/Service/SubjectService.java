@@ -10,24 +10,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.reactive.function.client.WebClient;
 import tn.esprit.Entity.Cookie;
 import tn.esprit.Entity.Subject;
 import tn.esprit.Entity.Training;
 import tn.esprit.External.Profile;
-import tn.esprit.External.Profile_e;
 import tn.esprit.Interface.ISubjectService;
 import tn.esprit.Repository.CookiesRepository;
-import tn.esprit.Repository.ProfileRepository;
 import tn.esprit.Repository.SubjectRepository;
 import tn.esprit.Repository.TrainingRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileWriter;
@@ -47,11 +42,10 @@ public class SubjectService implements ISubjectService {
 
     final CookiesRepository cookiesRepository;
 
-    final ProfileRepository profileRepository;
 
     final TrainingRepository trainingRepository;
 
-    final WebClient webClient;
+    final Connections connections;
 
     // @Scheduled(cron = "* * 8 * * *")
 
@@ -353,21 +347,16 @@ public class SubjectService implements ISubjectService {
     }
 
 
-    private List<Profile> get_profiles()
-    {
-        List<Profile> profiles = new ArrayList<>();
-        profileRepository.findAll().forEach(profiles::add);
-        return profiles;
-    }
+
 
     private List<String> get_Knowledges(String subject_title)
     {
-        List<Profile> profiles = get_profiles();
+        List<Profile> profiles = connections.getProfiles();
         List<String> selected = new ArrayList<>();
         profiles.forEach(profile -> {
             String infos = profile.getKnowledge() + profile.getSkills() ;
             if(infos.toLowerCase().contains(subject_title.toLowerCase()))
-                selected.add(profile.getEmail());
+                selected.add(connections.getAccountEmailById(profile.getAccount_id()));
         });
         return selected;
     }
@@ -472,20 +461,6 @@ public class SubjectService implements ISubjectService {
         return null;
     }
 
-    @Override
-    public List<Profile_e> getProfiles() {
-        List<Profile_e> profile_es = new ArrayList<>();
-        Profile_e[] profile_array = webClient.get()
-                .uri("http://localhost:9060/biochar/Profile/getAllProfiles",
-                        uriBuilder -> uriBuilder.build())
-                .retrieve()
-                .bodyToMono(Profile_e[].class)
-                .block();
-        profile_es.addAll(Arrays.asList(profile_array));
-
-        return profile_es;
-    }
-
 
     @Scheduled(cron = "0 0 0 */7 * *")
     public void clear_old_cookies()
@@ -503,7 +478,5 @@ public class SubjectService implements ISubjectService {
             return true;
         return false;
     }
-
-
 
 }

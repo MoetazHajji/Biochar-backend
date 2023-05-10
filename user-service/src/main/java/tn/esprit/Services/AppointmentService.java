@@ -1,6 +1,4 @@
 package tn.esprit.Services;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -12,16 +10,16 @@ import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Appointment;
 import tn.esprit.Entitys.AppointmentStatus;
 import tn.esprit.Entitys.User;
-import tn.esprit.Mappers.AccountMapper;
 import tn.esprit.Mappers.AppointmentMapper;
+import tn.esprit.Models.AuthenticationResponse;
+import tn.esprit.Models.AuthenticationStatus;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.AppointmentRepository;
+import tn.esprit.Repositorys.UserRepository;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,13 +29,21 @@ public class AppointmentService   implements IAppointementService {
     private AppointmentRepository appointmentRepository;
     private AccountRepository accountRepository;
     private ITimeOffService iTimeOffService;
-
+    private  UserRepository userRepository;
     private IFileService iFileService;
     @Autowired // Methode 2
     public AppointmentService(AppointmentRepository appointmentRepository,
                               @Qualifier("TimeOff") ITimeOffService iTimeOffService ,
-                              AccountRepository accountRepository)
-    {  this.appointmentRepository = appointmentRepository;  this.iTimeOffService = iTimeOffService; this.accountRepository = accountRepository; }
+                              AccountRepository accountRepository,
+                              UserRepository userRepository,
+                              IFileService iFileService
+    )
+    {  this.appointmentRepository = appointmentRepository;
+        this.iTimeOffService = iTimeOffService;
+        this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
+        this.iFileService = iFileService;
+    }
 
     @Override
     public List<AppointmentDto> SelectAll() {  return appointmentRepository.findAll().
@@ -51,11 +57,12 @@ public class AppointmentService   implements IAppointementService {
 
     @Override
     public AppointmentDto Insert(AppointmentDto object) {
-        object.setCreatedAt( new Date(System.currentTimeMillis()));
+        object.setCreatedAt(LocalDateTime.now());
         object.setAppointmentStatus(this.Verify( AppointmentMapper.mapToEntity( object )  ));
         Appointment appointment = AppointmentMapper.mapToEntity(object);
         return AppointmentMapper.mapToDto( appointmentRepository.save(appointment));
     }
+
 
     @Override
     @Transactional
@@ -65,7 +72,7 @@ public class AppointmentService   implements IAppointementService {
         appointment.setReason(object.getReason());
         //appointment.setDate_sending(object.getDate_sending());
         appointment.setComments(object.getComments());
-        appointment.set_first_visit(object.is_first_visit());
+        appointment.setFirstVisit(object.isFirstVisit());
         appointmentRepository.save(appointment);
         return  AppointmentMapper.mapToDto(appointment) ;
     }
@@ -117,26 +124,24 @@ public class AppointmentService   implements IAppointementService {
         Account account = accountRepository.findById(idAccount).orElse(null);
         Appointment appt =  AppointmentMapper.mapToEntity( appointmentDto );
         appt.setAppointmentStatus(this.Verify( appt  ));
-        appt.setCreatedAt( new Date(System.currentTimeMillis()));
+        appt.setCreatedAt(LocalDateTime.now());
         appt =  appointmentRepository.save(appt);
         appt.setAccount(account);
         return AppointmentMapper.mapToDto(appointmentRepository.save(appt));
     }
 
-
-    private AppointmentStatus Verify( Appointment appointment ) {
-        AppointmentStatus appointmentStatus = null ;
-        LocalDate dayNow = LocalDate.now();
-        if (iTimeOffService.verify (appointment.getAppointmentDate() ,appointment.getAppointmentStartTime(), appointment.getAppointmentEndTime()))
+@Override
+    public AppointmentStatus Verify( Appointment appointment ) {
+        AppointmentStatus appointmentStatus =  AppointmentStatus.Available;
+        if (!iTimeOffService.verify (appointment.getAppointmentDate() ,appointment.getAppointmentStartTime(), appointment.getAppointmentEndTime()))
         {appointmentStatus =  AppointmentStatus.Booked; }
-        else { appointmentStatus =  AppointmentStatus.Available;}
-
         if (  appointmentRepository. isInBetweenTwoTimeAndDate(
+                appointment.getAppointmentDate(),
                 appointment.getAppointmentStartTime() ,
                 appointment.getAppointmentEndTime())){ appointmentStatus =  AppointmentStatus.Booked; }
-        else {appointmentStatus =  AppointmentStatus.Available;}
-        //  if (appointment.getAppointmentDate().isAfter(  dayNow ) ){ appointmentStatus =  AppointmentStatus.Booked; }
-        return appointmentStatus;
+    LocalDateTime dateTimeApptStart = appointment.getAppointmentDate().atTime(appointment.getAppointmentEndTime());
+    if (  ( LocalDateTime.now().compareTo(dateTimeApptStart) > 0)  ){ appointmentStatus =  AppointmentStatus.Booked; }
+    return appointmentStatus;
     }
 
 

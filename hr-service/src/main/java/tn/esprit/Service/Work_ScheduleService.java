@@ -2,6 +2,8 @@ package tn.esprit.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.Dto.CalenderGroupWSDto;
+import tn.esprit.Dto.CalenderWSDto;
 import tn.esprit.Dto.Work_ScheduleDto;
 import tn.esprit.Entity.ExternelEntity.Account;
 import tn.esprit.Entity.ExternelEntity.Roles;
@@ -44,9 +46,17 @@ public class Work_ScheduleService implements IWork_ScheduleService {
     }
 
     @Override
-    public List<Work_ScheduleDto> retrieveAllWork_Schedule() {
+    public List<CalenderGroupWSDto> retrieveAllWork_Schedule() {
+        //List<Work_Schedule> workSchedules =  work_scheduleRepository.findWSByGroup();
+        //return workSchedules.stream().map(Work_ScheduleMapper::mapCalenderWorkScheduleToDto).collect(Collectors.toList());
         List<Work_Schedule> workSchedules =  work_scheduleRepository.findAll();
-        return workSchedules.stream().map(Work_ScheduleMapper::mapWorkScheduleToDto).collect(Collectors.toList());
+        return  Work_ScheduleMapper.mapCalenderGroupWorkScheduleToDto(workSchedules);
+    }
+
+    @Override
+    public List<CalenderWSDto> retrieveWork_ScheduleByAccount(Long idA) {
+        List<Work_Schedule> workSchedules =  work_scheduleRepository.findWork_SchedulesByAccount_Id(idA);
+        return workSchedules.stream().map(Work_ScheduleMapper::mapCalenderWorkScheduleToDto).collect(Collectors.toList());
     }
 
     @Override

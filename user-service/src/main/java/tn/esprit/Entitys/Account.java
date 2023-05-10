@@ -7,8 +7,10 @@ import lombok.experimental.FieldDefaults;
 import tn.esprit.Entitys.Gender;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -18,12 +20,14 @@ import java.util.Set;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id" )
     long id;
 
+    @Column(name = "created_at" )
+    LocalDateTime createdAt ;
     @Column(name = "firstname" )
     String firstname;
 
@@ -48,16 +52,13 @@ public class Account {
     @Column(name = "email" )
     String email;
 
-    @Column(name = "photo" )
-    String photo;
-
     @Column(name = "gender" )
     @Enumerated(EnumType.STRING)
     Gender gender;
 
     @Column(name = "state" )
     @Enumerated(EnumType.STRING)
-    stateRegion state;
+    StateRegion state;
 
     @Column(name = "city" )
     String city;
@@ -68,18 +69,26 @@ public class Account {
     @Column(name = "adresse" )
     String adresse;
 
+    @Column(name = "team" )
+    @Enumerated(EnumType.STRING)
+    Team team ;
+    @Column(name = "shift" )
+    @Enumerated(EnumType.STRING)
+    Shift shift;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    Attachment attachment;
 
-    @OneToMany(mappedBy = "account" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account" , fetch = FetchType.EAGER , cascade = {CascadeType.PERSIST,CascadeType.REMOVE} )
     Set<Appointment> appointments;
 
 
     // constractor without photo;
     public Account(String firstname, String lastname, int cin, int phone, LocalDate dateOfBirth,  String email, Gender gender,
-                   stateRegion state,String city,int zip_code,String adresse) {
+                   StateRegion state,String city,int zip_code,String adresse) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.cin = cin;

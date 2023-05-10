@@ -1,9 +1,8 @@
 package tn.esprit.Interface;
-
+import tn.esprit.Entity.TestResult;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.TestResult;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,7 @@ public interface ITestResult {
 
     List<TestResult> retrieveAllTestResult();
 
-    List<TestResult> readTests(MultipartFile file) throws IOException;
+    //List<TestResult> readTests(MultipartFile file) throws IOException;
 
     TestResult asigntesTosmp(int idTestResult, int idTest);
 

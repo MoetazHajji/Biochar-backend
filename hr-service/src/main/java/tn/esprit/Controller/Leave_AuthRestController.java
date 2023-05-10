@@ -14,13 +14,14 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("LeaveAuth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Leave_AuthRestController {
 
     private final Leave_AuthService leave_authService;
 
     @PutMapping("/updateLeaveAuth/{idA}")
     @ResponseStatus(HttpStatus.OK)
-    public Leave_AuthorizationDto updateLA(@RequestBody Leave_Authorization leaveAuthorization, @PathVariable("idA") Long idA){
+    public Leave_AuthorizationDto updateLA(@RequestBody Leave_AuthorizationDto leaveAuthorization, @PathVariable("idA") Long idA){
         return leave_authService.updateLeaveAuth(leaveAuthorization, idA);
     }
 
@@ -31,13 +32,11 @@ public class Leave_AuthRestController {
     }
 
     @GetMapping("/getAllLA")
-    @ResponseStatus(HttpStatus.FOUND)
     public List<Leave_AuthorizationDto> getAllLA(){
         return leave_authService.retrieveAllLeaveAuths();
     }
 
     @GetMapping("/getLAById/{idLA}")
-    @ResponseStatus(HttpStatus.FOUND)
     public Leave_AuthorizationDto getLAById(@PathVariable("idLA") Long idLA){
         return leave_authService.retrieveLeaveAuthById(idLA);
     }

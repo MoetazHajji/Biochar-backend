@@ -54,6 +54,12 @@ public class ProfileService implements IProfileService {
         return ProfileMapper.mapProfileToDto(p);
     }
 
+    @Override
+    public ProfileDto retrieveProfileByAccount(Long idA) {
+        Profile p = profileRepository.getProfileByAccount_Id(idA);
+        return ProfileMapper.mapProfileToDto(p);
+    }
+
     // @Scheduled(cron = "* * * 30 * *")
     // @Scheduled(cron = "*/15 * * * * *")
     @Override

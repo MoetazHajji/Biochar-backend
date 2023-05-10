@@ -33,7 +33,9 @@ public class FilterAuthentificate extends AbstractGatewayFilterFactory<FilterAut
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            ServerHttpRequest request = exchange.getRequest();
+            ServerHttpRequest request = (ServerHttpRequest) exchange.getRequest();
+            System.out.println("||||||||||||||||  "+ request.getPath() +"   |||||||||||||||||");
+
 
 
             if (!request.getHeaders().containsKey("Authorization")) {
@@ -49,7 +51,7 @@ public class FilterAuthentificate extends AbstractGatewayFilterFactory<FilterAut
 
             return webClient.build()
                     .get()
-                    .uri("http://user-service/api/user-service/api/v1/User-Conroller")
+                    .uri("http://user-service/biochar/user-service"+request.getPath())
                     .header("Authorization",   token)
                     .retrieve().bodyToMono(String.class)
                     .map(userDto -> {
@@ -73,6 +75,7 @@ public class FilterAuthentificate extends AbstractGatewayFilterFactory<FilterAut
                         }
                         return  onError( exchange,  errorMsg,  errorCode);
                     });
+            //  return chain.filter(exchange);
         };
     }
     private Mono<Void> onError(ServerWebExchange exchange, String errorMsg, HttpStatus errorCode)  {

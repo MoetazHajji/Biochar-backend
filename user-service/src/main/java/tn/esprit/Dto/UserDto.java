@@ -23,7 +23,7 @@ public class UserDto {
     String username;
     String password;
     Roles roles;
-    String permissions;
-    boolean isEnabled;
+    List<String> listPermissions;
+    boolean enabled;
     String code;
 }

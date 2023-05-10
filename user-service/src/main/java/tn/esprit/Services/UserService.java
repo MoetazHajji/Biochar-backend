@@ -1,9 +1,6 @@
 package tn.esprit.Services;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,15 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.Dto.UserDto;
 import tn.esprit.Entitys.*;
 import tn.esprit.Mappers.UserMapper;
-import tn.esprit.Models.Msg;
-import tn.esprit.Repositorys.AccountRepository;
+import tn.esprit.Entitys.Msg;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.exception.RessourceNotFoundException;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,19 +22,17 @@ import java.util.stream.Collectors;
 @Service("User")
 public class UserService  implements IUserService {
     private UserRepository userRepository;
-    private IEmailSenderService IEmailSenderService;
     //private PasswordEncoder passwordEncoder;
 
 
 
     @Autowired // Methode 2
-    public UserService(UserRepository userRepository ,
-                       //PasswordEncoder passwordEncoder,
-                       @Qualifier("EmailSender") IEmailSenderService IEmailSenderService)
+    public UserService(UserRepository userRepository
+                       //,PasswordEncoder passwordEncoder,
+    )
     {
         this.userRepository = userRepository;
         //this.passwordEncoder =  passwordEncoder;
-        this.IEmailSenderService =  IEmailSenderService;
     }
 
     @Override
@@ -74,7 +64,7 @@ public class UserService  implements IUserService {
         user.setPassword(object.getPassword());
         user.setEnabled(object.isEnabled());
         user.setRoles(object.getRoles());
-        user.setPermissions(object.getPermissions());
+        //user.setPermissions(object.getPermissions());
         user = userRepository.save(user);
         return  UserMapper.mapToDto( user )  ;
     }
@@ -117,7 +107,7 @@ public class UserService  implements IUserService {
             User user = userRepository.findUserByEmail(  email   );
             user.setPassword(code);
             Msg msg = new Msg("Forgot Password",email,"your code verification : "+code);
-            IEmailSenderService.SendSimpleEmail(msg);
+            //IEmailSenderService.SendSimpleEmail(msg);
             userRepository.save(user);
             return code;}
         else { return  code;}
@@ -128,6 +118,15 @@ public class UserService  implements IUserService {
         System.out.println(userRepository.isCorrectPassword( code ));
         if (   userRepository.isCorrectPassword( code )) {
             User user= userRepository.findUserByPassword( code);
+            user.setPassword(   password   );
+            userRepository.save(user);
+            return true;}
+        else {return false;}
+    }
+    public boolean updatePassword(String oldpassword, String password) {
+        System.out.println(userRepository.isCorrectPassword( oldpassword ));
+        if (   userRepository.isCorrectPassword( oldpassword )) {
+            User user= userRepository.findUserByPassword( oldpassword);
             user.setPassword(   password   );
             userRepository.save(user);
             return true;}

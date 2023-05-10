@@ -2,40 +2,22 @@ package tn.esprit.appRunners;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
+import tn.esprit.Dto.AccountDto;
 import tn.esprit.Entitys.*;
-import tn.esprit.Models.Msg;
 import tn.esprit.Repositorys.AccountRepository;
-import tn.esprit.Repositorys.AppointmentRepository;
-import tn.esprit.Repositorys.TimeOffRepository;
 import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.Services.*;
 
-import javax.mail.MessagingException;
-import javax.persistence.*;
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.*;
 
 
@@ -43,43 +25,186 @@ import java.util.*;
 @Slf4j
 @Component
 public class bean_ResetData implements CommandLineRunner {
+    //    @Autowired
+//    private KafkaTemplate<Object, AccountDto> kafkaTemplateAccountDto;
+//    @Autowired
+//    IObjectMapperConvert objectMapperConvert ;
 
     @Override
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
-        this.reset( );
+        // this.reset( );
+//        Long id = Long.valueOf(2);
+//    User   user  = userRepository.findById(id).get();
+//        user.setPassword(passwordEncoder.encode("97747369"));
+//        userRepository.save(user);
+//        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+//        kafkaTemplateAccountDto.flush();
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        //System.out.println(AccountService.defaultUserPhoto);
+        //   File directory = new File("./");
+        //File directory = new File("./"+"user-service/src/main/resources/folder");
+        //System.out.println(directory.getAbsolutePath());
 
-      /* if(isWeekend(convertCalendarToDate (2023 , 2 , 20))) {
-            System.out.println("The date is a Weekend");
-        }
-        else {
-            System.out.println("The date is not a Weekend");
-        }*/
-        //System.out.println( timeOffRepository. isInThatDate( this.convertCalendarToDate (2023 , 2 , 23) ) );
-        //System.out.println( timeOffRepository.isInBetweenTwoTime(this.convertCalendarToTime (14 , 0,0 ),this.convertCalendarToTime (17 , 0,0 )));
-      /*  System.out.println( appointmentRepository. isInBetweenTwoTimeAndDate(
-                convertCalendarToTime (15 , 00,00  ) ,
-                convertCalendarToTime (15 , 30,00  ),
-                this.convertCalendarToDate (2023 , 2 , 23) ));*/
-        //System.out.println(  userRepository.isCorrectEmail("belhsenbachouch97@gmail.com") );
+
+        // System.out.println( MyConfigInitParameters.staticLinkServiceUser );
+        //  System.out.println( AttachmentMapper.host_ContextPath );
 
     }
 
-  /*  @Autowired
-    private IGenericCRUD<User> IUserService;
-    @Autowired
-    private IGenericCRUD<Account> IAccountService;
-    @Autowired
-    private IGenericCRUD<Appointment> IAppointmentService;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private IGenericCRUD<TimeOff> ITimeOffService;*/
 
 
 
 
+
+    AccountDto accountDto = new AccountDto( LocalDateTime.now(),
+            "firstname" ,"lastname" ,10820305,55775085,
+            LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
+            StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
+            Team.Team_A ,
+            Shift.Afternoon/*,
+            new HashSet<>() */);
+    Account account =  new Account("firstname" ,"lastname" ,10820305,55775085,
+            LocalDate.now(), "belhsenbachouch@gmail.com", Gender.male,StateRegion.Monastir, "cite" , 1140  , "adresse" );
+    User user =   new User( "username",  "password" , Roles.Patient);
+    Appointment appt = new Appointment( "reason",  "comments",  false, LocalDate.now(),
+            LocalTime.now(), LocalTime.now());
+
+    @Autowired
+    AccountService accountService;
+    @Autowired
+    AccountRepository accountRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     private void reset( )  {
+        account.setUser(user);
+        user.setAccount(account);
+        Set<Appointment> appointments = new HashSet<Appointment>(){{}} ;
+        appointments.add(appt);
+        account.setAppointments(appointments);
+        for (Appointment appointment : appointments)
+        {
+            appointment.setAccount(account);
+        }
+        accountRepository.save(account);
+
+
+
+        //  kafkaTemplate.send("TopicString",accountDto);
+        //  kafkaTemplate.flush();
+
+    /*  Msg msg = new Msg( "subject",  "email",  "body");
+        try {
+            String json = objectMapperConvert.convertToJsonString(msg);
+            System.out.println("ResultingJSONstring = " + json);
+            //  List<AccountDto>  accntDtos = (List<AccountDto>) objectMapperConvert.convertToObjectList(json);
+            //   System.out.println("Aaaaa = " + accntDtos.size());
+            Msg accntDtos = (Msg) objectMapperConvert.convertToObject(json ,Msg.class);
+            System.out.println("Aaaaa = " + accntDtos.getEmail());
+        } catch (JsonProcessingException e) {
+            System.out.println("Erreur = "+e.getMessage());
+        }
+        //  kafkaTemplate.send("TopicString",accountDtos); */
+
+
+
+
+
+
+
+
+
+
+        // List <Msg> msgs = new ArrayList<Msg>(){{add(msg);}};
+
+
+        //  kafkaTemplate.send("TopicMsg",msg);
+        //  kafkaTemplate.send("TopicString",msg);
+        //message = {"id":0,    "reason":"AppointmentDtoReson"             ,"createdAt":null,"comments":null,"appointmentDate":null,
+        // "appointmentStartTime":null,"appointmentEndTime":null,"appointmentStatus":null,         "_first_visit":false    }
+//"AppointmentDto(id=0, reason=AppointmentDtoReson, createdAt=null, comments=null, is_first_visit=false, appointmentDate=null, appointmentStartTime=null, appointmentEndTime=null, appointmentStatus=null)"
+
+
+//        ObjectMapper mapper = new ObjectMapper();//https://www.tabnine.com/blog/how-to-convert-a-java-object-into-a-json-string/
+//        try {
+//            mapper.registerModule(new JavaTimeModule());
+//            String json = mapper.writeValueAsString(accountDtos);
+//
+//            System.out.println("ResultingJSONstring = " + json);
+//            List<AccountDto> myList = mapper.readValue(json, new TypeReference<List<AccountDto>>() {});
+//            System.out.println("Aaaaa = " + myList.get(1).getAppointments().size());
+//            //kafkaTemplate.send("TopicAppointmentDto",appointmentDto);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+ /*AccountDto accountDto = new AccountDto( 1,"firstname" ,"lastname" ,10820305,55775085,
+              LocalDate.now() ,  new Date() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
+          stateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient , new HashSet<>() );
+
+
+
+
+
+        ObjectMapper mapper = new ObjectMapper();//https://www.tabnine.com/blog/how-to-convert-a-java-object-into-a-json-string/
+        try {
+            mapper.registerModule(new JavaTimeModule());
+            String json = mapper.writeValueAsString(accountDto);
+
+            System.out.println("ResultingJSONstring = " + json);
+            AccountDto car = mapper.readValue(json, AccountDto.class);
+           System.out.println("messageX = " + car.getRoles());
+            //kafkaTemplate.send("TopicAppointmentDto",appointmentDto);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }*/
+
+
+      /*AccountDto accountDto = new AccountDto( 1,"firstname" ,"lastname" ,10820305,55775085,
+              LocalDate.now() ,  new Date() , LocalDate.now() , "belhsenbachouch@gmail.com","photo",Gender.male,
+          stateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient , new HashSet<>() );
+
+
+
+
+
+        ObjectMapper mapper = new ObjectMapper();//https://www.tabnine.com/blog/how-to-convert-a-java-object-into-a-json-string/
+        try {
+            mapper.registerModule(new JavaTimeModule());
+            String json = mapper.writeValueAsString(accountDto);
+
+            System.out.println("ResultingJSONstring = " + json);
+            AccountDto car = mapper.readValue(json, AccountDto.class);
+           System.out.println("messageX = " + car.getRoles());
+            //kafkaTemplate.send("TopicAppointmentDto",appointmentDto);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }*/
+
+
+
+     /*   String   message = "{\"id\":0,\"reason\":\"AppointmentDtoReson\",\"createdAt\":1679527351490,\"comments\":null,\"appointmentDate\":[2023,3,22],\"appointmentStartTime\":[16,22,31,491000000],\"appointmentEndTime\":null,\"appointmentStatus\":null,\"firstVisit\":false}";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.registerModule(new JavaTimeModule());
+           // mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            AppointmentDto car = mapper.readValue(message, AppointmentDto.class);
+            System.out.println("messageX = " + car.getAppointmentStartTime());
+        } catch (JsonProcessingException e) {
+            System.out.println("Error = " + e.getMessage());
+        }*/
+
+
+
+
+
+
+
+
+
+
+
 
         //newFile("C:/Worker/esprit/PI/recover-file/v9-with-JWT/Biochar-backend/user-service/src/main/resources/folder","ex.txt","ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 
@@ -128,8 +253,6 @@ public class bean_ResetData implements CommandLineRunner {
     @Autowired
     IAppointementService iAppointementService ;
 
-    @Autowired
-    IEmailSenderService iEmailSenderService;
     @Autowired
     IFileService iFileService;
 
@@ -293,5 +416,3 @@ System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
         System.out.println("Resource directory: " + resourceDirectory);*/
-
-
