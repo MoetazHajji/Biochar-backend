@@ -416,5 +416,3 @@ System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
         System.out.println("Resource directory: " + resourceDirectory);*/
-
-

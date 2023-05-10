@@ -36,19 +36,21 @@ public class Work_ScheduleMapper {
         return cwsd;
     }
     public static List<CalenderGroupWSDto> mapCalenderGroupWorkScheduleToDto(List<Work_Schedule>  workScheduleList){
+
+
         List<CalenderGroupWSDto> calendarGroupList = workScheduleList.stream()
                 .collect(Collectors.groupingBy(ws -> LocalDateTime.of(ws.getDateWork(), ws.getStart_time())))
                 .entrySet()
                 .stream()
                 .map(entry -> {
                     CalenderGroupWSDto calendarGroup = new CalenderGroupWSDto();
-                    calendarGroup.setId(entry.getValue().get(0).getId_WS());
+                    // calendarGroup.setId(id++);
                     calendarGroup.setStartTime(entry.getKey());
                     calendarGroup.setEndTime(LocalDateTime.of(entry.getValue().get(0).getDateWork(), entry.getValue().get(0).getEnd_time()));
                     calendarGroup.setListFistNameLastNameRole(entry.getValue().stream().map(ws ->
                             ws.getAccount().getFirstname()
                                     +" " +
-                         ws.getAccount().getLastname()
+                                    ws.getAccount().getLastname()
                                     + " " +
                                     ws.getAccount().getRole()
                     ).collect(Collectors.toList()));
@@ -56,7 +58,7 @@ public class Work_ScheduleMapper {
                 })
                 .collect(Collectors.toList());
 
-       return calendarGroupList;
+        return calendarGroupList;
     }
     public static LocalDateTime convertToDate(LocalDate localDate, LocalTime localTime){
         return   LocalDateTime.of(localDate, localTime);
