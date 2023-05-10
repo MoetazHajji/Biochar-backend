@@ -35,10 +35,11 @@ public class AccountDto {
     String city;
     int zip_code;
     String adresse;
-    Roles role;
+    //Roles role;
     Team team ;
     Shift shift;
 
+    UserDto userDto;
     public AccountDto(LocalDateTime createdAt, String firstname, String lastname, int cin, int phone, LocalDate dateOfBirth, LocalDate hireDate, String email, String photo, Gender gender, StateRegion state, String city, int zip_code, String adresse, Roles role, Team team, Shift shift) {
         this.createdAt = createdAt;
         this.firstname = firstname;
@@ -54,7 +55,7 @@ public class AccountDto {
         this.city = city;
         this.zip_code = zip_code;
         this.adresse = adresse;
-        this.role = role;
+       // this.role = role;
         this.team = team;
         this.shift = shift;
     }

@@ -14,8 +14,10 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query("select ac from  Account ac JOIN  ac.user u   where  ((u.username = :username)) ")
-    Account findAccountsByUsername(@Param("username") String username   );
+    Account findAccountByUsername(@Param("username") String username   );
 
+    @Query("select case when (count(u) > 0)  then true else false end from Account ac  JOIN  ac.user u   where  ((u.username = :username))")
+    boolean isCorrectUsername(@Param("username") String username   );
     @Query("select ac from  Account ac JOIN  ac.user u   where  ((u.roles = :role)) ")
     List<Account> findAccountsByRole(@Param("role") Roles role   );
     @Query("select count (ac) from  Account ac JOIN  ac.user u   where  ((u.roles = :role)) ")

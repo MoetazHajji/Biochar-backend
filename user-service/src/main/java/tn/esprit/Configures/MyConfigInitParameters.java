@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tn.esprit.Mappers.AttachmentMapper;
+import tn.esprit.Services.AccountService;
 import tn.esprit.Services.FileService;
 
 @Configuration
