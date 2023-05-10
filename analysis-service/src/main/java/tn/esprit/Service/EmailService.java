@@ -38,7 +38,7 @@ private JavaMailSender emailSender;
         MimeMessage message = emailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        String to="siwar.atiya@esprit.tn";
+        String to="siwaratiya019@gmail.com";
         String subject = "Analysiz Result";
         String text = "<html><body style='font-family: Arial, sans-serif;'>"
                 + "<p style='color: #1c87c9; font-size: 18px;'>Dear " +  ",</p>"

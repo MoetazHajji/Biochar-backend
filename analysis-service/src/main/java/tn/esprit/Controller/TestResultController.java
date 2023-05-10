@@ -17,7 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("TestResult")
 @RequiredArgsConstructor
@@ -40,7 +40,7 @@ public class TestResultController {
         return iTestResult.addOrUpdateTestResult(e);
     }
 
-    @GetMapping("/get/{idTestResult}")
+    @GetMapping("/gette/{idTestResult}")
     TestResult affichtestResul(@PathVariable("idTestResult") int idTestResult){
         return iTestResult.retriveTestResult(idTestResult);
     }

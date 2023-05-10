@@ -1,5 +1,6 @@
 package tn.esprit.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,5 +37,6 @@ public class Medicalcard implements Serializable {
         this.Doc=Doc;
     }
     @OneToOne
+            @JsonIgnore
     Account account;
 }

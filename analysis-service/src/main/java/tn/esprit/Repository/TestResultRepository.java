@@ -12,7 +12,7 @@ import java.util.List;
 public interface TestResultRepository extends JpaRepository<TestResult,Integer> {
     List<TestResult> getTestResultByTest_Sample_Account_Id(Long id);
 
-    TestResult getTestResultByResultat(String resultat);
+
 
 
     @Query("Select count(tr) from TestResult tr where" +

@@ -14,9 +14,10 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +33,7 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
+@CrossOrigin(origins = "*")
 public class TableExtractionController {
 
     @Value("${python.script.path}")
@@ -41,8 +43,8 @@ public class TableExtractionController {
     @Autowired
     ITestResult testResult;
 
-    @PostMapping(value = "/extract-table", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Map<Integer, String[]>> extractTable(@RequestParam("image") MultipartFile imageFile) throws IOException {
+    @PostMapping(value = "/extract-table/{idTest}")
+    public ResponseEntity<Map<Integer, String[]>> extractTable(@RequestParam("image") MultipartFile imageFile,@PathVariable("idTest") int idTest) throws IOException {
 
         File tempImageFile = null;
         try {
@@ -78,7 +80,7 @@ public class TableExtractionController {
                     // Create the response object
                     Map<String, String> responseBody = new HashMap<>();
                     responseBody.put("tables", tables);
-                     Map<Integer, String[]> map = testResult.divide_table(tables);
+                     Map<Integer, String[]> map = testResult.divide_table(tables,idTest);
                     //testResult.addOrUpdateTestResult();)
                     return ResponseEntity.ok(map);
                 } catch (IOException e) {
