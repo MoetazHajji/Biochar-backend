@@ -9,6 +9,8 @@ import tn.esprit.Entitys.*;
 import java.util.Date;
 
 public class AccountMapper {
+
+
     public static Account mapToEntity(AccountDto accountDto){
         return Account.builder()
                 .id(accountDto.getId())
@@ -52,7 +54,8 @@ public class AccountMapper {
                 .team(account.getTeam())
                 .hireDate(account.getHireDate())
                 .shift(account.getShift())
-                .role(  (account.getUser()==null ? null : account.getUser().getRoles() )    )
+                //.role(  (account.getUser()==null ? null : account.getUser().getRoles() )    )
+                .userDto(  (account.getUser()==null ? null :  UserMapper.mapToDto( account.getUser() ) ))
                 .build();
     }
     public static AccountDtoTopic mapToDtoTopic(Account account){

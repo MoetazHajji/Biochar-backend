@@ -9,9 +9,13 @@ import tn.esprit.Dto.AppointmentDto;
 import tn.esprit.Entitys.Account;
 import tn.esprit.Entitys.Appointment;
 import tn.esprit.Entitys.AppointmentStatus;
+import tn.esprit.Entitys.User;
 import tn.esprit.Mappers.AppointmentMapper;
+import tn.esprit.Models.AuthenticationResponse;
+import tn.esprit.Models.AuthenticationStatus;
 import tn.esprit.Repositorys.AccountRepository;
 import tn.esprit.Repositorys.AppointmentRepository;
+import tn.esprit.Repositorys.UserRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,13 +29,21 @@ public class AppointmentService   implements IAppointementService {
     private AppointmentRepository appointmentRepository;
     private AccountRepository accountRepository;
     private ITimeOffService iTimeOffService;
-
+    private  UserRepository userRepository;
     private IFileService iFileService;
     @Autowired // Methode 2
     public AppointmentService(AppointmentRepository appointmentRepository,
                               @Qualifier("TimeOff") ITimeOffService iTimeOffService ,
-                              AccountRepository accountRepository)
-    {  this.appointmentRepository = appointmentRepository;  this.iTimeOffService = iTimeOffService; this.accountRepository = accountRepository; }
+                              AccountRepository accountRepository,
+                              UserRepository userRepository,
+                              IFileService iFileService
+    )
+    {  this.appointmentRepository = appointmentRepository;
+        this.iTimeOffService = iTimeOffService;
+        this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
+        this.iFileService = iFileService;
+    }
 
     @Override
     public List<AppointmentDto> SelectAll() {  return appointmentRepository.findAll().
@@ -50,6 +62,7 @@ public class AppointmentService   implements IAppointementService {
         Appointment appointment = AppointmentMapper.mapToEntity(object);
         return AppointmentMapper.mapToDto( appointmentRepository.save(appointment));
     }
+
 
     @Override
     @Transactional
@@ -117,20 +130,18 @@ public class AppointmentService   implements IAppointementService {
         return AppointmentMapper.mapToDto(appointmentRepository.save(appt));
     }
 
-
-    private AppointmentStatus Verify( Appointment appointment ) {
+@Override
+    public AppointmentStatus Verify( Appointment appointment ) {
         AppointmentStatus appointmentStatus =  AppointmentStatus.Available;
-        LocalDate dayNow = LocalDate.now();
-        if (iTimeOffService.verify (appointment.getAppointmentDate() ,appointment.getAppointmentStartTime(), appointment.getAppointmentEndTime()))
+        if (!iTimeOffService.verify (appointment.getAppointmentDate() ,appointment.getAppointmentStartTime(), appointment.getAppointmentEndTime()))
         {appointmentStatus =  AppointmentStatus.Booked; }
-
-
         if (  appointmentRepository. isInBetweenTwoTimeAndDate(
+                appointment.getAppointmentDate(),
                 appointment.getAppointmentStartTime() ,
                 appointment.getAppointmentEndTime())){ appointmentStatus =  AppointmentStatus.Booked; }
-
-        //  if (appointment.getAppointmentDate().isAfter(  dayNow ) ){ appointmentStatus =  AppointmentStatus.Booked; }
-        return appointmentStatus;
+    LocalDateTime dateTimeApptStart = appointment.getAppointmentDate().atTime(appointment.getAppointmentEndTime());
+    if (  ( LocalDateTime.now().compareTo(dateTimeApptStart) > 0)  ){ appointmentStatus =  AppointmentStatus.Booked; }
+    return appointmentStatus;
     }
 
 

@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -55,7 +56,7 @@ public class AuthenticationService {
                     .code(code)
                     .roles(Roles.Patient)
                     .build();
-    Account account = Account.builder().email(request.getEmail()).user(user).build();
+    Account account = Account.builder().createdAt(LocalDateTime.now()).email(request.getEmail()).user(user).build();
     account.setUser(user);
     user.setAccount(account);
 
@@ -70,15 +71,15 @@ public class AuthenticationService {
 
     account =  accountRepository.save(account);
     try {
-//    Msg msg = new Msg();
-//    msg.setSubject("Confirmation Address Mail");
-//    msg.setEmail(account.getEmail());
-//    msg.getBodyContents().add(new BodyContent("text/plain","body"));
-//    String file =    iFileService.Edit_ConfirmMailPage(user.getUsername(),
-//            MyConfigInitParameters.staticLinkServiceUser +"/user/auth/confirm_email/"+code);
-//    msg.getBodyContents().add(new BodyContent("text/html",  file));
-//    kafkaTemplate.send("topic-service-mail-sender-send-mail",msg);
-//    kafkaTemplate.flush();
+    Msg msg = new Msg();
+    msg.setSubject("Confirmation Address Mail");
+    msg.setEmail(account.getEmail());
+    msg.getBodyContents().add(new BodyContent("text/plain","body"));
+    String file =    iFileService.Edit_ConfirmMailPage(user.getUsername(),
+            MyConfigInitParameters.staticLinkServiceUser +"/user/auth/confirm_email/"+code);
+    msg.getBodyContents().add(new BodyContent("text/html",  file));
+    kafkaTemplate.send("topic-service-mail-sender-send-mail",msg);
+    kafkaTemplate.flush();
     }
     catch (Exception e )
     {
@@ -160,6 +161,45 @@ public class AuthenticationService {
                                         status(AuthenticationStatus.ERROR).
                                         message("Your code is not correct ").build();}
   }
+  @Transactional
+  public AuthenticationResponse updatePassword(AuthenticationRequest userRequest, String newPassword) {
+    System.out.println(userRequest.getUsername());    System.out.println(userRequest.getPassword());
+    System.out.println(newPassword);
+    if( newPassword.isEmpty() )
+    {   return AuthenticationResponse.builder()
+            .status(AuthenticationStatus.ERROR)
+            .message("New Password empty").build();}
+    if( !userRepository. isCorrectUserName( userRequest.getUsername()  ))
+    {   return AuthenticationResponse.builder().status(AuthenticationStatus.UNSUCCESSFUL)
+            .message("Cannot found username verify you enter correct").build();}
+
+    User user = userRepository.findUserByUsername( userRequest.getUsername() ).get();
+    boolean matches = passwordEncoder.matches(userRequest.getPassword(), user.getPassword());
+    if( !matches ){   return AuthenticationResponse.builder().status(AuthenticationStatus.UNSUCCESSFUL)
+            .message("Verify your current password").build();}
+
+    user.setPassword(passwordEncoder.encode(newPassword));
+    //userRepository.save(user);
+    return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
+            message("Successful update password").build();
+  }
+  @Transactional
+  public AuthenticationResponse updateRoleAndActivate(String username , Roles role, boolean enabled) {
+    System.out.println(username);    System.out.println(role);
+    System.out.println(enabled);
+    if( !userRepository. isCorrectUserName( username ))
+    {   return AuthenticationResponse.builder().status(AuthenticationStatus.UNSUCCESSFUL)
+            .message("Cannot found username verify you enter correct").build();}
+
+    User user = userRepository.findUserByUsername( username ).get();
+
+    user.setRoles(role);
+    user.setEnabled(enabled);
+    //userRepository.save(user);
+    return AuthenticationResponse.builder(). status(AuthenticationStatus.SUCCESSFUL).
+            message("Successful update role and state enable user").build();
+  }
+
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
     authenticationManager.authenticate(

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import tn.esprit.Dto.AccountDto;
 import tn.esprit.Entitys.*;
 import tn.esprit.Repositorys.AccountRepository;
+import tn.esprit.Repositorys.UserRepository;
 import tn.esprit.Services.*;
 
 import java.io.*;
@@ -32,7 +34,10 @@ public class bean_ResetData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("Bean One of Reset Data  run method Started !!" );
         // this.reset( );
-
+//        Long id = Long.valueOf(2);
+//    User   user  = userRepository.findById(id).get();
+//        user.setPassword(passwordEncoder.encode("97747369"));
+//        userRepository.save(user);
 //        kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
 //        kafkaTemplateAccountDto.flush();
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
@@ -69,6 +74,10 @@ public class bean_ResetData implements CommandLineRunner {
     AccountService accountService;
     @Autowired
     AccountRepository accountRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+      PasswordEncoder passwordEncoder;
     private void reset( )  {
         account.setUser(user);
         user.setAccount(account);

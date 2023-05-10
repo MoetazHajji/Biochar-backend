@@ -29,18 +29,13 @@ public class AppointmentDto {
     String reason;
     LocalDateTime createdAt ;
     String comments;
-    LocalDate appointmentDate;
-    LocalTime appointmentStartTime;
-    LocalTime appointmentEndTime;
+    LocalDateTime appointmentStart;
+    LocalDateTime appointmentEnd;
     AppointmentStatus appointmentStatus;
-    boolean FirstVisit ;
+    String firstName;
+    String lastName;
 
-    public AppointmentDto(String reason, LocalDateTime createdAt, LocalDate appointmentDate, LocalTime appointmentStartTime) {
-        this.reason = reason;
-        this.createdAt = createdAt;
-        this.appointmentDate = appointmentDate;
-        this.appointmentStartTime = appointmentStartTime;
-    }
+    boolean FirstVisit ;
     public AppointmentDto(String reason) {
         this.reason = reason;
     }

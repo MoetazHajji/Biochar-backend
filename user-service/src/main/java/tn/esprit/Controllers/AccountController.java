@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AppointmentDto;
+import tn.esprit.Models.AuthenticationResponse;
 import tn.esprit.Services.IAccountService;
 
 import java.util.List;
@@ -46,5 +48,11 @@ public class AccountController {
     @DeleteMapping("{id}")
     public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){
         iAccountService.delete( id ); return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+
+    @PutMapping ("addAppointementToUsername/{username}")
+    public  ResponseEntity<AuthenticationResponse> addAppointementToUsername(@PathVariable("username")  String username ,
+                                                                             @RequestBody AppointmentDto object ){
+        return ResponseEntity.ok(  iAccountService.addAppointementToUsername(   username ,  object ));
+    }
 }
 
