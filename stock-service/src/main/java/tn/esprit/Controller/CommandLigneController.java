@@ -14,7 +14,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("commandLigne")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class CommandLigneController {
     ICommandLigneService ligneService;
 

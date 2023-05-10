@@ -25,9 +25,7 @@ public class GatewayConfig {
                         .uri("lb://internship-service"))
 
 
-                .route("stock-service", r -> r.path("/biochar/stock-service/**")
-                        //.filters(f -> f.filter(filterAuthentificate.apply( new FilterAuthentificate.Config())))
-                        .uri("lb://stock-service"))
+                .route("stock-service", r -> r.path("/biochar/stock-service/**")  .uri("lb://stock-service"))
 
 
 

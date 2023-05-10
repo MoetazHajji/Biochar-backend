@@ -16,7 +16,6 @@ import java.util.Set;
 @RestController
 @Tag(name = "Stock Management")
 @RequestMapping("/stock")
-@CrossOrigin(origins = "http://localhost:4200")
 public class StockController {
     IStockService stocksService;
     StockService stockSer;
