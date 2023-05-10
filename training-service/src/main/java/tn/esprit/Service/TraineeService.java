@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import tn.esprit.Entity.*;
 import tn.esprit.External.Profile;
 import tn.esprit.Interface.ITraineeService;
-import tn.esprit.Repository.ProfileRepository;
 import tn.esprit.Repository.SubjectRepository;
 import tn.esprit.Repository.TraineeRepository;
 import tn.esprit.Repository.TrainingRepository;
@@ -27,7 +26,7 @@ public class TraineeService implements ITraineeService {
 
     final SubjectRepository subjectRepository;
 
-    final ProfileRepository profileRepository;
+    final Connections connections;
 
     @Override
     public Trainee add_trainee(Trainee t) {
@@ -62,80 +61,77 @@ public class TraineeService implements ITraineeService {
             Set<Quiz> quizzes = trainee.getTraining().getQuizes();
             int score = 0;
             int size = quizzes.size();
-            float cost = 100 / size;
-            for(Map.Entry<String,List<Integer>> answer :answers.entrySet())
-            {
-                 Quiz quiz = null;
-                 for(Quiz quiz1 : quizzes)
-                 {
-                     if(quiz1.getQuestion().trim().equalsIgnoreCase(answer.getKey()))
-                         quiz = quiz1;
-                 }
-                 if(quiz !=null)
-                 {
-                     if(quiz.getType_q() == Type_Q.QCU)
-                     {
-                         if(quiz.getValid_answer().get(0) == answer.getValue().get(0))
-                             score +=cost;
-                     }
-                     else
-                     {
-                         Boolean check = true;
-                         if(quiz.getValid_answer().size()>answers.size())
-                             check = false;
-                         else  {
-                            for(int i =0;i<quiz.getValid_answer().size();i++)
-                            {
-                                if(quiz.getValid_answer().get(i) != answer.getValue().get(i))
-                                    check = false;
+            if(size>0) {
+                float cost = 100 / size;
+                for (Map.Entry<String, List<Integer>> answer : answers.entrySet()) {
+                    Quiz quiz = null;
+                    for (Quiz quiz1 : quizzes) {
+                        if (quiz1.getQuestion().trim().equalsIgnoreCase(answer.getKey()))
+                            quiz = quiz1;
+                    }
+                    if (quiz != null) {
+                        if (quiz.getType_q() == Type_Q.QCU) {
+                            if (quiz.getValid_answer().get(0) == answer.getValue().get(0))
+                                score += cost;
+                        } else {
+                            Boolean check = true;
+                            if (quiz.getValid_answer().size() > answers.size())
+                                check = false;
+                            else {
+                                for (int i = 0; i < quiz.getValid_answer().size(); i++) {
+                                    if (quiz.getValid_answer().get(i) != answer.getValue().get(i))
+                                        check = false;
+                                }
+
                             }
+                            if (check)
+                                score += cost;
+                        }
+                    }
+                }
 
-                         }
-                         if(check)
-                             score += cost;
-                     }
-                 }
-
+                LocalDate localDate = LocalDate.now();
+                Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                trainee.setValidate_day(date);
+                trainee.setScore(score);
+                traineeRepository.save(trainee);
+                return score;
             }
-
-            LocalDate localDate = LocalDate.now();
-            Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            trainee.setValidate_day(date);
-            trainee.setScore(score);
-            traineeRepository.save(trainee);
-            return score;
+            else
+                return -1;
         }
-        return -1;
+        return -2;
     }
 
     @Override
-    public List<Training> get_suits(int profile_id) {
+    public Map<String,List<Training>> get_suits(Long profile_id) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-          List<Training> trainings = trainingRepository.findByStartdateAfter(date);
-        Profile profile = profileRepository.findById(profile_id).orElse(null);
+        List<Training> trainings = trainingRepository.findByStartdateAfter(date);
+        Profile profile = connections.getAccountProfileById(profile_id);
         double profile_score = calculate_profile_score(profile,date);
-        log.info(trainings.toString());
-        List<Training> filtered_trainings = new ArrayList<>();
-        for(Training training: trainings)
-        {
-           if(training.getType_t() == Type_T.internal)
-           {
-               Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
-               if(subject != null)
-               {
-                   log.info(" "+subject.getComplexity());
-                   log.info(" "+profile_score/10);
-                   if(subject.getComplexity() == (int)profile_score/10 )
-                       filtered_trainings.add(training);
-               }
-               else
-               {
-                   training.setType_t(Type_T.external);
-                   trainingRepository.save(training);
-               }
-           }
-        }
+
+        Map<String,List<Training>> filtered_trainings = new HashMap<>();
+        List<Training> trainings1 = new ArrayList<>();
+        List<Training> trainings2 = new ArrayList<>();
+        filtered_trainings.put("internal",trainings1);
+        filtered_trainings.put("external",trainings2);
+        for(Training training: trainings) {
+
+                if (training.getType_t() == Type_T.internal) {
+                    Subject subject = subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null);
+                    if (subject != null) {
+                        if (subject.getComplexity() == (int) profile_score / 10) {
+                            filtered_trainings.get("internal").add(training);
+                        }
+                    } else {
+                        training.setType_t(Type_T.external);
+                        filtered_trainings.get("external").add(training);
+                        trainingRepository.save(training);
+                    }
+                } else
+                    filtered_trainings.get("external").add(training);
+            }
 
         return filtered_trainings;
     }
@@ -148,16 +144,16 @@ public class TraineeService implements ITraineeService {
         List<Subject> subjects = subjectRepository.findAll();
         int size = 0;
         if(subjects.size() >0) {
-            double knowledge_crit = 40 / subjects.size();
 
+            double knowledge_crit = 20 / subjects.size();
 
             for (Subject subject : subjects) {
-                String knowledge = profile.getKnowledge() + " " + profile.getSkills() + " " + profile.getExperience();
+                String knowledge = profile.getKnowledge() + " " + profile.getSkills() ;
                 if (knowledge.contains(subject.getTitle()))
                     knowledge_score += knowledge_crit;
             }
 
-            List<Trainee> trainees = traineeRepository.findByEmail(profile.getEmail());
+            List<Trainee> trainees = traineeRepository.findByEmail(connections.getAccountEmailById(profile.getId()));
             for (Trainee trainee : trainees) {
                 if (!(trainee.getValidate_day() == null && trainee.getTraining().getEnddate().after(date))) {
                     trainings_score += trainee.getScore();
@@ -168,21 +164,27 @@ public class TraineeService implements ITraineeService {
         else
             knowledge_score = 0;
         if(size > 10)
-        trainings_score /=size;
+            trainings_score /=size;
         else if (size <10 && size>0)
             trainings_score /= size*((1-(size/10))+1);
         else
             trainings_score = 0;
-        return knowledge_score + trainings_score*0.6;
+        int experience = profile.getExperience();
+        if(experience > 10)
+            experience = 10;
+
+
+        return knowledge_score + trainings_score*0.6+experience*2;
+
 
     }
 
     @Override
-    public double getScore(int id_profile)
+    public double getScore(Long id_profile)
     {
         LocalDate localDate = LocalDate.now();
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Profile profile =profileRepository.findById(id_profile).orElse(null);
+        Profile profile =connections.getAccountProfileById(id_profile);
         if(profile !=null)
             return calculate_profile_score(profile,date);
         return 0;

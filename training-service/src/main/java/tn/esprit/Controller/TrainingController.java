@@ -26,6 +26,7 @@ import java.util.Set;
 @RequestMapping("training")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
+@CrossOrigin(origins ="*")
 public class TrainingController {
     final ITrainingService trainingService;
 
@@ -39,7 +40,7 @@ public class TrainingController {
                                 .mapToEntity(t)));
     }
 
-    @PostMapping("imaged")
+    @PutMapping("imaged")
     @ResponseStatus(HttpStatus.CREATED)
     public TrainingDto add_training(@RequestPart TrainingDto t,@RequestPart MultipartFile image)
     {
@@ -79,8 +80,8 @@ public class TrainingController {
         return null;
     }
 
-    @PutMapping("assignTrainees")
-    public boolean add_Trainees_to_training(@QueryParam("id_training") Long id_training,@QueryParam("id_trainee") List<Long> id_trainee)
+    @PutMapping("assignTrainees/{id_training}/{id_trainee}")
+    public boolean add_Trainees_to_training(@PathVariable("id_training") Long id_training,@PathVariable("id_trainee") List<Long> id_trainee)
     {
         return trainingService.add_Trainees_To_Training(id_training,id_trainee);
     }
@@ -89,7 +90,7 @@ public class TrainingController {
         return trainingService.add_Trainer_To_Training(id_training,id_trainer);
     }
     @GetMapping("sorted")
-    public List<TrainingDto> get_sorted_trainings(@QueryParam("by") int by) {
+    public List<TrainingDto> get_sorted_trainings(@QueryParam("by") String by) {
         List<TrainingDto> trainingDtos = new ArrayList<>();
         trainingService.get_sorted_trainings(by).forEach(training -> trainingDtos.add(TrainingMapper.mapToDto(training)));
         return trainingDtos;
@@ -107,11 +108,22 @@ public class TrainingController {
         return TrainingMapper.mapToDto(trainingService.affect_quizes_to_training(ids, training_title));
     }
 
-    @PostMapping("add_with_quizes")
+    @PutMapping("add_with_quizes")
     public TrainingDto add_training_with_quizes(@RequestPart TrainingDto training,@RequestPart Set<QuizDto> quizzes,@RequestPart MultipartFile image)
     {
         Set<Quiz> quizSet = new HashSet<>();
         quizzes.forEach(quizDto -> quizSet.add(QuizMapper.mapToEntity(quizDto)));
         return TrainingMapper.mapToDto(trainingService.add_training_with_quizes(TrainingMapper.mapToEntity(training),quizSet,image));
+    }
+
+    @GetMapping("get_dispo")
+    public List<TrainingDto> getAvailable()
+    {
+        List<TrainingDto> trainingDtos = new ArrayList<>();
+
+        trainingService.getAvailable().forEach(training -> {
+            trainingDtos.add(TrainingMapper.mapToDto(training));
+        });
+        return trainingDtos;
     }
 }

@@ -10,7 +10,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,11 +20,9 @@ import tn.esprit.Entity.Training;
 import tn.esprit.External.Profile;
 import tn.esprit.Interface.ISubjectService;
 import tn.esprit.Repository.CookiesRepository;
-import tn.esprit.Repository.ProfileRepository;
 import tn.esprit.Repository.SubjectRepository;
 import tn.esprit.Repository.TrainingRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileWriter;
@@ -45,9 +42,10 @@ public class SubjectService implements ISubjectService {
 
     final CookiesRepository cookiesRepository;
 
-    final ProfileRepository profileRepository;
 
     final TrainingRepository trainingRepository;
+
+    final Connections connections;
 
     // @Scheduled(cron = "* * 8 * * *")
 
@@ -77,10 +75,10 @@ public class SubjectService implements ISubjectService {
                                 indexes.put("complexity", cell.getColumnIndex());
                                 check_headers[2] = true;
                                 break;
-                            case "priority":
+                        /*    case "priority":
                                 indexes.put("priority", cell.getColumnIndex());
                                 check_headers[3] = true;
-                                break;
+                                break;*/
                             default:
                                 break;
                         }
@@ -136,12 +134,12 @@ public class SubjectService implements ISubjectService {
             }
 
         }
-        if (check_headers[3]) {
+     /*   if (check_headers[3]) {
             try {
                 subject.setPriority(String_to_Int(row.getCell(indexes.get("priority")).toString().trim()));
             } catch (Exception e) {
             }
-        }
+        }*/
         // log.info("valid");
         return subject;
 
@@ -216,13 +214,13 @@ public class SubjectService implements ISubjectService {
                     cookie.setDate(date);
                     cookie.setUser(id_user);
                     if(cookie_validation(cookie,id_user))
-                    cookies.add(cookie);
+                        cookies.add(cookie);
                 }
                 //Arrays.stream(values).forEach(v -> log.info("--> " + v));
             }
             // log.info(cookies.toString());
             if(cookies.size() > 0)
-            cookiesRepository.saveAll(cookies);
+                cookiesRepository.saveAll(cookies);
         } catch (IOException ioe) {
         }
 
@@ -349,21 +347,16 @@ public class SubjectService implements ISubjectService {
     }
 
 
-    private List<Profile> get_profiles()
-    {
-        List<Profile> profiles = new ArrayList<>();
-        profileRepository.findAll().forEach(profiles::add);
-        return profiles;
-    }
+
 
     private List<String> get_Knowledges(String subject_title)
     {
-        List<Profile> profiles = get_profiles();
+        List<Profile> profiles = connections.getProfiles();
         List<String> selected = new ArrayList<>();
         profiles.forEach(profile -> {
-            String infos = profile.getKnowledge() + profile.getSkills() + profile.getExperience();
+            String infos = profile.getKnowledge() + profile.getSkills() ;
             if(infos.toLowerCase().contains(subject_title.toLowerCase()))
-                selected.add(profile.getEmail());
+                selected.add(connections.getAccountEmailById(profile.getAccount_id()));
         });
         return selected;
     }
@@ -469,7 +462,7 @@ public class SubjectService implements ISubjectService {
     }
 
 
-    @Scheduled(cron = "* * * */7 * *")
+    @Scheduled(cron = "0 0 0 */7 * *")
     public void clear_old_cookies()
     {
         LocalDate localDate = LocalDate.now();

@@ -27,4 +27,8 @@ public interface IProductRepository extends JpaRepository<Product,Long> {
     @Query("select pr from Product pr join pr.commandLignes lg where lg.command.id = :id ")
     Set<Product> findProductsByCommandId(@Param("id") Long commandId);
 
+    @Query("select pr from Product pr join pr.commandLignes lg where lg.command.id = :id ")
+    Product findProductByCommandId(@Param("id") Long commandId);
+
+
 }

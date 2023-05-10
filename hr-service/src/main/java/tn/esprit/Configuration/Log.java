@@ -14,6 +14,6 @@ public class Log {
     @AfterReturning(" execution(* tn.esprit.Service.*.*(..)) ")
     public void logMethodExitReturning(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
-        log.info("Successful Execution" + name + " : ");
+        log.info("Successful Execution " + name + " : ");
     }
 }

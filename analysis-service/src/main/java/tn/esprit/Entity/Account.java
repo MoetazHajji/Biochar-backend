@@ -18,7 +18,7 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
     private String Firstname;
     private String Lastname;
     private String Cin;
@@ -30,7 +30,7 @@ public class Account implements Serializable {
     private Gender gender;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="account")
     Set<Sample> samples;
-    @OneToOne
+    @OneToOne(mappedBy = "account")
     Medicalcard medicalcard;
 
 

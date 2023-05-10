@@ -32,7 +32,7 @@ public class ControllerTest {
         return ist.findTest(idTest);
     }
     @PutMapping("aff")
-    public Test affect(@QueryParam("followU pSheetid") int followUpSheetid, @QueryParam("idtest") int idtest){
+    public Test affect(@QueryParam("followUpSheetid") int followUpSheetid, @QueryParam("idtest") int idtest){
         return ist.affecttesttofollowupsheet(followUpSheetid, idtest);
     }
 

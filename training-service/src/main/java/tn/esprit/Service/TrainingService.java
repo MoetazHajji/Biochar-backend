@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,8 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -40,21 +43,26 @@ public class TrainingService implements ITrainingService {
 
      @Override
      public Training add_training(Training t) {
-
-          t = training_type_check(t);
-          return trainingRepository.save(t);
+          if(validate_date(t)) {
+               t = training_type_check(t);
+               return trainingRepository.save(t);
+          }
+          return null;
      }
 
      @Override
      public Training add_training_with_image(Training t, MultipartFile image) {
-         t = training_type_check(t);
-          try {
-               t.setImage(image_handling(image,t.getTitle()));
-               return trainingRepository.save(t);
-          } catch (IOException ioe) {
-               log.error("IO Problem : " + ioe.getMessage());
-               return null;
+          if(validate_date(t)) {
+               t = training_type_check(t);
+               try {
+                    t.setImage(image_handling(image, t.getTitle()));
+                    return trainingRepository.save(t);
+               } catch (IOException ioe) {
+                    log.error("IO Problem : " + ioe.getMessage());
+                    return null;
+               }
           }
+          return null;
 
      }
 
@@ -122,24 +130,20 @@ public class TrainingService implements ITrainingService {
           return true;
      }
 
-     @Override
-     public List<Training> generate_trainings()  {
 
-          return null;
-
-     }
 
      @Override
-     public List<Training> get_sorted_trainings(int by) {
-          switch (by) {
-               case 0:
+     public List<Training> get_sorted_trainings(String by) {
+          switch (by.trim().toLowerCase()) {
+               case "date":
                     return trainingRepository.getAllSortedByDate();
-               case 1:
+               case "duration":
                     return trainingRepository.getAllSortedByDuration();
-               case 2:
+               case "reviews":
                     return trainingRepository.getAllSortedByReviews();
-               case 3:
+               case "ratings":
                     return sortByReviews();
+
           }
 
           return trainingRepository.findAll();
@@ -188,17 +192,34 @@ public class TrainingService implements ITrainingService {
      @Override
      @Transactional
      public Training add_training_with_quizes(Training training, Set<Quiz> quizes,MultipartFile image) {
-          try {
-               training = training_type_check(training);
-               filter_quizes(quizes);
-               if (quizes.size() > 0)
-                    training.setQuizes(quizes);
-               training.setImage(image_handling(image,training.getTitle()));
-               return trainingRepository.save(training);
-          }catch (IOException ioe) {
-          log.error("IO Problem : " + ioe.getMessage());
-          return null;
+          if(validate_date(training)) {
+               try {
+                    training = training_type_check(training);
+                    log.info("===========>"+quizes.toString());
+                    filter_quizes(quizes);
+                    log.info("---------->"+quizes.toString());
+                    if (quizes.size() > 0) {
+                         log.info("++++++++++++++++>"+quizes.toString());
+                         training.setQuizes(quizes);
+
+                    }
+                    training.setImage(image_handling(image, training.getTitle()));
+                    log.info("*********************>"+training.getQuizes().toString());
+                    return trainingRepository.save(training);
+               } catch (IOException ioe) {
+                    log.error("IO Problem : " + ioe.getMessage());
+                    return null;
+               }
+          }
+          else
+               return null;
      }
+
+     @Override
+     public List<Training> getAvailable() {
+          LocalDate localDate = LocalDate.now();
+          Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+          return trainingRepository.findByStartdateAfter(date);
      }
 
 
@@ -213,7 +234,7 @@ public class TrainingService implements ITrainingService {
      }
 
      private String image_handling(MultipartFile image,String title) throws IOException {
-          String destination ="src\\main\\resources\\" + title + "\\"+title+".png";
+          String destination ="src\\main\\resources\\images\\" + title + "\\"+title+".png";
           //t.setImage( "src\\main\\resources\\" + t.getTitle() + "\\"+t.getTitle()+".png");
 
           InputStream inputStream = image.getInputStream();
@@ -234,11 +255,59 @@ public class TrainingService implements ITrainingService {
      {
 
 
-            if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
-                 training.setType_t(Type_T.external);
-           else
+          if(subjectRepository.retrieveByTitle(training.getTitle().trim().toLowerCase()).orElse(null) == null)
+               training.setType_t(Type_T.external);
+          else
                training.setType_t(Type_T.internal);
 
           return training;
      }
+
+
+    // @Scheduled(fixedDelay = 3000)
+     public void delete_unused()
+     {
+          traineeRepository.findAll().forEach(trainee -> {
+               if(trainee.getTraining() == null)
+                    traineeRepository.deleteById(trainee.getId());
+          });
+          trainerRepository.findAll().forEach(trainer -> {
+               if(trainer.getTrainings() == null || trainer.getTrainings().size() ==0)
+                    trainerRepository.deleteById(trainer.getId());
+          });
+     }
+
+     private Boolean validate_date(Training training)
+     {
+          if(training.getEnddate().before(training.getStartdate()))
+               return false;
+          return true;
+
+     }
+
+   //  @Scheduled(fixedDelay = 50000)
+     public void update_training_type()
+     {
+          for(Training training :trainingRepository.findAll())
+          {
+               Boolean check = false;
+               for(Subject subject : subjectRepository.findAll())
+               {
+
+                    if(training.getTitle().trim().equalsIgnoreCase(subject.getTitle().trim()))
+                    {
+                         check = true;
+                    }
+
+               }
+
+               if(check)
+                    training.setType_t(Type_T.internal);
+               else
+                    training.setType_t(Type_T.external);
+               trainingRepository.save(training);
+          }
+     }
+
+
 }

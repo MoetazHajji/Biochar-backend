@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Cookie;
 import tn.esprit.Entity.Subject;
+import tn.esprit.External.Profile;
 import tn.esprit.Interface.ISubjectService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,5 +76,11 @@ public class SubjectController {
     public Map<String,List<String>> Predictions()
     {
         return subjectService.Predictions();
+    }
+
+    @GetMapping("getProfiles")
+    public List<Profile> getProfiles()
+    {
+        return null;
     }
 }

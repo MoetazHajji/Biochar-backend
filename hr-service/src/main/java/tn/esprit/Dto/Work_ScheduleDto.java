@@ -3,7 +3,8 @@ package tn.esprit.Dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -13,8 +14,10 @@ import java.util.Date;
 public class Work_ScheduleDto {
 
     Long id_WS;
-    Date start_date;
-    Date end_date;
+    LocalDate dateWork;
+    LocalTime start_time;
+    LocalTime end_time;
     Shift shift;
+    Long account_id;
 
 }

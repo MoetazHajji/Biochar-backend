@@ -15,7 +15,7 @@ public class MedicalcardMapper {
                     .build();
             return medicalcardDto;
         }
-        public static Medicalcard mapToEntity(MedicalcardDto medicalcardDto ){
+        public static Medicalcard mapToEntity( MedicalcardDto medicalcardDto ){
             Medicalcard medicalcard = Medicalcard.builder()
                     .idMedicalcard(medicalcardDto.getIdMedicalcard())
                     .card_number(medicalcardDto.getCard_number())
