@@ -8,7 +8,6 @@ import tn.esprit.Entity.BarResponse;
 import tn.esprit.Service.DashboardService;
 
 @RestController
-@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class DashboardController {
     private DashboardService dashboardService;
@@ -16,7 +15,6 @@ public class DashboardController {
 
     @GetMapping("/nbpatient")
     public BarResponse barTest() {
-        return
-                dashboardService.bar();
+        return  dashboardService.bar();
     }
 }

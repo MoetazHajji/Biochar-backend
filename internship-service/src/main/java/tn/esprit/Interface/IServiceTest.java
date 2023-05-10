@@ -15,7 +15,7 @@ public interface IServiceTest {
 
 
 
-    Test affecttesttofollowupsheet(int followUpSheetid, Test test);
+    Test affecttesttofollowupsheet(int followUpSheetid, int idtest);
 
 
     int getresult(int testid, List<String> internAnswers);

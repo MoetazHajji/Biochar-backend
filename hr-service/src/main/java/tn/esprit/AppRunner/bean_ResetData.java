@@ -2,17 +2,21 @@ package tn.esprit.AppRunner;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import tn.esprit.Entity.ExternelEntity.Account;
-import tn.esprit.Entity.ExternelEntity.Roles;
-import tn.esprit.Entity.ExternelEntity.Team;
+import tn.esprit.Dto.AccountDtoTopic;
+import tn.esprit.Entity.ExternelEntity.*;
 import tn.esprit.Entity.Shift;
+import tn.esprit.Mapper.IObjectMapperConvert;
 import tn.esprit.Repository.AccountRepository;
 import tn.esprit.Repository.Work_ScheduleRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,11 +26,25 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Transactional
 public class bean_ResetData implements CommandLineRunner {
+    @Autowired
+    private KafkaTemplate<Object, AccountDtoTopic > kafkaTemplateAccountDto;
+    @Autowired
+    IObjectMapperConvert objectMapperConvert ;
+    AccountDtoTopic  accountDto = new AccountDtoTopic( 1 , LocalDateTime.now(),
+            "firstname" ,"lastname" ,10820305,55775085,
+            LocalDate.now() , LocalDate.now() , "belhsenbachouch@gmail.com","photo", Gender.male,
+            StateRegion.Monastir, "cite" , 1140  , "adresse" , Roles.Patient ,
+            Team.Team_A ,
+            tn.esprit.Dto.Shift.Afternoon) ;
+
+
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Bean One of Reset Data  run method Started !!" );
-         this.reset( );
+        log.info("Bean of Reset Data  run method Started !!" );
+        this.reset( );
+        //    kafkaTemplateAccountDto.  send("topic-service-user-account-insert",  accountDto  );
+        //  kafkaTemplateAccountDto.flush();
     }
 
     private final Work_ScheduleRepository workScheduleRepository ;
@@ -34,13 +52,16 @@ public class bean_ResetData implements CommandLineRunner {
     private final AccountRepository accountRepository;
     private void reset(){
 
-      // accountRepository.deleteAll();
-       /* for ( Account account : accountSet)
+        // accountRepository.deleteAll();
+      /* for ( Account account : accountSet)
         {
             accountRepository.save(account);
-        }*/
+        }
+*/
+        //workScheduleRepository.deleteAll();
 
-       //workScheduleRepository.deleteAll();
+
+
     }
 
     public Account Chief_Service = new Account(  "Chief_Service_1", 04256314, Roles.Chief_Service, Shift.Morning);

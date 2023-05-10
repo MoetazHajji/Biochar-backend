@@ -6,46 +6,53 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.Entitys.Account;
-import tn.esprit.Entitys.Appointment;
-import tn.esprit.Services.IGenericCRUD;
+import tn.esprit.Dto.AccountDto;
+import tn.esprit.Dto.AppointmentDto;
+import tn.esprit.Models.AuthenticationResponse;
+import tn.esprit.Services.IAccountService;
 
 import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/Account")
+@RequestMapping("/account")
 public class AccountController {
-    private IGenericCRUD<Account> IAccountService;
+    private  IAccountService iAccountService;
     @Autowired
-    public AccountController(@Qualifier("Account") IGenericCRUD<Account> IAccountService){this.IAccountService = IAccountService;}
+    public AccountController(@Qualifier("Account") IAccountService iAccountService){this.iAccountService = iAccountService;}
 
     @GetMapping
-    public List<Account> SelectAll () {return  IAccountService. SelectAll () ;}
+    public List<AccountDto> SelectAll () {
+        List<AccountDto>  accountDtos = iAccountService. SelectAll () ;
+        return  accountDtos;}
 
     @GetMapping("{id}")
-    public ResponseEntity<Account> SelectBy (@PathVariable int id) {return  IAccountService.SelectBy ( id) ;}
-
+    public ResponseEntity<AccountDto> SelectBy (@PathVariable int id) {
+        return ResponseEntity.ok( iAccountService.SelectBy ( id) );}
+    @GetMapping("selectbyUsername/{Usename}")
+    public  ResponseEntity<AccountDto> selectbyUsername( @PathVariable("Usename") String  Usename){
+        return ResponseEntity.ok( iAccountService.selectbyUsername(Usename));}
     @PostMapping
-    public Account Insert( @RequestBody Account account) {return  IAccountService.Insert(   account);}
+    public AccountDto Insert( @RequestBody AccountDto accountDto) {
+        return  iAccountService.Insert(   accountDto);}
 
     @PutMapping
-    public  ResponseEntity<Account> update( @RequestBody Account account){return  IAccountService.update(  account);}
+    public  ResponseEntity<AccountDto> update( @RequestBody AccountDto accountDto){
+        return ResponseEntity.ok( iAccountService.update(  accountDto));}
+
+
+
+    @PutMapping ("AssignUserToAccount/{idUser}/{idAccount}")
+    public AccountDto assignUserToAccount(@PathVariable("idUser")  Long idUser , @PathVariable("idAccount")   Long idAccount){return  iAccountService.assignUserToAccount( idUser,  idAccount);}
 
     @DeleteMapping("{id}")
-    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){return  IAccountService.delete( id ); }
+    public  ResponseEntity<HttpStatus> delete(@PathVariable  Integer id ){
+        iAccountService.delete( id ); return new ResponseEntity<>(HttpStatus.NO_CONTENT); }
+
+    @PutMapping ("addAppointementToUsername/{username}")
+    public  ResponseEntity<AuthenticationResponse> addAppointementToUsername(@PathVariable("username")  String username ,
+                                                                             @RequestBody AppointmentDto object ){
+        return ResponseEntity.ok(  iAccountService.addAppointementToUsername(   username ,  object ));
+    }
 }
 
-
-/*
-{
-     "firstname":"belhsen",
-     "lastname":"bachouch",
-     "cin":10820305,
-     "phone":55775085,
-     "dateOfBirth":"1996-06-18",
-     "dateCreation":"2023-02-16",
-     "email":"belhsenbachouch@yahoo.fr",
-     "gender":"male"
-}
-* */

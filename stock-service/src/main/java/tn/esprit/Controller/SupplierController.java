@@ -14,6 +14,7 @@ import java.util.Set;
 @RestController
 @Tag(name = "Supplier Management")
 @RequestMapping("/supplier")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SupplierController {
     ISupplierService supplierService;
 

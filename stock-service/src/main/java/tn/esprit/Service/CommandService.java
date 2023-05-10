@@ -7,11 +7,13 @@ import tn.esprit.Entity.Command;
 import tn.esprit.Entity.CommandLigne;
 import tn.esprit.Entity.Product;
 import tn.esprit.Exception.ElementNotFoundException;
+import tn.esprit.Exception.NoProductException;
 import tn.esprit.Interface.ICommandService;
 import tn.esprit.Repository.ICommandLigneRepository;
 import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +25,7 @@ public class CommandService implements ICommandService {
 
     ICommandRepository commandRepository;
     ICommandLigneRepository ligneRepository;
+    IProductRepository productRepository;
     @Override
     public Command addCommand(Command command) {
         return commandRepository.save(command);
@@ -54,13 +57,14 @@ public class CommandService implements ICommandService {
     @Transactional
     public Command affectCommandToCommandLine(Command command, List<Long> idCommandLines) {
         commandRepository.save(command);
+        command.setDate(LocalDate.now());
         //List<CommandLigne> ligneList = command.getCommandLignes();
         command.setCommandLignes(null);
         for (Long idCommandLine:idCommandLines)
         {
-                CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElseThrow(() -> new ElementNotFoundException("Command Ligne with id "+ idCommandLine +" not found : " ));
-                commandLigne.setCommand(command);
-                ligneRepository.save(commandLigne);
+            CommandLigne commandLigne = ligneRepository.findById(idCommandLine).orElseThrow(() -> new ElementNotFoundException("Command Ligne with id "+ idCommandLine +" not found : " ));
+            commandLigne.setCommand(command);
+            ligneRepository.save(commandLigne);
         }
 
         if(command.getTotal_price()==null && command.getQuantity_product()==null){
@@ -77,17 +81,37 @@ public class CommandService implements ICommandService {
     }
 
     @Override
+    @Transactional
     public void disaffectCommandFromOrderLine(Long idCom, Long idComL) {
         Command command= commandRepository.findById(idCom).orElseThrow(() -> new ElementNotFoundException("Command with id "+ idCom +" not found : " ));
+        Set<Product> productList = productRepository.findProductsByCommandId(idCom);
         int productNb=command.getCommandLignes().size();
         for (int index=0;index<productNb;index++){
             for (CommandLigne ligne:command.getCommandLignes())
-            if(ligne.getId()==idComL){
-                command.getCommandLignes().remove(index);
-                break;
-            }
+                if(ligne.getId()==idComL) {
+                    command.getCommandLignes().remove(index);
+                    for (Product product : productList) {
+                        if(product.getCount_order()!=null){
+                            Long CountToUpdate = product.getCount_order();
+                            CountToUpdate--;
+                            product.setCount_order(CountToUpdate);
+                            Double UpdateQuanity = product.getQuantity() - ligneRepository.SumOfProductQuantity(product.getId());
+                            product.setQuantity(UpdateQuanity);
+                        }else if(product.getCount_order() < 0){
+                            throw new NoProductException("Count order connot be neagtive");
+                        }
+                        commandRepository.save(command);
+                        break;
+                    }
+                }
         }
         commandRepository.save(command);
+    }
+
+    @Override
+    public Set<CommandLigne> getCommandLigneOfCommand(Long idCom) {
+        Command command = commandRepository.findById(idCom).orElseThrow(() -> new ElementNotFoundException("Command with id "+ idCom +" not found : " ));
+        return command.getCommandLignes();
     }
 
     /*@Override
@@ -128,4 +152,5 @@ public class CommandService implements ICommandService {
         commandRepository.save(command);
         return command;
     }*/
+
 }

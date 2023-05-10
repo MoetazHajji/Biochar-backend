@@ -42,7 +42,8 @@ public class ServiceTest implements IServiceTest {
     }
 
     @Override
-    public Test affecttesttofollowupsheet(int followUpSheetid, Test test) {
+    public Test affecttesttofollowupsheet(int followUpSheetid, int idtest) {
+        Test test=rt.findById(idtest).orElse(null);
         FollowUpSheet followUpSheet = rfs.findById(followUpSheetid)
                 .orElse(null);
         test.setFollowUpSheet(followUpSheet);
@@ -66,6 +67,17 @@ public class ServiceTest implements IServiceTest {
                 }
             }
         }
+        /*questions.forEach( q ->{
+            List<Option> options = q.getOptions();
+            internAnswers.forEach( is ->{
+                for (Option option : options) {
+                    if (option.getCorrect() && is.equals(option.getText())) {
+                        score++;
+                        break;
+                    }
+                }
+            });
+        });*/
         FollowUpSheet followUpSheet = rfs.retrieveByTest(testid);
         followUpSheet.getScores().add(score);
         return score;

@@ -1,7 +1,11 @@
 package tn.esprit.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.Entity.Command;
 import tn.esprit.Entity.Product;
 import tn.esprit.Exception.ElementNotFoundException;
@@ -11,12 +15,16 @@ import tn.esprit.Repository.ICommandRepository;
 import tn.esprit.Repository.IProductRepository;
 import tn.esprit.Repository.IStockRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ProductService implements IProductService {
 
     IProductRepository productRepository;
@@ -25,8 +33,17 @@ public class ProductService implements IProductService {
 
 
     @Override
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
+    public Product addProduct(Product product,MultipartFile image) {
+        try {
+            product.setImage(image_handling(image, product.getReference()));
+            return productRepository.save(product);
+        }
+        catch (IOException ioException)
+        {
+            log.error("IO error!");
+            return null;
+        }
+
     }
 
     public boolean ifProductExist(String reference){
@@ -39,7 +56,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product modifyProduct(Product product) {
-            productRepository.save(product);
+        productRepository.save(product);
         return product;
     }
 
@@ -50,7 +67,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product getProductById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Offer with id "+ id +" not found : " ));
+        return productRepository.findById(id).orElseThrow(() -> new ElementNotFoundException("Product with id "+ id +" not found : " ));
     }
 
     @Override
@@ -93,4 +110,20 @@ public class ProductService implements IProductService {
     }
 
 
+    private String image_handling(MultipartFile image, String reference) throws IOException {
+        String destination ="B:\\4éme Année\\S2\\pidev\\Biochar-backend\\stock-service\\src\\main\\resources\\images\\"+reference+".png";
+
+        InputStream inputStream = image.getInputStream();
+
+
+        byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
+
+        // Create a new file using the destination path
+        File destinationFile = new File(destination);
+
+
+        // Write the bytes to the new file
+        FileUtils.writeByteArrayToFile(destinationFile, bytes);
+        return destination;
+    }
 }

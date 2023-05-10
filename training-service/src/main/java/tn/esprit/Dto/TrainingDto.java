@@ -3,6 +3,7 @@ package tn.esprit.Dto;
 import lombok.*;
 import tn.esprit.Entity.Type_T;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class TrainingDto {
     Date end_date;
     String location;
     float duration;
-    float time;
+    String time;
     String title;
     String subject;
     String description;

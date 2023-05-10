@@ -50,11 +50,11 @@ public class TestResultController {
     }
     @PostMapping("/readPDF")
     List<TestResult> readPDFtest(@RequestBody MultipartFile file){
-        try {
+        /*try {
             return iTestResult.readTests(file);
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
+        }*/
         return null;
     }
 
