@@ -26,7 +26,6 @@ import java.util.Set;
 @RequestMapping("training")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-@CrossOrigin(origins ="*")
 public class TrainingController {
     final ITrainingService trainingService;
 

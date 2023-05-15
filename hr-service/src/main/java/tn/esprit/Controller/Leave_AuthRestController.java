@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("LeaveAuth")
-@CrossOrigin(origins = "http://localhost:4200")
 public class Leave_AuthRestController {
 
     private final Leave_AuthService leave_authService;

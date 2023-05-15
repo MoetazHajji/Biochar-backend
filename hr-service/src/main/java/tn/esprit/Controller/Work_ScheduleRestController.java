@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("WorkSchedule")
-@CrossOrigin(origins = "http://localhost:4200")
 public class Work_ScheduleRestController {
 
     private final Work_ScheduleService work_scheduleService;

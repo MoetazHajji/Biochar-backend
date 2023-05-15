@@ -33,7 +33,6 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-@CrossOrigin(origins = "*")
 public class TableExtractionController {
 
     @Value("${python.script.path}")

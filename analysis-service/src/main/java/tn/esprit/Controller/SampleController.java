@@ -8,7 +8,6 @@ import tn.esprit.Entity.Sample;
 import tn.esprit.Interface.ISample;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("Sample")
 @RequiredArgsConstructor

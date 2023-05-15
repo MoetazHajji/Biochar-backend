@@ -18,19 +18,18 @@ public class GatewayConfig {
 
 
 
-                .route("analysis-service", r -> r.path("/biochar/analysis/**").uri("lb://analysis-service"))
+              //  .route("analysis-service", r -> r.path("/biochar/analysis/**").uri("lb://analysis-service"))
+                .route("analysis-service", r -> r.path("/biochar/analysis/**").uri("http://192.168.137.246:9060"))
 
-                .route("internship-service", r -> r.path("/biochar/internship/**")
-                        //.filters(f -> f.filter(filterAuthentificate.apply( new FilterAuthentificate.Config())))
-                        .uri("lb://internship-service"))
+                .route("internship-service", r -> r.path("/biochar/internship/**").uri("lb://internship-service"))
 
 
-                .route("stock-service", r -> r.path("/biochar/stock-service/**")  .uri("lb://stock-service"))
+                .route("stock-service", r -> r.path("/biochar/stock-service/**").uri("lb://stock-service"))
 
 
 
                 .route("training-service", r -> r.path("/biochar/training/**").uri("lb://training-service"))
-                .route("hr-service", r -> r.path("/biochar/hr/**").uri("lb://hr-service"))
+                .route("hr-service", r -> r.path("/biochar/hr-service/**").uri("lb://hr-service"))
 
 
                 .route("user-service", r -> r.path("/biochar/user-service/**").uri("lb://user-service"))
